@@ -1,2 +1,2 @@
-# mrbricks3_hyva
-Misterbricks 3 with Hyva theme
+# Misterbricks 3 Hyva
+Development with primary focus on front-end performance. Hyva theme is set to be the basis for the front-end.
