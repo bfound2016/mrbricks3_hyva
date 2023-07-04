@@ -8,4 +8,5 @@ Following are the list of currently used modules:
 - Fooman Email Attachments
 - Mageplaza SMTP
 - Magmodules Channable
-  
+- BSS Commerce - Review Reminder
+- BSS Commerce - Back In Stock
