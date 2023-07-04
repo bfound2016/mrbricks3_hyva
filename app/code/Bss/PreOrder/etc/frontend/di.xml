@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_PreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="bss_skip_check_saleable" type="Bss\PreOrder\Plugin\SkipCheck" sortOrder="10"/>
+    </type>
+    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="bss_apply_preorder_button" type="Bss\PreOrder\Plugin\ApplyButtonPreOrder" sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="check_preorder_before_add" type="Bss\PreOrder\Plugin\CheckBeforeAdd" sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Block\Cart\AbstractCart">
+        <plugin name="cart_notice" type="Bss\PreOrder\Plugin\Cart\Notice" sortOrder="10"/>
+    </type>
+    <type name="Magento\Sales\Block\Items\AbstractItems">
+        <plugin name="order_notice" type="Bss\PreOrder\Plugin\Order\Notice" sortOrder="10"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="get_options_attribute" type="Bss\PreOrder\Plugin\Model\Product\Type\Configurable" sortOrder="10"/>
+    </type>
+    <type name="Magento\Catalog\Block\Ui\ProductViewCounter">
+        <plugin name="bss_recently_widget" type="Bss\PreOrder\Plugin\Block\Ui\ProductViewCounter" sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="pre_order_product_list_json" xsi:type="object">Bss\PreOrder\Model\Provider\PreOrderProducts</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Layer">
+        <plugin name="bss_check_out_of_stock_options" type="Bss\PreOrder\Plugin\Model\Layer\CheckOutOfStockOptions" sortOrder="10"/>
+    </type>
+    <type name="Magento\CatalogInventory\Helper\Stock">
+        <plugin name="bss_check_out_of_stock" type="Bss\PreOrder\Plugin\Helper\Stock" sortOrder="10"/>
+    </type>
+
+    <!-- Min Price: Out Stock is PREORDER -->
+    <type name="Magento\InventoryConfigurableProduct\Pricing\Price\LowestPriceOptionsProvider\StockStatusBaseSelectProcessor">
+        <plugin name="bss_check_out_of_stock" type="Bss\PreOrder\Plugin\InventoryConfigurableProduct\Pricing\Price\LowestPriceOptionsProvider\StockStatusBaseSelectProcessor" sortOrder="10"/>
+    </type>
+    <!-- Case: Disable MSI -->
+    <type name="Magento\ConfigurableProduct\Model\ResourceModel\Product\StockStatusBaseSelectProcessor">
+        <plugin name="bss_check_out_of_stock_disable_msi" type="Bss\PreOrder\Plugin\ConfigurableProduct\Model\ResourceModel\Product\StockStatusBaseSelectProcessor" sortOrder="10"/>
+    </type>
+    <!-- End -->
+
+
+</config>

@@ -1,0 +1,67 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ReviewReminder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Bss\ReviewReminder\Block\Email\OrderItems */
+?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $block->getProductNotBeRevewed($_order); ?>
+    <?php if ($_items): ?>
+    <table class="email-items">
+        <thead>
+            <tr style="border-bottom: 1px solid #cccccc;">
+                <th class="item-info">
+                    <?= /* @escapeNotVerified */  __('Items') ?>
+                </th>
+                <th class="item-review" style="text-align: right;">
+                    <?= /* @escapeNotVerified */  __('Review') ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($_items as $_item): ?>
+
+            <tr style="border-bottom: 1px solid #cccccc;">
+                <td style="padding: 10px"> 
+                    <p><span style="font-weight: bold"><?= /* @escapeNotVerified */  __('Name') ?>: </span><?php echo $_item->getName() ?></p>
+                    <p><span style="font-weight: bold"><?= /* @escapeNotVerified */  __('SKU') ?>: </span><?php echo $_item->getSku() ?></p>
+                </td>
+                <td style="text-align: right; padding: 10px">
+                    <?php if ($block->getProductUrlFrontEnd($_item, $_order->getId()) != ''): ?>
+                        <a href="<?php echo $block->getProductUrlFrontEnd($_item, $_order->getId())?>" target="_blank"><?= /* @escapeNotVerified */  __('Go to review') ?></a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php else: ?>
+    <table class="email-items">
+        <thead>
+            <tr>
+                <th>
+                    <p><?= /* @escapeNotVerified */  __('All products have been reviewed') ?>.</p>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <?php endif ?>
+<?php endif; ?>

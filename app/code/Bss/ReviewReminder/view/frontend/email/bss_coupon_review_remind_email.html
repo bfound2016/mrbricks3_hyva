@@ -1,0 +1,36 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ReviewReminder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<!--@subject Coupon Code For Your First Review  @-->
+{{template config_path="design/email/header_template"}}
+<table width="100%">
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%customerName," customerName=$customerName}}</p>
+            <p>
+                {{trans "Thank you for sending review for our products. In return, we would like to offer you one coupon code."}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>{{trans "Coupon Code: "}} <span style="font-style: bold"> {{trans "%code" code=$code}}</span></h1>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,27 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ReorderProduct
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+/** @var $block \Bss\ReorderProduct\Block\System\Config\Form\Button */
+?>
+<div class="bss-buttons-container">
+    <a id="<?php echo $block->getId() ?>" href="<?php echo $block->getImportUrl() ?>" class="action-primary">
+        <span><span><span><?php echo $block->escapeHtml($block->getButtonLabel()); ?></span></span></span>
+    </a>
+    <?= $block->getBlockHtml('formkey') ?>
+</div>
+<p class="note"><span><?php /* @escapeNotVerified */ echo __('Import old orders before install this module'); ?> </span></p>
