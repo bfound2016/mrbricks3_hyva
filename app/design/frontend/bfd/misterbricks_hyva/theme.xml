@@ -1,5 +1,5 @@
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
-    <title>New theme</title> <!-- your theme's name -->
+    <title>Misterbrick Hyva</title> <!-- your theme's name -->
     <parent>Hyva/default</parent> <!-- the parent theme, in case your theme inherits from an existing theme -->
     <media>
         <preview_image>media/preview.png</preview_image> <!-- the path to your theme's preview image -->
