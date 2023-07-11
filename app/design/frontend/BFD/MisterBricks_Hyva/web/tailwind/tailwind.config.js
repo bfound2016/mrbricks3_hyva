@@ -22,7 +22,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
 
       },
       fontFamily: {
-        sans: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
+        sans: ["Poppins", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
       },
       colors: {
         primary: {

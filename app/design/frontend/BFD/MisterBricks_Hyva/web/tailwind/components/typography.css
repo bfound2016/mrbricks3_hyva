@@ -6,6 +6,22 @@
     }
 }
 
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/Poppins-Regular.woff2");
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/Poppins-SemiBold.woff2");
+}
+
 html {
     @apply antialiased;
 }
