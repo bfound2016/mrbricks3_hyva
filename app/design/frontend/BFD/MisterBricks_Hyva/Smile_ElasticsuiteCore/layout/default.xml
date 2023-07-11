@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile\ElasticsuiteCore
+ * @author    Romain Ruaud <romain.ruaud@smile.fr>
+ * @copyright 2020 Smile
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header-wrapper">
+<!--            <block class="Smile\ElasticsuiteCore\Block\Search\Form\Autocomplete" name="top.search" as="topSearch" template="Smile_ElasticsuiteCore::search/form.mini.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="rendererList" xsi:type="array">-->
+<!--                        <item name="term" xsi:type="array">-->
+<!--                            <item name="title" xsi:type="string" translate="true">Search terms</item>-->
+<!--                            <item name="template" xsi:type="string">Smile_ElasticsuiteCore/autocomplete/term</item>-->
+<!--                        </item>-->
+<!--                    </argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+<!--        </referenceContainer>-->
+        <referenceContainer name="before.body.end">
+<!--            <block class="Magento\Framework\View\Element\Template" name="elasticsuite_footer" template="Smile_ElasticsuiteCore::footer.phtml" />-->
+        </referenceContainer>
+    </body>
+</page>
