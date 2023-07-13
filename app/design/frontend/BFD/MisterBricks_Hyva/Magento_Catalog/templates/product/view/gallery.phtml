@@ -121,7 +121,7 @@ $productName = $block->getProduct()->getName();
         <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())" class="xl:order-1">
             <div
                 id="thumbs"
-                class="flex items-center"
+                class="flex items-center xl:flex-col"
                 :class="{ 'fixed justify-center bottom-0 left-0 right-0 mx-6': fullscreen }"
                 style="min-height: 100px;"
             >
