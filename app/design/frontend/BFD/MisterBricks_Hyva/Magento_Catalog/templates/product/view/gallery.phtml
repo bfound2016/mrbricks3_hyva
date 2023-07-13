@@ -121,7 +121,7 @@ $productName = $block->getProduct()->getName();
         <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())">
             <div
                 id="thumbs"
-                class="flex items-center xl:flex-col"
+                class="flex items-center"
                 :class="{ 'fixed justify-center bottom-0 left-0 right-0 mx-6': fullscreen }"
                 style="min-height: 100px;"
             >
@@ -132,7 +132,7 @@ $productName = $block->getProduct()->getName();
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
                     @click="scrollPrevious"
                 ><?= $heroicons->chevronLeftHtml() ?></button>
-                <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1 xl:px-2"
+                <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1 xl:px-2 xl:flex-col"
                      x-ref="jsThumbSlides"
                      @scroll.debounce="calcPageSize(); calcActive()"
                 >
