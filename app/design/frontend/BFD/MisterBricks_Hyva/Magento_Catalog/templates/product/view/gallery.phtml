@@ -48,7 +48,7 @@ $productName = $block->getProduct()->getName();
      x-bind="eventListeners"
      class="order-1 w-full md:w-1/2 lg:w-7/12 md:h-auto"
 >
-    <div :class="{'w-full h-full fixed block top-0 left-0 bg-white z-50 flex': fullscreen}">
+    <div :class="{'w-full h-full fixed block top-0 left-0 bg-white z-50 flex': fullscreen}" class="xl:flex">
         <div class="absolute top-0 right-0 pt-4 pr-4">
             <button @click="fullscreen = false; $nextTick(() => calcPageSize())"
                     type="button"
@@ -60,7 +60,7 @@ $productName = $block->getProduct()->getName();
                 <?= $heroicons->xHtml(); ?>
             </button>
         </div>
-        <div class="relative self-center w-full"
+        <div class="relative self-center w-full xl:order-2"
              x-transition:enter="ease-out duration-500"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
@@ -118,7 +118,7 @@ $productName = $block->getProduct()->getName();
                 </div>
             </div>
         </div>
-        <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())">
+        <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())" class="xl:order-1">
             <div
                 id="thumbs"
                 class="flex items-center"
