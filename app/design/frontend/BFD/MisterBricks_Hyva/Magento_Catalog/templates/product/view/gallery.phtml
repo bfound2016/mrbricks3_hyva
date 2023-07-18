@@ -142,8 +142,8 @@ $productName = $block->getProduct()->getName();
                             class="js_thumbs_slide flex shrink-0 mb-2 mr-2 lg:mr-4 last:mr-0"
                             :class="{'xl:mr-0' : !fullscreen}" >
                             <a href="#" @click.prevent="setActive(index);"
-                               class="block border border-gray-300 hover:border-primary focus:border-primary"
-                               :class="{'border-primary': active === index}"
+                               class="block border border-gray-300 hover:border-sky-400 focus:border-sky-400"
+                               :class="{'border-sky-400': active === index}"
                             >
                                 <img :src="image.thumb"
                                      :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
