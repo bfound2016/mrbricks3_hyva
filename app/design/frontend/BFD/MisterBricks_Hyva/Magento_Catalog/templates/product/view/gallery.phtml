@@ -121,14 +121,14 @@ $productName = $block->getProduct()->getName();
         <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())" class="xl:order-1">
             <div
                 id="thumbs"
-                class="flex items-center xl:flex-col xl:max-h-[625px] 2xl:max-h-[770px]"
-                :class="{ 'fixed justify-center bottom-0 left-0 right-0 mx-6': fullscreen }"
+                class="flex items-center xl:max-h-[625px] 2xl:max-h-[770px]"
+                :class="{ 'fixed justify-center bottom-0 left-0 right-0 mx-6': fullscreen, xl:flex-col : !fullscreen }"
                 style="min-height: 100px;"
             >
                 <button
                     aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                     tabindex="-1"
-                    class="mr-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
+                    class="mr-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90 xl:mr-0"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
                     @click="scrollPrevious"
                 ><?= $heroicons->chevronLeftHtml() ?></button>
@@ -155,7 +155,7 @@ $productName = $block->getProduct()->getName();
                 <button
                     aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                     tabindex="-1"
-                    class="ml-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
+                    class="ml-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90 xl:ml-0"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide >= itemCount-pageSize, 'hidden' : !isSlider }"
                     @click="scrollNext"
                 ><?= $heroicons->chevronRightHtml() ?></button>
