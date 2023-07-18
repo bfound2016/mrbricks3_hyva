@@ -132,7 +132,8 @@ $productName = $block->getProduct()->getName();
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
                     @click="scrollPrevious"
                 ><?= $heroicons->chevronLeftHtml() ?></button>
-                <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1 xl:px-2 xl:flex-col"
+                <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1"
+                     :class="{'xl:px-2 xl:flex-col': !fullscreen}"
                      x-ref="jsThumbSlides"
                      @scroll.debounce="calcPageSize(); calcActive()"
                 >
