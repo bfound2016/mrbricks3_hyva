@@ -128,7 +128,7 @@ $productName = $block->getProduct()->getName();
                 <button
                     aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                     tabindex="-1"
-                    class="mr-4 text-black rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
+                    class="mr-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
                     @click="scrollPrevious"
                 ><?= $heroicons->chevronLeftHtml() ?></button>
@@ -155,7 +155,7 @@ $productName = $block->getProduct()->getName();
                 <button
                     aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                     tabindex="-1"
-                    class="ml-4 text-black rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
+                    class="ml-4 text-sky-400 rounded-full outline-none focus:outline-none flex-none xl:rotate-90"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide >= itemCount-pageSize, 'hidden' : !isSlider }"
                     @click="scrollNext"
                 ><?= $heroicons->chevronRightHtml() ?></button>
