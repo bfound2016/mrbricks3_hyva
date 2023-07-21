@@ -12,14 +12,6 @@ body {
     @apply my-8;
 }
 
-.product-info-main {
-    @apply -mt-8;
-
-    @screen md {
-        @apply mt-0;
-    }
-}
-
 .flex-columns-wrapper {
     @apply flex flex-col;
 
