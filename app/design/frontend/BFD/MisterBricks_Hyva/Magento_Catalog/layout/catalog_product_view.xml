@@ -11,6 +11,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="page.main.title" remove="true" />
+        <!-- 
         <referenceBlock name="product.info.details">
             <block  name="description.specifications"
                     template="Magento_Catalog::product/view/sections/specifications.phtml"
@@ -21,5 +22,6 @@
                 </arguments>
             </block>
         </referenceBlock>
+        -->
     </body>
 </page>
