@@ -122,7 +122,6 @@ module.exports = hyvaModules.mergeTailwindConfig({
             maxWidth: '80ch'
           }
         }
-        
       }
     }
   },
