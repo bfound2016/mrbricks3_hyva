@@ -33,4 +33,5 @@ $cssClasses = $block->getData('css_classes') ?? 'prose';
 <div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>">
     <?= $productViewModel->productAttributeHtml($product, $product->getDescription(), 'description') ?>
     <?= 'Specificaties' ?>
+    <?= $productViewModel->productAttributeHtml($product, $product->getSpecifications(), 'specifications') ?>
 </div>
