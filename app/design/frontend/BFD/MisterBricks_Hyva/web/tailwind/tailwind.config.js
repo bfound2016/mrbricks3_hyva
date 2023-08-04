@@ -119,7 +119,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: '80ch'
+            'max-width': '80ch'
           }
         }
       }
