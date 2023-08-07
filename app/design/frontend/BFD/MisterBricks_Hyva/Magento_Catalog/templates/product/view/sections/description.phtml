@@ -31,7 +31,7 @@ $cssClasses = $block->getData('css_classes') ?? 'prose';
 
 ?>
 <div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>" x-data="{expanded: false}">
-    <button @click="expanded = ! expanded" class="rounded-md bg-blue-200 text-blue-500">Toon meer / minder</button>
+    <button @click="expanded = ! expanded" class="rounded-md bg-blue-200 text-blue-500">Toon <span x-text="expanded ? 'meer': 'minder'"></span></button>
     <div x-show="expanded" x-collapse>
         <?= $productViewModel->productAttributeHtml($product, $product->getDescription(), 'description') ?>
         <?= $productViewModel->productAttributeHtml($product, $product->getSpecifications(), 'specifications') ?>
