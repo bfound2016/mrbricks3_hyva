@@ -23,8 +23,8 @@ $product = $productViewModel->getProduct();
 <div class="container mx-auto flex py-6 mb-6 md:flex-row border-y-[1px] border-gray-100 px-0">
     <h2 class="text-gray-900 text-2xl title-font font-base text-center md:text-left w-full uppercase whitespace-nowrap overflow-clip text-ellipsis">
         <span class="font-semibold"><?= $escaper->escapeHtml($product->getName()) ?> <?= $escaper->escapeHtml(__('Description')) ?></span>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
         </svg>
     </h2>
 </div>
