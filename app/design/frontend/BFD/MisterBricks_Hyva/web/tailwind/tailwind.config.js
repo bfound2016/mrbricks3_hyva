@@ -116,6 +116,10 @@ module.exports = hyvaModules.mergeTailwindConfig({
         center: true,
         padding: '1.5rem'
       },
+      columns: {
+        paddingLeft: '0',
+        paddingRight: '0'
+      },
       typography: {
         DEFAULT: {
           css: {
