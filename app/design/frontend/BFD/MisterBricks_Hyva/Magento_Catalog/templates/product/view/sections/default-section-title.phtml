@@ -17,6 +17,6 @@ use Magento\Framework\View\Element\AbstractBlock;
 ?>
 <div class="container mx-auto flex py-6 mb-6 md:flex-row border-y-[1px] border-gray-200 bg-gray-100 px-0">
     <h2 class="text-gray-900 text-lg md:text-2xl title-font font-base text-center md:text-left w-full uppercase px-4 flex flex-row justify-between">
-        <?= $sectionBlock->getTitle() ? $escaper->escapeHtml($sectionBlock->getTitle()) : '&nbsp;' ?>
+    <span class="font-semibold whitespace-nowrap overflow-clip text-ellipsis"><?= $sectionBlock->getTitle() ? $escaper->escapeHtml($sectionBlock->getTitle()) : '&nbsp;' ?></span>
     </h2>
 </div>
