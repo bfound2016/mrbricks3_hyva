@@ -41,13 +41,19 @@ $items = $reviewCollection->getItems();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 ?>
 <?php if (count($items)): ?>
-    <div class="mx-auto py-6 items-center" id="customer-review-list" x-data="{collapsed: true}">
+    <div @click="collapsed = !collapsed" class="mx-auto py-6 items-center" id="customer-review-list" x-data="{collapsed: true}">
         <div class="container mx-auto flex pt-6 pb-3 mb-6 md:flex-row border-b-2 border-gray-300">
             <?php if (!$block->getHideTitle()): ?>
                 <h3 class="text-gray-900 text-2xl title-font font-base text-center md:text-left w-full">
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
                 </h3>
             <?php endif ?>
+                <svg x-show="collapsed" @click="collapsed = !collapsed" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-90 -mr-2 md:mr-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <svg x-show="!collapsed" @click="collapsed = !collapsed" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 opacity-90 -mr-2 md:mr-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
         </div>
         <div class="card w-full px-6 py-3" x-show="!collapsed">
             <?php foreach ($items as $review): ?>
@@ -112,7 +118,7 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
             <?php endforeach; ?>
         </div>
         <?php if ($toolbar): ?>
-        <div class="toolbar review-toolbar mt-4">
+        <div class="toolbar review-toolbar mt-4" x-show="!collapsed">
             <?= $toolbar->toHtml() ?>
         </div>
         <?php endif; ?>
