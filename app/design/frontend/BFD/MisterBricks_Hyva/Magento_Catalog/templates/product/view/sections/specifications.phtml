@@ -30,6 +30,6 @@ if (!$product->getSpecifications()) {
 $cssClasses = $block->getData('css_classes') ?? 'prose';
 
 ?>
-<div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>">
+<div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>" x-show="!collapsed">
     <?= $productViewModel->productAttributeHtml($product, $product->getSpecifications(), 'specifications') ?>
 </div>
