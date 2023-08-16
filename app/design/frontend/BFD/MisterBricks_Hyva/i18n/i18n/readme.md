@@ -1,0 +1,1 @@
+Translation environment for MisterBricks_Hyva theme
