@@ -44,7 +44,7 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
     <div @click="collapsed = !collapsed" class="mx-auto py-6 items-center" id="customer-review-list" x-data="{collapsed: true}">
         <div class="container mx-auto flex py-6 mb-6 md:flex-row border-y-[1px] border-gray-200 bg-gray-100 px-4">
             <?php if (!$block->getHideTitle()): ?>
-                <h3 class="text-gray-900 md:text-2xl title-font font-base text-center md:text-left uppercase flex flex-row justify-between w-full">
+                <h3 class="text-gray-900 text-lg md:text-2xl text-center md:text-left uppercase flex flex-row justify-between w-full font-semibold">
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
                 </h3>
             <?php endif ?>
