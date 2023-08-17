@@ -12,7 +12,6 @@ use Hyva\Theme\ViewModel\HeroiconsOutline;
 use Hyva\Theme\ViewModel\HeroiconsSolid;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use Magento\Framework\Escaper;
-use Magento\Review\Block\ReviewRenderer as ReviewSummary;
 use Magento\Review\Block\Product\View as ProductReview;
 use Magento\Theme\Block\Html\Pager;
 
@@ -23,7 +22,7 @@ use Magento\Theme\Block\Html\Pager;
 /** @var Escaper $escaper */
 /** @var Pager $toolbar */
 /** @var ViewModelRegistry $viewModels */
-
+/** @var ReviewSummary $reviewSummary */
 
 /** @var HeroiconsOutline $heroicons */
 $heroicons = $viewModels->require(HeroiconsOutline::class);
@@ -41,10 +40,8 @@ $reviewCollection->load()->addRateVotes();
 $items = $reviewCollection->getItems();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 
-/** @var ReviewSummary $reviewSummary */
 // Summary details for title bar
-$score = $reviewSummary->getRatingSummary();
-$nrofreviews = $reviewSummary->getReviewsCount();
+
 
 ?>
 <?php if (count($items)): ?>
