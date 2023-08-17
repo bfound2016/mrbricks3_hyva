@@ -47,8 +47,8 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
             <?php if (!$block->getHideTitle()): ?>
                 <h3 class="text-gray-900 text-lg md:text-2xl text-center md:text-left uppercase flex flex-row justify-between w-full font-semibold">
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
-                    <span class="block clear-both">
-                    <?= $block->getChildHtml('product.info.review'); ?>
+                    <!-- Review summary data -->
+                    <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review/phtml")->toHtml() ?>
                 </span>
                 </h3>
             <?php endif ?>
