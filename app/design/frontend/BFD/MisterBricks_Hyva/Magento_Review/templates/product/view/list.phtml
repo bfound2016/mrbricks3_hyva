@@ -41,6 +41,13 @@ $items = $reviewCollection->getItems();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 
 // Summary details for title bar
+$score = $block->getRatingSummary();
+$ratingSteps = 5;
+$starsFilled = is_numeric($score) ? floor($score / 100 * $ratingSteps) : 0;
+$starFragment = $score / 100 * $ratingSteps - $starsFilled;
+$starsEmpty = floor($ratingSteps - $starsFilled - $starFragment);
+$yellowHex = '#f6e05e';
+$greyHex = '#cbd5e0';
 
 
 ?>
