@@ -103,7 +103,7 @@ $reviewCount = $block->getReviewsCount();
             <?php endwhile; ?>
         <?php endif; ?>
         <?php if ($reviewCount): ?>
-            <span class="font-semibold">(<span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies)</span>
+            <span class="font-semibold text-sm normal-case">(<span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies)</span>
         <?php endif; ?>
     </div>
 <?php endif; ?>
