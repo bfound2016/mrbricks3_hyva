@@ -17,7 +17,7 @@ $ratingSteps = 5;
 $starsFilled = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
 $starFragment = $rating / 100 * $ratingSteps - $starsFilled;
 $starsEmpty = floor($ratingSteps - $starsFilled - $starFragment);
-$yellowHex = '#f6e05e';
+$yellowHex = '#ffcf00';
 $greyHex = '#cbd5e0';
 $reviewCount = $block->getReviewsCount();
 ?>
@@ -103,7 +103,7 @@ $reviewCount = $block->getReviewsCount();
             <?php endwhile; ?>
         <?php endif; ?>
         <?php if ($reviewCount): ?>
-            <span class="text-sm normal-case"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
+            <span class="text-sm capitalize text-blue-900"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
         <?php endif; ?>
     </div>
 <?php endif; ?>
