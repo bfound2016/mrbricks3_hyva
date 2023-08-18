@@ -39,7 +39,7 @@ $reviewCount = $block->getReviewsCount();
         <?php if ($rating): ?>
             <?php $i = 0; ?>
             <?php while ($i < $starsFilled): ?>
-                <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-6 h-6" viewBox="3 0 20 20"
+                <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-5 h-5" viewBox="3 0 20 20"
                      style="color: <?= /** @noEscape */ $yellowHex ?>"
                      fill="currentColor">
                     <path
@@ -51,7 +51,7 @@ $reviewCount = $block->getReviewsCount();
                 <?php $i++; ?>
             <?php endwhile; ?>
             <?php if ($starFragment): ?>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="3 0 20 20" fill="currentColor" class="w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="3 0 20 20" fill="currentColor" class="w-5 h-5">
                     <defs>
                         <linearGradient id="partialFill<?= /* @noEscape */ $block->getProduct()->getId() ?>">
                             <stop offset="0%" stop-color="<?= /** @noEscape */ $yellowHex ?>"/>
@@ -72,7 +72,7 @@ $reviewCount = $block->getReviewsCount();
             <?php $i = 0; ?>
                 <?php while ($i < $starsEmpty): ?>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                     class="fill-current w-6 h-6"
+                     class="fill-current w-5 h-5"
                      style="color: <?= /** @noEscape */ $greyHex ?>"
                      viewBox="3 0 20 20"
                      fill="currentColor">
@@ -89,7 +89,7 @@ $reviewCount = $block->getReviewsCount();
             <?php $i = 0; ?>
             <?php while ($i < $ratingSteps): ?>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                     class="fill-current text-gray-200 w-6 h-6"
+                     class="fill-current text-gray-200 w-5 h-5"
                      viewBox="3 0 20 20"
                      fill="currentColor">
                     <path
