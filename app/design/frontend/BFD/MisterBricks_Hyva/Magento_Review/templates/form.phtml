@@ -66,7 +66,8 @@ $recaptcha = $block->getData('viewModelRecaptcha');
 
         <!-- panel -->
         <div 
-            @click = "open = false" 
+            @click = "open = false"
+            x-trap.noscroll.inert = "open"
             class="relative h-full w-full items-center justify-center flex">
             <div 
                 @click.stop
