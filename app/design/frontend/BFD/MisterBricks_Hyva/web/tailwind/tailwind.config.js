@@ -42,7 +42,13 @@ module.exports = hyvaModules.mergeTailwindConfig({
         },
         green: colors.emerald,
         yellow: colors.amber,
-        purple: colors.violet
+        purple: colors.violet,
+        lego: {
+          blue: {
+            light:"#07adeb",
+            dark:"#075397"
+          }
+        }
       },
       textColor: {
         orange: colors.orange,
@@ -58,12 +64,6 @@ module.exports = hyvaModules.mergeTailwindConfig({
           lighter: colors.gray['400'],
           "DEFAULT": colors.gray['600'],
           darker: colors.gray['800']
-        },
-        lego: {
-          blue: {
-            light:"#07adeb",
-            dark:"#075397"
-          }
         }
       },
       backgroundColor: {
