@@ -60,18 +60,20 @@ $recaptcha = $block->getData('viewModelRecaptcha');
          class = "fixed inset-0 z-10 overflow-y-auto" >
 
         <!-- overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+        <div class="fixed inset-0 bg-black bg-opacity-30"></div>
 
         <!-- panel -->
         <div 
             @click = "open = false" 
             class="relative h-full w-full items-center justify-center flex">  
             
-            <div class="max-w-2xl w-full bg-white border border-gray-900 p-4 overflow-y-auto">
+            <div 
+                @click.stop
+                class="max-w-2xl w-full bg-white border border-gray-900 p-4 overflow-y-auto">
                 <!-- title -->
-                <h2><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
+                <h2 class="text-2xl font-semibold"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
                 <!-- content -->
-                <span> Hier komt het formulier </span>
+                <span>Hier komt het formulier</span>
             </div>
         </div>
     </div>
