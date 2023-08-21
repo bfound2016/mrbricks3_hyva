@@ -48,15 +48,17 @@ $recaptcha = $block->getData('viewModelRecaptcha');
 ?>
 <div x-data="{open: false}">
     <!-- button -->    
-    <button @click = "open = true" class="bg-lego-blue-dark text-white rounded-[2rem] block mx-auto py-4 px-16"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></button>
+    <button @click = "open = true" class="bg-lego-blue-dark text-white rounded-[2rem] block mx-auto py-4 px-16">
+        <?= $escaper->escapeHtml(__('Write Your Own Review')) ?>
+    </button>
     <!-- Modal -->
     <div x-show = "open" x-transition
          style = "display:none"
          @keydown.escape.prevent.stop = "open = false"
          role = "dialog"
          aria-modal = "true"
-         x-id = "['<?= $escaper->escapeHtml(__('Write Your Own Review')) ?>']"
-         :aria-labelled-by = "$id('<?= $escaper->escapeHtml(__('Write Your Own Review')) ?>')"
+         x-id = "['modal-review-form']"
+         :aria-labelled-by = "$id('modal-review-form')"
          class = "fixed inset-0 z-10 overflow-y-auto" >
 
         <!-- overlay -->
