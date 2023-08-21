@@ -50,7 +50,7 @@ $recaptcha = $block->getData('viewModelRecaptcha');
     <!-- button -->    
     <button @click = "open = true" class="bg-lego-blue-dark text-white rounded-[2rem] block mx-auto py-4 px-16"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></button>
     <!-- Modal -->
-    <div x-show = "open"
+    <div x-show = "open" x-transition
          style = "display:none"
          @keydown.escape.prevent.stop = "open = false"
          role = "dialog"
