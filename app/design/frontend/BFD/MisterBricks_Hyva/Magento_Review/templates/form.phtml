@@ -73,7 +73,7 @@ $recaptcha = $block->getData('viewModelRecaptcha');
                 x-trap.noscroll.inert =  "open"
                 class="max-w-2xl w-full bg-white border border-gray-900 p-4 overflow-y-auto">
                 <!-- title -->
-                <h2 class="text-2xl font-semibold"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
+                <h2 :id="$id('modal-title-review-form')" class="text-2xl font-semibold"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
                 <!-- content -->
                 <span>Hier komt het formulier</span>
                 <button @click = "open = false">Sluit</button>
