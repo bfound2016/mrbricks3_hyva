@@ -35,7 +35,7 @@ body {
 }
 
 .card {
-    @apply px-4 pt-4 rounded-sm bg-container-lighter shadow;
+    @apply px-4 rounded-sm bg-container-lighter;
 }
 
 .card-interactive {
