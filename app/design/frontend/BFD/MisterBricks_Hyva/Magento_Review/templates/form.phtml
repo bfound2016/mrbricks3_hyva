@@ -46,38 +46,36 @@ $gqlViewModel = $viewModels->require(GraphqlViewModel::class);
 $recaptcha = $block->getData('viewModelRecaptcha');
 
 ?>
-<div x-data="{open: false}">
-    <!-- button -->    
-    <button @click = "open = true" class="bg-lego-blue-dark text-white rounded-[2rem] block mx-auto py-4 px-16">
-        <?= $escaper->escapeHtml(__('Write Your Own Review')) ?>
+<div x-data="{...hyva.modal(), n: 0}">
+    <button @click="show" type="button" class="btn mt-40" aria-haspopup="dialog">
+        <?= $escaper->escapeHtml(__('Open')) ?>
     </button>
-    <!-- Modal -->
-    <div x-show = "open" x-transition
-         x-trap.noscroll.inert =  "open"
-         style = "display:none"
-         @keydown.escape.prevent.stop = "open = false"
-         role = "dialog"
-         aria-modal = "true"
-         x-id = "['modal-review-form']"
-         :aria-labelled-by = "$id('modal-review-form')"
-         class = "fixed inset-0 z-10 overflow-y-auto" >
 
-        <!-- overlay -->
-        <div x-show = "open" x-transition.opacity class="fixed inset-0 bg-black bg-opacity-40"></div>
+    <div 
+        x-cloak 
+        x-spread="overlay()" 
+        x-bind="overlay()"
+        class="fixed inset-0 flex items-center justify-center text-left bg-black bg-opacity-50 z-30">
 
-        <!-- panel -->
         <div 
-            @click = "open = false"
-            class="relative h-full w-full items-center justify-center flex">
-            <div 
-                @click.stop
-                class="max-w-2xl w-full bg-white border border-gray-900 p-4 overflow-y-auto">
-                <!-- title -->
-                <h2 :id="$id('modal-title-review-form')" class="text-2xl font-semibold"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
-                <!-- content -->
-                <span>Hier komt het formulier</span>
-                <button @click = "open = false">Sluit</button>
+            x-ref="dialog" 
+            role="dialog" 
+            aria-labelledby="modal-review-form"
+            class="inline-block max-h-screen overflow-auto bg-white shadow-xl rounded-lg p-10 text-gray-700">
+            <div id="modal-review-form"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></div>
+            <div>
+                <?= $escaper->escapeHtml(__('Counter:'))?> <span x-text="n">?</span>
+                <button class="btn" @click="n++"><?= $escaper->escapeHtml('Increment') ?></button>
+            </div>
+            <div class="mt-20 flex justify-between gap-2">
+                <button @click="hide" type="button" class="btn">
+                    <?= $escaper->escapeHtml(__('Cancel')) ?>
+                </button>
+                <button x-focus-first @click="alert('click')" type="button" class="btn btn-primary">
+                    <?= $escaper->escapeHtml(__('Okay')) ?>
+                </button>
             </div>
         </div>
+
     </div>
 </div>
