@@ -67,10 +67,10 @@ $recaptcha = $block->getData('viewModelRecaptcha');
         <!-- panel -->
         <div 
             @click = "open = false"
-            class= "relative h-full w-full items-center justify-center flex mx-2 md:mx-0 rounded-sm">
+            class= "relative h-full w-full items-center justify-center flex">
             <div 
                 @click.stop
-                class="max-w-screen-xl w-full bg-white border border-gray-900 p-4 overflow-y-auto">
+                class="max-w-screen-xl w-full bg-white border border-gray-400 p-4 overflow-y-auto mx-2 md:mx-0 rounded-sm">
                 <!-- title -->
                 <h2 class="text-2xl font-semibold"><?= $escaper->escapeHtml(__('Write Your Own Review')) ?></h2>
                 <!-- content -->
