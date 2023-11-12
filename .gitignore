@@ -2,9 +2,33 @@
 # Magento Default Files    #
 #--------------------------#
 
+# Generic files
+.editorconfig
+.htaccess
+.php-cs-fixer.dist.php
+.user.ini
+*.sample
+*.txt
+*.md
+autoload.php
+bootstrap.php
+
+#composer files
+composer.json
+composer.lock
+auth.json
+
 /PATCH_*.sh
 
-/app/etc/local.xml
+/app/etc/*
+
+/bin/*
+
+/dev/*
+
+/generated/*
+
+/lib/*
 
 /media/*
 !/media/.htaccess
@@ -36,8 +60,13 @@
 /media/xmlconnect/system/*
 !/media/xmlconnect/system/ok.gif
 
+/phpserver/*
+
+/pub/*
+
+/setup/*
+
 /var/*
-!/var/.htaccess
 
 !/var/package
 /var/package/*
