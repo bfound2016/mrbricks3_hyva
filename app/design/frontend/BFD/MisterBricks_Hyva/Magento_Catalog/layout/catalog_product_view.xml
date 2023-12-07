@@ -18,5 +18,6 @@
                 </arguments>
             </referenceBlock>
         -->
+        <referenceBlock name="product.info.quantity" remove="true" />
     </body>
 </page>
