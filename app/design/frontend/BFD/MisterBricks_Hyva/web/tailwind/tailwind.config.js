@@ -3,7 +3,7 @@ const {
 } = require('tailwindcss/defaultTheme');
 
 const colors = require('tailwindcss/colors');
-const defaultTheme = require('tailwindcss/defaultTheme');
+
 const hyvaModules = require('@hyva-themes/hyva-modules');
 
 module.exports = hyvaModules.mergeTailwindConfig({
