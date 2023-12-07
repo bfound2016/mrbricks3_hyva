@@ -37,29 +37,9 @@ $product = $productViewModel->getProduct();
         <?= $block->getChildHtml('product.info.review') ?>
     </div>
 
-    <?php if ($shortDescription = $productViewModel->getShortDescription()) { ?>
-        <div class="mb-4 leading-relaxed product-description prose"><?= /* @noEscape */ $shortDescription ?></div>
-    <?php } ?>
-
     <div class="flex flex-col sm:flex-row justify-between my-4">
         <?= $block->getChildHtml("product.info.stockstatus") ?>
         <?= $block->getChildHtml("alert.urls") ?>
-    </div>
-
-    <div id="product-details">
-        <?php foreach ($block->getAttributes() as $attributeConfig) {
-            $attribute = $attributesViewModel->getAttributeFromLayoutConfig($attributeConfig); ?>
-            <?php if ($value = $attribute['value'] ?? null) { ?>
-                <div class="flex border-t border-gray-300 py-2 last:mb-6 last:border-b <?=/* @noEscape */ $attribute['value'] ?: "" ?>">
-                    <span class="w-1/2 text-left text-gray-700 product-detail-label">
-                        <?= $escaper->escapeHtml($attribute['label']) ?>
-                    </span>
-                    <span class="w-1/2 ml-2 text-left text-gray-900 product-detail-value">
-                        <?= $escaper->escapeHtml($value) ?>
-                    </span>
-                </div>
-            <?php } ?>
-        <?php } ?>
     </div>
 
     <?= $block->getChildHtml('product.info.form') ?>
