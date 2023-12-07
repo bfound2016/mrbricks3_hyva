@@ -45,3 +45,7 @@ html {
 body {
     @apply text-black leading-normal text-base tracking-normal;
 }
+
+.title-font {
+    @apply font-['VAG_Rounded'];
+}
