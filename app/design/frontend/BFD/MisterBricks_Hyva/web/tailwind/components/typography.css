@@ -22,6 +22,14 @@
     src: url("../fonts/Poppins-SemiBold.woff2");
 }
 
+@font-face {
+    font-family: "VAG Rounded";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/VAG_rounded_regular.woff2");
+}
+
 html {
     @apply antialiased;
 }
