@@ -50,7 +50,7 @@ $product = $productViewModel->getProduct();
             <?= $block->getChildHtml("product.info.price") ?>
         </div>
 
-        <div class="flex mt-4 sm:mt-0">
+        <div class="flex gap-8 mt-4 sm:mt-0">
             <?php if ($product->isSaleable()): ?>   
                 <?= $block->getChildHtml("product.info.addtocart") ?>
             <?php endif; ?>
