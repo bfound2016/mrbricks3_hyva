@@ -1,6 +1,6 @@
 @layer components {
     .btn {
-        @apply flex bg-gray-500 rounded-3xl px-4 py-2 text-white text-base font-medium shadow-md items-center;
+        @apply flex bg-gray-500 rounded-3xl px-4 py-4 text-white text-base font-medium shadow-md items-center;
 
         @screen md {
             @apply px-6 text-lg;
