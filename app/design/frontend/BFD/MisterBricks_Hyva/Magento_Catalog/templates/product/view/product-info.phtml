@@ -37,11 +37,6 @@ $product = $productViewModel->getProduct();
         <?= $block->getChildHtml('product.info.review') ?>
     </div>
 
-    <div class="flex flex-col sm:flex-row justify-between my-4">
-        <?= $block->getChildHtml("product.info.stockstatus") ?>
-        <?= $block->getChildHtml("alert.urls") ?>
-    </div>
-
     <?= $block->getChildHtml('product.info.form') ?>
 
     <div class="flex flex-col my-4">
@@ -55,7 +50,11 @@ $product = $productViewModel->getProduct();
                 <?= $block->getChildHtml("product.info.addtocart") ?>
             <?php endif; ?>
         </div>
-
+    </div>
+    
+    <div class="flex flex-col sm:flex-row justify-between my-4">
+        <?= $block->getChildHtml("product.info.stockstatus") ?>
+        <?= $block->getChildHtml("alert.urls") ?>
     </div>
 
     <?php if ($product->isSaleable()): ?>
