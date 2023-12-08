@@ -31,7 +31,7 @@
         @apply bg-lima-500 text-white shadow-md;
 
         &:hover {
-            @apply bg-lima-400 text-white shadow-lg;
+            @apply bg-lima-600 text-white shadow-lg;
         }
 
     }
