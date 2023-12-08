@@ -28,10 +28,10 @@
 
 
     .btn-primary {
-        @apply bg-primary text-white shadow-md;
+        @apply bg-lima-500 text-white shadow-md;
 
         &:hover {
-            @apply bg-primary-lighter text-white shadow-lg;
+            @apply bg-lima-400 text-white shadow-lg;
         }
 
     }
