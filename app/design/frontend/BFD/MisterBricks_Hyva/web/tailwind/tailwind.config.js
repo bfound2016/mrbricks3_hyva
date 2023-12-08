@@ -48,6 +48,19 @@ module.exports = hyvaModules.mergeTailwindConfig({
             light: "#07adeb",
             dark: "#075397"
           }
+        },
+        lima: {
+          50: '#f2fde8',
+          100: '#e0facd',
+          200: '#c4f6a0',
+          300: '#9eed69',
+          400: '#7be03b',
+          500: '#57bd1b',
+          600: '#439e12',
+          700: '#347813',
+          800: '#2e5f15',
+          900: '#285116',
+          950: '#112d06',
         }
       },
       textColor: {
