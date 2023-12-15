@@ -203,7 +203,7 @@
             <var name="navdir">vertical</var> <!-- Direction of the thumbnails (horizontal/vertical) -->
             <var name="navarrows">true</var> <!-- Turn on/off the thumbnail arrows (true/false) -->
             <!-- Hyva Only options -->
-            <var name="navoverflow">true</var> <!-- Turn on/off overflow style (true/false) -->
+            <var name="navoverflow">false</var> <!-- Turn on/off overflow style (true/false) -->
         </var>
 
     </vars>
