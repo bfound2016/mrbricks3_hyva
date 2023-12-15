@@ -1,0 +1,34 @@
+@layer utilities {
+    .mask-overflow {
+        --tw-mask-dir: to right;
+        --tw-mask-size: theme("spacing.8");
+        --tw-mask-color: 0 0 0; /* rgb color keys */
+        --tw-mask-start: rgb(var(--tw-mask-color) / 0%);
+        --tw-mask-end: rgb(var(--tw-mask-color) / 0%);
+        --tw-mask: linear-gradient(
+            var(--tw-mask-dir),
+            var(--tw-mask-start),
+            rgb(var(--tw-mask-color)) var(--tw-mask-size),
+            rgb(var(--tw-mask-color)) calc(100% - var(--tw-mask-size)),
+            var(--tw-mask-end)
+        );
+        -webkit-mask-image: var(--tw-mask);
+        mask-image: var(--tw-mask);
+    }
+
+    .mask-overflow-start {
+        --tw-mask-end: rgb(var(--tw-mask-color));
+    }
+
+    .mask-overflow-end {
+        --tw-mask-start: rgb(var(--tw-mask-color));
+    }
+
+    .mask-dir-x {
+        --tw-mask-dir: to right;
+    }
+
+    .mask-dir-y {
+        --tw-mask-dir: to bottom;
+    }
+}
