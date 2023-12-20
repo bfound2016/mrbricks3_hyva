@@ -222,7 +222,7 @@ $productName = $block->getProduct()->getName();
         <?php if ($galleryOptionShowThumbs): ?>
             <div
                 id="gallery-thumbs"
-                class="flex items-center gap-2 outline-0 absolute inset-x-0 bottom-0 <?= $galleryOptionNavVertical ? 'lg:left-0 lg:right-auto lg:inset-y-0 lg:order-first lg:flex-col' : '' ?>"
+                class="flex items-center gap-4 outline-0 absolute inset-x-0 bottom-0 <?= $galleryOptionNavVertical ? 'lg:left-0 lg:right-auto lg:inset-y-0 lg:order-first lg:flex-col' : '' ?>"
                 x-init="$nextTick(() => calcThumbsOverflow())"
                 @resize.window.debounce="calcThumbsOverflow()"
             >
@@ -265,7 +265,7 @@ $productName = $block->getProduct()->getName();
                             class="shrink-0 border-2 border-transparent"
                             tabindex="-1"
                             :class="{
-                                'border-primary group-focus:border-gray-400': activeItem === index,
+                                'border-lego-blue-light group-focus:border-gray-400': activeItem === index,
                                 'border-transparent': activeItem !== index
                             }"
                             :aria-label="hyva.str('View %1', image.caption) || '<?= $escaper->escapeJs("View %1", $productName) ?>'"
