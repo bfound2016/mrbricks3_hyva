@@ -62,7 +62,7 @@ $productName = $block->getProduct()->getName();
     <section
         id="gallery"
         <?php if ($galleryOptionShowThumbs): ?>
-            class="relative pb-[var(--thumb-size)] flex flex-col <?= $galleryOptionNavVertical ? 'lg:flex-row lg:pb-0 lg:pl-[var(--thumb-size)]' : '' ?>"
+            class="relative pb-[var(--thumb-size)] flex flex-col <?= $galleryOptionNavVertical ? 'lg:flex-row lg:pb-0 lg:pl-[calc(var(--thumb-size) + 50px)]' : '' ?>"
             style="
                 --gallery-ratio: <?= /* @noEscape */ $mediumWidth/2 . '/' . $mediumHeight/2 ?>;
                 --gallery-width: <?= /* @noEscape */ $mediumWidth/2 ?>px;
