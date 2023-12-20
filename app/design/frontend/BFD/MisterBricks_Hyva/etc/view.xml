@@ -211,7 +211,7 @@
             <var name="arrows">true</var> <!-- Turn on/off the gallery arrows (start/end/true/false) -->
             <!-- Hyva Only options -->
              <var name="fullscreenicon">true</var> <!-- Turn on/off icon for allowfullscreen (true/false) -->
-            <var name="navoverflow">true</var> <!-- Turn on/off overflow style (true/false) -->
+            <var name="navoverflow">false</var> <!-- Turn on/off overflow style (true/false) -->
             <var name="maximages">0</var> <!-- Limit the amount of images to show, use 0 to show all -->
             <var name="columns">2</var> <!-- Use a diffrent column count for the grid on larger screens -->
         </var>
