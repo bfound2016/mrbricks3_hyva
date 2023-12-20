@@ -76,12 +76,12 @@
             </image>
             <image id="product_page_image_large" type="image"/>
             <image id="product_page_image_medium" type="image">
-                <width>900</width>
-                <height>900</height>
+                <width>1800</width>
+                <height>1350</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>90</width>
-                <height>90</height>
+                <width>180</width>
+                <height>135</height>
             </image>
             <image id="product_swatch_image_large" type="image"/>
             <image id="product_swatch_image_medium" type="image">
