@@ -64,15 +64,15 @@ $productName = $block->getProduct()->getName();
         <?php if ($galleryOptionShowThumbs): ?>
             class="relative pb-[var(--thumb-size)] flex flex-col <?= $galleryOptionNavVertical ? 'lg:flex-row lg:pb-0 lg:pl-[var(--thumb-size)]' : '' ?>"
             style="
-                --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
-                --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
-                --thumb-size: calc(<?= /* @noEscape */ $smallWidth ?>px + 1rem);
+                --gallery-ratio: <?= /* @noEscape */ $mediumWidth/2 . '/' . $mediumHeight/2 ?>;
+                --gallery-width: <?= /* @noEscape */ $mediumWidth/2 ?>px;
+                --thumb-size: calc(<?= /* @noEscape */ $smallWidth/2 ?>px + 1rem);
             "
         <?php else: ?>
             class="relative"
             style="
-                --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
-                --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
+                --gallery-ratio: <?= /* @noEscape */ $mediumWidth/2 . '/' . $mediumHeight/2 ?>;
+                --gallery-width: <?= /* @noEscape */ $mediumWidth/2 ?>px;
             "
         <?php endif; ?>
         aria-label="<?= $escaper->escapeHtml(__('%1 Gallery', $productName)) ?>"
@@ -113,8 +113,8 @@ $productName = $block->getProduct()->getName();
                 <img
                     src="<?= /* @noEscape */ $mainImageData ?>"
                     alt="<?= $mainImage ? $escaper->escapeHtmlAttr($mainImage->getData('label')) : '' ?>"
-                    width="<?= /* @noEscape */ $mediumWidth ?>"
-                    height="<?= /* @noEscape */ $mediumHeight ?>"
+                    width="<?= /* @noEscape */ $mediumWidth/2 ?>"
+                    height="<?= /* @noEscape */ $mediumHeight/2 ?>"
                     loading="eager"
                     :class="'invisible'"
                 >
@@ -143,8 +143,8 @@ $productName = $block->getProduct()->getName();
                     </template>
                     <template x-if="image.type === 'image'">
                         <img
-                            width="<?= /* @noEscape */ $mediumWidth ?>"
-                            height="<?= /* @noEscape */ $mediumHeight ?>"
+                            width="<?= /* @noEscape */ $mediumWidth/2 ?>"
+                            height="<?= /* @noEscape */ $mediumHeight/2 ?>"
                             class="max-w-full max-h-full m-auto object-contain"
                             :class="{ 'w-auto': fullscreen }"
                             :src="fullscreen ? image.full : image.img"
@@ -274,7 +274,7 @@ $productName = $block->getProduct()->getName();
                             x-intersect:leave.full="isThumbInView(index, 'leave')"
                             @click="activeItem = index"
                         >
-                            <img alt="" width="<?= /* @noEscape */ $smallWidth ?>" height="<?= /* @noEscape */ $smallHeight ?>" :src="image.thumb">
+                            <img alt="" width="<?= /* @noEscape */ $smallWidth/2 ?>" height="<?= /* @noEscape */ $smallHeight/2 ?>" :src="image.thumb">
                         </button>
                     </template>
                 </nav>
