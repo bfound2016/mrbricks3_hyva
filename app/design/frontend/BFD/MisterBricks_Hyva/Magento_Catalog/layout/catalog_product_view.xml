@@ -26,7 +26,6 @@
                     group="detailed_info">
                 <arguments>
                     <argument name="title" xsi:type="string" translate="true">Rich Media</argument>
-                    <argument name="sort_order" xsi:type="number">-30</argument>
                 </arguments>
             </block>
         </referenceBlock>
