@@ -192,7 +192,7 @@ $productName = $block->getProduct()->getName();
             <?php endif; ?>
             <?php if ($galleryOptionArrows): ?>
                 <nav
-                    class="z-10 top-0 absolute h-full flex justify-between gap-2 md:opacity-0 md:hover:opacity-100
+                    class="z-10 top-0 absolute h-full flex justify-between gap-2 md:opacity-0 md:hover:opacity-100 transition
                         <?= $galleryOptionArrows !== "start" ? 'right-0 md:right-0 lg:right-0 xl:right-0' : '' ?>
                         <?= $galleryOptionArrows !== "end" ? 'left-0 md:left-0 lg:left-0 xl:left-0' : '' ?>"
                     aria-label="<?= $escaper->escapeHtml(__('%1 Gallery Navigation', $productName)) ?>"
