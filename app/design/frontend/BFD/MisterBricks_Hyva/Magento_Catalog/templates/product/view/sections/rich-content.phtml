@@ -6,26 +6,15 @@
  * See https://hyva.io/license
  */
 
-declare(strict_types=1);
+ declare(strict_types=1);
 
-use Hyva\Theme\Model\ViewModelRegistry;
-use Magento\Catalog\Model\Product;
-use Magento\Framework\Escaper;
-use Magento\Framework\View\Element\Template;
-use Hyva\Theme\ViewModel\ProductPage;
-
-/** @var Escaper $escaper */
-/** @var Template $block */
-/** @var ViewModelRegistry $viewModels */
-
-/** @var ProductPage $productViewModel */
-$productViewModel = $viewModels->require(ProductPage::class);
-/** @var Product $product */
-$product = $productViewModel->getProduct();
-
-
-$cssClasses = $block->getData('css_classes') ?? 'prose';
+ use Magento\Catalog\Block\Product\View;
+ 
+ /** @var View $block */
+ 
+ $product = $block->getProduct();
 ?>
+<!-- Flixmedia init script -->
 <script type= "text/javascript" >
     document.getElementById( "description" ).prepend( "<div id=\"flix-inpage\"></div>" );
     document.getElementById( "description" ).prepend( "<div id=\"flix-minisite\"></div>" );
@@ -53,7 +42,3 @@ $cssClasses = $block->getData('css_classes') ?? 'prose';
     
     headID.appendChild(flixScript);
 </script>
-<!-- *** Start FlixMedia Lazyload implementation *** -->
-<div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>">
-        
-</div>
