@@ -21,8 +21,8 @@
         <referenceBlock name="product.info.quantity" remove="true" />
     
         <referenceBlock name="product.info.details">
-            <block name="product.rich.media"
-                    template="Magento_Catalog::product/view/sections/rich-media.phtml"
+            <block  name="product.rich.media"
+                    template="Magento_Catalog::product/view/sections/rich-content.phtml"
                     group="detailed_info">
                 <arguments>
                     <argument name="title" xsi:type="string" translate="true">Rich Media</argument>
