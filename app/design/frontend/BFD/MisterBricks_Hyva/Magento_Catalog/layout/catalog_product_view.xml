@@ -20,6 +20,6 @@
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
     
-        <block name="rich-content" class="Magento\Catalog\Block\Product\View" template="Magento_Catalog::product/view/sections/rich-content.phtml" />
+        <block name="rich-content" class="Magento\Catalog\Block\Product\View" template="Magento_Catalog::product/view/sections/rich-content.phtml" before="product.info.details" />
     </body>
 </page>
