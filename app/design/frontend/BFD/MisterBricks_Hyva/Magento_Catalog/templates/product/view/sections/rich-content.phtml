@@ -6,14 +6,25 @@
  * See https://hyva.io/license
  */
 
- declare(strict_types=1);
+declare(strict_types=1);
 
- use Magento\Catalog\Block\Product\View;
- 
- /** @var View $block */
- 
- $product = $block->getProduct();
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Hyva\Theme\ViewModel\ProductPage;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var ProductPage $productViewModel */
+$productViewModel = $viewModels->require(ProductPage::class);
+/** @var Product $product */
+$product = $productViewModel->getProduct();
+
 ?>
+
 <!-- Flixmedia init script -->
 <script type= "text/javascript" >
     document.getElementById( "description" ).prepend( "<div id=\"flix-inpage\"></div>" );
@@ -42,3 +53,6 @@
     
     headID.appendChild(flixScript);
 </script>
+
+
+

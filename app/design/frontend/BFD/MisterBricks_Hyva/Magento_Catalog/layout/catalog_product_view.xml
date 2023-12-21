@@ -20,6 +20,15 @@
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
     
-        <block name="rich-content" class="Magento\Catalog\Block\Product\View" template="Magento_Catalog::product/view/sections/rich-content.phtml" before="product.info.details" />
+        <referenceBlock name="product.info.details">
+            <block name="product.rich.media"
+                    template="Magento_Catalog::product/view/sections/rich-media.phtml"
+                    group="detailed_info">
+                <arguments>
+                    <argument name="title" xsi:type="string" translate="true">Rich Media</argument>
+                    <argument name="sort_order" xsi:type="number">-30</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>
