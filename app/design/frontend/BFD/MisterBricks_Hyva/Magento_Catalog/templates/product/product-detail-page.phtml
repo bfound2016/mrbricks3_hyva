@@ -23,6 +23,9 @@ $product = $block->getProduct();
     </div>
 </section>
 <section>
+    <?= $block->getChildHtml('rich-content'); ?>
+</section>
+<section>
     <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
 </section>
 
