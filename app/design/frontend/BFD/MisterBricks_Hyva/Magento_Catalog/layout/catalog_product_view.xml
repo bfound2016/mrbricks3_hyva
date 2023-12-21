@@ -19,5 +19,14 @@
             </referenceBlock>
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
+        <referenceBlock name="product.info.details">
+            <block name="rich-content"
+                    template="Magento_Catalog::product/view/sections/rich-content.phtml"
+                    group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="number">-30</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>
