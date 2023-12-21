@@ -173,7 +173,7 @@ $productName = $block->getProduct()->getName();
                     @click="fullscreen = true"
                 >
                     <?php if ($galleryOptionShowFullscreenIcon): ?>
-                        <span class="block absolute top-2 right-2" aria-hidden="true">
+                        <span class="block absolute top-2 right-2 z-20" aria-hidden="true">
                             <span class="block p-2 rounded-full transition shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary/50 hover:text-primary focus:text-primary">
                                 <?= $heroicons->arrowsExpandHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
                             </span>
