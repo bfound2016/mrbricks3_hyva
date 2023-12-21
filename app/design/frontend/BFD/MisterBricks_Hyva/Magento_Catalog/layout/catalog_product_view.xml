@@ -22,8 +22,7 @@
     
         <referenceBlock name="product.detail.page">
             <block  name="product.rich.media"
-                    template="Magento_Catalog::product/view/rich-content.phtml"
-                    before="product.info.details">
+                    template="Magento_Catalog::product/view/rich-content.phtml">
             </block>
         </referenceBlock>
     </body>
