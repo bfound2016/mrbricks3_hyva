@@ -20,9 +20,10 @@
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
     
-        <referenceBlock name="product.info.details">
+        <referenceBlock name="product.detail.page">
             <block  name="product.rich.media"
-                    template="Magento_Catalog::product/view/rich-content.phtml">
+                    template="Magento_Catalog::product/view/rich-content.phtml"
+                    before="product.info.details">
             </block>
         </referenceBlock>
     </body>

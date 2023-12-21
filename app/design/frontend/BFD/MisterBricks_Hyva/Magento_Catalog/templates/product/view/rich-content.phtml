@@ -8,20 +8,11 @@
 
 declare(strict_types=1);
 
-use Hyva\Theme\Model\ViewModelRegistry;
-use Magento\Catalog\Model\Product;
-use Magento\Framework\Escaper;
-use Magento\Framework\View\Element\Template;
-use Hyva\Theme\ViewModel\ProductPage;
+use Magento\Catalog\Block\Product\View;
 
-/** @var Escaper $escaper */
-/** @var Template $block */
-/** @var ViewModelRegistry $viewModels */
+/** @var View $block */
 
-/** @var ProductPage $productViewModel */
-$productViewModel = $viewModels->require(ProductPage::class);
-/** @var Product $product */
-$product = $productViewModel->getProduct();
+$product = $block->getProduct();
 
 ?>
 
@@ -53,5 +44,6 @@ $product = $productViewModel->getProduct();
     
     headID.appendChild(flixScript);
 </script>
+<div>test</div>
 
 
