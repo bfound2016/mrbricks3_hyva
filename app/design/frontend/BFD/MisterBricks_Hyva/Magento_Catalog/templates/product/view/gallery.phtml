@@ -192,7 +192,7 @@ $productName = $block->getProduct()->getName();
             <?php endif; ?>
             <?php if ($galleryOptionArrows): ?>
                 <nav
-                    class="z-10 absolute h-full flex justify-between gap-2
+                    class="z-10 top-0 absolute h-full flex justify-between gap-2
                         <?= $galleryOptionArrows !== "start" ? 'right-0 md:right-0 lg:right-0 xl:right-0' : '' ?>
                         <?= $galleryOptionArrows !== "end" ? 'left-0 md:left-0 lg:left-0 xl:left-0' : '' ?>"
                     aria-label="<?= $escaper->escapeHtml(__('%1 Gallery Navigation', $productName)) ?>"
@@ -201,21 +201,21 @@ $productName = $block->getProduct()->getName();
                     <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-2.5 transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary"
+                        class="shrink-0 p-2.5 transition disabled:opacity-30 bg-white text-primary"
                         title="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         :disabled="!loop && isStart"
                         @click="prevItem"
-                    ><?= $heroiconsSolid->chevronLeftHtml('', 16, 16, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->chevronLeftHtml('', 24, 24, ['aria-hidden' => 'true']) ?></button>
                     <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-2.5 transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary"
+                        class="shrink-0 p-2.5 transition disabled:opacity-30 bg-white text-primary"
                         title="<?= $escaper->escapeHtml(__('Next')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                         :disabled="!loop && isEnd"
                         @click="nextItem"
-                    ><?= $heroiconsSolid->chevronRightHtml('', 16, 16, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->chevronRightHtml('', 24, 24, ['aria-hidden' => 'true']) ?></button>
                 </nav>
             <?php endif; ?>
         </div>
