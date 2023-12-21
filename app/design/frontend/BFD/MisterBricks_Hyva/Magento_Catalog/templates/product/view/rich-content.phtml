@@ -22,7 +22,7 @@ $product = $block->getProduct();
     document.getElementById( "description" ).prepend( "<div id=\"flix-minisite\"></div>" );
     
     let product_mpn = "" ,
-        product_ean = "<?= $product->getEan() ?>" ,
+        product_ean = "<?= $product->getData("ean_code") ?>" ,
         product_brand = "LEGO" ,
         distributor = "16129" ,
         language = "nl" ;
