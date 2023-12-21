@@ -29,7 +29,7 @@ $attributesViewModel = $viewModels->require(ProductAttributes::class);
 $product = $productViewModel->getProduct();
 
 ?>
-<div class="order-2 w-full my-6 md:w-1/2 md:pl-5 lg:pl-10 lg:w-3/12 md:mb-0">
+<div class="order-2 w-full my-6 md:w-1/2 md:pl-5 lg:w-3/12 md:mb-0">
     <h1 class="text-gray-900 page-title title-font font-semibold text-3xl">
         <span class="base" data-ui-id="page-title-wrapper" itemprop="name"><?= $escaper->escapeHtml($product->getName()) ?></span>
     </h1>
