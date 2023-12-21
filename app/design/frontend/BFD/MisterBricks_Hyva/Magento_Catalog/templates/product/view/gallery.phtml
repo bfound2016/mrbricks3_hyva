@@ -206,7 +206,7 @@ $productName = $block->getProduct()->getName();
                         aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         :disabled="!loop && isStart"
                         @click="prevItem"
-                    ><?= $heroiconsSolid->chevronLeftHtml('', 24, 24, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->chevronLeftHtml('', 32, 32, ['aria-hidden' => 'true']) ?></button>
                     <button
                         type="button"
                         tabindex="-1"
@@ -215,7 +215,7 @@ $productName = $block->getProduct()->getName();
                         aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                         :disabled="!loop && isEnd"
                         @click="nextItem"
-                    ><?= $heroiconsSolid->chevronRightHtml('', 24, 24, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->chevronRightHtml('', 32, 32, ['aria-hidden' => 'true']) ?></button>
                 </nav>
             <?php endif; ?>
         </div>
