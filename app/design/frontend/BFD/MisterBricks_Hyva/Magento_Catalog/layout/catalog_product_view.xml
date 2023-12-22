@@ -19,8 +19,7 @@
             </referenceBlock>
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
-        <referenceBlock name="related.post.tab" remove="true" /> 
-    
+        
         <referenceBlock name="product.detail.page">
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
