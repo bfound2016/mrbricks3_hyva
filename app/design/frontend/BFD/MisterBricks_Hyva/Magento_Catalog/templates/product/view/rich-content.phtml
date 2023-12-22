@@ -40,8 +40,7 @@ $product = $block->getProduct();
     flixScript.setAttribute( 'data-flix-inpage' , 'flix-inpage' );
     flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
     flixScript.setAttribute( 'data-flix-price' , '' );
-    flixScript.setAttribute( 'data-flix-autoload' , 'hotspot' );
-    flixScript.setAttribute('crossorigin', 'anonymous');
+    flixScript.setAttribute( 'data-flix-autoload' , 'minisite, hotspot' );
     
     headID.appendChild(flixScript);
     flixScript.src = '//media.flixfacts.com/js/loader.js';
