@@ -41,6 +41,7 @@ $product = $block->getProduct();
     flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
     flixScript.setAttribute( 'data-flix-price' , '' );
     flixScript.setAttribute( 'data-flix-autoload' , 'hotspot' );
+    flixScript.setAttribute('crossorigin', 'anonymous');
     
     headID.appendChild(flixScript);
     flixScript.src = '//media.flixfacts.com/js/loader.js';
