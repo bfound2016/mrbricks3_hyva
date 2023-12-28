@@ -15,42 +15,19 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 
 ?>
-
+<div id= "flix-minisite"></div>
+<div id= "flix-inpage"></div>
 <!-- Flixmedia init script -->
-<script type= "text/javascript" >
-    document.getElementById( "description" ).prepend( "<div id=\"flix-inpage\"></div>" );
-    //document.getElementById( "description" ).prepend( "<div id=\"flix-minisite\"></div>" );
-    
-    let product_mpn = "" ,
-        product_ean = "<?= $product->getEanCode() ?>" ,
-        product_brand = "LEGO" ,
-        distributor = "16129" ,
-        language = "nl" ;
-    
-    let headID = document.getElementsByTagName( "head" )[ 0 ];
-    let flixScript = document.createElement( 'script' );
-    
-    flixScript.type = 'text/javascript' ;
-    flixScript.async = true ;
-    flixScript.setAttribute( 'data-flix-distributor' , distributor);
-    flixScript.setAttribute( 'data-flix-language' , language);
-    flixScript.setAttribute( 'data-flix-brand' , product_brand);
-    flixScript.setAttribute( 'data-flix-ean' , product_ean);
-    flixScript.setAttribute( 'data-flix-mpn' , product_mpn);
-    flixScript.setAttribute( 'data-flix-inpage' , 'flix-inpage' );
-    flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
-    flixScript.setAttribute( 'data-flix-price' , '' );
-    flixScript.setAttribute( 'data-flix-autoload' , 'minisite, hotspot' );
-    
-    headID.appendChild(flixScript);
-    flixScript.src = '//media.flixfacts.com/js/loader.js';
-
-    
-    window.addEventListener('DOMContentLoaded', ()=>{
-        if ( typeof (flixJsCallbacks) === "object" )
-            flixJsCallbacks.loadService( 'inpage' );
-    });
-
+<script type= "text/javascript" src= "//media.flixfacts.com/js/loader.js"
+    data-flix-distributor= "16129"
+    data-flix-language= "nl"
+    data-flix-brand= "LEGO"
+    data-flix-mpn= ""
+    data-flix-ean= "<?= $product->getEanCode() ?>"
+    data-flix-button= "flix-minisite"
+    data-flix-inpage= "flix-inpage"
+    data-flix-button-image= ""
+    data-flix-fallback-language= "en"
+    data-flix-price= ""
+    async >
 </script>
-
-
