@@ -13,7 +13,7 @@
                 <value id="flix360" type="host">https://rt.flix360.com/</value>
             </values>
         </policy>
-        <policy>
+        <policy id="connect-src">
             <values>
                 <value id="flixcar" type="host">https://media.flixcar.com</value>
             </values>
