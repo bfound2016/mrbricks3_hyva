@@ -24,7 +24,8 @@
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
                     template="Magento_Catalog::product/view/rich-content.phtml"
-                    before="-" />
+                    before="-">
+            </block>
         </referenceBlock>
     </body>
 </page>
