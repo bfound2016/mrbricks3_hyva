@@ -20,11 +20,11 @@
         -->
         <referenceBlock name="product.info.quantity" remove="true" />
         <referenceBlock name="related.post.tab" remove="true" />
-        <referenceBlock name="product.detail.page">
+        <referenceBlock name="product.info.details">
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
                     template="Magento_Catalog::product/view/rich-content.phtml"
-                    before="product.info.details">
+                    before="-">
 
             </block>
         </referenceBlock>
