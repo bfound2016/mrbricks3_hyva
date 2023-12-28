@@ -13,5 +13,10 @@
                 <value id="flix360" type="host">https://rt.flix360.com/</value>
             </values>
         </policy>
+        <policy>
+            <values>
+                <value id="flixcar" type="host">https://media.flixcar.com</value>
+            </values>
+        </policy>
     </policies>
 </csp_whitelist>
