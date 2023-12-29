@@ -35,3 +35,10 @@
         }
     }
 }
+
+/**
+    Custom styling for Flix Media A++ Content
+**/
+#flix-std-inpage{
+    @apply !max-w-full;
+}
