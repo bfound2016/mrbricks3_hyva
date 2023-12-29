@@ -39,6 +39,7 @@
 /**
     Custom styling for Flix Media A++ Content
 **/
-#flix-std-inpage{
+#flix-lego-inpage,
+#flix-std-inpage {
     @apply !max-w-full;
 }
