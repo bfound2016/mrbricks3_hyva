@@ -41,7 +41,7 @@
 **/
 #flix-lego-inpage,
 #flix-std-inpage {
-    @apply !max-w-full;
+    @apply !max-w-[1200px];
 }
 
 #flix-ugc-galfeatures,
