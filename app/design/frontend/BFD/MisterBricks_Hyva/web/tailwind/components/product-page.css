@@ -43,3 +43,7 @@
 #flix-std-inpage {
     @apply !max-w-full;
 }
+
+#flix-ugc-galfeatures {
+    @apply hidden;
+}
