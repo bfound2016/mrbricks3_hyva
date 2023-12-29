@@ -45,6 +45,6 @@
 }
 
 #flix-ugc-galfeatures,
-#inpage-data-2214780 + div {
+[id^='inpage-data-']+div {
     @apply hidden;
 }
