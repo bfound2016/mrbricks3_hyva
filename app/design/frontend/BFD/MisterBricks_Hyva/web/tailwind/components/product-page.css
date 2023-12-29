@@ -44,6 +44,7 @@
     @apply !max-w-full;
 }
 
-#flix-ugc-galfeatures {
+#flix-ugc-galfeatures,
+#inpage-data-2214780 + div {
     @apply hidden;
 }
