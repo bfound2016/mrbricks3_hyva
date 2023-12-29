@@ -23,5 +23,10 @@
                 <value id="flixcar" type="host">https://media.flixcar.com</value>
             </values>
         </policy>
+        <policy id="font-src">
+            <values>
+                <value id="fontawesom" type="host">*.fontawesome.com</value>
+            </values>
+        </policy>
     </policies>
 </csp_whitelist>
