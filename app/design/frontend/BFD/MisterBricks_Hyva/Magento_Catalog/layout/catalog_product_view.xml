@@ -31,5 +31,10 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <!-- Splide JS integration -->
+        <referenceBlock name="script-alpine-js">
+            <block name="alpine-plugin-splide-js" template="Magento_Theme::page/js/plugins/splide-js.phtml"/>
+        </referenceBlock>
+
     </body>
 </page>
