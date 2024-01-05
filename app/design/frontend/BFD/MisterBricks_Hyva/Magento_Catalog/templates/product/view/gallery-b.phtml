@@ -58,21 +58,21 @@ $galleryOptionAppendOnReceive = (string) $block->getVar('gallery_switch_strategy
 $productName = $block->getProduct()->getName();
 ?>
 
-<div class="w-full pt-6 md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1 md:w-1/2 lg:w-9/12">
+<div class="w-full pt-6 md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1">
     <section
         id="gallery"
         <?php if ($galleryOptionShowThumbs): ?>
-            class="relative pb-[var(--thumb-size)] flex flex-col <?= $galleryOptionNavVertical ? 'lg:flex-row lg:pb-0 lg:pl-[150px]' : '' ?>"
+            class="relative pb-[var(--thumb-size)] flex flex-col <?= $galleryOptionNavVertical ? 'lg:flex-row lg:pb-0 lg:pl-[var(--thumb-size)]' : '' ?>"
             style="
-                --gallery-ratio: <?= /* @noEscape */ $mediumWidth/2 . '/' . $mediumHeight/2 ?>;
-                --gallery-width: <?= /* @noEscape */ $mediumWidth/2 ?>px;
-                --thumb-size: calc(<?= /* @noEscape */ $smallWidth/2 ?>px + 1rem);
+                --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
+                --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
+                --thumb-size: calc(<?= /* @noEscape */ $smallWidth ?>px + 1rem);
             "
         <?php else: ?>
             class="relative"
             style="
-                --gallery-ratio: <?= /* @noEscape */ $mediumWidth/2 . '/' . $mediumHeight/2 ?>;
-                --gallery-width: <?= /* @noEscape */ $mediumWidth/2 ?>px;
+                --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
+                --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
             "
         <?php endif; ?>
         aria-label="<?= $escaper->escapeHtml(__('%1 Gallery', $productName)) ?>"
@@ -113,8 +113,8 @@ $productName = $block->getProduct()->getName();
                 <img
                     src="<?= /* @noEscape */ $mainImageData ?>"
                     alt="<?= $mainImage ? $escaper->escapeHtmlAttr($mainImage->getData('label')) : '' ?>"
-                    width="<?= /* @noEscape */ $mediumWidth/2 ?>"
-                    height="<?= /* @noEscape */ $mediumHeight/2 ?>"
+                    width="<?= /* @noEscape */ $mediumWidth ?>"
+                    height="<?= /* @noEscape */ $mediumHeight ?>"
                     loading="eager"
                     :class="'invisible'"
                 >
@@ -143,8 +143,8 @@ $productName = $block->getProduct()->getName();
                     </template>
                     <template x-if="image.type === 'image'">
                         <img
-                            width="<?= /* @noEscape */ $mediumWidth/2 ?>"
-                            height="<?= /* @noEscape */ $mediumHeight/2 ?>"
+                            width="<?= /* @noEscape */ $mediumWidth ?>"
+                            height="<?= /* @noEscape */ $mediumHeight ?>"
                             class="max-w-full max-h-full m-auto object-contain"
                             :class="{ 'w-auto': fullscreen }"
                             :src="fullscreen ? image.full : image.img"
@@ -173,7 +173,7 @@ $productName = $block->getProduct()->getName();
                     @click="fullscreen = true"
                 >
                     <?php if ($galleryOptionShowFullscreenIcon): ?>
-                        <span class="block absolute top-2 right-2 z-20" aria-hidden="true">
+                        <span class="block absolute top-2 right-2" aria-hidden="true">
                             <span class="block p-2 rounded-full transition shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary/50 hover:text-primary focus:text-primary">
                                 <?= $heroicons->arrowsExpandHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
                             </span>
@@ -192,37 +192,37 @@ $productName = $block->getProduct()->getName();
             <?php endif; ?>
             <?php if ($galleryOptionArrows): ?>
                 <nav
-                    class="z-10 top-0 absolute h-full flex justify-between gap-2 md:opacity-0 md:hover:opacity-100 transition
-                        <?= $galleryOptionArrows !== "start" ? 'right-0 md:right-0 lg:right-0 xl:right-0' : '' ?>
-                        <?= $galleryOptionArrows !== "end" ? 'left-0 md:left-0 lg:left-0 xl:left-0' : '' ?>"
+                    class="z-10 absolute bottom-4 md:bottom-2 lg:bottom-4 xl:bottom-8 flex justify-between gap-2
+                        <?= $galleryOptionArrows !== "start" ? 'right-4 md:right-2 lg:right-4 xl:right-8' : '' ?>
+                        <?= $galleryOptionArrows !== "end" ? 'left-4 md:left-2 lg:left-4 xl:left-8' : '' ?>"
                     aria-label="<?= $escaper->escapeHtml(__('%1 Gallery Navigation', $productName)) ?>"
                     x-cloak
                 >
                     <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-2.5 transition disabled:opacity-30 bg-white bg-opacity-50 text-lego-blue-light"
+                        class="shrink-0 p-2.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary"
                         title="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         :disabled="!loop && isStart"
                         @click="prevItem"
-                    ><?= $heroiconsSolid->chevronLeftHtml('', 32, 32, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->arrowLeftHtml('', 16, 16, ['aria-hidden' => 'true']) ?></button>
                     <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-2.5 transition disabled:opacity-30 bg-white bg-opacity-50 text-lego-blue-light"
+                        class="shrink-0 p-2.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary"
                         title="<?= $escaper->escapeHtml(__('Next')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                         :disabled="!loop && isEnd"
                         @click="nextItem"
-                    ><?= $heroiconsSolid->chevronRightHtml('', 32, 32, ['aria-hidden' => 'true']) ?></button>
+                    ><?= $heroiconsSolid->arrowRightHtml('', 16, 16, ['aria-hidden' => 'true']) ?></button>
                 </nav>
             <?php endif; ?>
         </div>
         <?php if ($galleryOptionShowThumbs): ?>
             <div
                 id="gallery-thumbs"
-                class="flex items-center gap-4 outline-0 absolute inset-x-0 bottom-0 <?= $galleryOptionNavVertical ? 'lg:left-0 lg:right-auto lg:inset-y-0 lg:order-first lg:flex-col' : '' ?>"
+                class="flex items-center gap-2 outline-0 absolute inset-x-0 bottom-0 <?= $galleryOptionNavVertical ? 'lg:left-0 lg:right-auto lg:inset-y-0 lg:order-first lg:flex-col' : '' ?>"
                 x-init="$nextTick(() => calcThumbsOverflow())"
                 @resize.window.debounce="calcThumbsOverflow()"
             >
@@ -265,7 +265,7 @@ $productName = $block->getProduct()->getName();
                             class="shrink-0 border-2 border-transparent"
                             tabindex="-1"
                             :class="{
-                                'border-lego-blue-light group-focus:border-gray-400': activeItem === index,
+                                'border-primary group-focus:border-gray-400': activeItem === index,
                                 'border-transparent': activeItem !== index
                             }"
                             :aria-label="hyva.str('View %1', image.caption) || '<?= $escaper->escapeJs("View %1", $productName) ?>'"
@@ -274,7 +274,7 @@ $productName = $block->getProduct()->getName();
                             x-intersect:leave.full="isThumbInView(index, 'leave')"
                             @click="activeItem = index"
                         >
-                            <img alt="" width="<?= /* @noEscape */ $smallWidth/2 ?>" height="<?= /* @noEscape */ $smallHeight/2 ?>" :src="image.thumb">
+                            <img alt="" width="<?= /* @noEscape */ $smallWidth ?>" height="<?= /* @noEscape */ $smallHeight ?>" :src="image.thumb">
                         </button>
                     </template>
                 </nav>
