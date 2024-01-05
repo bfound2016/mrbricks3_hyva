@@ -149,7 +149,7 @@ $productName = $block->getProduct()->getName();
                             :class="{ 'w-auto': fullscreen }"
                             :src="fullscreen ? image.full : image.img"
                             :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
-                            :loading="active !== index ? 'lazy' : 'eager'"
+                            loading="lazy"
                         />
                     </template>
                     <?php if ($galleryOptionShowCaption): ?>
