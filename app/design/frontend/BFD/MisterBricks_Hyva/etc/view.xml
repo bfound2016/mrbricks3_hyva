@@ -210,7 +210,7 @@
             <var name="loop">true</var> <!-- Gallery navigation loop (true/false) -->
             <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
             <var name="allowfullscreen">true</var> <!-- Turn on/off fullscreen (true/false) -->
-            <var name="navdir">vertical</var> <!-- Direction of the thumbnails (horizontal/vertical) -->
+            <var name="navdir">horizontal</var> <!-- Direction of the thumbnails (horizontal/vertical) -->
             <var name="navarrows">false</var> <!-- Turn on/off the thumbnail arrows (true/false) -->
             <!-- `start` & `end` are Hyva Only options -->
             <var name="arrows">false</var> <!-- Turn on/off the gallery arrows (start/end/true/false) -->
