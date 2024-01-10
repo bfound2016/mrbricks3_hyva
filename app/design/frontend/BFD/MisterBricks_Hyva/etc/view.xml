@@ -213,7 +213,7 @@
             <var name="navdir">horizontal</var> <!-- Direction of the thumbnails (horizontal/vertical) -->
             <var name="navarrows">false</var> <!-- Turn on/off the thumbnail arrows (true/false) -->
             <!-- `start` & `end` are Hyva Only options -->
-            <var name="arrows">false</var> <!-- Turn on/off the gallery arrows (start/end/true/false) -->
+            <var name="arrows">true</var> <!-- Turn on/off the gallery arrows (start/end/true/false) -->
             <!-- Hyva Only options -->
              <var name="fullscreenicon">false</var> <!-- Turn on/off icon for allowfullscreen (true/false) -->
             <var name="navoverflow">false</var> <!-- Turn on/off overflow style (true/false) -->
