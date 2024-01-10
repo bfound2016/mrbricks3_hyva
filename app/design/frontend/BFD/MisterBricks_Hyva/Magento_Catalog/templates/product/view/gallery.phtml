@@ -123,7 +123,7 @@ $productName = $block->getProduct()->getName();
                                             :class="{ 'w-auto': fullscreen, 'invisible': activeVideo }"
                                             :src="fullscreen ? image.full : image.img"
                                             :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
-                                            :data-splide-lazy="fullscreen ? image.full : image.img"
+                                            :loading="activeItem !== index ? 'lazy' : 'eager'"
                                         >
                                     </template>
                                     <?php if ($galleryOptionShowCaption): ?>
