@@ -10,7 +10,7 @@
     font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
-    font-display: swap;
+    font-display: optional;
     src: url("../fonts/Poppins-Regular.woff2");
 }
 
@@ -18,7 +18,7 @@
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
-    font-display: swap;
+    font-display: optional;
     src: url("../fonts/Poppins-SemiBold.woff2");
 }
 
@@ -26,7 +26,7 @@
     font-family: "VAG Rounded";
     font-style: normal;
     font-weight: 600;
-    font-display: swap;
+    font-display: optional;
     src: url("../fonts/vag-rounded-bold.woff2");
 }
 
@@ -34,7 +34,7 @@
     font-family: "VAG Rounded";
     font-style: normal;
     font-weight: 900;
-    font-display: swap;
+    font-display: optional;
     src: url("../fonts/vag-rounded-black.woff2");
 }
 
