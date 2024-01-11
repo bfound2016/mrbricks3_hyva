@@ -9,7 +9,7 @@ body {
 }
 
 .page-main {
-    @apply my-4;
+    @apply my-0 md:my-8;
 }
 
 .flex-columns-wrapper {
