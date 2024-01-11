@@ -165,7 +165,7 @@ $displayTax = $productPriceViewModel->displayPriceIncludingTax();
                 return hyva.formatPrice(
                     this.calculatedFinalPriceWithCustomOptions ||
                     this.calculatedFinalPrice ||
-                    this.initialFinalPrice
+                    this.initialFinalPrice, false
                 )
             },
             <?php if ($productPriceViewModel->displayPriceInclAndExclTax()): ?>
@@ -173,7 +173,7 @@ $displayTax = $productPriceViewModel->displayPriceIncludingTax();
                 return hyva.formatPrice(
                     this.calculatedBasePriceWithCustomOptions ||
                     this.calculatedBasePrice ||
-                    this.initialBasePrice
+                    this.initialBasePrice, false
                 )
             },
             <?php endif; ?>
