@@ -10,15 +10,12 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!--
-        <referenceBlock name="page.main.title" remove="true" />
-        
-            <referenceBlock name="description">
-                <arguments>
-                    <argument name="css_classes" xsi:type="string"></argument>
-                </arguments>
-            </referenceBlock>
-        -->
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="css_class" xsi:type="string">mt-0 order-1 product text-3xl font-semibold text-center md:px-0 md:mt-10 md:mb-3</argument>
+                <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
+            </arguments>
+        </referenceBlock>
         <referenceBlock name="product.info.quantity" remove="true" />
         <referenceBlock name="related.post.tab" remove="true" />
         <referenceBlock name="product.info.details">
