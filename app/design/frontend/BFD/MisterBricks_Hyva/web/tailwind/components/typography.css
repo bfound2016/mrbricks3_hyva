@@ -47,5 +47,5 @@ body {
 }
 
 .title-font {
-    @apply font-['VAG_Rounded'];
+    font-family: "Vag Rounded", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
 }
