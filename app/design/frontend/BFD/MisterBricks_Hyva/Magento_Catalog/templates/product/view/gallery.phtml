@@ -219,7 +219,7 @@ $productName = $block->getProduct()->getName();
                     // this creates clones of the slides which breaks the images render,
                     // So only use the type options: fade or slide
                     this.gallery = new Splide(this.$root, {
-                        type: 'slide',
+                        type: 'loop',
                         rewind: <?= /* @noEscape */ $galleryOptionLoop ? 'true' : 'false' ?>,
                         perPage: 1,
                         gap: 0,
