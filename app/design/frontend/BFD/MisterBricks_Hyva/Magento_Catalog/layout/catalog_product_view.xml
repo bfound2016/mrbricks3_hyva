@@ -12,6 +12,7 @@
     <head>
         <remove src="Mageplaza_Core::css/owl.carousel.css"/>
         <remove src="Mageplaza_Core::css/owl.theme.css"/>
+        <remove src="Mollie_Payment::css/styles.css"/>
     </head>
     <body>
         <referenceBlock name="page.main.title">
