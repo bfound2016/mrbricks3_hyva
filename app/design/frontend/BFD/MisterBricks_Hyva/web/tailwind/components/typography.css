@@ -1,11 +1,16 @@
 @layer utilities {
     /* This class only exists for backwards compatibility, */
     /* The default is applied in tailwind.config.js since Hyvä 1.2.0 */
+    /*
     .text-sans-serif {
         font-family: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
+    */
+    .text-sans-serif {
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
 }
-
+/*
 @font-face {
     font-family: "Poppins";
     font-style: normal;
@@ -37,6 +42,7 @@
     font-display: swap;
     src: url("../fonts/vag-rounded-black.woff2");
 }
+*/
 
 html {
     @apply antialiased;
@@ -46,6 +52,8 @@ body {
     @apply text-black leading-normal text-base tracking-normal;
 }
 
+/*
 .title-font {
     font-family: "Vag Rounded", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
 }
+*/
