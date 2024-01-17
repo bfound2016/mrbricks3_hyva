@@ -1,0 +1,36 @@
+<?php declare(strict_types=1);
+
+use Yireo\NextGenImages\Block\Picture;
+
+/** @var $block Picture */
+$width = ($block->getWidth()) ? ' width="' . $block->getWidth() . '"' : '';
+$height = ($block->getHeight()) ? ' height="' . $block->getHeight() . '"' : '';
+$class = ($block->getClass()) ? ' class="' . $block->getClass() . '"' : '';
+$lazyLoading = ($block->getLazyLoading()) ? ' loading="lazy" ' : '';
+
+$originalTag = trim($block->getOriginalTag());
+$originalTag = preg_replace('/(\/?)>$/', $lazyLoading . '\1>', $originalTag);
+
+$originalImage = $block->getOriginalImage();
+
+$originalImageType = $block->getOriginalImageType();
+
+$srcAttribute = $block->getSrcAttribute() ?? 'src';
+$srcSetAttribute = $srcAttribute.'set';
+?>
+<?php if ($block->getDebug()): ?>
+    <!-- <?= /* @noEscape */
+    $block->getOriginalTag() ?> -->
+<?php endif; ?>
+
+<picture<?= /* @noEscape */
+$class ?>>
+    <?php foreach ($block->getImages() as $image): ?>
+        <source type="<?= /* @noEscape */
+        $image->getMimeType() ?>" <?= /* @noEscape */
+        $srcSetAttribute ?>="<?= /* @noEscape */
+        $image->getUrl() ?>">
+    <?php endforeach; ?>
+    <?= /* @noEscape */
+    $originalTag ?>
+</picture>
