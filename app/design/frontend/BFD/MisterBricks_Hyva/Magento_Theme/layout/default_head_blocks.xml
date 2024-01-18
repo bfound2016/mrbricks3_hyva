@@ -9,7 +9,12 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-            <font src="fonts/Poppins-Regular.woff2" />
-            <font src="fonts/Poppins-SemiBold.woff2" />
+            <!--
+                <font src="fonts/Poppins-Regular.woff2" />
+                <font src="fonts/Poppins-SemiBold.woff2" />
+            -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
     </head>
 </page>
