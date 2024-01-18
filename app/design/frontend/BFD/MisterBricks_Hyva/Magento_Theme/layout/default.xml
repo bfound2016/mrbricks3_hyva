@@ -15,8 +15,8 @@
                 <arguments>
                     <argument name="text" xsi:type="string">
                     <![CDATA[
-                        <link rel="preconnect" href="https://fonts.googleapis.com">
-                        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                        <link rel="preconnect" src="https://fonts.googleapis.com" src_type="url">
+                        <link rel="preconnect" src="https://fonts.gstatic.com" src_type="url" crossorigin>
                     ]]>
                     </argument>
                 </arguments>
