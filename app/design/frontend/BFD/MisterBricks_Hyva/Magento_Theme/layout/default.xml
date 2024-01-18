@@ -11,12 +11,12 @@
     
    <body>
         <referenceBlock name="head.additional">
-            <block class="Magento\Framework\View\Element\Text" name="google.fonts">
+            <block class="Magento\Framework\View\Element\Text" name="custom.fonts">
                 <arguments>
                     <argument name="text" xsi:type="string">
                     <![CDATA[
-                        <link rel="preconnect" src="https://fonts.googleapis.com" src_type="url">
-                        <link rel="preconnect" src="https://fonts.gstatic.com" src_type="url" crossorigin>
+                        <link rel="preconnect" href="https://fonts.googleapis.com">
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                     ]]>
                     </argument>
                 </arguments>

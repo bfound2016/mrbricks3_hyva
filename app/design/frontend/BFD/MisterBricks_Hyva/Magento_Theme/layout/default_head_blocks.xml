@@ -13,6 +13,6 @@
                 <font src="fonts/Poppins-Regular.woff2" />
                 <font src="fonts/Poppins-SemiBold.woff2" />
             -->
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet" type="text/css" src_type="url" />
+            <link src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet" type="text/css" src_type="url" />
     </head>
 </page>
