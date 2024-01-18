@@ -215,7 +215,7 @@
             <!-- `start` & `end` are Hyva Only options -->
             <var name="arrows">true</var> <!-- Turn on/off the gallery arrows (start/end/true/false) -->
             <!-- Hyva Only options -->
-             <var name="fullscreenicon">false</var> <!-- Turn on/off icon for allowfullscreen (true/false) -->
+             <var name="fullscreenicon">true</var> <!-- Turn on/off icon for allowfullscreen (true/false) -->
             <var name="navoverflow">false</var> <!-- Turn on/off overflow style (true/false) -->
         </var>
     </vars>
