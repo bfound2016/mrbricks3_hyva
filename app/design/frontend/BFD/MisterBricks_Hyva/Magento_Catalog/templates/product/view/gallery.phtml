@@ -49,7 +49,7 @@ $galleryOptionLoop = (bool) $block->getVar('gallery/loop', 'Magento_Catalog');
 $galleryOptionArrows = $block->getVar('gallery/arrows', 'Magento_Catalog');
 $galleryOptionShowCaption = (bool) $block->getVar('gallery/caption', 'Magento_Catalog');
 $galleryOptionShowThumbs = (string) $block->getVar('gallery/nav', 'Magento_Catalog') === 'thumbs';
-$galleryOptionShowCounter = (string) $block->getVar('gallery/nav', 'Magento_Catalog') === 'counter';
+$galleryOptionShowCounter = true; //(string) $block->getVar('gallery/nav', 'Magento_Catalog') === 'counter';
 $galleryOptionShowNavArrows = (bool) $block->getVar('gallery/navarrows', 'Magento_Catalog');
 $galleryOptionShowNavOverflow = $block->getVar('gallery/navoverflow', 'Magento_Catalog');
 $galleryOptionShowFullscreenIcon = (bool) $block->getVar('gallery/fullscreenicon', 'Magento_Catalog');
@@ -298,7 +298,7 @@ $productName = $block->getProduct()->getName();
             </div>
         <?php endif; ?>
         <?php if ($galleryOptionShowCounter): ?>
-            <div class="text-end font-bold text-sm mt-1" x-cloak>
+            <div class="text-end font-bold text-sm absolute top-2 left-2 shadow-sm shadow-gray-200 rounded-sm p-1" x-cloak>
                 <span x-text="(activeItem + 1)"></span>
                 <span class="text-gray-300">/</span>
                 <span class="text-gray-500" x-text="itemCount"></span>
