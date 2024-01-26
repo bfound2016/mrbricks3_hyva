@@ -26,11 +26,11 @@
 }
 
 @font-face {
-    font-family: "Poppins-SB";
+    font-family: "Poppins-Bold";
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-display: swap;
-    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    src: url("../fonts/Poppins-Bold.woff2") format("woff2");
 }
 /*
 @font-face {
@@ -60,5 +60,5 @@ body {
 
 
 .title-font {
-    font-family: "Poppins-SB", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+    font-family: "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
 }
