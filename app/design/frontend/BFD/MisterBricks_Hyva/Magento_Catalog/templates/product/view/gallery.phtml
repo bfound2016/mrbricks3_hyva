@@ -60,7 +60,9 @@ $productName = $block->getProduct()->getName();
     style="
         --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
         --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
-        background: url('<?= $mainImage->getData("medium_image_url") ?>') contain center center;"
+        background: url('<?= $mainImage->getData("medium_image_url") ?>');
+        background-position: center;
+        background-size: contain"
 >
     <section
         id="gallery"
