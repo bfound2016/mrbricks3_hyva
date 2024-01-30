@@ -31,7 +31,7 @@ $mainImage = current(array_filter($images, [$block, 'isMainImage']));
 
 /** @var string $imageUrl */
 $imageUrl = $mainImage->getData('medium_image_url');
-$viewModels->require(PreloadImages::class)->add($imageUrl);
+$viewModels->require(PreloadImages::class)->add("https://hyva01.misterbricks.nl/media/catalog/product/cache/d49b3998741e21ce041c895c60120480/m/b/mb03-black-0.jpeg");
 
 if (!empty($images) && empty($mainImage)) {
     $mainImage = reset($images);
