@@ -14,6 +14,7 @@ use Hyva\Theme\ViewModel\HeroiconsSolid;
 use Magento\Catalog\Block\Product\View\Gallery;
 use Magento\Catalog\Helper\Image;
 use Magento\Framework\Escaper;
+use FriendsOfHyva\PreloadImages\ViewModel\PreloadImages;
 
 /** @var Escaper $escaper */
 /** @var Gallery $block */
@@ -27,6 +28,10 @@ $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
 
 $images = $block->getGalleryImages()->getItems();
 $mainImage = current(array_filter($images, [$block, 'isMainImage']));
+
+/** @var string $imageUrl */
+$imageUrl = $mainImage->getData('medium_image_url');
+$viewModels->require(PreloadImages::class)->add($imageUrl);
 
 if (!empty($images) && empty($mainImage)) {
     $mainImage = reset($images);
