@@ -67,7 +67,7 @@ $productName = $block->getProduct()->getName();
         aria-label="<?= $escaper->escapeHtml(__('%1 Gallery', $productName)) ?>"
         x-data="initGallery()"
         x-bind="eventListeners"
-        class="splide max-w-full h-full w-[var(--gallery-width)]"
+        class="splide max-w-full h-full w-[var(--gallery-width)] bg-[url('<?= $mainImage->getData("medium_image_url") ?>')] md:bg-none"
     >
         <div class="relative">
             <div
