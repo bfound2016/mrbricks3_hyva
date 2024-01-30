@@ -56,18 +56,18 @@ $productName = $block->getProduct()->getName();
 ?>
 
 <div
-    class="w-full md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1"
+    class="w-full md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1 md:bg-none"
     style="
         --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
         --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;
-    "
+        background: url('<?= $mainImage->getData("medium_image_url") ?>') contain center center;
 >
     <section
         id="gallery"
         aria-label="<?= $escaper->escapeHtml(__('%1 Gallery', $productName)) ?>"
         x-data="initGallery()"
         x-bind="eventListeners"
-        class="splide max-w-full h-full w-[var(--gallery-width)] bg-[url('<?= $mainImage->getData("medium_image_url") ?>')] md:bg-none"
+        class="splide max-w-full h-full w-[var(--gallery-width)]"
     >
         <div class="relative">
             <div
