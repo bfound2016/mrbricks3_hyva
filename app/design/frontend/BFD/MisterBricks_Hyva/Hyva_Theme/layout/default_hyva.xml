@@ -10,9 +10,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="head.additional">
-            <block name="script-alpine-js" template="Hyva_Theme::page/js/alpinejs.phtml">
-                <block name="alpine-plugin-intersect" template="Hyva_Theme::page/js/plugins/intersect.phtml"/>
-            </block>
             <block name="head.js" class="Magento\Framework\View\Element\Template" template="Hyva_Theme::page/js/variables.phtml"/>
             <block name="head.hyva-scripts" template="Hyva_Theme::page/js/hyva.phtml"/>
         </referenceContainer>
