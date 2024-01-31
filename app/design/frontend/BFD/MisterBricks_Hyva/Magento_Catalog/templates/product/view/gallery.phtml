@@ -13,6 +13,7 @@ use Hyva\Theme\ViewModel\HeroiconsOutline;
 use Magento\Catalog\Block\Product\View\Gallery;
 use Magento\Catalog\Helper\Image;
 use Magento\Framework\Escaper;
+use FriendsOfHyva\PreloadImages\ViewModel\PreloadImages;
 
 /** @var Escaper $escaper */
 /** @var Gallery $block */
@@ -27,6 +28,13 @@ $mainImage = current(array_filter($images, [$block, 'isMainImage']));
 if (!empty($images) && empty($mainImage)) {
     $mainImage = reset($images);
 }
+
+/** @var PreloadImages $preloadImages */
+$preloadImages = $viewModels->require(PreloadImages::class);
+
+/** @var string $imageUrl */
+$imageUrl = preg_replace('/\.(png|jpg|jpeg)$/', '.webp', $mainImage->getData('medium_image_url'));
+$preloadImages->add($imageUrl);
 
 /** @var Image $helper */
 $helper = $block->getData('imageHelper');

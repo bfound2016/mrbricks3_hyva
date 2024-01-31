@@ -33,7 +33,6 @@ $images = $block->getGalleryImages()->getItems();
 $mainImage = current(array_filter($images, [$block, 'isMainImage']));
 
 /** @var string $imageUrl */
-
 $imageUrl = preg_replace('/\.(png|jpg|jpeg)$/', '.webp', $mainImage->getData('medium_image_url'));
 $preloadImages->add($imageUrl);
 
