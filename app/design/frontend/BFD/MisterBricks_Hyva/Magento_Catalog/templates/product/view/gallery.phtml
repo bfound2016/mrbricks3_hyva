@@ -10,11 +10,9 @@ declare(strict_types=1);
 
 use Hyva\Theme\Model\ViewModelRegistry;
 use Hyva\Theme\ViewModel\HeroiconsOutline;
-use Hyva\Theme\ViewModel\HeroiconsSolid;
 use Magento\Catalog\Block\Product\View\Gallery;
 use Magento\Catalog\Helper\Image;
 use Magento\Framework\Escaper;
-use FriendsOfHyva\PreloadImages\ViewModel\PreloadImages;
 
 /** @var Escaper $escaper */
 /** @var Gallery $block */
@@ -23,19 +21,8 @@ use FriendsOfHyva\PreloadImages\ViewModel\PreloadImages;
 /** @var HeroiconsOutline $heroicons */
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 
-/** @var HeroiconsSolid $heroiconsSolid */
-$heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
-
-/** @var PreloadImages $preloadImages */
-$preloadImages = $viewModels->require(PreloadImages::class);
-
 $images = $block->getGalleryImages()->getItems();
 $mainImage = current(array_filter($images, [$block, 'isMainImage']));
-
-/** @var string $imageUrl */
-
-$imageUrl = preg_replace('/\.(png|jpg|jpeg)$/', '.webp', $mainImage->getData('medium_image_url'));
-$preloadImages->add($imageUrl);
 
 if (!empty($images) && empty($mainImage)) {
     $mainImage = reset($images);
@@ -52,312 +39,449 @@ $smallHeight = $block->getImageAttribute('product_page_image_small', 'height', 9
 $mediumWidth = $block->getImageAttribute('product_page_image_medium', 'width', 700);
 $mediumHeight = $block->getImageAttribute('product_page_image_medium', 'height', 700);
 
-$galleryOptionNavVertical = (string) $block->getVar('gallery/navdir', 'Magento_Catalog') === 'vertical';
-$galleryOptionAllowfullscreen = (bool) $block->getVar('gallery/allowfullscreen', 'Magento_Catalog');
-$galleryOptionLoop = (bool) $block->getVar('gallery/loop', 'Magento_Catalog');
-$galleryOptionArrows = $block->getVar('gallery/arrows', 'Magento_Catalog');
-$galleryOptionShowCaption = (bool) $block->getVar('gallery/caption', 'Magento_Catalog');
-$galleryOptionShowDots = (string) $block->getVar('gallery/nav', 'Magento_Catalog') === 'dots';
-$galleryOptionShowFullscreenIcon = (bool) $block->getVar('gallery/fullscreenicon', 'Magento_Catalog');
-$galleryOptionAppendOnReceive = (string) $block->getVar('gallery_switch_strategy', 'Magento_ConfigurableProduct') === 'append';
-
 $productName = $block->getProduct()->getName();
 ?>
 
-<div
-    class="w-full md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1 md:bg-none"
-    style="
-        --gallery-ratio: <?= /* @noEscape */ $mediumWidth . '/' . $mediumHeight ?>;
-        --gallery-width: <?= /* @noEscape */ $mediumWidth ?>px;"
->
-    <section
-        id="gallery"
-        aria-label="<?= $escaper->escapeHtml(__('%1 Gallery', $productName)) ?>"
-        x-data="initGallery()"
-        x-bind="eventListeners"
-        class="splide max-w-full h-full w-[var(--gallery-width)]"
+<div id="gallery"
+     x-data="initGallery()"
+     x-bind="eventListeners"
+     class="w-full pt-6 md:pt-0 md:h-auto md:row-start-1 md:row-span-2 md:col-start-1"
     >
-        <div class="relative">
-            <div
-                class="max-w-full w-[var(--gallery-width)] aspect-[var(--gallery-ratio)]"
-                aria-hidden="true"
-                x-show="fullscreen"
-            ></div>
-            <div
-                class="z-50 backdrop"
-                aria-hidden="true"
-                x-show="fullscreen"
-                x-transition.opacity
-                @click="fullscreen = false"
-            ></div>
-            <div
-                class="relative grid bg-container-darker rounded-lg aspect-[var(--gallery-ratio)]"
-                :class="{
-                    'z-50 fixed inset-0 w-screen max-w-[min(1280px,(100%_-_2rem))] max-h-[min(1024px,(100%_-_2rem))] m-auto': fullscreen,
-                    'relative': !fullscreen
-                }"
-                aria-live="polite"
-                aria-atomic="true"
-                x-ref="galleryDialog"
-                :role="fullscreen ? 'dialog' : false"
-                :aria-modal="fullscreen"
-                :aria-label="fullscreen ? '<?= $escaper->escapeJs(__('Fullscreen Gallery')) ?>' : false"
-            >
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <template x-for="(image, index) in images" :key="index">
-                            <li class="splide__slide flex flex-col justify-center items-center">
-                                <figure>
-                                    <template x-if="activeItem === index && activeVideo">
-                                        <iframe
-                                            class="absolute inset-0 aspect-video max-w-full max-h-full h-auto m-auto"
-                                            width="1280"
-                                            height="720"
-                                            type="text/html"
-                                            frameborder="0"
-                                            loading="lazy"
-                                            x-data="getVideoData(image)"
-                                            :src="src"
-                                            :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
-                                            :title="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
-                                            :allow="allow"
-                                        ></iframe>
-                                    </template>
-                                    <template x-if="image.type === 'image'">
-                                        <img
-                                            width="<?= /* @noEscape */ $mediumWidth ?>"
-                                            height="<?= /* @noEscape */ $mediumHeight ?>"
-                                            class="max-w-full max-h-full m-auto"
-                                            :class="{ 'w-auto': fullscreen, 'invisible': activeVideo }"
-                                            :src="fullscreen ? image.full : image.img"
-                                            :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
-                                            :loading="activeItem !== index ? 'lazy' : 'eager'"
-                                        >
-                                    </template>
-                                    <?php if ($galleryOptionShowCaption): ?>
-                                        <template x-if="image.type === 'image' && image.caption && image.caption !== '<?= $escaper->escapeJs($productName) ?>'">
-                                            <figcaption
-                                                class="absolute inset-x-0 bottom-0 pt-4 pb-2 px-4 text-sm xl:text-base font-bold bg-gradient-to-t from-black/10
-                                                <?= $galleryOptionArrows !== "start" && $galleryOptionArrows !== "end" ? 'text-center' : 'text-left' ?>
-                                                <?= $galleryOptionArrows === "start" ? 'text-right' : '' ?>"
-                                                x-text="image.caption"
-                                            ></figcaption>
-                                        </template>
-                                    <?php endif; ?>
-                                </figure>
-                            </li>
-                        </template>
-                    </ul>
+    <div
+        :class="{'w-full h-full fixed top-0 left-0 bg-white z-50 flex': fullscreen}"
+        :role="fullscreen ? 'dialog' : false"
+        :aria-modal="fullscreen"
+        :aria-label="fullscreen ? '<?= $escaper->escapeJs(__('Gallery modal fullscreen')) ?>' : false"
+    >
+        <div class="relative self-center w-full"
+             @touchstart="handleTouchStart"
+             @touchmove="handleTouchMove"
+             x-transition:enter="ease-out duration-500"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+        >
+            <div class="relative mb-6" aria-live="polite" aria-atomic="true">
+                <span class="sr-only" id="main-image-description"><?= $escaper->escapeHtml(__('Main image')) ?></span>
+                <span class="sr-only" id="fullscreen-btn-label"><?= $escaper->escapeHtml(__('Click to view image in fullscreen')) ?></span>
+                <?php
+                /**
+                 * The first image is a placeholder that determines the
+                 * aspect ratio for the gallery. It will be hidden as
+                 * soon as JS is loaded, but will keep reserving the
+                 * necessary space in the layout for the other (absolute positioned)
+                 * images. Hence, `invisible` instead of `x-show` or `hidden`
+                 */
+                ?>
+                <img
+                    alt="<?= $mainImage ? $escaper->escapeHtmlAttr($mainImage->getData('label')) : '' ?>"
+                    title="<?= $mainImage ? $escaper->escapeHtmlAttr($mainImage->getData('label')) : '' ?>"
+                    class="object-contain object-center w-full h-auto max-h-screen-75"
+                    :class="'invisible'"
+                    src="<?= /* @noEscape */ $mainImageData ?>"
+                    width="<?= /* @noEscape */ $mediumWidth ?>"
+                    height="<?= /* @noEscape */ $mediumHeight ?>"
+                    itemprop="image"
+                />
+                <template x-for="(image, index) in images" :key="index">
+                    <img
+                        :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
+                        :title="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
+                        class="absolute inset-0 object-contain object-center w-full m-auto max-h-screen-75"
+                        width="<?= /* @noEscape */ $mediumWidth ?>"
+                        height="<?= /* @noEscape */ $mediumHeight ?>"
+                        :loading="active !== index ? 'lazy' : 'eager'"
+                        :src="fullscreen ? image.full : image.img"
+                        x-transition.opacity.duration.500ms
+                        x-show="active === index"
+                    >
+                </template>
+                <button
+                    type="button"
+                    class="absolute inset-0 outline-offset-2"
+                    aria-describedby="main-image-description fullscreen-btn-label"
+                    x-ref="galleryFullscreenBtn"
+                    x-show="!fullscreen"
+                    x-cloak
+                    @click="openFullscreen()"
+                    @keydown.enter="openFullscreen()"
+                ></button>
+                <div class="absolute inset-0 hidden w-full h-full bg-white nonmobile"
+                     :class="{ 'hidden': activeVideoType !== 'youtube' }"
+                     x-transition.opacity.duration.500ms x-show="
+                         images[active].type === 'video' && activeVideoType === 'youtube'
+                     "
+                >
+                    <div id="youtube-player" class="w-full h-full"></div>
                 </div>
-                <?php if ($galleryOptionAllowfullscreen): ?>
-                    <button
-                        class="absolute right-2 top-2"
-                        title="<?= $escaper->escapeHtml(__('Open fullscreen')) ?>"
-                        aria-label="<?= $escaper->escapeHtml(__('Open fullscreen')) ?>"
-                        x-show="!fullscreen && !activeVideo"
-                        x-cloak
-                        @click="fullscreen = true"
-                    >
-                        <?php if ($galleryOptionShowFullscreenIcon): ?>
-                            <span class="block" aria-hidden="true">
-                                <span class="block p-2 rounded-full transition shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary/50 hover:text-primary focus:text-primary">
-                                    <?= $heroicons->arrowsExpandHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
-                                </span>
-                            </span>
-                        <?php endif; ?>
-                    </button>
-                    <button
-                        class="fixed top-2 right-2 lg:top-6 lg:right-6 p-2 rounded-full transition shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary"
-                        title="<?= $escaper->escapeHtml(__('Close fullscreen')) ?>"
-                        aria-label="<?= $escaper->escapeHtml(__('Close fullscreen')) ?>"
-                        x-show="fullscreen"
-                        @click="fullscreen = false"
-                    >
-                        <?= $heroicons->xHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
-                    </button>
-                <?php endif; ?>
-                <?php if ($galleryOptionArrows): ?>
-                    <div class="splide__arrows z-10 absolute bottom-[50%] flex justify-between gap-2
-                        <?= $galleryOptionArrows !== "start" ? 'right-4 md:right-2 lg:right-4 xl:right-8' : '' ?>
-                        <?= $galleryOptionArrows !== "end" ? 'left-4 md:left-2 lg:left-4 xl:left-8' : '' ?>"
-                    >
-                        <button class="splide__arrow splide__arrow--prev shrink-0 p-1.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-lego-blue-light text-white">
-                            <?= $heroiconsSolid->chevronLeftHtml('', 20, 20, ['aria-hidden' => 'true']); ?>
-                        </button>
-                        <button class="splide__arrow splide__arrow--next shrink-0 p-1.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-lego-blue-light text-white">
-                            <?= $heroiconsSolid->chevronRightHtml('', 20, 20, ['aria-hidden' => 'true']); ?>
-                        </button>
-                    </div>
-                <?php endif; ?>
+                <div class="absolute inset-0 hidden w-full h-full bg-white"
+                     :class="{ 'hidden': activeVideoType !== 'vimeo' }"
+                     x-transition.opacity.duration.500ms x-show="
+                         images[active].type === 'video' && activeVideoType === 'vimeo'
+                     "
+                >
+                    <div id="vimeo-player" class="w-full h-full"></div>
+                </div>
             </div>
-            <ul class="splide__pagination p-2 gap-2 absolute bottom-4 w-full"></ul>
         </div>
-    </section>
-    <script>
-        function initGallery() {
-            return {
-                gallery: null,
-                activeItem: 0,
-                activeVideo: false,
-                fullscreen: false,
-                videoOptions: {
-                    autoplay: true,
-                    loop: false,
-                    allowApi: false
-                },
-                initialImages: <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
-                images: <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
-                init() {
-                    this.$nextTick(() => {
-                        this.initSlider();
+
+        <div @resize.window.debounce="calcPageSize(); $nextTick(() => calcActive())">
+            <div
+                id="thumbs"
+                class="flex items-center"
+                :class="{ 'fixed justify-center bottom-0 left-0 right-0 mx-6': fullscreen }"
+                style="min-height: 100px;"
+                x-show="images.length > 1"
+                x-cloak
+            >
+                <button
+                    type="button"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Previous')) ?>"
+                    tabindex="-1"
+                    class="mr-4 text-black rounded-full outline-none focus:outline-none flex-none"
+                    :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
+                    aria-hidden="true"
+                    @click="scrollPrevious"
+                ><?= $heroicons->chevronLeftHtml() ?></button>
+                <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1 xl:px-2"
+                     x-ref="jsThumbSlides"
+                     @scroll.debounce="calcPageSize(); calcActive()"
+                >
+                    <template x-for="(image, index) in images" :key="index">
+                        <div class="js_thumbs_slide flex shrink-0 mb-2 mr-2 lg:mr-4 last:mr-0">
+                            <button
+                                type="button"
+                                @click.prevent="setActive(index);"
+                                class="block border border-gray-300 hover:border-primary focus:border-primary"
+                                :class="{'border-primary': active === index}"
+                            >
+                                <span class="sr-only">
+                                    <?= $escaper->escapeHtml('View larger image') ?>
+                                </span>
+                                <img
+                                    :src="image.thumb"
+                                    :alt="hyva.str('%1 thumbnail', image.caption) || '<?= $escaper->escapeJs(__("%1 thumbnail", $productName)) ?>'"
+                                    :title="hyva.str('%1 thumbnail', image.caption) || '<?= $escaper->escapeJs(__("%1 thumbnail", $productName)) ?>'"
+                                    :loading="active !== index ? 'lazy' : 'eager'"
+                                    width="<?= /* @noEscape */ $smallWidth ?>"
+                                    height="<?= /* @noEscape */ $smallHeight ?>"
+                                />
+                            </button>
+                        </div>
+                    </template>
+                </div>
+                <button
+                    type="button"
+                    x-show="images.length > 1"
+                    x-cloak
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Next')) ?>"
+                    tabindex="-1"
+                    class="ml-4 text-black rounded-full outline-none focus:outline-none flex-none"
+                    :class="{ 'opacity-25 pointer-events-none' : activeSlide >= itemCount-pageSize, 'hidden' : !isSlider }"
+                    aria-hidden="true"
+                    @click="scrollNext"
+                ><?= $heroicons->chevronRightHtml() ?></button>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 pt-4 pr-4">
+            <button @click="closeFullScreen()"
+                    type="button"
+                    class="hidden text-gray-500 p-3 hover:text-gray-600 focus:text-gray-600
+                        transition ease-in-out duration-150"
+                    :class="{ 'hidden': !fullscreen, 'block': fullscreen }"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Close fullscreen')) ?>"
+            >
+                <?= $heroicons->xHtml('', 24, 24, ['aria-hidden' => 'true']) ?>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    function initGallery () {
+        let touchXDown, touchYDown;
+
+        return {
+            "active": 0,
+            "videoData": {},
+            "activeVideoType": false,
+            "autoplayVideo": false,
+            "loopVideo": true,
+            "relatedVideos": false,
+            "vimeoPlayer": null,
+            "fullscreen": false,
+            "isSlider": false,
+            "initialImages": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+            "images": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+            "appendOnReceiveImages": <?=
+                $block->getVar('gallery_switch_strategy', 'Magento_ConfigurableProduct') === 'append' ? 'true' : 'false'
+            ?>,
+            "activeSlide": 0,
+            "itemCount": 0,
+            "pageSize": 4,
+            "pageFillers": 0,
+            "focusTrapListener": null,
+            init() {
+                this.initActive();
+                this.$nextTick(() => this.calcPageSize());
+            },
+            receiveImages(images) {
+                if (this.appendOnReceiveImages) {
+                    const initialUrls = this.initialImages.map(image => image.full);
+                    const newImages = images.filter(image => ! initialUrls.includes(image.full));
+                    this.images = [].concat(this.initialImages, newImages);
+                    this.setActive(newImages.length ? this.initialImages.length : 0);
+                } else {
+                    this.images = images;
+                    this.setActive(0);
+                }
+                this.itemCount = this.images.length;
+            },
+            resetGallery() {
+                this.images = this.initialImages;
+                this.itemCount = this.images.length;
+                this.setActive(0);
+            },
+            initActive() {
+                let active = this.images.findIndex(function(image) {
+                    return image.isMain === true
+                });
+                if (active === -1) {
+                    active = 0;
+                }
+                this.setActive(active);
+            },
+            setActive(index) {
+                this.active = index;
+                if (window.youtubePlayer) {
+                    window.youtubePlayer.stopVideo();
+                }
+                if (this.vimeoPlayer) {
+                    this.vimeoPlayer.contentWindow.postMessage(JSON.stringify({"method": "pause"}), "*");
+                }
+                if (this.images[index].type === 'video') {
+                    this.activateVideo();
+                }
+            },
+            activateVideo() {
+                const videoData = this.getVideoData();
+
+                if (!videoData) { return }
+
+                this.activeVideoType = videoData.type;
+
+                if (videoData.type === "youtube") {
+                    if (!window.youtubePlayer) {
+                        this.initYoutubeAPI(videoData);
+                    } else {
+                        window.youtubePlayer.loadVideoById(videoData.id);
+                    }
+
+                } else if (videoData.type === "vimeo") {
+                    this.initVimeoVideo(videoData);
+                }
+            },
+            getVideoData() {
+                const videoUrl = this.images[this.active] && this.images[this.active].videoUrl;
+
+                if (!videoUrl) { return }
+
+                let id,
+                    type,
+                    youtubeRegex,
+                    vimeoRegex,
+                    useYoutubeNoCookie = false;
+
+                if (videoUrl.match(/youtube\.com|youtu\.be|youtube-nocookie.com/)) {
+                    id = videoUrl.replace(/^\/(embed\/|v\/)?/, '').replace(/\/.*/, '');
+                    type = 'youtube';
+
+                    youtubeRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+                    id = videoUrl.match(youtubeRegex)[1];
+
+                    if (videoUrl.match(/youtube-nocookie.com/)) {
+                        useYoutubeNoCookie = true;
+                    }
+                } else if (videoUrl.match(/vimeo\.com/)) {
+                    type = 'vimeo';
+                    vimeoRegex = new RegExp(['https?:\\/\\/(?:www\\.|player\\.)?vimeo.com\\/(?:channels\\/(?:\\w+\\/)',
+                        '?|groups\\/([^\\/]*)\\/videos\\/|album\\/(\\d+)\\/video\\/|video\\/|)(\\d+)(?:$|\\/|\\?)'
+                    ].join(''));
+                    id = videoUrl.match(vimeoRegex)[3];
+                }
+
+                return id ? {
+                    id: id, type: type, useYoutubeNoCookie: useYoutubeNoCookie
+                } : false;
+            },
+            initYoutubeAPI(videoData) {
+                if (document.getElementById('loadYoutubeAPI')) {
+                    return;
+                }
+                const params = {};
+                const loadYoutubeAPI = document.createElement('script');
+                loadYoutubeAPI.src = 'https://www.youtube.com/iframe_api';
+                loadYoutubeAPI.id = 'loadYoutubeAPI';
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(loadYoutubeAPI, firstScriptTag);
+
+                const host = (videoData.useYoutubeNoCookie) ?
+                    'https://www.youtube-nocookie.com' :
+                    'https://www.youtube.com';
+
+                if (this.autoplayVideo) {
+                    params.autoplay = this.autoplayVideo;
+                }
+                if (!this.relatedVideos) {
+                    params.rel = 0;
+                }
+                const fireYoutubeAPI = document.createElement('script');
+                fireYoutubeAPI.innerHTML = `function onYouTubeIframeAPIReady() {
+                    window.youtubePlayer = new YT.Player('youtube-player', {
+                        host: '${host}',
+                        videoId: '${videoData.id}',
+                        playerVars: ${JSON.stringify(params)},
                     });
-                    this.$watch('fullscreen', (open) => {
-                        // *1: Required to keep the slider in sync
-                        this.refreshSlider(); // *1
+                }`;
+                firstScriptTag.parentNode.insertBefore(fireYoutubeAPI, firstScriptTag);
+            },
+            initVimeoVideo(videoData) {
+                let
+                    additionalParams = '',
+                    src;
 
-                        this.$nextTick(() => {
-                            this.goToSlide(this.activeItem); // *1
-                            this.scrollLock(open);
-                            this.tabLock(this.$refs.galleryDialog, open);
-                        })
-                    })
+                const timestamp = new Date().getTime();
+                const vimeoContainer = document.getElementById("vimeo-player");
+                const videoId = videoData.id;
+
+                if (!vimeoContainer || !videoId) return;
+
+                if (this.autoplayVideo) {
+                    additionalParams += '&autoplay=1';
+                }
+
+                if (this.loopVideo) {
+                    additionalParams += '&loop=1';
+                }
+                src = 'https://player.vimeo.com/video/' +
+                    videoId + '?api=1&player_id=vimeo' +
+                    videoId +
+                    timestamp +
+                    additionalParams;
+                vimeoContainer.innerHTML =
+                    `<iframe id="${'vimeo' + videoId + timestamp}"
+                        src="${src}"
+                        width="640" height="360"
+                        webkitallowfullscreen
+                        mozallowfullscreen
+                        allowfullscreen
+                        referrerPolicy="origin"
+                        allow="autoplay"
+                        class="object-center w-full h-full object-fit"
+                     />`;
+
+                this.vimeoPlayer = vimeoContainer.childNodes[0];
+            },
+            getSlider() {
+                return this.$refs.jsThumbSlides;
+            },
+            calcPageSize() {
+                const slider = this.getSlider();
+                if (slider) {
+                    const slideEl = slider.querySelector('.js_thumbs_slide'),
+                        marginRight = parseInt(window.getComputedStyle(slideEl).marginRight);
+
+                    this.itemCount = slider.querySelectorAll('.js_thumbs_slide').length;
+                    this.pageSize = Math.round(slider.clientWidth / (slideEl.clientWidth + marginRight));
+                    this.pageFillers = (
+                        this.pageSize * Math.ceil(this.itemCount / this.pageSize)
+                    ) - this.itemCount;
+
+                    this.isSlider = ((slider.clientWidth - (this.itemCount * (slideEl.clientWidth + marginRight))) < 0);
+                }
+            },
+            calcActive() {
+                const slider = this.getSlider();
+                if (slider) {
+                    const sliderItems = this.itemCount + this.pageFillers;
+                    const calculatedActiveSlide = slider.scrollLeft / (slider.scrollWidth / sliderItems);
+                    this.activeSlide = Math.round(calculatedActiveSlide / this.pageSize) * this.pageSize;
+                }
+            },
+            scrollPrevious() {
+                this.scrollTo(this.activeSlide - this.pageSize);
+            },
+            scrollNext() {
+                this.scrollTo(this.activeSlide + this.pageSize);
+            },
+            scrollTo(idx) {
+                const slider = this.getSlider();
+                if (slider) {
+                    const slideWidth = slider.scrollWidth / (this.itemCount + this.pageFillers);
+                    slider.scrollLeft = Math.floor(slideWidth) * idx;
+                    this.activeSlide = idx;
+                }
+            },
+            setActiveAndScrollTo(index) {
+                this.setActive(index)
+                if (this.isSlider) {
+                    this.scrollTo(index);
+                }
+            },
+            eventListeners: {
+                ['@keydown.window.escape']() {
+                    if (!this.fullscreen) return;
+                    this.closeFullScreen()
                 },
-                initSlider() {
-                    // NOTE: Dynamic Alpine Sliders don't play nice with the loop option,
-                    // this creates clones of the slides which breaks the images render,
-                    // So only use the type options: fade or slide
-                    this.gallery = new Splide(this.$root, {
-                        type: 'slide',
-                        rewind: <?= /* @noEscape */ $galleryOptionLoop ? 'true' : 'false' ?>,
-                        perPage: 1,
-                        gap: 0,
-                        drag: 'free',
-                        snap: true,
-                        keyboard: true,
-                        slideFocus: true,
-                        arrow: <?= /* @noEscape */ $galleryOptionArrows ? 'true' : 'false' ?>,
-                        pagination: <?= /* @noEscape */ $galleryOptionShowDots ? 'true' : 'false' ?>,
-                        paginationDirection: '<?= /* @noEscape */ $galleryOptionNavVertical ? 'ttb' : 'ltr' ?>',
-                        classes: {
-                            // Pagination dots style
-		                    page: 'splide__pagination__page block rounded-full w-3 h-3 border-2 border-slate-200 transition duration-300 ease-out hover:border-slate-300 hover:bg-slate-300 aria-selected:bg-lego-blue-light aria-selected:border-lego-blue-light',
-                        },
-                    });
-
-                    this.gallery.on('moved', (newIndex) => {
-                        this.activeItem = newIndex;
-                        this.activeVideo = this.images[newIndex].type === 'video';
-                    });
-
-                    this.gallery.mount();
+                ['@update-gallery.window'](event) {
+                    this.receiveImages(event.detail);
                 },
-                refreshSlider() {
-                    if (!this.gallery) return;
-                    this.gallery.refresh();
-                },
-                goToSlide(index) {
-                    if (!this.gallery) return;
-                    if (!index) return;
-                    this.gallery.go(index);
-                },
-                scrollLock(use = true) {
-                    document.body.style.overflow = use ? "hidden" : "";
-                },
-                tabLock(target, use = true) {
-                    if (!use) {
-                        hyva.releaseFocus(target);
-                        return;
-                    }
+                ['@reset-gallery.window'](event) {
+                    this.resetGallery();
+                }
+            },
+            openFullscreen() {
+                this.fullscreen = true;
+                this.$nextTick(() => this.calcPageSize());
 
-                    hyva.trapFocus(target);
-                },
-                getVideoData(source) {
-                    const videoUrl = source.videoUrl;
-                    if (!videoUrl) return;
+                hyva.trapFocus(this.$root);
+            },
+            closeFullScreen(setFocusTo = this.$refs.galleryFullscreenBtn) {
+                this.fullscreen = false;
+                hyva.releaseFocus(this.$root);
+                this.$nextTick(() => {
+                    this.calcPageSize();
+                    setFocusTo && setFocusTo.focus()
+                });
+            },
+            handleTouchStart(event) {
+                if (this.images.length <= 1) {
+                    return;
+                }
 
-                    const videoData = {
-                        id: null,
-                        type: null,
-                        src: null,
-                        additionalParams: "",
-                        allow: "fullscreen; picture-in-picture;"
-                    }
+                const firstTouch = event.touches[0];
 
-                    if (this.videoOptions.autoplay) {
-                        videoData.additionalParams += '&autoplay=1';
-                        videoData.allow += ' autoplay;';
-                    }
+                touchXDown = firstTouch.clientX;
+                touchYDown = firstTouch.clientY;
+            },
+            handleTouchMove(event) {
+                if (this.images.length <= 1 || !touchXDown || !touchYDown) {
+                    return;
+                }
 
-                    if (this.videoOptions.loop) {
-                        videoData.additionalParams += '&loop=1';
-                    }
+                const xDiff = touchXDown - event.touches[0].clientX;
+                const yDiff = touchYDown - event.touches[0].clientY;
 
-                    if (videoUrl.match(/youtube\.com|youtu\.be|youtube-nocookie.com/)) {
-                        const youtubeRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-                        const baseSrc = videoUrl.match(/youtube-nocookie.com/)
-                            ? 'https://www.youtube-nocookie.com/embed'
-                            : 'https://www.youtube.com/embed';
-
-
-                        videoData.type = "youtube";
-                        videoData.id = videoUrl.match(youtubeRegex)[1];
-                        if (this.videoOptions.loop) {
-                            videoData.additionalParams += `&playlist=${videoData.id}`
-                        }
-                        if (this.videoOptions.allowApi) {
-                            videoData.additionalParams += '&enablejsapi=1';
-                        }
-                        videoData.src = `${baseSrc}/${videoData.id}?origin=<?= $block->getBaseUrl() ?>${videoData.additionalParams}`;
-                        videoData.allow += "accelerometer; clipboard-write; encrypted-media; gyroscope"
-                    } else if (videoUrl.match(/vimeo\.com/)) {
-                        const vimeoRegex = new RegExp([
-                            'https?:\\/\\/(?:www\\.|player\\.)?vimeo.com\\/(?:channels\\/(?:\\w+\\/)',
-                            '?|groups\\/([^\\/]*)\\/videos\\/|album\\/(\\d+)\\/video\\/|video\\/|)(\\d+)(?:$|\\/|\\?)'
-                        ].join(''));
-                        const timestamp = new Date().getTime();
-                        const baseSrc = "https://player.vimeo.com/video";
-
-                        videoData.type = "vimeo";
-                        videoData.id = videoUrl.match(vimeoRegex)[3];
-                        if (this.videoOptions.allowApi) {
-                            videoData.additionalParams += "&api=1"
-                        }
-                        videoData.src = `${baseSrc}/${videoData.id}?player_id=vimeo${videoData.id}${timestamp}${videoData.additionalParams}`;
-                    }
-
-                    return videoData;
-                },
-                receiveImages(images) {
-                    <?php if ($galleryOptionAppendOnReceive):  ?>
-                        const initialUrls = this.initialImages.map(image => image.full);
-                        const newImages = images.filter(image => !initialUrls.includes(image.full));
-                        this.images = [].concat(this.initialImages, newImages);
-
-                        this.$nextTick(() => {
-                            this.refreshSlider();
-                            this.goToSlide(newImages ? this.initialImages.length : 0);
-                        });
-                    <?php else: ?>
-                        this.images = images;
-                        this.$nextTick(() => this.refreshSlider());
-                    <?php endif; ?>
-                },
-                resetGallery() {
-                    this.images = this.initialImages;
-                    this.$nextTick(() => this.refreshSlider());
-                },
-                eventListeners: {
-                    ['@keydown.window.escape']() {
-                        this.fullscreen = false;
-                    },
-                    ['@update-gallery.window'](event) {
-                        this.receiveImages(event.detail);
-                    },
-                    ['@reset-gallery.window']() {
-                        this.resetGallery();
-                    },
-                },
+                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                    const newIndex = xDiff > 0 ?  this.getNextIndex() : this.getPreviousIndex();
+                    this.setActiveAndScrollTo(newIndex)
+                }
+                touchXDown = touchYDown = null;
+            },
+            getPreviousIndex() {
+                return this.active > 0 ? this.active - 1 : this.itemCount - 1;
+            },
+            getNextIndex() {
+                return this.active + 1 === this.itemCount ? 0 : this.active + 1;
             }
         }
-    </script>
-</div>
+     }
+</script>
