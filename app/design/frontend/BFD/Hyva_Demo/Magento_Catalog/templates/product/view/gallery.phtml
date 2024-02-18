@@ -421,13 +421,12 @@ $productName = $block->getProduct()->getName();
                 }
             },
             isMobile() {
-                if (navigator.userAgent.indexOf(/Android/i) > 0
-                || navigator.userAgent.indexOf(/webOS/i) > 0
-                || navigator.userAgent.indexOf(/iPhone/i) > 0
-                || navigator.userAgent.indexOf(/iPad/i) > 0
-                || navigator.userAgent.indexOf(/iPod/i) > 0
-                || navigator.userAgent.indexOf(/BlackBerry/i) > 0
-                || navigator.userAgent.indexOf(/Windows Phone/i) > 0) {
+                if (navigator.userAgent.indexOf("Android") > 0
+                || navigator.userAgent.indexOf("webOS") > 0
+                || navigator.userAgent.indexOf("iPhone") > 0
+                || navigator.userAgent.indexOf("iPod") > 0
+                || navigator.userAgent.indexOf("BlackBerry") > 0
+                || navigator.userAgent.indexOf("Windows Phone") > 0) {
                     return true ;
                 } 
                 else {
