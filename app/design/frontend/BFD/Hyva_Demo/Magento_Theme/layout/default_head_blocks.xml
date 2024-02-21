@@ -13,5 +13,18 @@
         <font src="fonts/Poppins-Regular.woff2" />
         <font src="fonts/Poppins-Bold.woff2" />  
         -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" type="text/css" src_type="url">
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Text" name="custom.fonts">
+                <arguments>
+                    <argument name="text" xsi:type="string">
+                        <![CDATA[
+                            <link rel="preconnect" href="https://fonts.googleapis.com">
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                        ]]>
+                    </argument>
+                </arguments>
+            </block>
+    </referenceBlock>
     </head>
 </page>
