@@ -168,6 +168,7 @@ $productName = $block->getProduct()->getName();
                                     :title="hyva.str('%1 thumbnail', image.caption) || '<?= $escaper->escapeJs(__("%1 thumbnail", $productName)) ?>'"
                                     width="<?= /* @noEscape */ $smallWidth ?>"
                                     height="<?= /* @noEscape */ $smallHeight ?>"
+                                    :loading="isMobile() ? 'lazy' : 'eager'"
                                 />
                             </button>
                         </div>
