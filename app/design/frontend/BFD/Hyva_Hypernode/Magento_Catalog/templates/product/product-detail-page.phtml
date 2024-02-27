@@ -1,0 +1,35 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+
+/** @var View $block */
+
+$product = $block->getProduct();
+?>
+<section class="text-gray-700 body-font">
+    <div class="flex md:py-6 lg:flex-row flex-col items-center">
+    <div class="grid grid-rows-auto grid-cols-1 md:gap-x-5 md:grid-cols-[42%_minmax(0,_1fr)] md:grid-rows-[min-content_minmax(0,_1fr)] lg:gap-x-10 lg:grid-cols-[58%_minmax(0,_1fr)] w-full">
+            <?= $block->getChildHtml('product.title') ?>
+            <?= $block->getChildHtml('product.media') ?>
+            <?= $block->getChildHtml('product.info') ?>
+        </div>
+    </div>
+</section>
+<section>
+    <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
+</section>
+<?= $block->getChildHtml('product.info.details'); ?>
+<?= $block->getChildHtml('product.rich.media'); ?>
+
+<section>
+    <?= $block->getChildHtml('review_list') ?>
+    <?= $block->getChildHtml('review_form') ?>
+</section>
