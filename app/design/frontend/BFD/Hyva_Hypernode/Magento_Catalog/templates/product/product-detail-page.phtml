@@ -15,8 +15,8 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 ?>
 <section class="text-gray-700 body-font">
-    <div class="flex md:py-6 lg:flex-row flex-col items-center">
-    <div class="grid grid-rows-auto grid-cols-1 md:gap-x-5 md:grid-cols-[58%_minmax(0,_1fr)] md:grid-rows-[min-content_minmax(0,_1fr)] lg:gap-x-10 w-full">
+    <div class="flex pb-6 md:py-6 lg:flex-row flex-col items-center">
+        <div class="grid grid-rows-auto grid-cols-1 md:gap-x-5 md:grid-cols-[42%_minmax(0,_1fr)] md:grid-rows-[min-content_minmax(0,_1fr)] lg:gap-x-10 lg:grid-cols-2 w-full">
             <?= $block->getChildHtml('product.title') ?>
             <?= $block->getChildHtml('product.media') ?>
             <?= $block->getChildHtml('product.info') ?>
@@ -26,10 +26,12 @@ $product = $block->getProduct();
 <section>
     <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
 </section>
+
 <?= $block->getChildHtml('product.info.details'); ?>
-<?= $block->getChildHtml('product.rich.media'); ?>
 
 <section>
+    <?= $block->getChildHtml('related') ?>
+    <?= $block->getChildHtml('upsell') ?>
     <?= $block->getChildHtml('review_list') ?>
     <?= $block->getChildHtml('review_form') ?>
 </section>
