@@ -1,0 +1,212 @@
+<?php
+/**
+ * @author    JaJuMa GmbH <info@jajuma.de>
+ * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/** @var $block \Jajuma\ImageOptimizerUltimate\Block\Picture */
+
+$customSrcTag = $block->getCustomSrcTag();
+$customSrcSetTag = $block->getCustomSrcSetTag();
+
+$originalTag = $block->getOriginalTag();
+
+$isLazyLoadEnabled = $block->isNativeLazyLoadingEnabled();
+$excludeNativeLazyloadImageAttributes = $block->getExcludeNativeLazyloadImageAttributes();
+$isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $originalTag);
+
+$isAsyncDecodingEnabled = $block->isAsyncDecodingEnabled();
+$excludeAsyncDecodingImageAttributes = $block->getExcludeAsyncDecodingImageAttributes();
+$isImageInExcludeListAsyncDecoding = preg_match_all($excludeAsyncDecodingImageAttributes, $originalTag);
+
+$highresWebpImageArr = $block->getHighresWebpImageArr();
+$highresAvifImageArr = $block->getHighresAvifImageArr();
+$originalHighresImageArr = $block->getOriginalHighresImageArr();
+
+if ($isLazyLoadEnabled && !$isImageInExcludeList) {
+    // add loading="lazy" at the end of the img tag
+    if (substr($originalTag, -2) === '/>') {
+        // replace "/>" with " loading="lazy" />"
+        $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
+    } elseif (substr($originalTag, -1) === '>') {
+        // replace ">" with " loading="lazy" >"
+        $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
+    }
+}
+
+if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
+    // add decoding="async" at the end of the img tag
+    if (substr($originalTag, -2) === '/>') {
+        // replace "/>" with " 'decoding="async" />"
+        $originalTag = preg_replace('/\/>$/', 'decoding="async" />', $originalTag);
+    } elseif (substr($originalTag, -1) === '>') {
+        // replace ">" with " 'decoding="async" >"
+        $originalTag = preg_replace('/>$/', 'decoding="async" >', $originalTag);
+    }
+}
+?>
+<?php if ($customSrcTag): ?>
+    <picture>
+        <?php if ($block->getAvifImage()): ?>
+            <source type="image/avif" <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+            <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getAvifImage()) ?><?php
+            if ($highresAvifImageArr && count($highresAvifImageArr)) {
+                echo ' 1x, ';
+                // get last key of array
+                $arrayKeys = array_keys($highresAvifImageArr);
+                $lastKey = array_pop($arrayKeys);
+                $result = '';
+                foreach ($highresAvifImageArr as $key => $highresAvifImage) {
+                    if (!$highresAvifImage && $key == $lastKey) {
+                        $result = substr($result, 0, -3);
+                    }
+
+                    if ($highresAvifImage) {
+                        if ($key != $lastKey) {
+                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x, ';
+                        } else {
+                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x';
+                        }
+                    }
+                }
+                echo $block->escapeHtml($result);
+            }
+            ?>">
+        <?php endif; ?>
+
+        <?php if ($block->getWebpImage()): ?>
+            <source type="image/webp"
+            <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
+            if ($highresWebpImageArr && count($highresWebpImageArr)) {
+                echo ' media="(max-width=480px)" ';
+                // get last key of array
+                $arrayKeys = array_keys($highresWebpImageArr);
+                $lastKey = array_pop($arrayKeys);
+                foreach ($highresWebpImageArr as $key => $highresWebpImage) {
+                // add media query for highres images
+                    echo ' media="(min-width=481px)" ';
+                }
+            }
+            ?>
+            <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+            
+            <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
+            if ($highresWebpImageArr && count($highresWebpImageArr)) {
+                // get last key of array
+                $arrayKeys = array_keys($highresWebpImageArr);
+                $lastKey = array_pop($arrayKeys);
+                foreach ($highresWebpImageArr as $key => $highresWebpImage) {
+                    if ($key != $lastKey) {
+                        echo $block->escapeHtml(
+                            $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
+                        );
+                    } else {
+                        echo $block->escapeHtml(    
+                            $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
+                        );
+                    }
+                }
+            }
+            ?>">
+        <?php endif; ?>
+
+        <source type="<?= /* @noEscape */ $block->getOriginalImageType() ?>"
+        <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+        <?= /* @noEscape */ $block->getOriginalImage() ?><?php
+        if ($originalHighresImageArr && count($originalHighresImageArr)) {
+            echo ' 1x, ';
+            // get last key of array
+            $arrayKeys = array_keys($originalHighresImageArr);
+            $lastKey = array_pop($arrayKeys);
+            foreach ($originalHighresImageArr as $key => $originalHighresImage) {
+                if ($key != $lastKey) {
+                    echo $block->escapeHtml($originalHighresImage . ' ' . $key . 'x, ');
+                } else {
+                    echo $block->escapeHtml($originalHighresImage . ' ' . $key . 'x');
+                }
+            }
+        }
+        ?>">
+
+        <?= /* @noEscape */ $originalTag ?>
+    </picture>
+<?php else: ?>
+    <picture>
+        <?php if ($block->getAvifImage()): ?>
+            <source type="image/avif" <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+            <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getAvifImage()) ?><?php
+            if ($highresAvifImageArr && count($highresAvifImageArr)) {
+                echo ' 1x, ';
+                // get last key of array
+                $arrayKeys = array_keys($highresAvifImageArr);
+                $lastKey = array_pop($arrayKeys);
+                $result = '';
+                foreach ($highresAvifImageArr as $key => $highresAvifImage) {
+                    if (!$highresAvifImage && $key == $lastKey) {
+                        $result = substr($result, 0, -3);
+                    }
+
+                    if ($highresAvifImage) {
+                        if ($key != $lastKey) {
+                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x, ';
+                        } else {
+                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x';
+                        }
+                    }
+                }
+                echo $block->escapeHtml($result);
+            }
+            ?>">
+        <?php endif; ?>
+
+        <?php if ($block->getWebpImage()): ?>
+            <source type="image/webp"
+                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
+                    if ($highresWebpImageArr && count($highresWebpImageArr)) {
+                        echo ' 1x, ';
+                        // get last key of array
+                        $arrayKeys = array_keys($highresWebpImageArr);
+                        $lastKey = array_pop($arrayKeys);
+                        foreach ($highresWebpImageArr as $key => $highresWebpImage) {
+                            if ($key != $lastKey) {
+                                echo $block->escapeHtml(
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' ' . $key . 'x, '
+                                );
+                            } else {
+                                echo $block->escapeHtml(
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' ' . $key . 'x'
+                                );
+                            }
+                        }
+                    }
+                    ?>">
+        <?php endif; ?>
+
+        <source type="<?= /* @noEscape */
+        $block->getOriginalImageType() ?>"
+                srcset="<?= /* @noEscape */
+                $block->handleImageUrlAfterConvert($block->getOriginalImage()) ?><?php
+if ($originalHighresImageArr && count($originalHighresImageArr)) {
+                    echo ' 1x, ';
+                    // get last key of array
+                    $arrayKeys = array_keys($originalHighresImageArr);
+                    $lastKey = array_pop($arrayKeys);
+    foreach ($originalHighresImageArr as $key => $originalHighresImage) {
+        if ($key != $lastKey) {
+                            echo $block->escapeHtml(
+                                $block->handleImageUrlAfterConvert($originalHighresImage) . ' ' . $key . 'x, '
+                            );
+        } else {
+                            echo $block->escapeHtml(
+                                $block->handleImageUrlAfterConvert($originalHighresImage) . ' ' . $key . 'x'
+                            );
+        }
+    }
+}
+?>">
+
+        <?= /* @noEscape */ $originalTag ?>
+    </picture>
+<?php endif; ?>
+
