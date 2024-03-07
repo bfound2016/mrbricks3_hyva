@@ -151,7 +151,7 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
             <source type="image/webp"
             <?php 
             if ($highresWebpImageArr && count($highresWebpImageArr)) {
-                echo " media='(max-width: 480px)' srcset=\"" . $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage())\""
+                echo " media='(max-width: 480px)' srcset='" . $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ."'";
                 // get last key of array
                 $arrayKeys = array_keys($highresWebpImageArr);
                 $lastKey = array_pop($arrayKeys);
