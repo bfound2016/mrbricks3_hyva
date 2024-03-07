@@ -148,26 +148,25 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
         <?php endif; ?>
 
         <?php if ($block->getWebpImage()): ?>
-            <source type="image/webp"
+            <source type="image/webp" <?php echo " media='(max-width: 480px)' srcset='" . $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ."'"; ?>>
             <?php 
             if ($highresWebpImageArr && count($highresWebpImageArr)) {
-                echo " media='(max-width: 480px)' srcset='" . $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ."'";
                 // get last key of array
                 $arrayKeys = array_keys($highresWebpImageArr);
                 $lastKey = array_pop($arrayKeys);
                 foreach ($highresWebpImageArr as $key => $highresWebpImage) {
                     if ($key != $lastKey) {
-                        echo " media='(min-width: 481px)' srcset=\"" . $block->escapeHtml(
+                        echo "<source type='image/webp' media='(min-width: 481px)' srcset='" . $block->escapeHtml(
                             $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
-                        );
+                        ) ."'>";
                     } else {
-                        echo " media='(min-width: 481px)' srcset=\"" . $block->escapeHtml(
+                        echo "<source type='image/webp' media='(min-width: 481px)' srcset='" . $block->escapeHtml(
                             $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
-                        );
+                        ) . "'>";
                     }
                 }
             }
-            ?>">
+            ?>
         <?php endif; ?>
 
         <source type="<?= /* @noEscape */
