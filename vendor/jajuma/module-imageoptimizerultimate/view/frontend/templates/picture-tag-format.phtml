@@ -148,7 +148,7 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
         <?php endif; ?>
 
         <?php if ($block->getWebpImage()): ?>
-            <source type="image/webp" media=""
+            <source type="image/web"
                     srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
                     if ($highresWebpImageArr && count($highresWebpImageArr)) {
                         echo ' 1x, ';
