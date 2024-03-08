@@ -177,7 +177,7 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
                                 );
                             } else {
                                 echo $block->escapeHtml(
-                                    $block->handleImageUrlAfterConvert($originalHighresImage) . ' ' . $key . 'x'
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' 2048w'
                                 );
                             }
                         }
