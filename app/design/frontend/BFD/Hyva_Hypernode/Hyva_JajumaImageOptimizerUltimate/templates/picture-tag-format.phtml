@@ -162,10 +162,10 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
         <?php endif; ?>
 
         <?php if ($block->getWebpImage()): ?>
-            <source type="image/webp" 
+            <source type="image/webp" media="(max-width: 480px)"
                     <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.webp ? event.detail.webp : event.detail.origin"'?> 
-                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?>" media="(max-width: 480px)">
-            <source type="image/webp" srcset="
+                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?>">
+            <source type="image/webp" media="(min-width: 481px)" srcset="
                     <?php
                     if ($highresWebpImageArr && count($highresWebpImageArr)) {
                         // get last key of array
@@ -174,17 +174,17 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
                         foreach ($highresWebpImageArr as $key => $highresWebpImage) {
                             if ($key != $lastKey) {
                                 echo $block->escapeHtml(
-                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . '" media="(min-width: 481px)">'
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
                                 );
                             } else {
                                 echo $block->escapeHtml(
-                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . '" media="(min-width: 481px)">'
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
                                 );
                             }
                         }
                     }
                     ?>
-        <?php endif; ?>
+        <?php endif; ?>">
 
         <source type="<?= /* @noEscape */ $block->getOriginalImageType() ?>" 
                 <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.origin"'?> 
