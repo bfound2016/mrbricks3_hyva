@@ -166,18 +166,18 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
                     <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.webp ? event.detail.webp : event.detail.origin"'?> 
                     srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
                     if ($highresWebpImageArr && count($highresWebpImageArr)) {
-                        echo ' 480w, ';
+                        echo ' 800w, ';
                         // get last key of array
                         $arrayKeys = array_keys($highresWebpImageArr);
                         $lastKey = array_pop($arrayKeys);
                         foreach ($highresWebpImageArr as $key => $highresWebpImage) {
                             if ($key != $lastKey) {
                                 echo $block->escapeHtml(
-                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' 2048w, '
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' 1600w, '
                                 );
                             } else {
                                 echo $block->escapeHtml(
-                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' 2048w'
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' 1600w'
                                 );
                             }
                         }
