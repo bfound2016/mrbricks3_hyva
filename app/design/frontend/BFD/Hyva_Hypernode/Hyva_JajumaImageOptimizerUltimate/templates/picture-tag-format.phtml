@@ -164,9 +164,9 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
         <?php if ($block->getWebpImage()): ?>
             <source type="image/webp" 
                     <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.webp ? event.detail.webp : event.detail.origin"'?> 
-                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?>"<?php
+                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?>" media="(max-width: 480px)">
+                    <?php
                     if ($highresWebpImageArr && count($highresWebpImageArr)) {
-                        echo ' media="(max-width: 480px)">';
                         // get last key of array
                         $arrayKeys = array_keys($highresWebpImageArr);
                         $lastKey = array_pop($arrayKeys);
