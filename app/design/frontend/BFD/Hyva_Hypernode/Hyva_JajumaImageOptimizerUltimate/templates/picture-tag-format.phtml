@@ -1,16 +1,22 @@
 <?php
 /**
  * @author    JaJuMa GmbH <info@jajuma.de>
- * @copyright Copyright (c) 2020 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
+ * @copyright Copyright (c) 2021 JaJuMa GmbH <https://www.jajuma.de>. All rights reserved.
  * @license   http://opensource.org/licenses/mit-license.php MIT License
  */
 
+declare(strict_types=1);
+
 /** @var $block \Jajuma\ImageOptimizerUltimate\Block\Picture */
+
+/** @var \Hyva\Theme\Model\ViewModelRegistry $viewModels */
+$uioHyvaConfig = $viewModels->require(\Hyva\JajumaImageOptimizerUltimate\ViewModel\Config::class);
 
 $customSrcTag = $block->getCustomSrcTag();
 $customSrcSetTag = $block->getCustomSrcSetTag();
 
 $originalTag = $block->getOriginalTag();
+$updateGalleryEvent = $block->getUpdateGalleryEvent();
 
 $isLazyLoadEnabled = $block->isNativeLazyLoadingEnabled();
 $excludeNativeLazyloadImageAttributes = $block->getExcludeNativeLazyloadImageAttributes();
@@ -23,6 +29,8 @@ $isImageInExcludeListAsyncDecoding = preg_match_all($excludeAsyncDecodingImageAt
 $highresWebpImageArr = $block->getHighresWebpImageArr();
 $highresAvifImageArr = $block->getHighresAvifImageArr();
 $originalHighresImageArr = $block->getOriginalHighresImageArr();
+
+$isRemoveAplineJSUploadImage = $uioHyvaConfig->isRemoveAplineJSUploadImageSwatchOption();
 
 if ($isLazyLoadEnabled && !$isImageInExcludeList) {
     // add loading="lazy" at the end of the img tag
@@ -49,7 +57,9 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
 <?php if ($customSrcTag): ?>
     <picture>
         <?php if ($block->getAvifImage()): ?>
-            <source type="image/avif" <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+            <source type="image/avif" 
+            <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.avif ? event.detail.avif : event.detail.origin"'?> 
+            <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
             <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getAvifImage()) ?><?php
             if ($highresAvifImageArr && count($highresAvifImageArr)) {
                 echo ' 1x, ';
@@ -75,8 +85,10 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
             ?>">
         <?php endif; ?>
 
-        <?php if ($block->getWebpImage()): ?>
-            <source type="image/webp" <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
+        <?php if ($block->getWebpImage()): ?> 
+            <source type="image/webp" 
+            <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.webp ? event.detail.webp : event.detail.origin"'?> 
+            <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
             <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
             if ($highresWebpImageArr && count($highresWebpImageArr)) {
                 echo ' 1x, ';
@@ -98,7 +110,8 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
             ?>">
         <?php endif; ?>
 
-        <source type="<?= /* @noEscape */ $block->getOriginalImageType() ?>"
+        <source type="<?= /* @noEscape */ $block->getOriginalImageType() ?>" 
+        <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.origin"'?> 
         <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
         <?= /* @noEscape */ $block->getOriginalImage() ?><?php
         if ($originalHighresImageArr && count($originalHighresImageArr)) {
@@ -121,56 +134,59 @@ if ($isAsyncDecodingEnabled && !$isImageInExcludeListAsyncDecoding) {
 <?php else: ?>
     <picture>
         <?php if ($block->getAvifImage()): ?>
-            <source type="image/avif" <?= /* @noEscape */ $customSrcSetTag ? $customSrcSetTag : 'srcset' ?>="
-            <?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getAvifImage()) ?><?php
-            if ($highresAvifImageArr && count($highresAvifImageArr)) {
-                echo ' 1x, ';
-                // get last key of array
-                $arrayKeys = array_keys($highresAvifImageArr);
-                $lastKey = array_pop($arrayKeys);
-                $result = '';
-                foreach ($highresAvifImageArr as $key => $highresAvifImage) {
-                    if (!$highresAvifImage && $key == $lastKey) {
-                        $result = substr($result, 0, -3);
-                    }
+            <source type="image/avif" 
+                    <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.avif ? event.detail.avif : event.detail.origin"'?> 
+                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getAvifImage()) ?><?php
+                    if ($highresAvifImageArr && count($highresAvifImageArr)) {
+                        echo ' 1x, ';
+                        // get last key of array
+                        $arrayKeys = array_keys($highresAvifImageArr);
+                        $lastKey = array_pop($arrayKeys);
+                        $result = '';
+                        foreach ($highresAvifImageArr as $key => $highresAvifImage) {
+                            if (!$highresAvifImage && $key == $lastKey) {
+                                $result = substr($result, 0, -3);
+                            }
 
-                    if ($highresAvifImage) {
-                        if ($key != $lastKey) {
-                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x, ';
-                        } else {
-                            $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x';
+                            if ($highresAvifImage) {
+                                if ($key != $lastKey) {
+                                    $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x, ';
+                                } else {
+                                    $result .= $block->addBaseUrlWithPubMediaToUrl($highresAvifImage) . ' ' . $key . 'x';
+                                }
+                            }
                         }
+                        echo $block->escapeHtml($result);
                     }
-                }
-                echo $block->escapeHtml($result);
-            }
-            ?>">
+                    ?>">
         <?php endif; ?>
 
         <?php if ($block->getWebpImage()): ?>
-            <source type="image/webp" <?php echo " media='(max-width: 480px)' srcset='" . $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ."'"; ?>>
-            <?php 
-            if ($highresWebpImageArr && count($highresWebpImageArr)) {
-                // get last key of array
-                $arrayKeys = array_keys($highresWebpImageArr);
-                $lastKey = array_pop($arrayKeys);
-                foreach ($highresWebpImageArr as $key => $highresWebpImage) {
-                    if ($key != $lastKey) {
-                        echo "<source type='image/webp' media='(min-width: 481px)' srcset='" . $block->escapeHtml(
-                            $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
-                        ) ."'>";
-                    } else {
-                        echo "<source type='image/webp' media='(min-width: 481px)' srcset='" . $block->escapeHtml(
-                            $block->addBaseUrlWithPubMediaToUrl($highresWebpImage)
-                        ) . "'>";
+            <source type="image/webp" 
+                    <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.webp ? event.detail.webp : event.detail.origin"'?> 
+                    srcset="<?= /* @noEscape */ $block->addBaseUrlWithPubMediaToUrl($block->getWebpImage()) ?><?php
+                    if ($highresWebpImageArr && count($highresWebpImageArr)) {
+                        echo ' media="(max-width: 480px)", ';
+                        // get last key of array
+                        $arrayKeys = array_keys($highresWebpImageArr);
+                        $lastKey = array_pop($arrayKeys);
+                        foreach ($highresWebpImageArr as $key => $highresWebpImage) {
+                            if ($key != $lastKey) {
+                                echo $block->escapeHtml(
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' media=(min-width: 481px), '
+                                );
+                            } else {
+                                echo $block->escapeHtml(
+                                    $block->addBaseUrlWithPubMediaToUrl($highresWebpImage) . ' media=(min-width: 481px)'
+                                );
+                            }
+                        }
                     }
-                }
-            }
-            ?>
+                    ?>">
         <?php endif; ?>
 
-        <source type="<?= /* @noEscape */
-        $block->getOriginalImageType() ?>"
+        <source type="<?= /* @noEscape */ $block->getOriginalImageType() ?>" 
+                <?php if($updateGalleryEvent && !$isRemoveAplineJSUploadImage) echo 'x-data ' . $updateGalleryEvent . '="$el.srcset = event.detail.origin"'?> 
                 srcset="<?= /* @noEscape */
                 $block->handleImageUrlAfterConvert($block->getOriginalImage()) ?><?php
 if ($originalHighresImageArr && count($originalHighresImageArr)) {
