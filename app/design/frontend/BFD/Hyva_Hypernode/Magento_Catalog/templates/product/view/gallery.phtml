@@ -179,7 +179,7 @@ $productName = $block->getProduct()->getName();
                     x-cloak
                     aria-label="<?= $escaper->escapeHtmlAttr(__('Next')) ?>"
                     tabindex="-1"
-                    class="ml-4 text-black rounded-full outline-none focus:outline-none flex-none"
+                    class="ml-4 text-black rounded-full outline-none focus:outline-none flex-none w-full h-full"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide >= itemCount-pageSize, 'hidden' : !isSlider }"
                     aria-hidden="true"
                     @click="scrollNext"
