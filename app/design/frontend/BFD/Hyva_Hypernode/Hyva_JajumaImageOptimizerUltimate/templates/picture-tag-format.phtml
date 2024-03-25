@@ -208,8 +208,11 @@ if ($originalHighresImageArr && count($originalHighresImageArr)) {
     }
 }
 ?>">
-
-        <?= /* @noEscape */ $originalTag ?>
+<?php 
+    /* Add loading="lazy" to thumb image tag */
+    $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
+    echo $originalTag;
+?>
     </picture>
 <?php endif; ?>
 

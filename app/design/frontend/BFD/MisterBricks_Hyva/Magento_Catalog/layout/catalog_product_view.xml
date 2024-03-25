@@ -35,10 +35,6 @@
             </block>
             <referenceBlock name="related.post.tab" remove="true" />
         </referenceBlock>
-        <!-- Splide JS integration -->
-        <referenceBlock name="script-alpine-js">
-            <block name="alpine-plugin-splide-js" template="Magento_Theme::page/js/plugins/splide-js.phtml"/>
-        </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
     </body>
 </page>
