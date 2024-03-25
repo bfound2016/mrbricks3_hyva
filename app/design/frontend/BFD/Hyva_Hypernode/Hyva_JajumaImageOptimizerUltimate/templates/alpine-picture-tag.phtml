@@ -10,15 +10,6 @@ declare(strict_types=1);
 /** @var $block \Hyva\JajumaImageOptimizerUltimate\Block\Picture */
 $originalTag = $block->getOriginalTag();
 
-// add loading="lazy" at the end of the img tag
-if (substr($originalTag, -2) === '/>') {
-    // replace "/>" with " loading="lazy" />"
-    $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
-} elseif (substr($originalTag, -1) === '>') {
-    // replace ">" with " loading="lazy" >"
-    $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
-}
-
 $originalSrc = $block->getOriginalImage();
 
 $srcsetTag = $block->getCustomSrcSetTag() ? $block->getCustomSrcSetTag() : "srcset";
