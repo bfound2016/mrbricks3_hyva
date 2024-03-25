@@ -192,6 +192,10 @@ if ($originalHighresImageArr && count($originalHighresImageArr)) {
     }
 }
 ?>">
+    <?php
+        /* Add loading="lazy" to original imagetag */
+        $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
+    ?>
     <?= /* @noEscape */ $originalTag ?>
     </picture>
 <?php endif; ?>
