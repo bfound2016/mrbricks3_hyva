@@ -12,7 +12,4 @@
     <head>
         <remove src="Mollie_Payment::css/styles.css"/>
     </head>
-    <body>
-        
-    </body>
 </page>
