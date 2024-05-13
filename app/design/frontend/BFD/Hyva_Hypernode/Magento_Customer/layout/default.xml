@@ -11,7 +11,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="header.customer" remove="true" />
-        <referenceBlock name="authentication-popup" remove="true" />
+        <referenceBlock name="header.customer" remove="true"/>
+        <referenceBlock name="authentication-popup" remove="true"/>
     </body>
 </page>
