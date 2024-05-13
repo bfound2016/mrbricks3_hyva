@@ -12,4 +12,7 @@
     <head>
         <remove src="Mollie_Payment::css/styles.css"/>
     </head>
+    <body>
+        <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
+    </body>
 </page>
