@@ -5,6 +5,7 @@
             <values>
                 <value id="flixfacts" type="host">https://media.flixfacts.com</value>
                 <value id="flixcar" type="host">https://media.flixcar.com</value>
+                <value id="flix360" type="host">*.flix360.io</value>
             </values>
         </policy>
         <policy id="img-src">
