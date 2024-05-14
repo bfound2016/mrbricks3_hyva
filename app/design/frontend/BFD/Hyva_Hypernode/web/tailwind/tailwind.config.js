@@ -25,6 +25,12 @@ module.exports = hyvaModules.mergeTailwindConfig({
         sans: ["Poppins", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
       },
       colors: {
+        lego: {
+          blue: {
+            light: "#07adeb",
+            dark: "#075397"
+          }
+        },
         primary: {
           lighter: colors.blue['300'],
           "DEFAULT": colors.blue['800'],
