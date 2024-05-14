@@ -32,7 +32,6 @@
                     <argument name="sort_order" xsi:type="number">-30</argument>
                 </arguments>
             </block>
-            <referenceBlock name="related.post.tab" remove="true" />
         </referenceBlock>
     </body>
 </page>
