@@ -22,6 +22,7 @@
         </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
         <!-- #6 Rich Content implementation -->
+        <!--
         <referenceBlock name="product.info.details">
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
@@ -33,5 +34,6 @@
                 </arguments>
             </block>
         </referenceBlock>
+        -->
     </body>
 </page>
