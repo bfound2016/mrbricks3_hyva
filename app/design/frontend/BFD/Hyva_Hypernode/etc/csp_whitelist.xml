@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="flixfacts" type="host">https://media.flixfacts.com</value>
+                <value id="flixcar" type="host">https://media.flixcar.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="flixcar" type="host">https://media.flixcar.com</value>
+                <value id="flix360" type="host">https://rt.flix360.com/</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="flixcar" type="host">https://media.flixcar.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="flixcar" type="host">https://media.flixcar.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="fontawesom" type="host">*.fontawesome.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
