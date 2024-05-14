@@ -16,9 +16,9 @@ $product = $block->getProduct();
 
 ?>
 <div id= "flix-minisite"></div>
-<div id= "flix-inpage"></div>
+<div @scroll.window.throttle="loadMedia" id= "flix-inpage"></div>
 <!-- Flixmedia init script -->
-<script type= "text/javascript" src= "//media.flixfacts.com/js/loader.js"
+<script type= "text/javascript" src= "//media.flixfacts.com/js/loader-stage.js"
     data-flix-distributor= "16129"
     data-flix-language= "nl"
     data-flix-brand= "LEGO"
@@ -29,5 +29,13 @@ $product = $block->getProduct();
     data-flix-button-image= ""
     data-flix-fallback-language= "en"
     data-flix-price= ""
+    data-flix="hotspot"
+    data-flix-autoload="minisite,hotspot"
     async >
+</script>
+<script type="text/javascript">
+    function loadMedia () {
+        if ( typeof (flixJsCallbacks) === "object" )
+            flixJsCallbacks.loadService( 'inpage' );
+    }
 </script>
