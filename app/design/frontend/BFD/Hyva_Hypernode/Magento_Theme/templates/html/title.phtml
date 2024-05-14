@@ -28,7 +28,7 @@ if (trim((string)$block->getPageHeading())) {
 ?>
 <?php if ($titleHtml): ?>
 <div class="<?= $escaper->escapeHtmlAttr($titleContainerClasses . $textSizeCssClass) ?>">
-    <h1 class="text-gray-900 page-title title-font base-full"
+    <h1 class="text-gray-900 page-title title-font basis-full"
         <?php if ($block->getId()): ?> id="<?= $escaper->escapeHtmlAttr($block->getId()) ?>" <?php endif; ?>>
         <?= /* @noEscape */ $titleHtml ?>
     </h1>
