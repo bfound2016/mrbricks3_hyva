@@ -13,6 +13,12 @@
         <remove src="Mollie_Payment::css/styles.css"/>
     </head>
     <body>
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="css_class" xsi:type="string">mt-0 product text-3xl font-semibold text-center md:px-0 md:mt-10 md:mb-3</argument>
+                <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
+            </arguments>
+        </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
     </body>
 </page>
