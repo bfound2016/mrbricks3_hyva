@@ -22,7 +22,8 @@ $greyHex = '#cbd5e0';
 $reviewCount = $block->getReviewsCount();
 ?>
 <?php if ($block->isReviewEnabled()): ?>
-    <div class="rating-summary flex cursor-pointer self-center mt-2"
+    <div class="flex basis-full nowrap">
+        <div class="rating-summary flex cursor-pointer self-center mt-2"
          onclick="(
               document.getElementById('customer-review-list') ||
               document.getElementById('customer-reviews') ||
@@ -102,8 +103,9 @@ $reviewCount = $block->getReviewsCount();
                 <?php $i++; ?>
             <?php endwhile; ?>
         <?php endif; ?>
-        <?php if ($reviewCount): ?>
-            <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
-        <?php endif; ?>
+    </div>
+    <?php if ($reviewCount): ?>
+        <span class="text-xs text-lego-blue-dark ml-2 font-semibold"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
+    <?php endif; ?>
     </div>
 <?php endif; ?>
