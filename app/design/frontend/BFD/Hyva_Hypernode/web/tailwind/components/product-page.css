@@ -39,13 +39,15 @@
 /**
     Custom styling for Flix Media A++ Content
 **/
-#flix-lego-inpage,
-#flix-std-inpage {
-    @apply !w-max-[90vw];
-}
+@layer components{
+    #flix-lego-inpage,
+    #flix-std-inpage {
+        @apply w-max-[90vw];
+    }
 
-#flix-ugc-galfeatures,
-[id^='inpage-data-']+div {
-    @apply hidden;
+    #flix-ugc-galfeatures,
+    [id^='inpage-data-']+div {
+        @apply hidden;
+    }
 }
 
