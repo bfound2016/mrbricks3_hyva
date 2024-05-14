@@ -15,8 +15,7 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 
 ?>
-<div id= "flix-minisite"></div>
-<div @scroll.window.throttle="loadMedia" id= "flix-inpage"></div>
+<div x-on:scroll.window.throttle="loadMedia" id= "flix-inpage" ></div>
 <!-- Flixmedia init script -->
 <script type= "text/javascript" src= "//media.flixfacts.com/js/loader.js"
     data-flix-distributor= "16129"
@@ -29,7 +28,7 @@ $product = $block->getProduct();
     data-flix-fallback-language= "en"
     data-flix-price= ""
     data-flix-autoload="inpage"
-    async >
+    defer >
 </script>
 <script type="text/javascript">
     function loadMedia () {
