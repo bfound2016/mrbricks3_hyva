@@ -132,10 +132,10 @@ $uniqueId = $productId . uniqid();
                 <?php $i++; ?>
             <?php endwhile; ?>
         <?php endif; ?>
+        <?php if ($reviewCount): ?>
+            <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> reviews</span>
+        <?php endif; ?>
     </div>
-    <?php if ($reviewCount): ?>
-        <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> reviews</span>
-    <?php endif; ?>
 
     <script>
         'use strict';
