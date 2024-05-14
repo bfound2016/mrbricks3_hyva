@@ -30,7 +30,7 @@ $uniqueId = $productId . uniqid();
             x-defer="intersect"
             @keyup.enter="scrollToRatings()"
             @click="scrollToRatings()"
-            class="rating-summary flex justify-center mt-2"
+            class="rating-summary flex justify-center mt-2 basis-full"
             :class="{'cursor-pointer' : reviewsSection}"
         <?php if (!$rating): ?>
             title="<?= $escaper->escapeHtmlAttr(__('Be the first to review this product')) ?>"
