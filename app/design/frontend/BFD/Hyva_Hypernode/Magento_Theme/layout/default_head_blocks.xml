@@ -13,5 +13,7 @@
             <font src="fonts/vag-rounded-bold.woff2" />
             <!-- Pre Connects for Rich Media -->
             <link rel="preconnect" href="https://media.flixfacts.com" />
+            <link rel="preconnect" href="https://media.flixcar.com" />
+
     </head>
 </page>
