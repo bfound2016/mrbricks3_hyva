@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\UrlRewrite\Controller\Adminhtml\Url\Rewrite\Save">
+        <plugin name="hr_url_rewrite_interceptor" type="Addwish\Awext\Plugin\Admin\UrlRewrite" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Save">
+        <plugin name="hr_bulk_attribute_save_interceptor" type="Addwish\Awext\Plugin\Admin\BulkAttributeSave" sortOrder="1"/>
+    </type>
+</config>

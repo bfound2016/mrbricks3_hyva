@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="addwish" translate="label" sortOrder="10">
+            <label>Hello Retail</label>
+        </tab>
+        <section id="addwish_configuration" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Configuration</label>
+            <tab>addwish</tab>
+            <resource>Addwish_Awext::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="is_active_module" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Hello Retail</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="is_active_jquery" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled jQuery (read tooltip!)</label>
+                    <tooltip>If you disable jQuery you will need to talk to our support as well - otherwise our script will keep auto loading jQuery.  </tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--
+                    Addwish_id field has been repurposed for a script settings field
+                    The reason to keep it and not rename it is to avoid breaking older setups
+                    that migth already use it for fast_load or specific websiteuuid param.  
+                -->
+                <field id="addwish_id" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Script settings (Advanced, Optional)</label>
+                    <tooltip>Comma-separated list of settings that will be applied to the script.</tooltip>
+                </field>
+            </group>
+            <group id="pages" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pages</label>
+                <field id="is_active_pages" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Hello Retail Pages</label>
+                    <tooltip>Enable or disable the Pages feature on a global level.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_backend_rendering" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled backend rendering for Pages</label>
+                    <tooltip>Enable or disable backend rendering of pages content. Notice that personalised content will only work if the page is not cached. </tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_fpc_cache_buster" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled cache buster for category pages</label>
+                    <tooltip>Enable or disable caching of category pages when backend rendering is selected. Notice that this can hurt your site performance by longer loading times.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="is_active_module">1</field>
+                        <field id="is_active_pages">1</field>
+                        <field id="is_active_backend_rendering">1</field>
+                    </depends>
+                </field>
+                <field id="default_pages_category_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default category setting</label>
+                    <tooltip>Default setting used on the individual categories where "Use default from config" is chosen.</tooltip>
+                    <source_model>Addwish\Awext\Model\Config\Source\PagesDefaultSelect</source_model>
+                </field>
+                <field id="default_pages_key" translate="label" sortOrder="30" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Hello Retail Pages key</label>
+                    <tooltip>This will be used when a category doesnt have a specific key set</tooltip>
+                </field>
+                 <field id="elements_to_hide" translate="label" sortOrder="40" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Additional elements to hide</label>
+                    <tooltip>CSS selector used to hide additional elements when Hello Retail Pages are used. The default seletor hides the native filters</tooltip>
+                </field>
+            </group>
+            <group id="feed" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feeds</label>
+                <field id="is_active_product" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Product Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_stock_delta" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Stock Changes In Deltafeed</label>
+                    <tooltip>This controls whether stock updates should register products for our delta feed.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_related_products" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Related, Cross-sell and Upsell Products</label>
+                    <tooltip>This controls whether the Related, Cross-sell and Upsell Products products are inlcuded in the product feed.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_index_full" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled full product feed after reindex</label>
+                    <tooltip>This controls whether a full reindex in magento should enforce the next feed run to be a full sync.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_order" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Order Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_category" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Category Feed</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ip_whitelist" translate="label" sortOrder="50" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>IP Whitelist</label>
+                    <tooltip>Please enter comma-separated list of IP addresses</tooltip>
+                </field>
+            </group>
+            <group id="tracking" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tracking</label>
+                <field id="is_active_cart_tracking" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Cart Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_conversion_tracking" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Conversion Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_active_include_emails_in_tracking" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Included Customer Emails In Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

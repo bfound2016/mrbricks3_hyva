@@ -1,0 +1,16 @@
+{
+    "hello_retail_delta": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "updated_at": true
+        },
+        "index": {
+            "HELLO_RETAIL_DELTA_UPDATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "HELLO_RETAIL_DELTA_PRODUCT_ID": true
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <addwish_configuration>
+            <general>
+                <is_active_module>1</is_active_module>
+                <is_active_jquery>1</is_active_jquery>
+                <!-- still called addwish_id but the field is used for script settings-->
+                <addwish_id></addwish_id>
+            </general>
+            <pages>
+                <is_active_pages>0</is_active_pages>
+                <is_active_backend_rendering>0</is_active_backend_rendering>
+                <is_active_fpc_cache_buster>0</is_active_fpc_cache_buster>
+                <default_pages_category_setting>0</default_pages_category_setting>
+                <default_pages_key></default_pages_key>
+                <elements_to_hide>.block.filter</elements_to_hide>
+            </pages>
+            <feed>
+                <is_active_product>1</is_active_product>
+                <is_active_order>1</is_active_order>
+                <is_active_category>1</is_active_category>
+                <is_active_stock_delta>1</is_active_stock_delta>
+                <is_active_related_products>0</is_active_related_products>
+                <is_active_index_full>1</is_active_index_full>
+                <ip_whitelist>46.137.110.51,::ffff:46.137.110.51</ip_whitelist>
+            </feed>
+            <tracking>
+                <is_active_cart_tracking>1</is_active_cart_tracking>
+                <is_active_conversion_tracking>1</is_active_conversion_tracking>
+                <is_active_include_emails_in_tracking>1</is_active_include_emails_in_tracking>
+            </tracking>
+        </addwish_configuration>
+    </default>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Addwish\Awext\Api\Service\ManagementInterface" type="Addwish\Awext\Service\AwextManagement"/>
+    <preference for="Addwish\Awext\Api\Feeds\ProductFeedInterface" type="Addwish\Awext\Model\Feeds\ProductFeed"/>
+    <preference for="Addwish\Awext\Api\Feeds\OrderFeedInterface" type="Addwish\Awext\Model\Feeds\OrderFeed"/>
+    <preference for="Addwish\Awext\Api\Feeds\CategoryFeedInterface" type="Addwish\Awext\Model\Feeds\CategoryFeed"/>
+    <preference for="Addwish\Awext\Api\Data\Feeds\ProductProviderInterface" type="Addwish\Awext\Model\Data\Feeds\ProductProvider"/>
+    <preference for="Addwish\Awext\Api\Data\Feeds\OrderProviderInterface" type="Addwish\Awext\Model\Data\Feeds\OrderProvider"/>
+    <preference for="Addwish\Awext\Api\Data\Feeds\CategoryProviderInterface" type="Addwish\Awext\Model\Data\Feeds\CategoryProvider"/>
+    <preference for="Addwish\Awext\Api\Service\StateInterface" type="Addwish\Awext\Service\State"/>
+    <preference for="Addwish\Awext\Api\Service\SwatchesInterface" type="Addwish\Awext\Service\Swatches"/>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="hr_collection_filter_interceptor" type="Addwish\Awext\Plugin\Model\ResourceModel\Product\CollectionFilter"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Action">
+        <plugin name="hr_product_bulk_action_interceptor" type="Addwish\Awext\Plugin\Model\Product\ProductBulkUpdate"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product">
+        <plugin name="hr_product_action_interceptor" type="Addwish\Awext\Plugin\Model\ResourceModel\Product\ProductUpdate"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Category">
+        <plugin name="hr_category_action_interceptor" type="Addwish\Awext\Plugin\Model\Category\CategoryUpdate"/>
+    </type>
+     <type name="Magento\CatalogInventory\Model\ResourceModel\Stock\Item">
+        <plugin name="hr_stock_item_update_interceptor" type="Addwish\Awext\Plugin\Model\ResourceModel\Stock\StockItemUpdate"/>
+    </type>
+    <type name="Magento\Catalog\Block\Category\View">
+        <plugin name="hr_pages_content_interceptor" type="Addwish\Awext\Plugin\Block\Category\View" sortOrder="1"/>
+    </type>
+    <type name="Magento\LayeredNavigation\Block\Navigation">
+        <plugin name="hr_pages_content_filter_interceptor" type="Addwish\Awext\Plugin\Block\Navigation" sortOrder="1"/>
+    </type>
+</config>

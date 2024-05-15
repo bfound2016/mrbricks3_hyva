@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/product-feed/" method="GET">
+        <service class="Addwish\Awext\Api\Service\ManagementInterface" method="getProductFeed"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/order-feed/" method="GET">
+        <service class="Addwish\Awext\Api\Service\ManagementInterface" method="getOrderFeed"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/category-feed/" method="GET">
+        <service class="Addwish\Awext\Api\Service\ManagementInterface" method="getCategoryFeed"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/awext/info/" method="GET">
+        <service class="Addwish\Awext\Api\Service\ManagementInterface" method="getModuleInfo"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/awext/state" method="GET">
+        <service class="Addwish\Awext\Api\Service\StateInterface" method="getState" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+     <route url="/V1/awext/swatches" method="GET">
+        <service class="Addwish\Awext\Api\Service\SwatchesInterface" method="getSwatches" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>
