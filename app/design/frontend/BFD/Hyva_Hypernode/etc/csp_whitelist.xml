@@ -3,25 +3,25 @@
     <policies>
         <policy id="script-src">
             <values>
-                <value id="flixfacts" type="host">https://media.flixfacts.com</value>
-                <value id="flixcar" type="host">https://media.flixcar.com</value>
+                <value id="flixfacts" type="host">media.flixfacts.com</value>
+                <value id="flixcar" type="host">media.flixcar.com</value>
                 <value id="flix360" type="host">*.flix360.io</value>
             </values>
         </policy>
         <policy id="img-src">
             <values>
-                <value id="flixcar" type="host">https://media.flixcar.com</value>
-                <value id="flix360" type="host">https://rt.flix360.com/</value>
+                <value id="flixcar" type="host">media.flixcar.com</value>
+                <value id="flix360" type="host">rt.flix360.com</value>
             </values>
         </policy>
         <policy id="connect-src">
             <values>
-                <value id="flixcar" type="host">https://media.flixcar.com</value>
+                <value id="flixcar" type="host">media.flixcar.com</value>
             </values>
         </policy>
         <policy id="style-src">
             <values>
-                <value id="flixcar" type="host">https://media.flixcar.com</value>
+                <value id="flixcar" type="host">media.flixcar.com</value>
             </values>
         </policy>
         <policy id="font-src">
