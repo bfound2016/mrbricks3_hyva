@@ -11,5 +11,7 @@
     <head>
             <font src="fonts/Poppins-Regular.woff2" />
             <font src="fonts/vag-rounded-bold.woff2" />
+            <!-- Pre Connects for Rich Media -->
+            <link rel="preconnect" href="https://media.flixfacts.com" />
     </head>
 </page>
