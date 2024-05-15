@@ -33,6 +33,12 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceContainer name="before.body.end">
+            <block  name="product.rich.media.script"
+                    class="Magento\Catalog\Block\Product\View"
+                    template="Magento_Catalog::product/view/rich-script.phtml" />
+        </referenceContainer>
+
 
     </body>
 </page>

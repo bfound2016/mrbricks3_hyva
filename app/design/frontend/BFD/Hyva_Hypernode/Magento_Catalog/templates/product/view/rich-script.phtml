@@ -1,0 +1,37 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+
+/** @var View $block */
+
+$product = $block->getProduct();
+
+?>
+<!-- Flixmedia init script -->
+<script type= "text/javascript" src= "//media.flixfacts.com/js/loader.js"
+        data-flix-distributor= "16129"
+        data-flix-language= "nl"
+        data-flix-brand= "LEGO"
+        data-flix-mpn= ""
+        data-flix-ean= "<?= $product->getEanCode() ?>"
+        data-flix-inpage= "flix-inpage"
+        data-flix-button-image= ""
+        data-flix-fallback-language= "en"
+        data-flix-price= ""
+        data-flix-autoload="inpage"
+        defer >
+</script>
+<script type="text/javascript">
+    function loadMedia () {
+        if ( typeof (flixJsCallbacks) === "object" )
+            flixJsCallbacks.loadService( 'inpage' );
+    }
+</script>
