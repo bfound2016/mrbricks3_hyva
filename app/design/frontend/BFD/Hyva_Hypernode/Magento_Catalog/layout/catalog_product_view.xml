@@ -22,11 +22,12 @@
         </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
 
-
-        <referenceBlock name="product.info.details">
+        <referenceContainer name="content">
             <!-- #7 Implementation recommendations slider -->
             <block  name="product.addwish.recommendations"
                     template="Magento_Catalog::product/view/recommendations.phtml" />
+        </referenceContainer>
+        <referenceBlock name="product.info.details">
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
