@@ -26,7 +26,7 @@
         </policy>
         <policy id="font-src">
             <values>
-                <value id="fontawesom" type="host">*.fontawesome.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
             </values>
         </policy>
     </policies>
