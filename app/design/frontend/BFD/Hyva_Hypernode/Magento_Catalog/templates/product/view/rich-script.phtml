@@ -16,27 +16,18 @@ $product = $block->getProduct();
 
 ?>
 <!-- Flixmedia init script -->
-<script type= "text/javascript" >
-    let product_ean = "<?= $product->getEanCode() ?>" ,
-        product_brand = "LEGO" ,
-        distributor = "16129" ,
-        language = "nl" ,
-        fallback_language = "en";
-
-    let headID = document .getElementsByTagName( "head" )[ 0 ];
-
-    let flixScript = document .createElement( 'script' );
-    flixScript.type = 'text/javascript' ;
-    flixScript.async = true ;
-    flixScript.setAttribute( 'data-flix-distributor' , distributor);
-    flixScript.setAttribute( 'data-flix-language' , language);
-    flixScript.setAttribute( 'data-flix-brand' , product_brand);
-    flixScript.setAttribute( 'data-flix-ean' , product_ean);
-    flixScript.setAttribute( 'data-flix-inpage' , 'flix-inpage' );
-    flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
-    flixScript.setAttribute( 'data-flix-fallback-language', fallback_language);
-    headID.appendChild(flixScript);
-    flixScript.src = '<?= $this->getViewFileUrl("js/flixmedia/loader.min.js")?>';
+<script type= "text/javascript" src= "<?= $block->getViewFileUrl('js/flixmedia/loader.min.js')?>"
+        data-flix-distributor= "16129"
+        data-flix-language= "nl"
+        data-flix-brand= "LEGO"
+        data-flix-mpn= ""
+        data-flix-ean= "<?= $product->getEanCode() ?>"
+        data-flix-inpage= "flix-inpage"
+        data-flix-button-image= ""
+        data-flix-fallback-language= "en"
+        data-flix-price= ""
+        data-flix-autoload="inpage"
+        defer >
 </script>
 <script type="text/javascript">
     function loadMedia () {
