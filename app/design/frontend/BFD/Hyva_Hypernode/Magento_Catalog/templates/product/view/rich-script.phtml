@@ -37,7 +37,7 @@ $product = $block->getProduct();
     flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
     flixScript.setAttribute( 'data-flix-fallback-language', fallback_language);
     headID.appendChild(flixScript);
-    flixScript.src = '<?php $block->getViewFileUrl("js/flixmedia/loader.min.js")?>';
+    flixScript.src = '<?= $this->getViewFileUrl("js/flixmedia/loader.min.js")?>';
 </script>
 <script type="text/javascript">
     function loadMedia () {
