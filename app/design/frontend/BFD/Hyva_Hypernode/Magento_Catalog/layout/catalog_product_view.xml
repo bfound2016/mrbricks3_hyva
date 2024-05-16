@@ -25,7 +25,8 @@
         <referenceContainer name="content">
             <!-- #7 Implementation recommendations slider -->
             <block  name="product.addwish.recommendations"
-                    template="Magento_Catalog::product/view/recommendations.phtml" />
+                    template="Magento_Catalog::product/view/recommendations.phtml"
+                    before="product.info.details" />
         </referenceContainer>
         <referenceBlock name="product.info.details">
             <!-- #6 Rich Content implementation -->
