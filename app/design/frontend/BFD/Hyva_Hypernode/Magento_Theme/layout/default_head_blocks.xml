@@ -14,6 +14,5 @@
             <!-- Pre Connects for Rich Media -->
             <link rel="preconnect" href="https://media.flixfacts.com" />
             <link rel="preconnect" href="https://media.flixcar.com" />
-            <link rel="preconnect" href="https://d1pna5l3xsntoj.cloudfront.net" />
     </head>
 </page>
