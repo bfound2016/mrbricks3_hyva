@@ -35,11 +35,10 @@ $product = $block->getProduct();
     flixScript.setAttribute( 'data-flix-mpn' , product_mpn);
     flixScript.setAttribute( 'data-flix-inpage' , 'flix-inpage' );
     flixScript.setAttribute( 'data-flix-button' , 'flix-minisite' );
-    flixScript.setAttribute( 'data-flix-price' , '' );
-    flixScript.setAttribute( 'data-flix-fallback-language', fallback_language)
+    flixScript.setAttribute( 'data-flix-fallback-language', fallback_language);
     headID.appendChild(flixScript);
     flixScript.src = '<?php $block->getViewFileUrl("js/flixmedia/loader.min.js")?>';
-</ script >
+</script>
 <script type="text/javascript">
     function loadMedia () {
         if ( typeof (flixJsCallbacks) === "object" )
