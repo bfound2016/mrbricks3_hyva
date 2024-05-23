@@ -23,10 +23,6 @@
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
 
         <referenceBlock name="product.info.details">
-            <!-- #7 Implementation recommendations slider -->
-            <block  name="product.addwish.recommendations"
-                    template="Magento_Catalog::product/view/recommendations.phtml"
-            />
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
