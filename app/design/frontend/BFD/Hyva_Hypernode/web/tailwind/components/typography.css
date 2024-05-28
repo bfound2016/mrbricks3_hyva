@@ -24,6 +24,14 @@
     src: url("../fonts/vag-rounded-bold.woff2");
 }
 
+@font-face {
+    font-family: "Misterbricks";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/MisterbricksRegular.woff2");
+}
+
 /*
 @font-face {
     font-family: "VAG Rounded";
