@@ -30,7 +30,7 @@ $uniqueId = $productId . uniqid();
             x-defer="intersect"
             @keyup.enter="scrollToRatings()"
             @click="scrollToRatings()"
-            class="rating-summary flex justify-center mt-2 basis-full"
+            class="rating-summary flex mt-2 basis-full"
             :class="{'cursor-pointer' : reviewsSection}"
         <?php if (!$rating): ?>
             title="<?= $escaper->escapeHtmlAttr(__('Be the first to review this product')) ?>"
@@ -133,7 +133,7 @@ $uniqueId = $productId . uniqid();
             <?php endwhile; ?>
         <?php endif; ?>
         <?php if ($reviewCount): ?>
-            <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> reviews</span>
+            <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center border-b-2 border-lego-blue-dark"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> reviews</span>
         <?php endif; ?>
     </div>
 
