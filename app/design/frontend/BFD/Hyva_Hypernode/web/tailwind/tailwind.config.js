@@ -69,7 +69,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
       backgroundColor: {
         primary: {
           lighter: colors.blue['600'],
-          "DEFAULT": colors.lego.blue.dark,
+          "DEFAULT": "#075397",
           darker: colors.blue['800']
         },
         secondary: {
