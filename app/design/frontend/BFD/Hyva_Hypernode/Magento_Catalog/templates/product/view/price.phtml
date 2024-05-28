@@ -252,7 +252,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                 <div class="old-price mr-2 flex">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper title-font font-regular text-sm line-through text-lego-blue-light">
-                        <span class="price" x-html="hyva.formatPrice(<?= (float)$regularPrice ?> + getCustomOptionPrice())">
+                        <span class="price">
                             <?= /** @noEscape */ $productViewModel->format($regularPrice) ?>
                         </span>
                     </span>
@@ -272,8 +272,8 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper title-font font-medium text-2xl text-lego-blue-light">
-                        <span class="price" x-html="getFormattedFinalPrice()">
-                            <?= /** @noEscape */ $productViewModel->format($finalPrice) ?>
+                        <span class="price">
+                            <?= $escaper->escapeHtmlAttr($finalPrice) ?>
                         </span>
                     </span>
                     <meta itemprop="price" content="<?= $escaper->escapeHtmlAttr($finalPrice) ?>">
