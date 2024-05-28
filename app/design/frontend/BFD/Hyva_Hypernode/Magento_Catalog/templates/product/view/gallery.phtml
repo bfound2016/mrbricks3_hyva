@@ -157,7 +157,7 @@ $productName = $block->getProduct()->getName();
                                 type="button"
                                 @click.prevent="setActive(index);"
                                 class="block border border-gray-300 hover:border-primary focus:border-primary"
-                                :class="{'border-primary': active === index}"
+                                :class="{'opacity-30': active === index}"
                             >
                                 <span class="sr-only">
                                     <?= $escaper->escapeHtml('View larger image') ?>
