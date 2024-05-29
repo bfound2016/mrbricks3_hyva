@@ -28,10 +28,10 @@
 
 
     .btn-primary {
-        @apply bg-primary text-white shadow-md;
+        @apply bg-lego-green text-white shadow-md;
 
         &:hover {
-            @apply bg-primary-lighter text-white shadow-lg;
+            @apply bg-lego-green-darker text-white shadow-lg;
         }
 
     }
