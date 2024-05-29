@@ -8,15 +8,14 @@ const hyvaModules = require('@hyva-themes/hyva-modules');
 
 module.exports = hyvaModules.mergeTailwindConfig({
   theme: {
-      letterSpacing: {
-        tightest: '-.075em',
+    letterSpacing: {
+        tightest: '-.25em',
         tighter: '-.05em',
         tight: '-.025em',
         normal: '0',
         wide: '.025em',
         wider: '.05em',
-        widest: '.1em',
-        widest: '.25em',
+        widest: '.1em'
     },
     extend: {
       screens: {
