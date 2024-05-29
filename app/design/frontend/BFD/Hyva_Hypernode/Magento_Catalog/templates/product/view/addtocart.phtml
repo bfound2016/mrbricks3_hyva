@@ -24,11 +24,11 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 <button type="submit"
         form="product_addtocart_form"
         title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-        class="btn btn-primary w-fit rounded-3xl"
+        class="btn btn-primary w-fit rounded-3xl title-font"
         id="product-addtocart-button"
         data-addto="cart"
 >
-    <?= $heroicons->shoppingCartHtml('border-current'); ?>
+    <?php /** #8 removed icon */ ?>
     <span class="block mx-2"><?= $block->getData('is_cart_configure') ?
             $escaper->escapeHtml(__('Update item')) :
             $escaper->escapeHtml(__('Add to Cart')) ?>
