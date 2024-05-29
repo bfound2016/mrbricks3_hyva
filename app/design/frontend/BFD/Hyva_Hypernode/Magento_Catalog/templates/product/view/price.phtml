@@ -244,7 +244,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
 </script>
 <div x-data="initPrice<?= (int)$product->getId() ?>()"
      x-bind="eventListeners"
-     class="price-box price-final_price"
+     class="price-box price-final_price flex flex-col"
 >
     <div x-show="!activeProductsPriceData && !isPriceHidden()">
         <div class="price-container flex gap-6">
@@ -294,9 +294,9 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
         </div>
     </div>
     <?php if ($finalPrice < $regularPrice): ?>
-        <div class="price-label title-font block bg-lego-blue-lighter px-2 py-1 text-sm text-lego-blue-dark">
-            <?= $escaper->escapeHtml(__('Jouw voordeel: ')) . $productViewModel->format($regularPrice - $finalPrice) ?>
-        </div>
+    <div class="price-label self-end title-font block bg-lego-blue-lighter px-2 py-1 text-sm text-lego-blue-dark">
+        <?= $escaper->escapeHtml(__('Jouw voordeel: ')) . $productViewModel->format($regularPrice - $finalPrice) ?>
+    </div>
     <?php endif; ?>
     <template x-if="activeProductsPriceData &&
         activeProductsPriceData.oldPrice &&
