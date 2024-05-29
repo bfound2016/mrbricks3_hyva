@@ -1,0 +1,38 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+
+<button type="submit"
+        form="product_addtocart_form"
+        title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+        class="btn btn-primary w-40 rounded-3xl"
+        id="product-addtocart-button"
+        data-addto="cart"
+>
+    <?= $heroicons->shoppingCartHtml('border-current'); ?>
+    <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+            $escaper->escapeHtml(__('Update item')) :
+            $escaper->escapeHtml(__('Add to Cart')) ?>
+    </span>
+</button>
+
+<?= $block->getChildHtml('', true) ?>
