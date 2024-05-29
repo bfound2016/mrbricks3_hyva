@@ -270,11 +270,11 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <?php endif; ?>
 
             <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                    <span class="price-label block">
-                        <?= ($product->canConfigure() && is_int($product->getPrice())) ?
-                            $escaper->escapeHtml(__('As low as')) . ':' :
-                            '&nbsp;' ?>
+                    <?php if ($finalPrice < $regularPrice): ?>
+                    <span class="price-label block text-lego-blue-dark">
+                        <?= $escaper->escapeHtml(__('Jouw voordeel:')) ?>
                     </span>
+                    <?php endif; ?>
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper price-font text-8xl tracking-tightest text-lego-blue-dark">
                         <span class="price">
