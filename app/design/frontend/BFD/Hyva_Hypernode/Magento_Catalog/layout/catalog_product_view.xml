@@ -16,7 +16,7 @@
         <!-- #5 Product Title -->
         <referenceBlock name="page.main.title">
             <arguments>
-                <argument name="css_class" xsi:type="string">order-2 product text-3xl font-semibold md:px-0 md:mt-10 md:mb-3</argument>
+                <argument name="css_class" xsi:type="string">mt-6 mb-0 order-2 product text-3xl font-semibold md:px-0 md:mt-10 md:mb-3</argument>
                 <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
             </arguments>
         </referenceBlock>
