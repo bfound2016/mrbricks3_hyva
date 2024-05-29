@@ -271,8 +271,8 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
 
             <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                     <?php if ($finalPrice < $regularPrice): ?>
-                    <span class="price-label block bg-lego-blue-light-50 text-lego-blue-dark">
-                        <?= $escaper->escapeHtml(__('Jouw voordeel:')) ?>
+                    <span class="price-label block bg-lego-blue-lighter px-2 py-1 text-sm text-lego-blue-dark">
+                        <?= $escaper->escapeHtml(__('Jouw voordeel:')) . ($regularPrice - $finalPrice) ?>
                     </span>
                     <?php endif; ?>
                     <span id="product-price-<?= (int)$product->getId() ?>"
