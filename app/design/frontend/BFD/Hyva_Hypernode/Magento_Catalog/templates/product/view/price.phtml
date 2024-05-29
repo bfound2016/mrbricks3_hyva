@@ -251,7 +251,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <?php if ($finalPrice < $regularPrice): ?>
                 <div class="old-price mr-2 flex">
                     <span id="product-price-<?= (int)$product->getId() ?>"
-                          class="price-wrapper font-regular line-through text-lego-blue-dark">
+                          class="price-wrapper title-font font-regular line-through text-lego-blue-dark">
                         <span class="price">
                             <?= $escaper->escapeHtmlAttr($regularPrice) ?>
                         </span>
@@ -271,7 +271,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
 
             <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                     <span id="product-price-<?= (int)$product->getId() ?>"
-                          class="price-wrapper price-font font-medium text-8xl -tracking-tighter text-lego-blue-dark">
+                          class="price-wrapper price-font font-medium text-8xl tracking-tighter text-lego-blue-dark">
                         <span class="price">
                             <?= $escaper->escapeHtmlAttr($finalPrice) ?>
                         </span>
