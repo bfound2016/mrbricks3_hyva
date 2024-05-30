@@ -21,102 +21,105 @@ use Magento\Framework\Escaper;
 /** @var ViewModelRegistry $viewModels */
 
 /** @var Product $product */
-$product = $block->getProduct();
+$product    = $block->getData('product');
+$uniqueId   = '_' . uniqid();
 
 /** @var ProductStockItem $stockItemViewModel */
 $stockItemViewModel = $viewModels->require(ProductStockItem::class);
-$minSalesQty = $stockItemViewModel->getMinSaleQty($product);
-$maxSalesQty = $stockItemViewModel->getMaxSaleQty($product);
-$defaultQty = $block->getProductDefaultQty() * 1;
+$minSalesQty        = $stockItemViewModel->getMinSaleQty($product);
+$maxSalesQty        = $stockItemViewModel->getMaxSaleQty($product);
+
+$maxSalesQtyLength  = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
+    + (/* add one if decimal for separator */
+    (int) $stockItemViewModel->isQtyDecimal($product));
 
 $step = $stockItemViewModel->getQtyIncrements($product)
     ? $stockItemViewModel->getQtyIncrements($product)
     : null;
 
-/**
- * sets minimum and maximum values taking into account the values set in the admin,
- * but taking into account the value of Qty Increments
- */
-if ($step) {
-    $minSalesQty = ceil($minSalesQty / $step) * $step;
-    $maxSalesQty = floor($maxSalesQty / $step) * $step;
-    $defaultQty = ceil($defaultQty / $step) * $step;
-}
-
-$maxSalesQtyLength = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
-    + (/* add one if decimal for separator */ (int) $stockItemViewModel->isQtyDecimal($product));
-
-
 ?>
-<?php if ($block->shouldRenderQuantity()): ?>
-    <script>
-        function initQtyField() {
+<?php //if ($block->shouldRenderQuantity()): ?>
+<script>
+    function initQtyField<?= /** @noEscape */ $uniqueId; ?>() {
 
-            function findPathParam(key) {
-                // get all path pairs after BASE_URL/front_name/action_path/action
-                const baseUrl = (BASE_URL.substring(0, 2) === '//' ? 'http:' : '') + BASE_URL;
-                const baseUrlParts = (new URL(baseUrl)).pathname.replace(/\/$/, '').split('/');
-                const pathParts = window.location.pathname.split('/').slice(baseUrlParts.length + 3);
-                for (let i = 0; i < pathParts.length; i += 2) {
-                    if (pathParts[i] === key && pathParts.length > i) {
-                        return pathParts[i + 1];
+        // listen for qty updates from other qty fields
+        const eventName = 'update-qty-<?= (int)$product->getId() ?>';
+        window.addEventListener(eventName, event => this.currentQty = event.detail);
+
+
+        function findPathParam(key) {
+            // get all path pairs after BASE_URL/front_name/action_path/action
+            const baseUrl = (BASE_URL.substring(0, 2) === '//' ? 'http:' : '') + BASE_URL;
+            const baseUrlParts = (new URL(baseUrl)).pathname.replace(/\/$/, '').split('/');
+            const pathParts = window.location.pathname.split('/').slice(baseUrlParts.length + 3);
+            for (let i = 0; i < pathParts.length; i += 2) {
+                if (pathParts[i] === key && pathParts.length > i) {
+                    return pathParts[i + 1];
+                }
+            }
+        }
+
+        return {
+            qty: <?= $minSalesQty * 1 ?>,
+            itemId: (new URLSearchParams(window.location.search)).get('id') || findPathParam('id'),
+            productId: '<?= (int)$product->getId() ?>',
+            <?php /* populate the qty when editing a product from the cart */ ?>
+            onGetCartData: function onGetCartData(data, $dispatch) {
+                const cart = data && data.data && data.data.cart;
+                if (this.itemId && cart && cart.items) {
+                    const cartItem = cart.items.find((item) => {
+                        return item.item_id === this.itemId && item.product_id === this.productId;
+                    });
+                    if (cartItem && cartItem.qty) {
+                        this.qty = cartItem.qty;
+                        $dispatch('update-qty-' + this.productId, this.qty);
                     }
                 }
             }
+        };
+    }
+</script>
+<div x-data="initQtyField<?= /** @noEscape */ $uniqueId; ?>()"
+     class="">
+    <div class="mr-2 flex gap-4">
+        <label for="qty[<?= (int)$product->getId() ?>]"
+               class="sr-only"
+        >
+            <?= $escaper->escapeHtml(__('Quantity')) ?>
+        </label>
+        <button type="button" :disabled="qty <= <?= /** @noEscape */ $minSalesQty ?>" x-on:click="qty-=<?= /** @noEscape */ $minSalesQty; ?>;" class="border rounded w-11 h-11" disabled="disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+            </svg>
+        </button>
 
-            return {
-                qty: <?= /** @noEscape */ $defaultQty ?>,
-                itemId: (new URLSearchParams(window.location.search)).get('id') || findPathParam('id'),
-                productId: '<?= (int)$product->getId() ?>',
-                <?php /* populate the qty when editing a product from the cart */ ?>
-                onGetCartData: function onGetCartData(data, $dispatch) {
-                    const cart = data && data.data && data.data.cart;
-                    if (this.itemId && cart && cart.items) {
-                        const cartItem = cart.items.find((item) => {
-                            return item.item_id === this.itemId && item.product_id === this.productId;
-                        });
-                        if (cartItem && cartItem.qty) {
-                            this.qty = cartItem.qty;
-                            $dispatch('update-qty-' + this.productId, this.qty);
-                        }
-                    }
-                }
-            };
-        }
-    </script>
-    <div x-data="initQtyField()"
-        x-init="$dispatch('update-qty-<?= (int)$product->getId() ?>', qty)"
-    >
-        <?php if ($product->isSaleable()): ?>
-            <div class="mr-2">
-                <label for="qty[<?= (int)$product->getId() ?>]"
-                    class="sr-only"
-                >
-                    <?= $escaper->escapeHtml(__('Quantity')) ?>
-                </label>
-                <input name="qty"
-                    @private-content-loaded.window="onGetCartData($event.detail, $dispatch)"
-                    id="qty[<?= (int)$product->getId() ?>]"
-                    form="product_addtocart_form"
-                    <?php if ($stockItemViewModel->isQtyDecimal($product)): ?>
-                    type="text"
-                    pattern="[0-9]+(\.[0-9]{1,<?= /** @noEscape */ $maxSalesQtyLength ?>})?"
-                    inputmode="decimal"
-                    <?php else: ?>
-                    type="number"
-                    pattern="[0-9]{0,<?= /** @noEscape */ $maxSalesQtyLength ?>}"
-                    inputmode="numeric"
-                    <?php if ($minSalesQty): ?>min="<?= /** @noEscape */ $minSalesQty ?>"<?php endif; ?>
-                    <?php if ($maxSalesQty): ?>max="<?= /** @noEscape */ $maxSalesQty ?>"<?php endif; ?>
-                    <?php if ($step): ?>step="<?= /** @noEscape */ $step ?>"<?php endif; ?>
-                    <?php endif; ?>
-                    :value="qty"
-                    value="<?= $block->getProductDefaultQty() * 1 ?>"
-                    class="form-input px-2 py-2 w-20 text-center invalid:ring-2 invalid:ring-red-500"
-                    x-model.number="qty"
-                    @input="$dispatch('update-qty-<?= (int)$product->getId() ?>', qty)"
-                />
-            </div>
-        <?php endif; ?>
+        <input name="qty"
+               @private-content-loaded.window="onGetCartData($event.detail, $dispatch); console.log(this.$el);"
+               id="qty[<?= (int)$product->getId() ?>]"
+               form="product_addtocart_form_<?= (int)$product->getId() ?>"
+            <?php if ($stockItemViewModel->isQtyDecimal($product)): ?>
+                type="text"
+                pattern="[0-9]+(\.[0-9]{1,<?= /** @noEscape */ $maxSalesQtyLength ?>})?"
+                inputmode="decimal"
+            <?php else: ?>
+                type="number"
+                pattern="[0-9]{0,<?= /** @noEscape */ $maxSalesQtyLength ?>}"
+                inputmode="numeric"
+                <?php if ($minSalesQty): ?>min="<?= /** @noEscape */ $minSalesQty ?>"<?php endif; ?>
+                <?php if ($maxSalesQty): ?>max="<?= /** @noEscape */ $maxSalesQty ?>"<?php endif; ?>
+                <?php if ($step): ?>step="<?= /** @noEscape */ $step ?>"<?php endif; ?>
+            <?php endif; ?>
+               :value="qty"
+               class="form-input px-2 py-2 w-20 text-center invalid:ring-2 invalid:ring-red-500"
+               x-model.number="qty"
+               @change="$dispatch('update-qty-<?= (int)$product->getId() ?>', qty)"
+        />
+        <button type="button" x-on:click="qty+=<?= /** @noEscape */ $minSalesQty; ?>; $nextTick( () => { console.log() } );" class="border rounded w-11 h-11">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+        </button>
     </div>
-<?php endif; ?>
+</div>
+<?php //endif; ?>
+
