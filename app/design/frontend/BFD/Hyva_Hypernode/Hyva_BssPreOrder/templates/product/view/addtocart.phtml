@@ -47,7 +47,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
 <?php
     if($product->getTypeId() === 'configurable'){
         $simpleIndex = $moduleViewModel->getSimpleIndexConfigurable($product);
-    ?>
+?>
 <script>
     function productATC_<?=$product->getId()?>() {
         return {
@@ -88,18 +88,19 @@ $preOrderHelper = $moduleViewModel->getHelper();
         class="btn btn-primary"
         id="product-addtocart-button"
 >
-
-    <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="block"><?= $block->getData('is_cart_configure') ?
+    <?= $heroicons->shoppingCartHtml('border-current'); ?>
+    <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
             $escaper->escapeHtml(__('Update item')) :
             $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
-    <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="block"><?= $block->getData('is_cart_configure') ?
+    <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
             $escaper->escapeHtml(__('Update item')) :
             $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
 </button>
-<?php } else {?>
-        <?php
+<?php }
+    else
+    {
         if($product->getTypeId() === 'simple' || $product->getTypeId() === 'grouped'){
             $isPreOder = $moduleViewModel->getIsPreOrder($product);
             ?>
@@ -118,17 +119,10 @@ $preOrderHelper = $moduleViewModel->getHelper();
                     class="btn btn-primary"
                     id="product-addtocart-button"
             >
-                <?= $heroicons->shoppingCartHtml("h-6 w-6 border-current inline", 25, 25) ?>
-                <?php if($isPreOder) : ?>
-                    <span x-data x-init="preOrderProductPage()" class="ml-2 inline">
-                        <?= $preOrderHelper->getButton() ?>
-                    </span>
-                <?php else: ?>
-                    <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
-                            $escaper->escapeHtml(__('Update item')) :
-                            $escaper->escapeHtml(__('Add to Cart')) ?>
-    </span>
-                <?php endif; ?>
+            <span class="block"><?= $block->getData('is_cart_configure') ?
+                $escaper->escapeHtml(__('Update item')) :
+                $escaper->escapeHtml(__('Add to Cart')) ?>
+            </span>
             </button>
         <?php } else{ ?>
             <button type="submit"
@@ -137,7 +131,6 @@ $preOrderHelper = $moduleViewModel->getHelper();
                     class="btn btn-primary"
                     id="product-addtocart-button"
             >
-                <?= $heroicons->shoppingCartHtml('border-current'); ?>
                 <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
