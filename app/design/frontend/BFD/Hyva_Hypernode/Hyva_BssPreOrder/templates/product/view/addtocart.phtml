@@ -119,7 +119,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
                     class="btn btn-primary"
                     id="product-addtocart-button"
             >
-            <span class="block"><?= $block->getData('is_cart_configure') ?
+            <span class="block m-auto title-font text-2xl"><?= $block->getData('is_cart_configure') ?
                 $escaper->escapeHtml(__('Update item')) :
                 $escaper->escapeHtml(__('Add to Cart')) ?>
             </span>
@@ -131,7 +131,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
                     class="btn btn-primary"
                     id="product-addtocart-button"
             >
-                <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+                <span class="block"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
