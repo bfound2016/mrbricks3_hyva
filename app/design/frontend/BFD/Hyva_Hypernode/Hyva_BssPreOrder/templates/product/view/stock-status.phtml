@@ -68,7 +68,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
         }
     }
 </script>
-<div class="text-right" x-data="getChildofConfigurable()" x-init="init()">
+<div x-data="getChildofConfigurable()" x-init="init()">
     <?php if ($product->getTypeId() == 'configurable'): ?>
         <?php /** CURRENTLY NOT IN USE! */ ?>
         <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
@@ -99,7 +99,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
             </div>
         <?php endif; ?>
         <?php if ($availabilityMess && $isPreOder): ?>
-            <span class="availability_message float-left"><?= $escaper->escapeHtml($availabilityMess) ?></span>
+            <span class="availability_message"><?= $escaper->escapeHtml($availabilityMess) ?></span>
         <?php endif; ?>
     <?php endif; ?>
 </div>
