@@ -129,13 +129,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
         padding: '1.5rem'
       },
       letterSpacing: {
-        tightest: '-.2em',
-        tighter: '-.05em',
-        tight: '-.025em',
-        normal: '0',
-        wide: '.025em',
-        wider: '.05em',
-        widest: '.1em'
+        tightest: '-.2em'
       },
       borderRadius:{
         '4xl': '2rem'

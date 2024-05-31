@@ -35,7 +35,7 @@ if (!$product || !$product->getId()) {
 $inStock = $product->getIsSalable();
 ?>
 <?php if ($block->getParentBlock()->displayProductStockStatus()): ?>
-    <div class="text-right">
+    <div>
         <p
             class="flex items-center align-middle gap-x-2 stock
                 before:w-3 before:h-3 before:rounded-full before:shrink-0
