@@ -1,0 +1,104 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Hyva_BssPreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2022 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\CurrentProduct;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Hyva\BssPreOrder\ViewModels\Helper as ModuleViewModel;
+use Bss\PreOrder\Helper\Data as BssPreOder;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var BssPreOder $preOrderHelper */
+/** @var CurrentProduct $currentProduct */
+$currentProduct     = $viewModels->require(CurrentProduct::class);
+$moduleViewModel    = $viewModels->require(ModuleViewModel::class);
+$preOrderHelper     = $moduleViewModel->getHelper();
+
+/** @var Product $product */
+$product            = $currentProduct->get();
+$currentProductId   = $product->getId();
+
+if (!$currentProductId) {
+    return;
+}
+
+$availabilityMess = $preOrderHelper->getAvailabilityMessage($product);
+$isPreOder = $moduleViewModel->getIsPreOrder($product);
+?>
+<script>
+    function getChildofConfigurable() {
+        return {
+            allProductChild: <?php echo $moduleViewModel->getProductChildConfigurable($product); ?>,
+            isStockStatus: true,
+            init() {
+                let _this = this
+                window.addEventListener("configurable-selection-changed", function(event)
+                {
+                    _this.isStockStatus = _this.checkStockStatus(event.detail.productIndex);
+                });
+            },
+            checkStockStatus(productId) {
+               for (const [key, val] of Object.entries(this.allProductChild.child)) {
+                   if(val.productId === productId) {
+                       return val.stock_status;
+                   }
+               }
+            }
+        }
+    }
+</script>
+<div class="text-right" x-data="getChildofConfigurable()" x-init="init()">
+    <?php if ($product->getTypeId() == 'configurable'): ?>
+        <?php /** CURRENTLY NOT IN USE! */ ?>
+        <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
+            <div x-show="isStockStatus" class="stock available flex items-center align-middle available gap-x-2 stock"
+                 title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
+                <span class="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+            </div>
+            <div x-show="!isStockStatus" class="stock unavailable flex items-center align-middle gap-x-2 unavailable stock"
+                 title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
+                <span class="w-3 h-3 bg-red-500 rounded-full flex-shrink-0"></span>
+                <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+            </div>
+        <?php else: ?>
+            <div class="stock unavailable flex items-center align-middle gap-x-2 unavailable stock"
+                 title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
+                <span class="w-3 h-3 bg-red-500 rounded-full flex-shrink-0"></span>
+                <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+            </div>
+        <?php endif; ?>
+        <span class="availability_message float-left"></span>
+    <?php else: ?>
+        <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
+            <div class="stock available flex items-center align-middle available gap-x-2 stock"
+                 title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
+                <span class="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+            </div>
+        <?php if ($availabilityMess && $isPreOder): ?>
+            <span class="availability_message float-left"><?= $escaper->escapeHtml($availabilityMess) ?></span>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

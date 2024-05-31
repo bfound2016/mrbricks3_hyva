@@ -54,3 +54,6 @@
     @apply hidden;
 }
 
+.availability_message {
+    @apply text-lego-green bg-lego-green-lighter p-2 font-bold;
+}
