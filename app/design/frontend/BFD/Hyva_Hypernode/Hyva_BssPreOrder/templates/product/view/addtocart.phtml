@@ -116,10 +116,10 @@ $preOrderHelper = $moduleViewModel->getHelper();
             <button type="submit"
                     form="product_addtocart_form"
                     title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                    class="btn btn-primary"
+                    class="btn btn-primary rounded-4xl"
                     id="product-addtocart-button"
             >
-            <span class="block m-auto title-font text-xl rounded-4xl my-2"><?= $block->getData('is_cart_configure') ?
+            <span class="block m-auto title-font text-xl my-2"><?= $block->getData('is_cart_configure') ?
                 $escaper->escapeHtml(__('Update item')) :
                 $escaper->escapeHtml(__('Add to Cart')) ?>
             </span>
