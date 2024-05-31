@@ -97,6 +97,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
                 <span class="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
             </div>
+        <?php endif; ?>
         <?php if ($availabilityMess && $isPreOder): ?>
             <span class="availability_message float-left"><?= $escaper->escapeHtml($availabilityMess) ?></span>
         <?php endif; ?>
