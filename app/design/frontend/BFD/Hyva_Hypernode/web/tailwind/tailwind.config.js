@@ -136,6 +136,9 @@ module.exports = hyvaModules.mergeTailwindConfig({
         wide: '.025em',
         wider: '.05em',
         widest: '.1em'
+      },
+      borderRadius:{
+        '4xl': '2rem'
       }
     }
   },
