@@ -36,9 +36,6 @@ $productType = $product->getTypeId();
      * Removed #5 https://github.com/bfound2016/mrbricks3_hyva/issues/5
      */
     ?>
-    <?php if ($shortDescription = $productViewModel->getShortDescription()) { ?>
-        <div class="hidden md:block my-4 leading-relaxed product-description prose"><?= /* @noEscape */ $shortDescription ?></div>
-    <?php } ?>
 
     <?php
     /**
@@ -59,6 +56,10 @@ $productType = $product->getTypeId();
         <div role="group" class= "w-full" aria-label="<?= $escaper->escapeHtmlAttr('Price') ?>">
             <?= $block->getChildHtml("product.info.price") ?>
         </div>
+        <?php /** #10 Moved short description here 8 */ ?>
+        <?php if ($shortDescription = $productViewModel->getShortDescription()) { ?>
+            <div class="md:block my-4 leading-relaxed product-description prose bg-lego-blue-lighter"><?= /* @noEscape */ $shortDescription ?></div>
+        <?php } ?>
 
         <div class="flex  flex-col gap-4 w-full mt-4 mr-auto sm:mt-0">
             <?php if ($product->isSaleable()): ?>
