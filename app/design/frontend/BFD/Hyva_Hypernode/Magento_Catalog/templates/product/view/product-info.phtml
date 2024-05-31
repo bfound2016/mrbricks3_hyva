@@ -60,7 +60,7 @@ $productType = $product->getTypeId();
             <?= $block->getChildHtml("product.info.price") ?>
         </div>
 
-        <div class="flex  flex-col gap-4 mt-4 mr-auto sm:mt-0">
+        <div class="flex  flex-col gap-4 w-full mt-4 mr-auto sm:mt-0">
             <?php if ($product->isSaleable()): ?>
                 <?= $block->getChildHtml("product.info.quantity") ?>
                 <?= $block->getChildHtml("product.info.addtocart") ?>
