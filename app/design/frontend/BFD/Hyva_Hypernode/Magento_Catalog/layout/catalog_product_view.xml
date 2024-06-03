@@ -25,7 +25,8 @@
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
-                    template="Magento_Catalog::product/view/rich-content.phtml">
+                    template="Magento_Catalog::product/view/rich-content.phtml"
+                    before="product.info.details">
             </block>
         </referenceBlock>
         <referenceContainer name="before.body.end">
