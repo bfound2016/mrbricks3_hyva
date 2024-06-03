@@ -100,9 +100,9 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
                 <div class="flex gap-x-2 items-center">
                     <span class="w-3 h-3 text-lego-green bg-lego-green rounded-full flex-shrink-0"></span>
-                    <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+                    <span class="font-bold">Nu besteld = morgen in huis</span>
                 </div>
-                <span class="block font-bold">Nu besteld = <span>morgen</span> in huis</span>
+                <span>Je bestelling wordt <span class="text-lego-blue-light font-bold">gratis</span> bezorgd.</span>
             </div>
         <?php endif; ?>
         <?php if ($availabilityMess && $isPreOder): ?>
