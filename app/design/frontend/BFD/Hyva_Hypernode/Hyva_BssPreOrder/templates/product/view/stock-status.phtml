@@ -76,18 +76,18 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
     <?php if ($product->getTypeId() == 'configurable'): ?>
         <?php /** CURRENTLY NOT IN USE! */ ?>
         <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
-            <div x-show="isStockStatus" class="stock available flex items-center align-middle available gap-x-2 stock"
+            <div x-show="isStockStatus" class="stock available flex flex-col align-middle available gap-x-2 stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
                 <span class="w-3 h-3 bg-lego-green text-lego-green rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
             </div>
-            <div x-show="!isStockStatus" class="stock unavailable flex items-center align-middle gap-x-2 unavailable stock"
+            <div x-show="!isStockStatus" class="stock unavailable flex flex-col align-middle gap-x-2 unavailable stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
                 <span class="w-3 h-3 bg-red-500 rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
             </div>
         <?php else: ?>
-            <div class="stock unavailable flex items-center align-middle gap-x-2 unavailable stock"
+            <div class="stock unavailable flex flex-col align-middle gap-x-2 unavailable stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
                 <span class="w-3 h-3 bg-red-500 rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
@@ -96,10 +96,12 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
         <span class="availability_message float-left"></span>
     <?php else: ?>
         <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
-            <div class="stock available flex items-center align-middle available gap-x-2 stock"
+            <div class="stock available flex flex-col align-middle available stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
-                <span class="w-3 h-3 text-lego-green bg-lego-green rounded-full flex-shrink-0"></span>
-                <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+                <div class="flex gap-x-2">
+                    <span class="w-3 h-3 text-lego-green bg-lego-green rounded-full flex-shrink-0"></span>
+                    <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+                </div>
                 <span class="block font-bold">Nu besteld = <span>morgen</span> in huis</span>
             </div>
         <?php endif; ?>
