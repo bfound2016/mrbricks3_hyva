@@ -21,18 +21,12 @@
             </arguments>
         </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
-        <referenceBlock name="product.info.details">
-            <!-- #6 Rich Content implementation -->
-            <block  name="product.rich.media"
-                    class="Magento\Catalog\Block\Product\View"
-                    template="Magento_Catalog::product/view/rich-content.phtml"
-                    group="detailed_info">
-                <arguments>
-                    <!--<argument name="title" xsi:type="string">Product Tour</argument>-->
-                    <argument name="sort_order" xsi:type="number">-30</argument>
-                </arguments>
-            </block>
-        </referenceBlock>
+        <!-- #6 Rich Content implementation -->
+        <block  name="product.rich.media"
+                class="Magento\Catalog\Block\Product\View"
+                template="Magento_Catalog::product/view/rich-content.phtml">
+        </block>
+
         <referenceContainer name="before.body.end">
             <block  name="product.rich.media.script"
                     class="Magento\Catalog\Block\Product\View"
