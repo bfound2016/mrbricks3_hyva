@@ -74,7 +74,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
         <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
             <div x-show="isStockStatus" class="stock available flex items-center align-middle available gap-x-2 stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
-                <span class="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span class="w-3 h-3 bg-lego-green rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
             </div>
             <div x-show="!isStockStatus" class="stock unavailable flex items-center align-middle gap-x-2 unavailable stock"
@@ -94,7 +94,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
         <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
             <div class="stock available flex items-center align-middle available gap-x-2 stock"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
-                <span class="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span class="w-3 h-3 bg-lego-green rounded-full flex-shrink-0"></span>
                 <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
             </div>
         <?php endif; ?>
