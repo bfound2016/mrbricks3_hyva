@@ -26,11 +26,11 @@
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
                     template="Magento_Catalog::product/view/rich-content.phtml"
-                    group="detailed_info">
-                <arguments>
+                >
+                <!--<arguments>
                     <argument name="title" xsi:type="string">Product Tour</argument>
                     <argument name="sort_order" xsi:type="number">-30</argument>
-                </arguments>
+                </arguments>-->
             </block>
         </referenceBlock>
         <referenceContainer name="before.body.end">
