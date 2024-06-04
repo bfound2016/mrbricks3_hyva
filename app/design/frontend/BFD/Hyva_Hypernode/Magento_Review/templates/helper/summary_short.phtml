@@ -25,8 +25,9 @@ $uniqueId       = $productId . uniqid();
 $reviewCount    = $block->getReviewsCount()
 ?>
 <?php if ($block->isReviewEnabled()): ?>
-<div class="flex basis-full nowrap">
-    <span class="block">Algemene beoordeling</span>
+
+<span class="block">Algemene beoordeling</span>
+<div class="flex basis-full nowrap items-center">
     <div
         x-data="initRating<?= /* @noEscape */ $uniqueId ?>()"
         x-defer="intersect"
@@ -127,7 +128,7 @@ $reviewCount    = $block->getReviewsCount()
         <?php endif; ?>
     </div>
     <?php if ($reviewCount): ?>
-        <span class="text-xs text-lego-blue-dark ml-2 font-semibold"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
+        <span class="text-xs text-lego-blue-dark ml-2 font-semibold self-center"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
     <?php endif; ?>
 </div>
 
