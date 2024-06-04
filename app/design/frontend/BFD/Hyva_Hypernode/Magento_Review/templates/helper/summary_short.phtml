@@ -25,6 +25,8 @@ $uniqueId       = $productId . uniqid();
 $reviewCount    = $block->getReviewsCount()
 ?>
 <?php if ($block->isReviewEnabled()): ?>
+<div class="flex basis-full nowrap">
+    <span class="block">Algemene beoordeling</span>
     <div
         x-data="initRating<?= /* @noEscape */ $uniqueId ?>()"
         x-defer="intersect"
@@ -43,7 +45,6 @@ $reviewCount    = $block->getReviewsCount()
         :role="reviewsSection ? 'button' : 'img'"
     >
         <?php if ($rating): ?>
-            <span class="block">Algemene beoordeling</span>
             <?php $i = 0; ?>
             <?php while ($i < $starsFilled): ?>
                 <svg
@@ -128,6 +129,7 @@ $reviewCount    = $block->getReviewsCount()
     <?php if ($reviewCount): ?>
         <span class="text-xs text-lego-blue-dark ml-2 font-semibold"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
     <?php endif; ?>
+</div>
 
     <script>
         'use strict';
