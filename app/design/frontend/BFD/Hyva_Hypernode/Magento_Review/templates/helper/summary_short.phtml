@@ -26,7 +26,7 @@ $reviewCount    = $block->getReviewsCount()
 ?>
 <?php if ($block->isReviewEnabled()): ?>
 
-<span class="block mt-2">Algemene beoordeling</span>
+<span class="block mt-2 prose">Algemene beoordeling</span>
 <div class="flex basis-full nowrap items-center">
     <div
         x-data="initRating<?= /* @noEscape */ $uniqueId ?>()"
