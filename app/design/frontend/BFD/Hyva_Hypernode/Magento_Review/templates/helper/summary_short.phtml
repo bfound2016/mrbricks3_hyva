@@ -128,7 +128,7 @@ $reviewCount    = $block->getReviewsCount()
         <?php endif; ?>
     </div>
     <?php if ($reviewCount): ?>
-        <span class="text-sm text-lego-blue-dark ml-2 font-semibold self-center"><?= $starsFilled + $starFragment . " / " . $ratingSteps ?> <span>(<?= (int) $reviewCount; ?> recensies)</span></span>
+        <span class="text-sm text-lego-blue-dark ml-2 font-semibold self-center"><?= $starsFilled + $starFragment . " / " . $ratingSteps ?><span class="ml-4">(<?= (int) $reviewCount; ?> recensies)</span></span>
     <?php endif; ?>
 </div>
 
