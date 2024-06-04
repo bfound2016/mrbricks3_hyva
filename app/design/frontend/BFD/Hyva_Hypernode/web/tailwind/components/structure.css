@@ -13,7 +13,7 @@ body {
 }
 
 .columns {
-    @apply grid grid-cols-1 gap-x-8 gap-y-4;
+    @apply grid grid-cols-1 gap-x-8 gap-y-4 container;
     grid-template-rows: auto minmax(0, 1fr);
 
     .main {
