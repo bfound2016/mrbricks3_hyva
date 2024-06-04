@@ -52,13 +52,13 @@ $productName = $block->getProduct()->getName();
         tabindex="-1"
         role="group"
     >
-        <div class="mx-auto flex pt-6 pb-3 mb-6 md:flex-row border-b-2 border-gray-300">
+        <div class="mx-auto flex flex-col pt-6 pb-3 mb-6 md:flex-row border-b-2 border-gray-300">
             <?php if (!$block->getHideTitle()): ?>
                 <<?= /* @noEscape */ $headingTag ?> class="text-gray-900 text-2xl title-font font-base w-full">
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
                 </<?= /* @noEscape */ $headingTag ?>>
             <?php endif ?>
-            <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review.phtml")->toHtml() ?>
+            <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Review::product/view/review.phtml")->toHtml() ?>
         </div>
         <div class="card w-full px-6 py-3">
             <?php foreach ($items as $review): ?>
