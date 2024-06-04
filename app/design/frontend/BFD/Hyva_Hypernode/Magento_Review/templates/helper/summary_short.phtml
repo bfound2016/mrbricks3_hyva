@@ -26,7 +26,7 @@ $reviewCount    = $block->getReviewsCount()
 ?>
 <?php if ($block->isReviewEnabled()): ?>
 
-<span class="block">Algemene beoordeling</span>
+<span class="block mt-2">Algemene beoordeling</span>
 <div class="flex basis-full nowrap items-center">
     <div
         x-data="initRating<?= /* @noEscape */ $uniqueId ?>()"
@@ -128,7 +128,7 @@ $reviewCount    = $block->getReviewsCount()
         <?php endif; ?>
     </div>
     <?php if ($reviewCount): ?>
-        <span class="text-sm text-lego-blue-dark ml-2 font-semibold self-center"><?= $starsFilled + $starFragment . " / " . $ratingSteps ?><?= (int) $reviewCount; ?></span> recensies</span>
+        <span class="text-sm text-lego-blue-dark ml-2 font-semibold self-center"><?= $starsFilled + $starFragment . " / " . $ratingSteps ?> <?= (int) $reviewCount; ?> recensies</span>
     <?php endif; ?>
 </div>
 
