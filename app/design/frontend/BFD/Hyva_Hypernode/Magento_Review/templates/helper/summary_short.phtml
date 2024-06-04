@@ -12,19 +12,19 @@ use Magento\Review\Block\Product\ReviewRenderer;
 /** @var ReviewRenderer $block */
 /** @var Escaper $escaper */
 
-$rating = $block->getRatingSummary();
-$ratingSteps = 5;
-$starsFilled = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
-$starFragment = $rating / 100 * $ratingSteps - $starsFilled;
-$starsEmpty = floor($ratingSteps - $starsFilled - $starFragment);
-$yellowHex = '#f6e05e';
-$greyHex = '#cbd5e0';
-$productName = $block->getProduct()->getName();
-$productId = $block->getProduct()->getId();
-$uniqueId = $productId . uniqid();
+$rating         = $block->getRatingSummary();
+$ratingSteps    = 5;
+$starsFilled    = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
+$starFragment   = $rating / 100 * $ratingSteps - $starsFilled;
+$starsEmpty     = floor($ratingSteps - $starsFilled - $starFragment);
+$yellowHex      = '#f6e05e';
+$greyHex        = '#cbd5e0';
+$productName    = $block->getProduct()->getName();
+$productId      = $block->getProduct()->getId();
+$uniqueId       = $productId . uniqid();
+$reviewCount    = $block->getReviewsCount()
 ?>
 <?php if ($block->isReviewEnabled()): ?>
-    <div>Short</div>
     <div
         x-data="initRating<?= /* @noEscape */ $uniqueId ?>()"
         x-defer="intersect"
@@ -43,6 +43,7 @@ $uniqueId = $productId . uniqid();
         :role="reviewsSection ? 'button' : 'img'"
     >
         <?php if ($rating): ?>
+            <span class="block">Algemene beoordeling</span>
             <?php $i = 0; ?>
             <?php while ($i < $starsFilled): ?>
                 <svg
@@ -124,6 +125,9 @@ $uniqueId = $productId . uniqid();
             <?php endwhile; ?>
         <?php endif; ?>
     </div>
+    <?php if ($reviewCount): ?>
+        <span class="text-xs text-lego-blue-dark ml-2 font-semibold"><span itemprop="reviewCount"><?= (int) $reviewCount; ?></span> recensies</span>
+    <?php endif; ?>
 
     <script>
         'use strict';
