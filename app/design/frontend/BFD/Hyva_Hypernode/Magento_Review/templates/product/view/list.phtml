@@ -60,7 +60,7 @@ $productName = $block->getProduct()->getName();
             <?php endif ?>
             <div class="block mt-2 prose">Algemene beoordeling</div>
             <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
-            <button class=""><?= $escaper->escapeHtml(__('Add Your Review')) ?></button>
+            <button class="btn btn-primary rounded-4xl"><span class="block m-auto title-font text-xl "><?= $escaper->escapeHtml(__('Add Your Review')) ?></span></button>
         </div>
         <div class="w-full py-3">
             <?php foreach ($items as $review): ?>
