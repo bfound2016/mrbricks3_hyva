@@ -80,7 +80,8 @@ $productName = $block->getProduct()->getName();
                                     ) ?>
                                 </span>
                     </time>
-                    <?php if (count($review->getRating())): ?>
+                    <?php //if (count($review->getRating())): ?>
+                    <div class="hidden"><?php print_r($review); ?></div>
                         <div class="table">
                         <?php foreach ($review->getRatingVotes() as $vote): ?>
                             <?php
@@ -113,7 +114,7 @@ $productName = $block->getProduct()->getName();
                             </div>
                         <?php endforeach; ?>
                         </div>
-                    <?php endif; ?>
+                    <?php // endif; ?>
                     <div class="text-lg my-2" itemprop="name">
                         <?= $escaper->escapeHtml($review->getTitle()) ?>
                     </div>
