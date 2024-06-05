@@ -68,10 +68,10 @@ $productName = $block->getProduct()->getName();
                         <div class="table">
                         <?php foreach ($review->getRatingVotes() as $vote): ?>
                             <?php
-                                $rating = $vote->getPercent();
-                                $ratingSteps = 5;
-                                $starsFilled = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
-                                $starsEmpty = floor($ratingSteps - $starsFilled);
+                                $rating         = $vote->getPercent();
+                                $ratingSteps    = 5;
+                                $starsFilled    = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
+                                $starsEmpty     = floor($ratingSteps - $starsFilled);
                             ?>
                             <div class="table-row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
                                 <div class="table-cell pr-6 align-middle text-left">
