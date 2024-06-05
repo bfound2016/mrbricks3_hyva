@@ -90,11 +90,8 @@ $productName = $block->getProduct()->getName();
                                 $starsEmpty     = floor($ratingSteps - $starsFilled);
                             ?>
                             <div class="table-row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                                <div class="table-cell pr-6 align-middle text-left">
-                                    <?= $escaper->escapeHtml($vote->getRatingCode()) ?>
-                                </div>
                                 <div
-                                    class="flex flex-row"
+                                    class="flex flex-row items-center"
                                     role="img"
                                     aria-label="<?= $escaper->escapeHtmlAttr(__('%1 rating. %2 out of %3 stars', $productName, $starsFilled, $ratingSteps))?>"
                                 >
@@ -108,7 +105,7 @@ $productName = $block->getProduct()->getName();
                                         <?= $heroiconsSolid->starHtml('text-gray-400', 24, 24, ["aria-hidden" => "true"]); ?>
                                         <?php $i++; ?>
                                     <?php endwhile; ?>
-                                    <span class="text-lego-blue-dark text-sm" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled  . " / " . $ratingSteps; ?></span>
+                                    <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled  . " / " . $ratingSteps; ?></span>
                                 </div>
                             </div>
                         <?php endforeach; ?>
