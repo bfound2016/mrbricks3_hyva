@@ -58,9 +58,9 @@ $productName = $block->getProduct()->getName();
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
                 </<?= /* @noEscape */ $headingTag ?>>
             <?php endif ?>
+            <div class="block mt-2 prose">Algemene beoordeling</div>
             <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
         </div>
-        <div class="block mt-2 prose">Algemene beoordeling</div>
         <div class="card w-full px-6 py-3">
             <?php foreach ($items as $review): ?>
                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
