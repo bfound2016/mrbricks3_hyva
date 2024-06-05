@@ -52,7 +52,7 @@ $productName = $block->getProduct()->getName();
         tabindex="-1"
         role="group"
     >
-        <div class="mx-auto flex flex-col pt-6 pb-3 mb-6 md:flex-row border-t border-gray-300 bg-gradient-to-b from-gray-200 to-transparent">
+        <div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">
             <?php if (!$block->getHideTitle()): ?>
                 <<?= /* @noEscape */ $headingTag ?> class="text-gray-900 text-2xl title-font font-base w-full">
                     <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
