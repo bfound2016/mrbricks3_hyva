@@ -61,10 +61,10 @@ $productName = $block->getProduct()->getName();
             <div class="block mt-2 prose">Algemene beoordeling</div>
             <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
         </div>
-        <div class="card w-full px-6 py-3">
+        <div class="w-full py-3">
             <?php foreach ($items as $review): ?>
                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
-                    class="border-b pb-4 my-4 border-container last:border-0 last:mb-0">
+                    class="card border-b pb-4 my-4 border-container last:border-0 last:mb-0">
                     <?php if (count($review->getRatingVotes())): ?>
                         <div class="table">
                         <?php foreach ($review->getRatingVotes() as $vote): ?>
