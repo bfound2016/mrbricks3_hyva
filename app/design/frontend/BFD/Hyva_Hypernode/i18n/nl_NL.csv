@@ -10327,7 +10327,7 @@ target=""_blank"">DevDocs' Release Information</a>.,module,Magento_ReleaseNotifi
 "Summary","Samenvatting",module,Magento_Review
 "Submit Review","Review versturen",module,Magento_Review
 "Only registered users can write reviews. Please <a href=""%1"">Sign in</a> or <a href=""%2"">create an account</a>","Alleen geregistreerde gebruikers kunnen reviews schrijven. Log in of maak alstublieft een account aan. <a href=""%1""> inloggen</a> of <a href=""%2"">maak een account aan</a>",module,Magento_Review
-"Add Your Review","Schrijf een review",module,Magento_Review
+"Add Your Review","Schrijf zelf een review",module,Magento_Review
 "%1 Review(s)","%d review(s)",module,Magento_Review
 "Review by","Gereviewd door",module,Magento_Review
 "Posted on","Gepost op",module,Magento_Review
