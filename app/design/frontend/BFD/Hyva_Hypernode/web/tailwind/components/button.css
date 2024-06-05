@@ -28,12 +28,20 @@
 
 
     .btn-primary {
-        @apply bg-lego-green text-white shadow-md;
+        @apply bg-lego-blue-dark text-white shadow-md;
 
         &:hover {
-            @apply bg-lego-green-darker text-white shadow-lg;
+            @apply  text-white shadow-lg;
         }
 
+    }
+
+    .btn-add-to-cart {
+        @apply bg-lego-green;
+
+        &:hover {
+            @apply bg-lego-green-darker;
+         }
     }
 
     .btn-secondary {
