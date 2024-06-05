@@ -81,8 +81,8 @@ $productName = $block->getProduct()->getName();
                                 </span>
                     </time>
                     <div>
-                        <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <span><?= $heroiconsSolid->userCircleHtml('text-gray-400', 24, 24, ["aria-hidden" => "true"]); ?></span>
+                        <strong class="flex gap-2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <span><?= $heroiconsSolid->userCircleHtml('text-lego-blue-light', 24, 24, ["aria-hidden" => "true"]); ?></span>
                             <span itemprop="name"><?= $escaper->escapeHtml($review->getNickname()) ?></span>
                         </strong>
                     </div>
