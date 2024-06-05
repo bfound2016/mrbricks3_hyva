@@ -85,7 +85,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
         x-init="init()"
         form="product_addtocart_form"
         title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-        class="btn btn-primary"
+        class="btn btn-primary btn-add-to-cart rounded-4xl"
         id="product-addtocart-button"
 >
     <?= $heroicons->shoppingCartHtml('border-current'); ?>
@@ -116,7 +116,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
             <button type="submit"
                     form="product_addtocart_form"
                     title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                    class="btn btn-primary rounded-4xl"
+                    class="btn btn-primary btn-add-to-cart rounded-4xl"
                     id="product-addtocart-button"
             >
             <span class="block m-auto title-font text-xl my-2"><?= $block->getData('is_cart_configure') ?
@@ -128,7 +128,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
             <button type="submit"
                     form="product_addtocart_form"
                     title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-add-to-cart rounded-4xl"
                     id="product-addtocart-button"
             >
                 <span class="block"><?= $block->getData('is_cart_configure') ?
