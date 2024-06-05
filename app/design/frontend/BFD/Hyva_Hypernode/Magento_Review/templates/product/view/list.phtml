@@ -93,7 +93,6 @@ $productName = $block->getProduct()->getName();
                                 <div class="table-cell pr-6 align-middle text-left">
                                     <?= $escaper->escapeHtml($vote->getRatingCode()) ?>
                                 </div>
-                                <span class="hidden" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled; ?></span>
                                 <div
                                     class="flex flex-row"
                                     role="img"
@@ -109,6 +108,7 @@ $productName = $block->getProduct()->getName();
                                         <?= $heroiconsSolid->starHtml('text-gray-400', 24, 24, ["aria-hidden" => "true"]); ?>
                                         <?php $i++; ?>
                                     <?php endwhile; ?>
+                                    <span class="text-lego-blue-dark text-sm" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled  . " / " . $ratingSteps; ?></span>
                                 </div>
                             </div>
                         <?php endforeach; ?>
