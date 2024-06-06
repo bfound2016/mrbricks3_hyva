@@ -31,7 +31,7 @@
         @apply bg-lego-blue-dark text-white shadow-md;
 
         &:hover {
-            @apply  text-white shadow-lg;
+            @apply bg-lego-blue-darker text-white shadow-lg;
         }
 
     }

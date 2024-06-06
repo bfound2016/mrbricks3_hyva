@@ -34,7 +34,8 @@ module.exports = hyvaModules.mergeTailwindConfig({
           blue: {
             lighter: "#07adeb10",
             light: "#07adeb",
-            dark: "#075397"
+            dark: "#075397",
+            darker: "#064279"
           }
         },
         primary: {
