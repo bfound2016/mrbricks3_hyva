@@ -35,7 +35,7 @@ foreach ($block->getGroupSortedChildNames('detailed_info', '') as $sectionName) 
                           ->assign('sectionBlock', $sectionBlock)
                           ->toHtml()
         ?>
-        <div class="card w-full">
+        <div>
             <?= /** @noEscape  */ $sectionHtml ?>
         </div>
     </section>
