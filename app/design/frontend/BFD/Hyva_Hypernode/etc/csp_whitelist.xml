@@ -6,6 +6,7 @@
                 <value id="flixfacts" type="host">media.flixfacts.com</value>
                 <value id="flixcar" type="host">media.flixcar.com</value>
                 <value id="flix360" type="host">*.flix360.io</value>
+                <value id="lego-pdp" type="host">image.content.lego.com</value>
             </values>
         </policy>
         <policy id="img-src">
