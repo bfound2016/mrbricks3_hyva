@@ -10,3 +10,13 @@ Following are the list of currently used modules:
 - Magmodules Channable
 - BSS Commerce - Review Reminder
 - BSS Commerce - Back In Stock
+- Magmodules - Mollie for Magento2
+
+### BSS Commerce  - Review Reminder
+#### Installation
+First we add the composer repository using the following command:
+`composer config repositories.bsscommerce composer https://composer.bsscommerce.com/community/`
+
+Then we install the Pre Order module with the following command:
+`composer require bsscommerce/pre-order`
+
