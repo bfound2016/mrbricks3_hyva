@@ -13,6 +13,17 @@ use Magento\Catalog\Block\Product\View;
 /** @var View $block */
 
 $product = $block->getProduct();
-
 ?>
-<div id="flix-inpage"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', function ()
+        {
+            LEGO.loadPdp(
+                'lego-pdp-container',
+                '10279',
+                'nl-NL,en-US',
+                'niQtL0NscK7h46I0HRNiP38qQ8VJrc5yaaJ4vU48')
+        }
+    )
+
+</script>
+<div id="lg-pdp-cntnr"></div>
