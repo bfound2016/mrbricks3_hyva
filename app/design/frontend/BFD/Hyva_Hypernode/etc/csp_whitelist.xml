@@ -17,6 +17,7 @@
         <policy id="connect-src">
             <values>
                 <value id="flixcar" type="host">media.flixcar.com</value>
+                <value id="lego-pdp" type="host">api.legogroup.io</value>
             </values>
         </policy>
         <policy id="style-src">
