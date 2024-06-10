@@ -14,16 +14,12 @@ use Magento\Catalog\Block\Product\View;
 
 $product = $block->getProduct();
 ?>
-<script>
-    function initPDP() {
-        return function loadPDPContainer() {
-            LEGO.loadPdp(
-                'lg-pdp-cntnr',
-                '10279',
-                'nl-NL,en-US',
-                'niQtL0NscK7h46I0HRNiP38qQ8VJrc5yaaJ4vU48'
-            );
-        }
-    }
+<script type="text/javascript">
+    LEGO.loadPdp(
+        'lg-pdp-cntnr',
+        '10279',
+        'nl-NL,en-US',
+        'niQtL0NscK7h46I0HRNiP38qQ8VJrc5yaaJ4vU48'
+    );
 </script>
-<div x-data="initPDP()" x-intersect="loadPDPContainer()" id="lg-pdp-cntnr"></div>
+<div id="lg-pdp-cntnr"></div>
