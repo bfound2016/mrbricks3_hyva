@@ -58,6 +58,11 @@ class Data extends AbstractHelper
     protected $preOrderResource;
 
     /**
+     * @var \Magento\Framework\App\ProductMetadataInterface
+     */
+    protected $productMetadata;
+
+    /**
      * Data constructor.
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Framework\Registry $registry
