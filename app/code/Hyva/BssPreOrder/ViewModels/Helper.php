@@ -102,7 +102,7 @@ class Helper implements ArgumentInterface
         \Magento\Catalog\Helper\Data $helperMagento,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection $collection
+        \Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection $collection
     ) {
         $this->categoryFactory = $categoryFactory;
         $this->configurable = $configurable;
