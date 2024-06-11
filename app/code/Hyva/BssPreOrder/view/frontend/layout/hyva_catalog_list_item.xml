@@ -1,0 +1,37 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Hyva_BssPreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2022 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product_list_item">
+            <action method="setTemplate" ifconfig="preorder/general/enable">
+                <argument name="template" xsi:type="string">Hyva_BssPreOrder::product/list/item.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.actions.addtocart">
+            <action method="setTemplate" ifconfig="preorder/general/enable">
+                <argument name="template" xsi:type="string">Hyva_BssPreOrder::product/components/addtocart.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="category.product.type.details.renderers.configurable">
+            <action method="setTemplate" ifconfig="preorder/general/enable">
+                <argument name="template" xsi:type="string">Hyva_BssPreOrder::product/listing/renderer.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

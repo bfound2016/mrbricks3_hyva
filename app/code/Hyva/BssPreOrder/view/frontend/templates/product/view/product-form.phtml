@@ -1,0 +1,73 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\Escaper;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\BssPreOrder\ViewModels\Helper as ModuleViewModel;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var Product $product */
+$product = $block->getProduct();
+$moduleViewModel = $viewModels->require(ModuleViewModel::class);
+
+/**
+ * Add to cart url is set on 'product.info' block by
+ * @see \Magento\Checkout\Block\Cart\Item\Configure::_prepareLayout
+ */
+$productInfoBlock = $block->getLayout()->getBlock('product.info');
+
+?>
+<script>
+    function getChildofConfig() {
+        return {
+            allProductChild: <?php echo $moduleViewModel->getProductChildConfigurable($product); ?>,
+            isMix: <?php echo $moduleViewModel->getIsMix() ? 'true' : 'false' ?> ,
+            showInput: false,
+            init() {
+                let _this = this
+                window.addEventListener("configurable-selection-changed", function(event)
+                {
+                    _this.showInput = _this.checkIsMix(event.detail.productIndex);
+                });
+            },
+            checkIsMix(productId) {
+                for (const [key, val] of Object.entries(this.allProductChild.child)) {
+                    if(val.productId === productId && val.stock_status === false && this.isMix === false) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+</script>
+<?php if ($product->isSaleable()): ?>
+    <form method="post"
+          action="<?= $escaper->escapeUrl($productInfoBlock->getSubmitUrl($product)) ?>"
+          class="mb-6"
+          id="product_addtocart_form"<?php if ($product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>
+        x-data="getChildofConfig()" x-init="init()"
+    >
+        <template x-if="showInput">
+            <input type="hidden" name="is_preorder" value="1">
+        </template>
+        <input type="hidden" name="product" value="<?= (int)$product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value=""  />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+
+        <?= $block->getChildHtml() ?>
+
+    </form>
+<?php endif; ?>

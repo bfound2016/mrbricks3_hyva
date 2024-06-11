@@ -1,0 +1,117 @@
+<?php
+declare(strict_types=1);
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Hyva_BssPreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2022 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+use Magento\Catalog\Model\Product;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\BssPreOrder\ViewModels\Helper as ModuleViewModel;
+use Bss\PreOrder\Helper\Data as BssPreOder;
+use Bss\HyvaCompatBase\ViewModel\Base;
+
+/** @var Product $product */
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/**  @var BssPreOder $preOrderHelper */
+
+$product = $block->getData('product');
+$viewIsGrid = $block->getData('view_is_grid');
+/** @var HeroiconsOutline $heroiconsOutline */
+$heroiconsOutline = $viewModels->require(HeroiconsOutline::class);
+$moduleViewModel = $viewModels->require(ModuleViewModel::class);
+$baseViewModel = $viewModels->require(Base::class);
+$preOrderHelper = $moduleViewModel->getHelper();
+?>
+
+<div class="bss-pre-order w-full mb-2">
+    <span class="mess-preorder-<?=$product->getId()?>"></span>
+</div>
+<?php if ($product->isSaleable()): ?>
+    <?php
+    if($product->getTypeId() === 'configurable'){
+        $simpleIndex= $moduleViewModel->getSimpleIndexConfigurable($product);
+        ?>
+        <script>
+            function productATC_<?=$product->getId()?>() {
+                return {
+                    childProductsId : <?= $baseViewModel->serialize($simpleIndex) ?>,
+                    productChildPreOder : <?= $baseViewModel->serialize($simpleIndex) ?>,
+                    show : false,
+                    preOder(superAtt,productIndex,addtoCartButton){
+                        let mess = document.querySelector('.mess-preorder-<?=$product->getId()?>');
+                        if(superAtt.length >= 1 && Object.keys(this.productChildPreOder).includes(productIndex)){
+                            addtoCartButton.textContent = this.productChildPreOder[productIndex]['button'];
+                            this.show = true;
+                            mess.textContent = this.productChildPreOder[productIndex]['mess'];
+                            mess.classList.remove("hidden");
+                        } else {
+                            this.show = false;
+                            mess.classList.add("hidden");
+                        }
+                    }
+                }
+            }
+        </script>
+        <button x-data="productATC_<?=$product->getId()?>()" @configurable-selection-changed<?=$product->getId()?>.window="preOder(Object.keys($event.detail.selectedValues),$event.detail.productIndex,$refs.addtoCart_<?=$product->getId()?>)" class="w-auto btn btn-primary justify-center text-sm
+            <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>"
+                aria-label="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+        >
+            <?= $heroiconsOutline->shoppingCartHtml("h-6 w-6 border-current inline", 25, 25) ?>
+            <span x-show="!show" class="ml-2 inline <?= $viewIsGrid ? 'md:ml-0 md:hidden lg:ml-2 lg:inline' : '' ?>">
+                <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+            </span>
+            <span x-show="show" x-ref="addtoCart_<?=$product->getId()?>" class="ml-2 inline <?= $viewIsGrid ? 'md:ml-0 md:hidden lg:ml-2 lg:inline' : '' ?>">
+                <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+            </span>
+        </button>
+    <?php } else {?>
+        <?php
+        if($product->getTypeId() === 'simple' || $product->getTypeId() === 'grouped'){
+            $isPreOder = $moduleViewModel->getIsPreOrder($product);
+            ?>
+            <button class="w-auto btn btn-primary justify-center text-sm
+            <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+            >
+                <?= $heroiconsOutline->shoppingCartHtml("h-6 w-6 border-current inline", 25, 25) ?>
+                <?php if($isPreOder) : ?>
+                    <span class="ml-2 inline <?= $viewIsGrid ? 'md:ml-0 md:hidden lg:ml-2 lg:inline' : '' ?>">
+                        <?= $escaper->escapeHtml($preOrderHelper->getButton()) ?>
+                    </span>
+                <?php else: ?>
+                    <span class="ml-2 inline <?= $viewIsGrid ? 'md:ml-0 md:hidden lg:ml-2 lg:inline' : '' ?>">
+                        <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+                    </span>
+                <?php endif; ?>
+            </button>
+        <?php } else{ ?>
+            <button class="w-auto btn btn-primary justify-center text-sm
+            <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+            >
+                <?= $heroiconsOutline->shoppingCartHtml("h-6 w-6 border-current inline", 25, 25) ?>
+                <span class="ml-2 inline <?= $viewIsGrid ? 'md:ml-0 md:hidden lg:ml-2 lg:inline' : '' ?>">
+                    <?= $escaper->escapeHtml(__('Add to Cart')) ?>
+                </span>
+            </button>
+        <?php } ?>
+    <?php } ?>
+<?php endif; ?>

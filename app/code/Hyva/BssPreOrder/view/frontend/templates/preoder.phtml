@@ -1,0 +1,54 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Hyva_BssPreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2022 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Hyva\BssPreOrder\ViewModels\Helper as ModuleViewModel;
+use Bss\PreOrder\Helper\Data as BssPreOder;
+use Hyva\Theme\Model\ViewModelRegistry;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/**  @var BssPreOder $preOrderHelper */
+
+$moduleViewModel = $viewModels->require(ModuleViewModel::class);
+$preOrderHelper = $moduleViewModel->getHelper();
+$buttonHtml = __("Pre-Order");
+if ($preOrderHelper->getButton()) {
+    $buttonHtml = $preOrderHelper->getButton();
+}
+// @codingStandardsIgnoreFile
+?>
+<script>
+    function preOderBss(){
+        return {
+            initPreOder(ele){
+                <?php if ($block->getRequest()->getFullActionName() !== 'catalog_product_view') :?>
+                    var textbutton = '<?=$escaper->escapeJs($buttonHtml)?>';
+                    var button = ele.parentNode.parentNode.querySelector('.btn.btn-primary');
+                        if(button){
+                            button.textContent= textbutton;
+
+                        }
+                <?php endif ?>
+            }
+        }
+    }
+</script>
