@@ -27,7 +27,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\ConfigurableProduct\Block\Product\View\Type\Configurable;
-use Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection;
+use Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection;
 
 /**
  * Class Helper
@@ -102,7 +102,7 @@ class Helper implements ArgumentInterface
         \Magento\Catalog\Helper\Data $helperMagento,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $collection
+        Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\Collection $collection
     ) {
         $this->categoryFactory = $categoryFactory;
         $this->configurable = $configurable;
