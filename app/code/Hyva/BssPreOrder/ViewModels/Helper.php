@@ -176,9 +176,11 @@ class Helper implements ArgumentInterface
         if($product->getTypeId() === 'simple') {
             $productId = $product->getId();
             $stockStatus = $this->getHelper()->getIsInStock($productId);
-            $fromDate =  $this->getHelper()->getPreOrderFromDate($productId);
-            $toDate =  $this->getHelper()->getPreOrderToDate($productId);
-            $isPreOder = $this->getHelper()->isPreOrder($this->getHelper()->getPreOrder($productId),$stockStatus) && $this->getHelper()->isAvailablePreOrderFromFlatData($fromDate, $toDate);
+            /**
+             * $fromDate =  $this->getHelper()->getPreOrderFromDate($productId);
+             * $toDate =  $this->getHelper()->getPreOrderToDate($productId);
+             **/
+            $isPreOder = $this->getHelper()->isPreOrder($this->getHelper()->getPreOrder($productId),$stockStatus);
             return $isPreOder;
         }
     }
