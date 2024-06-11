@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_PreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="SkipCheck" type="Bss\PreOrder\Plugin\SkipCheck" />
+    </type>
+    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="CategoryCheck" type="Bss\PreOrder\Plugin\CategoryCheck" />
+    </type>
+    <type name="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator">
+        <plugin name="SkipValidate" type="Bss\PreOrder\Plugin\SkipValidate" />
+    </type>
+    <type name="Magento\Catalog\Pricing\Render\PriceBox">
+        <plugin name="ProductCheck" type="Bss\PreOrder\Plugin\ProductCheck" />
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="CheckBeforeAdd" type="Bss\PreOrder\Plugin\CheckBeforeAdd" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\AbstractCart">
+        <plugin name="CartNotice" type="Bss\PreOrder\Plugin\CartNotice" />
+    </type>
+    <type name="Magento\Sales\Block\Items\AbstractItems">
+        <plugin name="OrderNotice" type="Bss\PreOrder\Plugin\OrderNotice" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="ConfigurablePlugin" type="Bss\PreOrder\Plugin\Model\Product\Type\Configurable" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Pricing\Price\LowestPriceOptionsProvider">
+        <plugin name="bss_lowestPriceOptions" type="Bss\PreOrder\Plugin\Pricing\ConfigurableProduct\LowestPrice" />
+    </type>
+    <type name="Magento\Catalog\Block\Ui\ProductViewCounter">
+        <plugin name="bss_recently_widget" type="Bss\PreOrder\Plugin\Block\Ui\ProductViewCounter" />
+    </type>
+</config>

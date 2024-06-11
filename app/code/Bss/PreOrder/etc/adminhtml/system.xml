@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_PreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bss" translate="label" sortOrder="300">             
+            <label><![CDATA[Bss Commerce]]></label> 
+        </tab>
+        <section id="preorder" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Pre-Order</label>
+            <tab>bss</tab>
+            <resource>Bss_PreOrder::preorder_configuration</resource>
+            
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Version 1.0.9]]></comment>
+                </field>
+                <field id="mix" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Mixing Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Choose “Yes” to allow adding both regular and pre-order product to an order.</comment>
+                </field>
+                <field id="button" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Text for Pre-Order Button</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="mess" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Message for Pre-Order Products</label>
+                    <comment>{date} can be used as Availability Date of products.</comment>
+                </field>
+                <field id="note" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Note for Pre-Order Products in Cart/Order</label>
+                    <comment>{date} can be used as Availability Date of products.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="cartmess" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pre-Order Message in Cart/Order</label>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,15 @@
+No, No
+Yes, Yes
+When Product Become Out Of Stock, When Product Become Out Of Stock
+{date} can be used as Availability Date. If this field is blank, the default message edited in the configuration will be displayed., {date} can be used as Availability Date. If this field is blank, the default message edited in the configuration will be displayed.
+Pre-Order, Pre-Order
+We could not add both pre-order and regular items to an order., We could not add both pre-order and regular items to an order.
+Availability Date: , Availability Date: 
+Could not create a shipment because , Could not create a shipment because 
+is a pre-order product., is a pre-order product.
+{date} can be used as Availability Date of products.,{date} can be used as Availability Date of products.
+Pre-Ordered Product, Pre-Ordered Product
+Choose “Yes” to allow adding both regular and pre-order product to an order., Choose “Yes” to allow adding both regular and pre-order product to an order.
+Default Message for Pre-Order Products, Default Message for Pre-Order Products
+Note for Pre-Order Products in Cart/Order, Note for Pre-Order Products in Cart/Order
+Pre-Order Message in Cart/Order, Pre-Order Message in Cart/Order

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_PreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="OrderStatus" type="Bss\PreOrder\Plugin\OrderStatus" />
+    </type>
+    <type name="Magento\CatalogInventory\Model\StockStateProvider">
+        <plugin name="QuoteCheck" type="Bss\PreOrder\Plugin\QuoteCheck" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="bss-preorder-jsonconfig" type="Bss\PreOrder\Plugin\Block\Product\View\Type\Configurable"/>
+    </type>
+    <type name="Magento\CatalogInventory\Model\Stock\Status">
+        <plugin name="bss_preorder_catalog_inventory_status" type="Bss\PreOrder\Plugin\Model\Stock\Status" />
+    </type>
+    <type name="Magento\InventorySales\Model\IsProductSalableForRequestedQtyCondition\IsSalableWithReservationsCondition">
+        <plugin name="bss_preorder_qty" type="Bss\PreOrder\Plugin\Model\IsProductSalableForRequestedQtyCondition\IsSalableWithReservationsCondition" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable">
+        <plugin name="bss_configurable_check" type="Bss\PreOrder\Plugin\Model\ResourceModel\Product\Type\Configurable" />
+    </type>
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="bfo_preorder_DefaultItemPlugin" type="Bss\PreOrder\Plugin\DefaultItemPlugin" sortOrder="10"  disabled="false" />
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="checkout-summary-product-attribute" type="Bss\PreOrder\Plugin\Checkout\Model\DefaultConfigProvider" />
+    </type>
+    <preference for="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" type="Bss\PreOrder\Block\Listing\ConfigurableControl" />
+    <preference for="Magento\GroupedProduct\Block\Product\View\Type\Grouped" type="Bss\PreOrder\Block\Grouped" />
+</config>

@@ -1,0 +1,72 @@
+<!-- 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_PreOrder
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<?php
+/** @var $block \Bss\PreOrder\Block\Listing\ConfigurableControl */
+// @codingStandardsIgnoreFile
+?>
+<div class="swatch-opt-<?php /* @escapeNotVerified */ echo $block->getProduct()->getId() ?>"></div>
+<?php if(!$block->checkVersion()) { ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Bss_PreOrder/js/prepare": {
+            "productId": <?php echo $block->getProduct()->getId() ?>,
+            "selectorProduct": ".product-item-details",
+            "onlySwatches": true,
+            "enableControlLabel": false,
+            "numberToShow": <?php /* @escapeNotVerified */ echo $block->getNumberSwatchesPerProduct(); ?>,
+            "jsonConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig(); ?>,
+            "jsonSwatchConfig": <?php /* @escapeNotVerified */ echo $block->getJsonSwatchConfig(); ?>,
+            "jsonChildProduct": <?php echo $block->getJsonChildProductData(); ?>,
+            "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>"
+        }
+    }
+}
+</script>
+<?php } else { ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Bss_PreOrder/js/prepare2": {
+            "productId": <?php echo $block->getProduct()->getId() ?>,
+            "selectorProduct": ".product-item-details",
+            "onlySwatches": true,
+            "enableControlLabel": false,
+            "numberToShow": <?php /* @escapeNotVerified */ echo $block->getNumberSwatchesPerProduct(); ?>,
+            "jsonConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig(); ?>,
+            "jsonSwatchConfig": <?php /* @escapeNotVerified */ echo $block->getJsonSwatchConfig(); ?>,
+            "jsonChildProduct": <?php echo $block->getJsonChildProductData(); ?>,
+            "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>"
+        }
+    }
+}
+</script>
+<script type="text/x-magento-init">    
+{
+    "[data-role=priceBox][data-price-box=product-id-<?php echo $block->getProduct()->getId() ?>]": {
+        "priceBox": {
+            "priceConfig": {
+                "priceFormat": <?= /* @escapeNotVerified */ $block->getPriceFormatJson(); ?>,
+                "prices": <?= /* @escapeNotVerified */ $block->getPricesJson(); ?>
+            }
+        }
+    }
+}
+</script>
+<?php } ?>
