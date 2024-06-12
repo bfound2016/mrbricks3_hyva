@@ -45,97 +45,104 @@ $baseViewModel = $viewModels->require(Base::class);
 $preOrderHelper = $moduleViewModel->getHelper();
 ?>
 <?php
-    if($product->getTypeId() === 'configurable'){
-        $simpleIndex = $moduleViewModel->getSimpleIndexConfigurable($product);
-?>
-<script>
-    function productATC_<?=$product->getId()?>() {
-        return {
-            childProductsId : <?= $baseViewModel->serialize($simpleIndex) ?>,
-            productChildPreOder : <?= $baseViewModel->serialize($simpleIndex) ?>,
-            open: false,
-            preOder(superAtt,productIndex,addtoCartButton){
-                let optionproduct = document.querySelector('#product-options-wrapper');
-                let availability = document.querySelector('.availability_message');
-                let messpreoder = optionproduct.querySelector('.preoder-mess')
-                if(superAtt.length >= 1 && Object.keys(this.productChildPreOder).includes(productIndex)){
-                    addtoCartButton.textContent = this.productChildPreOder[productIndex]['button'];
-                    availability.textContent = this.productChildPreOder[productIndex]['availability'];
-                    this.open = true;
-                    messpreoder.textContent = this.productChildPreOder[productIndex]['mess'];
-                    messpreoder.classList.remove('hidden');
-                } else {
-                    this.open = false;
-                    availability.textContent= "";
-                    messpreoder.classList.add('hidden');
-                }
-            },
-            init(){
-                const mess = document.createElement("span");
-                mess.classList.add('preoder-mess');
-                mess.classList.add('hidden');
-                let option = document.querySelector('#product-options-wrapper');
-                let fieldset = option.querySelector('.fieldset');
-                fieldset.appendChild(mess);
-            }
-        }
-    }
-</script>
-<button x-data="productATC_<?=$product->getId()?>()" @configurable-selection-changed.window="preOder(Object.keys($event.detail.selectedValues),$event.detail.productIndex,$refs.addtoCart_<?=$product->getId()?>)" type="submit"
-        x-init="init()"
-        form="product_addtocart_form"
-        title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-        class="btn btn-primary btn-add-to-cart rounded-4xl"
-        id="product-addtocart-button"
->
-    <?= $heroicons->shoppingCartHtml('border-current'); ?>
-    <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
-            $escaper->escapeHtml(__('Update item')) :
-            $escaper->escapeHtml(__('Add to Cart')) ?>
-    </span>
-    <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
-            $escaper->escapeHtml(__('Update item')) :
-            $escaper->escapeHtml(__('Add to Cart')) ?>
-    </span>
-</button>
-<?php }
-    else
-    {
-        if($product->getTypeId() === 'simple' || $product->getTypeId() === 'grouped'){
-            $isPreOder = $moduleViewModel->getIsPreOrder($product);
-            ?>
-            <script>
-                function preOrderProductPage() {
+if($product->getTypeId() === 'configurable'){
+    $simpleIndex = $moduleViewModel->getSimpleIndexConfigurable($product);
+    ?>
+    <script>
+        function productATC_<?=$product->getId()?>() {
+            return {
+                childProductsId : <?= $baseViewModel->serialize($simpleIndex) ?>,
+                productChildPreOder : <?= $baseViewModel->serialize($simpleIndex) ?>,
+                open: false,
+                preOder(superAtt,productIndex,addtoCartButton){
+                    let optionproduct = document.querySelector('#product-options-wrapper');
+                    let availability = document.querySelector('.availability_message');
+                    let messpreoder = optionproduct.querySelector('.preoder-mess')
+                    if(superAtt.length >= 1 && Object.keys(this.productChildPreOder).includes(productIndex)){
+                        addtoCartButton.textContent = this.productChildPreOder[productIndex]['button'];
+                        availability.textContent = this.productChildPreOder[productIndex]['availability'];
+                        this.open = true;
+                        messpreoder.textContent = this.productChildPreOder[productIndex]['mess'];
+                        messpreoder.classList.remove('hidden');
+                    } else {
+                        this.open = false;
+                        availability.textContent= "";
+                        messpreoder.classList.add('hidden');
+                    }
+                },
+                init(){
                     const mess = document.createElement("span");
-                    mess.textContent = '<?= $preOrderHelper->getNote() ?>'
+                    mess.classList.add('preoder-mess');
+                    mess.classList.add('hidden');
                     let option = document.querySelector('#product-options-wrapper');
                     let fieldset = option.querySelector('.fieldset');
                     fieldset.appendChild(mess);
                 }
-            </script>
-            <button type="submit"
-                    form="product_addtocart_form"
-                    title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                    class="btn btn-primary btn-add-to-cart rounded-4xl"
-                    id="product-addtocart-button"
-            >
-            <span class="block m-auto title-font text-xl my-2"><?= $block->getData('is_cart_configure') ?
+            }
+        }
+    </script>
+    <button x-data="productATC_<?=$product->getId()?>()" @configurable-selection-changed.window="preOder(Object.keys($event.detail.selectedValues),$event.detail.productIndex,$refs.addtoCart_<?=$product->getId()?>)" type="submit"
+            x-init="init()"
+            form="product_addtocart_form"
+            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+            class="btn btn-primary"
+            id="product-addtocart-button"
+    >
+        <?= $heroicons->shoppingCartHtml('border-current'); ?>
+        <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                 $escaper->escapeHtml(__('Update item')) :
                 $escaper->escapeHtml(__('Add to Cart')) ?>
-            </span>
-            </button>
-        <?php } else{ ?>
-            <button type="submit"
-                    form="product_addtocart_form"
-                    title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                    class="btn btn-primary btn-add-to-cart rounded-4xl"
-                    id="product-addtocart-button"
-            >
-                <span class="block"><?= $block->getData('is_cart_configure') ?
+    </span>
+        <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+                $escaper->escapeHtml(__('Update item')) :
+                $escaper->escapeHtml(__('Pre Order')) ?>
+    </span>
+    </button>
+<?php } else {?>
+    <?php
+    if($product->getTypeId() === 'simple' || $product->getTypeId() === 'grouped'){
+        $isPreOder = $moduleViewModel->getIsPreOrder($product);
+        ?>
+        <script>
+            function preOrderProductPage() {
+                const mess = document.createElement("span");
+                mess.textContent = '<?= $preOrderHelper->getNote() ?>'
+                let option = document.querySelector('#product-options-wrapper');
+                let fieldset = option.querySelector('.fieldset');
+                fieldset.appendChild(mess);
+            }
+        </script>
+        <button type="submit"
+                form="product_addtocart_form"
+                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                class="btn btn-primary"
+                id="product-addtocart-button"
+        >
+            <?= $heroicons->shoppingCartHtml("h-6 w-6 border-current inline", 25, 25) ?>
+            <?php if($isPreOder) : ?>
+                <span x-data x-init="preOrderProductPage()" class="ml-2 inline">
+                        <?= $preOrderHelper->getButton() ?>
+                    </span>
+            <?php else: ?>
+                <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
-            </button>
-        <?php } ?>
+            <?php endif; ?>
+        </button>
+    <?php } else{ ?>
+        <button type="submit"
+                form="product_addtocart_form"
+                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                class="btn btn-primary"
+                id="product-addtocart-button"
+        >
+            <?= $heroicons->shoppingCartHtml('border-current'); ?>
+            <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+                    $escaper->escapeHtml(__('Update item')) :
+                    $escaper->escapeHtml(__('Add to Cart')) ?>
+    </span>
+        </button>
     <?php } ?>
+<?php } ?>
 <?= $block->getChildHtml('', true) ?>
