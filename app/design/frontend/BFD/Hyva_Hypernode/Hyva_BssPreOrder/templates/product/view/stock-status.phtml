@@ -43,7 +43,7 @@ if (!$currentProductId) {
     return;
 }
 
-$availabilityMess = $preOrderHelper->getAvailabilityMessage($product);
+$availabilityMess = $preOrderHelper->getMess();
 $isPreOder = $moduleViewModel->getIsPreOrder($product);
 ?>
 <script>
