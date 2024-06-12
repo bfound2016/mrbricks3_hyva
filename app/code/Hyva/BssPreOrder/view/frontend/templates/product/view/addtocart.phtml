@@ -106,7 +106,7 @@ $preOrderHelper = $moduleViewModel->getHelper();
             <script>
                 function preOrderProductPage() {
                     const mess = document.createElement("span");
-                    mess.textContent = '<?= $preOrderHelper->getNote() ?>'
+                    mess.textContent = '<?= $preOrderHelper->getAvailabilityMessageByPid($product->getId()) ?>'
                     let option = document.querySelector('#product-options-wrapper');
                     let fieldset = option.querySelector('.fieldset');
                     fieldset.appendChild(mess);
