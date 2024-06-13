@@ -95,7 +95,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
         <?php endif; ?>
         <span class="availability_message float-left"></span>
     <?php else: ?>
-        <?php if ($preOrderHelper->getIsInStock($currentProductId)): ?>
+        <?php if ($preOrderHelper->getIsInStock($currentProductId) && !$isPreOder): ?>
             <div class="stock available flex flex-col available stock py-4 border-gray-200 border-y"
                  title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
                 <div class="flex gap-x-2 items-center">
