@@ -137,12 +137,12 @@ class Data extends AbstractHelper
      */
     public function getIsInStock($productId)
     {
-        $magentoVersion = $this->productMetadata->getVersion();
-        if (version_compare($magentoVersion, '2.3.0', '<')) {
+        //$magentoVersion = $this->productMetadata->getVersion();
+        //if (version_compare($magentoVersion, '2.3.0', '<')) {
             return $this->stockItemRepository->getStockItem($productId, $this->getStoreId())->getIsInStock();
-        }
+        //}
 
-        return $this->productRepository->getById($productId)->isAvailable();
+        //return $this->productRepository->getById($productId)->isAvailable();
     }
 
     /**
