@@ -88,11 +88,11 @@ if($product->getTypeId() === 'configurable'){
             class="btn btn-primary btn-add-to-cart p-4 rounded-4xl title-font text-xl"
             id="product-addtocart-button"
     >
-        <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+        <span x-show="!open" x-ref="addtoCart_<?=$product->getId()?>" class="m-auto sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                 $escaper->escapeHtml(__('Update item')) :
                 $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
-        <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+        <span x-show="open" x-ref="addtoCart_<?=$product->getId()?>" class="m-auto sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                 $escaper->escapeHtml(__('Update item')) :
                 $escaper->escapeHtml(__('Pre Order')) ?>
     </span>
