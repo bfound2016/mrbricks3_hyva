@@ -106,7 +106,7 @@ $isPreOder = $moduleViewModel->getIsPreOrder($product);
             </div>
         <?php endif; ?>
         <?php if ($availabilityMess && $isPreOder): ?>
-            <span class="availability_message"><?= $preOrderHelper->formatDate($preOrderHelper->replaceVariableX($availabilityMess, $product->getData('restock'))) ?></span>
+            <span class="availability_message"><?= $preOrderHelper->replaceVariableX($availabilityMess, $preOrderHelper->formatDate($product->getData('restock'))) ?></span>
         <?php endif; ?>
     <?php endif; ?>
 </div>
