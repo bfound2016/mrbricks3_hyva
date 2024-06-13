@@ -44,7 +44,6 @@ if (!$currentProductId) {
 }
 
 $availabilityMess = $preOrderHelper->getMess();
-//$isPreOder = $moduleViewModel->getIsPreOrder($product);
 $isPreOder = $preOrderHelper->isPreOrder($preOrderHelper->getPreOrder($currentProductId),$preOrderHelper->getIsInStock($currentProductId))
 ?>
 <script>
