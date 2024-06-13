@@ -279,7 +279,7 @@ class Data extends AbstractHelper
      * @param $parentStockCheck
      * @return bool
      */
-    /*
+
     public function isPreOrder($preOrder, $isInStock, $parentStockCheck = true)
     {
         if (($preOrder == Order::ORDER_YES || ($preOrder == Order::ORDER_OUT_OF_STOCK && !$isInStock)
@@ -288,8 +288,8 @@ class Data extends AbstractHelper
         }
         return false;
     }
-    */
 
+    /*
     // Modified check to ensure Pre Order only active for products in stock
     public function isPreOrder($preOrder, $isInStock, $parentStockCheck = true)
     {
@@ -299,4 +299,5 @@ class Data extends AbstractHelper
         }
         return false;
     }
+    */
 }
