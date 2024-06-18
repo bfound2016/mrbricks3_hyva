@@ -45,7 +45,7 @@ $productType = $product->getTypeId();
 
     <?= $block->getChildHtml('product.info.form') ?>
 
-    <div class="flex flex-col items-start my-4">
+    <div class="flex flex-col items-start my-4 md:row-start-2">
 
         <?php if ($productType === 'bundle'): ?>
             <span class="sr-only">
