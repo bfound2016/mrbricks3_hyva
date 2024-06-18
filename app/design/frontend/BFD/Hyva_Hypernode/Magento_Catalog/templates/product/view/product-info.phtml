@@ -30,7 +30,7 @@ $product = $productViewModel->getProduct();
 $productType = $product->getTypeId();
 
 ?>
-<div class="w-full mb-6 order-3">
+<div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
     /**
      * Removed #5 https://github.com/bfound2016/mrbricks3_hyva/issues/5
@@ -45,7 +45,7 @@ $productType = $product->getTypeId();
 
     <?= $block->getChildHtml('product.info.form') ?>
 
-    <div class="flex flex-col items-start my-4 md:row-start-2">
+    <div class="flex flex-col items-start my-4">
 
         <?php if ($productType === 'bundle'): ?>
             <span class="sr-only">
