@@ -18,6 +18,8 @@ module.exports = hyvaModules.mergeTailwindConfig({
         // => @media (min-width: 1024px) { ... }
         'xl': '1280px',
         // => @media (min-width: 1280px) { ... }
+        '2xl': '1280px' // => @media (min-width: 1536px) { ... }
+
       },
       fontFamily: {
         sans: ["Poppins", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
