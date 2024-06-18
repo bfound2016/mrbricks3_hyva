@@ -17,6 +17,7 @@ $product = $block->getProduct();
 ?>
 <!-- Flixmedia init script -->
 <script type="text/javascript">
+    window.addEventListener('init-external-scripts', () => {
         let headID = document .getElementsByTagName( "head" )[ 0 ];
         let pdpScript = document .createElement( 'script' );
 
@@ -25,4 +26,5 @@ $product = $block->getProduct();
 
         pdpScript.src = '//image.content.lego.com/public/download/pdp/scripts/pdp.js';
         headID.appendChild(pdpScript);
+    },{once: true, passive: true})
 </script>
