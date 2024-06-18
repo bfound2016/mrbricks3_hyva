@@ -53,12 +53,12 @@ $productType = $product->getTypeId();
             </span>
         <?php endif; ?>
 
-        <div role="group" class= "w-full" aria-label="<?= $escaper->escapeHtmlAttr('Price') ?>">
+        <div role="group" class= "w-full md:order-2" aria-label="<?= $escaper->escapeHtmlAttr('Price') ?>">
             <?= $block->getChildHtml("product.info.price") ?>
         </div>
         <?php /** #10 Moved short description here 8 */ ?>
         <?php if ($shortDescription = $productViewModel->getShortDescription()) { ?>
-            <div class="md:block my-4 leading-relaxed product-description prose"><?= /* @noEscape */ $shortDescription ?></div>
+            <div class="md:block my-4 leading-relaxed product-description prose md:order-1"><?= /* @noEscape */ $shortDescription ?></div>
         <?php } ?>
 
         <div class="flex  flex-col gap-4 w-full mt-4 mr-auto sm:mt-0">
@@ -70,7 +70,7 @@ $productType = $product->getTypeId();
 
     </div>
     <?php /** #8 Moved beneath price */ ?>
-    <div class="flex flex-col sm:flex-row justify-between my-4">
+    <div class="flex flex-col sm:flex-row justify-between my-4 md:order-3">
         <?= $block->getChildHtml("product.info.stockstatus") ?>
         <?= $block->getChildHtml("alert.urls") ?>
     </div>
