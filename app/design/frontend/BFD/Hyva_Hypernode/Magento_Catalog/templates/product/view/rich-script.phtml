@@ -34,8 +34,9 @@ $product = $block->getProduct();
         pdpScript.async = true ;
 
         pdpScript.src = '//image.content.lego.com/public/download/pdp/scripts/pdp.js';
+        pdpScript.id = 'lgpdp'
         headID.appendChild(pdpScript);
 
-        initPDP();
+        document.querySelector('#lgpdp').addEventListener('load',alert('Script loaded'));
     },{once: true, passive: true})
 </script>
