@@ -14,7 +14,7 @@ use Magento\Catalog\Block\Product\View;
 
 $product = $block->getProduct();
 ?>
-<div id="lg-pdp-cntnr" x-data="{}" x-intersect="initPDP()" ></div>
+<div id="lg-pdp-cntnr" x-data="{}" x-init="$nextTick(initPDP())" ></div>
 <script type="text/javascript">
         function initPDP() {
             LEGO.loadPdp(
