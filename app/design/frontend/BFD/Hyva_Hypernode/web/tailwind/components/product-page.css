@@ -41,7 +41,7 @@
 **/
 .LEGO-product-detail-page {
     @apply !font-sans;
-    .video {
+    video {
         @apply !max-w-max;
     }
 }
