@@ -23,13 +23,15 @@ $product = $block->getProduct();
            console.log("Error:" + e);
         }
     }
-    function initPDP() {
-        LEGO.loadPdp(
-            'lg-pdp-cntnr',
-            '<?= $product->getSku() ?>',
-            'nl-NL,en-US',
-            'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
+    function initPDP(t) {
+        window.setTimeout(
+            LEGO.loadPdp(
+                'lg-pdp-cntnr',
+                '<?= $product->getSku() ?>',
+                'nl-NL,en-US',
+                'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
+            ), t
         );
     }
 </script>
-<div id="lg-pdp-cntnr" x-data="{}" x-intersect="$dispatch('init-external-scripts')"></div>
+<div id="lg-pdp-cntnr" x-data="{}" x-intersect="$dispatch('init-external-scripts');initPDP(2000);"></div>
