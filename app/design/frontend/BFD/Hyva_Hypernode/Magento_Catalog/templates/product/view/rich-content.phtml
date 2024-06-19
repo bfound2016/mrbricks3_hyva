@@ -15,23 +15,21 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 ?>
 <script type="text/javascript">
-    function checkLEGO() {
-        if (LEGO == undefined) {
-            window.setTimeout(checkLEGO(),500);
-        }
-        else {
-            initPDP();
+    async function checkLEGO() {
+       try{
+           initPDP();
+       }
+        catch(e){
+           console.log("Error:" + e);
         }
     }
     function initPDP() {
-        console.log("Start now");
-        /*
         LEGO.loadPdp(
             'lg-pdp-cntnr',
             '<?= $product->getSku() ?>',
             'nl-NL,en-US',
             'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
-        );*/
+        );
     }
 </script>
 <div id="lg-pdp-cntnr" x-data="{}" x-init="checkLEGO()"></div>
