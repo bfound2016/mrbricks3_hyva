@@ -15,7 +15,7 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 ?>
 <script type="text/javascript">
-    async function checkLEGO() {
+    function checkLEGO() {
        try{
            initPDP();
        }
@@ -32,4 +32,4 @@ $product = $block->getProduct();
         );
     }
 </script>
-<div id="lg-pdp-cntnr" x-data="{}" x-init="checkLEGO()"></div>
+<div id="lg-pdp-cntnr" x-data="{}" x-intersect="$dispatch('init-external-scripts')"></div>
