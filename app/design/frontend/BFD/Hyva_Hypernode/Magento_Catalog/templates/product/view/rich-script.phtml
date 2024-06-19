@@ -17,15 +17,6 @@ $product = $block->getProduct();
 ?>
 <!-- Flixmedia init script -->
 <script type="text/javascript">
-    function initPDP() {
-        LEGO.loadPdp(
-            'lg-pdp-cntnr',
-            '<?= $product->getSku() ?>',
-            'nl-NL,en-US',
-            'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
-        );
-    }
-
     window.addEventListener('init-external-scripts', () => {
         let headID = document .getElementsByTagName( "head" )[ 0 ];
         let pdpScript = document .createElement( 'script' );
@@ -34,9 +25,23 @@ $product = $block->getProduct();
         pdpScript.async = true ;
 
         pdpScript.src = '//image.content.lego.com/public/download/pdp/scripts/pdp.js';
-        pdpScript.id = 'lgpdp'
         headID.appendChild(pdpScript);
-
-        document.querySelector('#lgpdp').addEventListener('load', window.setTimeout(initPDP(),2500));
     },{once: true, passive: true})
+
+    async function initPDP() {
+        try {
+            await LEGO;
+            console.log "LEGO exists";
+        }
+        catch (e) {
+            console.log(e);
+        }
+        /*
+        LEGO.loadPdp(
+            'lg-pdp-cntnr',
+            '<?= $product->getSku() ?>',
+            'nl-NL,en-US',
+            'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
+        );*/
+    }
 </script>
