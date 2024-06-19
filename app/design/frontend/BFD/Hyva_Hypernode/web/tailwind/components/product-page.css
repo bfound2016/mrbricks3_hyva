@@ -37,23 +37,15 @@
 }
 
 /**
-    Custom styling for Flix Media A++ Content
+    Custom styling for LEGO PDP Content
 **/
-@layer components{
-    .max-w-90vw {
-        max-width: 90vw;
+.LEGO-product-detail-page {
+    @apply !font-sans;
+    .video {
+        @apply !max-w-max;
     }
 }
-#flix-lego-inpage,
-#flix-std-inpage {
-    @apply max-w-90vw;
-}
 
-#flix-ugc-galfeatures,
-[id^='inpage-data-']+div {
-    @apply hidden;
-}
-
-.availability_message {
-    @apply text-lego-green bg-lego-green-lighter border-opacity-10 border-lego-green p-2 font-bold text-sm title-font block;
+.pdp-feature {
+    @apply !px-0;
 }
