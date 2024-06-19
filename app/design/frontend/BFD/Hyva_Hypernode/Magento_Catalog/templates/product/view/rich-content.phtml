@@ -15,14 +15,15 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 ?>
 <script type="text/javascript">
-    async function initPDP() {
-        try {
-            await LEGO;
-            console.log("LEGO exists");
+    function checkLEGO() {
+        if (LEGO == undefined) {
+            window.setTimeout(checkLEGO(),500);
         }
-        catch (e) {
-            console.log(e);
+        else {
+            initPDP();
         }
+    }
+    function initPDP() {
         /*
         LEGO.loadPdp(
             'lg-pdp-cntnr',
@@ -32,4 +33,4 @@ $product = $block->getProduct();
         );*/
     }
 </script>
-<div id="lg-pdp-cntnr" x-data="{}" x-init="initPDP()"></div>
+<div id="lg-pdp-cntnr" x-data="{}" x-init="checkLEGO()"></div>
