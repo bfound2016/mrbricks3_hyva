@@ -47,5 +47,5 @@
 }
 
 .pdp-feature {
-    @apply !px-0;
+    @apply !px-0 !my-4;
 }
