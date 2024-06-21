@@ -40,6 +40,9 @@
     Custom styling for Flixmedia Content
 **/
 
+#flix-lego-inpage * {
+    @apply !font-sans;
+}
 #flix-lego-inpage,
 #flix-std-inpage {
     @apply !max-w-full;
