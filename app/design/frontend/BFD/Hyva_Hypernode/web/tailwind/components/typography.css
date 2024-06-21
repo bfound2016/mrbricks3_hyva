@@ -60,7 +60,8 @@ body {
 
 
 .title-font {
-    font-family: "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+    font-family: "Poppins", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+    @apply font-bold;
 }
 
 .price-font{
