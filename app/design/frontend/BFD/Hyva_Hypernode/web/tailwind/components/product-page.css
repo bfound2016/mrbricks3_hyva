@@ -45,3 +45,10 @@
     @apply !max-w-full;
 }
 
+.flix-background-image {
+    @apply !bg-black;
+
+    .flix-img-responsive {
+        @apply !m-0;
+    }
+}
