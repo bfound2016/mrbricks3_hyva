@@ -13,25 +13,6 @@ use Magento\Catalog\Block\Product\View;
 /** @var View $block */
 
 $product = $block->getProduct();
+
 ?>
-<script type="text/javascript">
-    function checkLEGO() {
-        try{
-            initPDP();
-        }
-        catch(e){
-            console.log("Error:" + e);
-        }
-    }
-    function initPDP(t) {
-        window.setTimeout(
-            LEGO.loadPdp(
-                'lg-pdp-cntnr',
-                '<?= $product->getSku() ?>',
-                'nl-NL,en-US',
-                'M18aMbb5My1Mt5hpV7DlX8qMmdUyvqBl8guMoTji'
-            ), t
-        );
-    }
-</script>
-<div id="lg-pdp-cntnr" x-data="{}" x-intersect="$dispatch('init-external-scripts');initPDP(2000);"></div>
+<div id="flix-inpage"></div>
