@@ -37,15 +37,11 @@
 }
 
 /**
-    Custom styling for LEGO PDP Content
+    Custom styling for Flixmedia Content
 **/
-.LEGO-product-detail-page {
-    @apply !font-sans;
-    video {
-        @apply !max-w-max;
-    }
+
+#flix-lego-inpage,
+#flix-std-inpage {
+    @apply !max-w-full;
 }
 
-.pdp-feature {
-    @apply !px-0 !my-4;
-}
