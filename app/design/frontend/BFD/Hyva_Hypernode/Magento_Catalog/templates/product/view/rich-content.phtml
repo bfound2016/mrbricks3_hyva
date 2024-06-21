@@ -15,4 +15,4 @@ use Magento\Catalog\Block\Product\View;
 $product = $block->getProduct();
 
 ?>
-<div id="flix-inpage"></div>
+<div id="flix-inpage" x-data="{}" @init = "document.querySelector('[flixtemplate-key="ugcs"]').remove()"></div>
