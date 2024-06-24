@@ -140,7 +140,12 @@ module.exports = hyvaModules.mergeTailwindConfig({
         '4xl': '2rem'
       },
       typography: {
-        maxWidth: '100%'
+        DEFAULT: {
+          css: {
+            maxWidth: '100%'
+          }
+        }
+
       }
     }
   },
