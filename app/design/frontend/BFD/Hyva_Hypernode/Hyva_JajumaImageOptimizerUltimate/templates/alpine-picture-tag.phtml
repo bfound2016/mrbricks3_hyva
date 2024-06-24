@@ -66,7 +66,7 @@ if($originalSrc == 'fullscreen ? image.full : image.img')
 
 
 <?php if($webpSrcset && $avifSrcset): ?>
-<script>console.log(<?= /* @noEscape */ $originalTag ?>)</script>
+<script>console.log("<?= /* @noEscape */ $originalTag ?>")</script>
 <picture>
     <?php if($block->isAvifEnabled()): ?>
     <source type="image/avif" :<?= /* @noEscape */ $srcsetTag?>="<?= /* @noEscape */ $avifSrcset?>">
