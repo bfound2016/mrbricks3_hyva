@@ -14,6 +14,10 @@ $originalSrc = $block->getOriginalImage();
 
 $srcsetTag = $block->getCustomSrcSetTag() ? $block->getCustomSrcSetTag() : "srcset";
 
+$isLazyLoadEnabled = $block->isNativeLazyLoadingEnabled();
+$excludeNativeLazyloadImageAttributes = $block->getExcludeNativeLazyloadImageAttributes();
+$isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $originalTag);
+
 /**
  * Need to hard code srcset for each case here
  * Because there is no rule for :srcset binding
@@ -47,8 +51,22 @@ if($originalSrc == 'fullscreen ? image.full : image.img')
     $originSrcHighres = 'fullscreen ? image.full_highres : image.img_highres'
 ?>
 
+<?php
+    if ($isLazyLoadEnabled && !$isImageInExcludeList) {
+        // add loading="lazy" at the end of the img tag
+        if (substr($originalTag, -2) === '/>') {
+            // replace "/>" with " loading="lazy" />"
+            $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
+        } elseif (substr($originalTag, -1) === '>') {
+            // replace ">" with " loading="lazy" >"
+            $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
+        }
+    }
+?>
+
 
 <?php if($webpSrcset && $avifSrcset): ?>
+<script>console.log(<?= /* @noEscape */ $originalTag ?>)</script>
 <picture>
     <?php if($block->isAvifEnabled()): ?>
     <source type="image/avif" :<?= /* @noEscape */ $srcsetTag?>="<?= /* @noEscape */ $avifSrcset?>">
