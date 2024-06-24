@@ -26,6 +26,18 @@ $isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $o
 
 $webpSrcset = $avifSrcset = false;
 
+if ($isLazyLoadEnabled && !$isImageInExcludeList) {
+    // add loading="lazy" at the end of the img tag
+    if (substr($originalTag, -2) === '/>') {
+        // replace "/>" with " loading="lazy" />"
+        $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
+    } elseif (substr($originalTag, -1) === '>') {
+        // replace ">" with " loading="lazy" >"
+        $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
+    }
+}
+
+
 if(strpos($originalSrc, 'small_image') !== false && strpos($originalSrc, 'item') === false) {
     //Slider Images
     $webpSrcset = "product.small_image.url_webp !== 'false' ? product.small_image.url_webp : ''";
@@ -51,22 +63,10 @@ if($originalSrc == 'fullscreen ? image.full : image.img')
     $originSrcHighres = 'fullscreen ? image.full_highres : image.img_highres'
 ?>
 
-<?php
-    if ($isLazyLoadEnabled && !$isImageInExcludeList) {
-        // add loading="lazy" at the end of the img tag
-        if (substr($originalTag, -2) === '/>') {
-            // replace "/>" with " loading="lazy" />"
-            $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
-        } elseif (substr($originalTag, -1) === '>') {
-            // replace ">" with " loading="lazy" >"
-            $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
-        }
-    }
-?>
+
 
 
 <?php if($webpSrcset && $avifSrcset): ?>
-<script>console.log("<?= /* @noEscape */ $originalTag ?>")</script>
 <picture>
     <?php if($block->isAvifEnabled()): ?>
     <source type="image/avif" :<?= /* @noEscape */ $srcsetTag?>="<?= /* @noEscape */ $avifSrcset?>">
