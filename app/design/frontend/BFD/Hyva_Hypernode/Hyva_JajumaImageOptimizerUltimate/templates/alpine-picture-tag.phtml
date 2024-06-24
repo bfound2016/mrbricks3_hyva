@@ -26,7 +26,8 @@ $isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $o
 
 $webpSrcset = $avifSrcset = false;
 
-if ($isLazyLoadEnabled && !$isImageInExcludeList) {
+/**
+ * if ($isLazyLoadEnabled && !$isImageInExcludeList) {
     // add loading="lazy" at the end of the img tag
     if (substr($originalTag, -2) === '/>') {
         // replace "/>" with " loading="lazy" />"
@@ -35,7 +36,7 @@ if ($isLazyLoadEnabled && !$isImageInExcludeList) {
         // replace ">" with " loading="lazy" >"
         $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
     }
-}
+}**/
 
 
 if(strpos($originalSrc, 'small_image') !== false && strpos($originalSrc, 'item') === false) {
