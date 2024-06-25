@@ -26,18 +26,6 @@ $isImageInExcludeList = preg_match_all($excludeNativeLazyloadImageAttributes, $o
 
 $webpSrcset = $avifSrcset = false;
 
-if ($isLazyLoadEnabled && !$isImageInExcludeList) {
-    // add loading="lazy" at the end of the img tag
-    if (substr($originalTag, -2) === '/>') {
-        // replace "/>" with " loading="lazy" />"
-        $originalTag = preg_replace('/\/>$/', ' loading="lazy" />', $originalTag);
-    } elseif (substr($originalTag, -1) === '>') {
-        // replace ">" with " loading="lazy" >"
-        $originalTag = preg_replace('/>$/', ' loading="lazy" >', $originalTag);
-    }
-}
-
-
 if(strpos($originalSrc, 'small_image') !== false && strpos($originalSrc, 'item') === false) {
     //Slider Images
     $webpSrcset = "product.small_image.url_webp !== 'false' ? product.small_image.url_webp : ''";
