@@ -21,7 +21,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url("../fonts/vag-rounded-bold.woff2");
+    src: url("../fonts/Poppins-Bold.woff2") format("woff2");
 }
 
 @font-face {
@@ -29,7 +29,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../fonts/MisterbricksRegular.woff2");
+    src: url("../fonts/MisterbricksRegular.woff2") format("woff2");
 }
 
 /*
