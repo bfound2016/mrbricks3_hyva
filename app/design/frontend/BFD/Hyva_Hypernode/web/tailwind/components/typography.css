@@ -11,7 +11,7 @@
 @font-face {
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 1 999;
+    font-weight: 400;
     font-display: swap;
     src: url("../fonts/Poppins-Regular.woff2") format("woff2");
 }
