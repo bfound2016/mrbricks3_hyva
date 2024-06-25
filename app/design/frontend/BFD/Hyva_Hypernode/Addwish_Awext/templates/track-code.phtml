@@ -1,0 +1,51 @@
+<?php
+/** @var $block  */
+?>
+<?php if ($block->isModuleEnabled()): ?>
+<script>
+    window.addEventListener('init-external-scripts', () => {
+        (function() {
+            function init() {
+                var aws = document.createElement("script");
+                aws.type = "text/javascript";
+                if (typeof(aws.async) != "undefined") { aws.async = true; }
+                aws.src = "<?php echo $block->getAwAddGiftUrl(); ?>";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(aws, s);
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "<?php echo $block->getBaseUrl() ?>rest/V1/awext/state");
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status == "200") {
+                        _awev = (window._awev || []);
+                        _awev.push(["bind", "crawl_completed", function() {
+                            try {
+                                var data = JSON.parse(xhr.responseText);
+                                data = data[0];
+                                if (data.cart) {
+                                    ADDWISH_PARTNER_NS.api.cart.setCart(data.cart);
+                                }
+                                if (data.order && data.order.total) {
+                                    ADDWISH_PARTNER_NS.api.conversion.track_sale(data.order);
+                                }
+                            } catch(e) {
+                                ADDWISH_PARTNER_NS.log("error parsing state", e);
+                            }
+                        }]);
+                    }
+                };
+                xhr.send();
+            }
+            <?php if ($block->isJQueryEnabled()): ?>
+            if (typeof(require) != "undefined") {
+                require(["jquery"], init);
+            } else {
+                init();
+            }
+            <?php else: ?>
+            init();
+            <?php endif; ?>
+        })();
+    }, {once:true, passive: true})
+</script>
+<?php endif; ?>
