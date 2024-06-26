@@ -17,9 +17,6 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
-use Hyva\Theme\ViewModel\CurrentCategory;
-use Magento\Catalog\Api\Data\CategoryInterface;
-
 /** @var Template $block */
 /** @var Escaper $escaper */
 /** @var ViewModelRegistry $viewModels */
@@ -33,14 +30,6 @@ $attributesViewModel = $viewModels->require(ProductAttributes::class);
 /** @var Product $product */
 $product        = $productViewModel->getProduct();
 $productType    = $product->getTypeId();
-
-/** @var CurrentCategory $currentCategory */
-/** @var CategoryInterface $categoryInterface */
-$productCategoryIds     = $product->getAvailableInCategories();
-$currentCategory        = $viewModels->require(CurrentCategory::class);
-$currentCategory        = $currentCategory->set($categoryInterface->setId(end($productCategoryIds)))->fetch();
-
-
 
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1">
