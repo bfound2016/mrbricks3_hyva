@@ -30,6 +30,9 @@ $product = $productViewModel->getProduct();
 $productType = $product->getTypeId();
 
 ?>
+<div class="hidden md:col-start-1 md:row-start-1">
+    <?= $product->getCategory(); ?>
+</div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
     /**
