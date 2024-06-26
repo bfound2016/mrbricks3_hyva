@@ -30,7 +30,7 @@ $product = $productViewModel->getProduct();
 $productType = $product->getTypeId();
 
 ?>
-<div class="hidden md:col-start-1 md:row-start-1">
+<div class="hidden md:block md:col-start-2 md:row-start-1">
     <?php foreach ($product->getAvailableInCategories() as &$category): ?>
         <span><?=$category?></span>
     <?php endforeach; ?>
