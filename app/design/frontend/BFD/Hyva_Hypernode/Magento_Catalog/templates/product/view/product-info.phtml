@@ -14,9 +14,11 @@ use Hyva\Theme\ViewModel\ProductCompare;
 use Hyva\Theme\ViewModel\ProductPage;
 use Hyva\Theme\ViewModel\Wishlist;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\Category;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
+
+use Hyva\Theme\ViewModel\CurrentCategory;
+use Magento\Catalog\Api\Data\CategoryInterface;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -32,13 +34,17 @@ $attributesViewModel = $viewModels->require(ProductAttributes::class);
 $product        = $productViewModel->getProduct();
 $productType    = $product->getTypeId();
 
-/** @var Category $category */
-$productCategories      = $product->getAvailableInCategories();
-$currentCategory        = $category->getCategoryId(end($productCategories));
-$currentCategoryLogo    = $currentCategory->getData('category_logo');
+/** @var CurrentCategory $currentCategory */
+/** @var CategoryInterface $categoryInterface */
+$productCategoryIds     = $product->getAvailableInCategories();
+$currentCategory        = $viewModels->require(CurrentCategory::class);
+$currentCategory        = $currentCategory->set($categoryInterface->setId(end($productCategoryIds)))->fetch();
+
+
+
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1">
-    <span><?= $currentCategoryLogo; ?></span>
+    <span>...</span>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
