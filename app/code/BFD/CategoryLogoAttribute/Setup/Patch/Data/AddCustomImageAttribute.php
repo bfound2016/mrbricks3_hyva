@@ -1,6 +1,6 @@
 <?php
 
-namespace BFD\CustomCategoryAttributes\Setup\Patch\Data;
+namespace BFD\CategoryLogoAttribute\Setup\Patch\Data;
 
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;

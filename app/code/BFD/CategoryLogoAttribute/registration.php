@@ -10,7 +10,7 @@
  * https://b-found.nl/BfoundDigital-Commerce-License.txt
  *
  * @category   BFOUND DIGITAL
- * @package    BDD_CustomCategoryAttributes
+ * @package    BDD_CategoryLogoAttribute
  * @author     Paul Leenheer
  * @copyright  Copyright (c) 2024 B-Found Digital.
  * @license    https://b-found.nl/BfoundDigital-Commerce-License.txt
@@ -18,6 +18,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'BFD_CustomCategoryAttributes',
+    'BFD_CategoryLogoAttribute',
     __DIR__
 );

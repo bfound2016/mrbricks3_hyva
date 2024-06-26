@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="bfd_logo" frontName="bfd_logo">
-            <module name="BFD_CustomCategoryAttributes"/>
+            <module name="BFD_CategoryLogoAttribute"/>
         </route>
     </router>
 </config>
