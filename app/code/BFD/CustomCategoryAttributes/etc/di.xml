@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Catalog\Model\Category\DataProvider" type="BFD\CustomCategoryAttributes\Model\Category\DataProvider" />
-    <type name="Webkul\ProductFileAttribute\Controller\Adminhtml\Category\Image\Upload">
+    <type name="BFD\CustomCategoryAttributes\Controller\Adminhtml\Category\Image\Upload">
         <arguments>
             <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
         </arguments>
