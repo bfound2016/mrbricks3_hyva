@@ -8,6 +8,7 @@
                     <item name="dataType" xsi:type="string">string</item>
                     <item name="source" xsi:type="string">category</item>
                     <item name="label" xsi:type="string" translate="true">Category Background</item>
+                    <item name="description" xsi:type="string" translate="true">Upload hier de achtergrondafbeelding in JPG, SVG, PNG of GIF</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
