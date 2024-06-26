@@ -1,5 +1,5 @@
 <?php
-namespace Vendor\Module\Model\Category;
+namespace BFD\CustomCategoryAttributes\Model\Category;
 
 class DataProvider extends \Magento\Catalog\Model\Category\DataProvider
 {

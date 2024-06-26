@@ -1,5 +1,5 @@
 <?php
-namespace Vendor\Module\Controller\Adminhtml\Category\Image;
+namespace BFD\CustomCategoryAttributes\Controller\Adminhtml\Category\Image;
 
 use Magento\Framework\Controller\ResultFactory;
 
@@ -79,7 +79,7 @@ class Upload extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Vendor_Module::category');
+        return $this->_authorization->isAllowed('BFD_CustomCategoryAttributes::category');
     }
 
     /**
