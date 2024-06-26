@@ -15,7 +15,7 @@
                     <item name="required" xsi:type="boolean">false</item>
                     <item name="sortOrder" xsi:type="number">40</item>
                     <item name="uploaderConfig" xsi:type="array">
-                        <item name="url" xsi:type="url" path="bfd_customcategoryattributes/category_image/upload"/>
+                        <item name="url" xsi:type="url" path="bfd_logo/category_image/upload"/>
                     </item>
                 </item>
             </argument>
