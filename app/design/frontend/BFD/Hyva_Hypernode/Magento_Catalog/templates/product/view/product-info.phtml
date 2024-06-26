@@ -31,7 +31,9 @@ $productType = $product->getTypeId();
 
 ?>
 <div class="hidden md:col-start-1 md:row-start-1">
-    <?php print_r($product); ?>
+    <?php foreach ($product->getAvailableInCategories() as &$category): ?>
+        <span><?=$category?></span>
+    <?php endforeach; ?>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
