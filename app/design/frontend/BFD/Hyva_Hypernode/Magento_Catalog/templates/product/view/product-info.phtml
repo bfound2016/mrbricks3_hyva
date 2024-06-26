@@ -14,7 +14,7 @@ use Hyva\Theme\ViewModel\ProductCompare;
 use Hyva\Theme\ViewModel\ProductPage;
 use Hyva\Theme\ViewModel\Wishlist;
 use Magento\Catalog\Model\Product;
-use Hyva\Theme\ViewModel\CurrentCategory;
+use Magento\Catalog\Model\Category;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
@@ -24,20 +24,21 @@ use Magento\Framework\View\Element\Template;
 
 /** @var ProductPage $productViewModel */
 $productViewModel = $viewModels->require(ProductPage::class);
+
 /** @var ProductAttributes $attributesViewModel */
 $attributesViewModel = $viewModels->require(ProductAttributes::class);
-/** @var Product $product */
-$product = $productViewModel->getProduct();
-$productType = $product->getTypeId();
-/** @var CurrentCategory $currentCategoryViewModel */
-$currentCategoryViewModel = $viewModels->require(CurrentCategory::class);
 
+/** @var Product $product */
+$product        = $productViewModel->getProduct();
+$productType    = $product->getTypeId();
+
+/** @var Category $category */
+$productCategories      = $product->getAvailableInCategories();
+$currentCategory        = $category->getCategoryId(end($productCategories));
+$currentCategoryLogo    = $currentCategory->getData('category_logo');
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1">
-    <?php foreach ($product->getAvailableInCategories() as &$category): ?>
-        <span><?=$category?></span>
-    <?php endforeach; ?>
-    <?= "Huidge:" . $currentCategoryViewModel->fetch(); ?>
+    <span><?= $currentCategoryLogo; ?></span>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
