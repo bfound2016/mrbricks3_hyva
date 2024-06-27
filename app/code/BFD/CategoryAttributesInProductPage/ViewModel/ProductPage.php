@@ -1,12 +1,12 @@
 <?php
 
-namespace BFD\CategoryAttributesInProductPage\Plugin;
+namespace BFD\CategoryAttributesInProductPage\ViewModel;
 
-use Hyva\Theme\ViewModel\ProductPage as Subject;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
-class HyvaThemeProductPagePlugin
+
+class ProductPage extends \Hyva\Theme\ViewModel\ProductPage
 {
     /**
      * @var CategoryRepositoryInterface
@@ -19,17 +19,16 @@ class HyvaThemeProductPagePlugin
     public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        parent::__construct();
     }
 
     /**
-     * Add a new method to get multiple category attributes.
+     * Get multiple category attributes.
      *
-     * @param Subject $subject
-     * @param callable $proceed
      * @param ProductInterface $product
      * @return array
      */
-    public function aroundGetCategoriesData(Subject $subject, callable $proceed, ProductInterface $product): array
+    public function getCategoriesData(ProductInterface $product): array
     {
         $categoryIds = $product->getCategoryIds();
         $categoriesData = [];
