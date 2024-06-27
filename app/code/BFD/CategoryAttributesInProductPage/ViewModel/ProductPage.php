@@ -14,7 +14,7 @@ use Magento\Catalog\Helper\Output as ProductOutputHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Block\Product\ImageFactory;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\UrlInterface
+use Magento\Framework\UrlInterface;
 
 class ProductPage extends HyvaProductPage
 {
