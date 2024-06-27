@@ -3,4 +3,5 @@
     <type name="Hyva\Theme\ViewModel\ProductPage">
         <plugin name="bfd_categoryattributesinproductpage_plugin" type="BFD\CategoryAttributesInProductPage\Plugin\HyvaThemeProductPagePlugin" />
     </type>
+    <preference for="Hyva\Theme\ViewModel\ProductPage" type="BFD\CategoryAttributesInProductPage\ViewModel\ProductPage" />
 </config>
