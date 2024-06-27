@@ -11,7 +11,8 @@ declare(strict_types=1);
 use Hyva\Theme\Model\ViewModelRegistry;
 use Hyva\Theme\ViewModel\ProductAttributes;
 use Hyva\Theme\ViewModel\ProductCompare;
-use Hyva\Theme\ViewModel\ProductPage;
+//use Hyva\Theme\ViewModel\ProductPage;
+use BFD\CategoryAttributesInProductPage\ViewModel\ProductPage;
 use Hyva\Theme\ViewModel\Wishlist;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Escaper;
@@ -31,10 +32,16 @@ $attributesViewModel = $viewModels->require(ProductAttributes::class);
 $product        = $productViewModel->getProduct();
 $productType    = $product->getTypeId();
 
+$categoriesData = $productViewModel->getCategoriesData($product);
+
 
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1">
-    <span>...</span>
+    <?php foreach ($categoriesData as $categoryData): ?>
+        <span><?= $categoryData['name']?>></span>
+        <span><?= $categoryData['category_logo']?></span>
+        <span><?= $categoryData['category_background']?></span>
+    <?php endforeach; ?>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
     <?php
