@@ -56,11 +56,14 @@ class ProductPage extends HyvaProductPage
         foreach ($categoryIds as $categoryId) {
             try {
                 $category = $this->categoryRepository->get($categoryId);
+                $categoryLogoAttribute = $category->getCustomAttribute('category_logo');
+                $categoryBackgroundAttribute = $category->getCustomAttribute('category_background');
+
                 $categoriesData[] = [
                     'id' => $category->getId(),
                     'name' => $category->getName(),
-                    'category_logo' => $category->getCustomAttribute('category_logo')->getValue(),
-                    'category_background' => $category->getCustomAttribute('category_background')->getValue()
+                    'category_logo' => $categoryLogoAttribute ? $categoryLogoAttribute->getValue() : null,
+                    'category_background' => $categoryBackgroundAttribute ? $categoryBackgroundAttribute->getValue() : null
                 ];
             } catch (NoSuchEntityException $e) {
                 // Handle the exception if needed
