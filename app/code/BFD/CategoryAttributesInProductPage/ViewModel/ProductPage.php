@@ -98,12 +98,17 @@ class ProductPage extends HyvaProductPage
         return $this->storeManager->getStore()->getBaseUrl();
     }
 
+    public function getUrlSuffix(): string
+    {
+        return (string)$this->scopeConfig->getValue('catalog/seo/category_url_suffix', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
     public function getCategoryUrl($categoryId): string
     {
         try{
             $category = $this->categoryRepository->get($categoryId);
             $urlKey = $category->getUrlKey();
-            return $this->urlInterface->getUrl($urlKey);
+
+            return $this->urlInterface->getUrl($urlKey) . $this->getUrlSuffix();
         } catch (NoSuchEntityException $e) {
             // Handle the exception if needed
             return '';
