@@ -112,9 +112,10 @@ class ProductPage extends HyvaProductPage
     {
         try{
             $category = $this->categoryRepository->get($categoryId);
-            $urlKey = rtrim($category->getUrlKey(),'/');
+            $urlKey = $category->getUrlKey();
+            $url = rtrim($this->urlInterface->getUrl($urlKey),'/');
 
-            return $this->urlInterface->getUrl($urlKey) . $this->getUrlSuffix();
+            return $url . $this->getUrlSuffix();
         } catch (NoSuchEntityException $e) {
             // Handle the exception if needed
             return '';
