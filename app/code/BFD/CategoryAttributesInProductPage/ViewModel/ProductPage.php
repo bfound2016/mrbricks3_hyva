@@ -34,6 +34,11 @@ class ProductPage extends HyvaProductPage
     private $urlInterface;
 
     /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
+
+    /**
      * @param CategoryRepositoryInterface $categoryRepository
      * @param Registry $registry
      * @param PriceCurrencyInterface $priceCurrency
@@ -50,7 +55,7 @@ class ProductPage extends HyvaProductPage
         PriceCurrencyInterface $priceCurrency,
         CartHelper $cartHelper,
         ProductOutputHelper $productOutputHelper,
-        ScopeConfigInterface $scopeConfigInterface,
+        ScopeConfigInterface $scopeConfig,
         ImageFactory $productImageFactory,
         StoreManagerInterface $storeManager,
         UrlInterface $urlInterface
@@ -58,8 +63,9 @@ class ProductPage extends HyvaProductPage
         $this->categoryRepository = $categoryRepository;
         $this->storeManager = $storeManager;
         $this->urlInterface = $urlInterface;
+        $this->scopeConfig = $scopeConfig;
 
-        parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfigInterface, $productImageFactory);
+        parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfig, $productImageFactory);
     }
 
     /**
