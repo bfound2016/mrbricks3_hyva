@@ -32,13 +32,11 @@ $product        = $productViewModel->getProduct();
 $productType    = $product->getTypeId();
 
 $categoriesData = $productViewModel->getCategoriesData($product);
-
-
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1">
     <?php foreach ($categoriesData as $categoryData): ?>
-        <span><?= $categoryData['name']?>></span>
-        <span><?= $categoryData['category_logo']?></span>
+        <span><?= $categoryData['name']?></span>
+        <span><img class src="<?= $productViewModel->getStoreUrl() $categoryData['category_logo']?></span>
         <span><?= $categoryData['category_background']?></span>
     <?php endforeach; ?>
 </div>

@@ -12,6 +12,7 @@ use Magento\Checkout\Helper\Cart as CartHelper;
 use Magento\Catalog\Helper\Output as ProductOutputHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Block\Product\ImageFactory;
+use Magento\Store\Model\StoreManagerInterface;
 
 class ProductPage extends HyvaProductPage
 {
@@ -21,6 +22,11 @@ class ProductPage extends HyvaProductPage
     private $categoryRepository;
 
     /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
      * @param CategoryRepositoryInterface $categoryRepository
      * @param Registry $registry
      * @param PriceCurrencyInterface $priceCurrency
@@ -28,6 +34,7 @@ class ProductPage extends HyvaProductPage
      * @param ProductOutputHelper $productOutputHelper
      * @param ScopeConfigInterface $scopeConfigInterface
      * @param ImageFactory $productImageFactory
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
@@ -36,9 +43,11 @@ class ProductPage extends HyvaProductPage
         CartHelper $cartHelper,
         ProductOutputHelper $productOutputHelper,
         ScopeConfigInterface $scopeConfigInterface,
-        ImageFactory $productImageFactory
+        ImageFactory $productImageFactory,
+        StoreManagerInterface $storeManager
     ) {
         $this->categoryRepository = $categoryRepository;
+        $this->storeManager = $storeManager;
         parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfigInterface, $productImageFactory);
     }
 
@@ -71,5 +80,10 @@ class ProductPage extends HyvaProductPage
         }
 
         return $categoriesData;
+    }
+
+    public function getStoreUrl(): string
+    {
+        return $this->storeManager->getStore()->getBaseUrl();
     }
 }
