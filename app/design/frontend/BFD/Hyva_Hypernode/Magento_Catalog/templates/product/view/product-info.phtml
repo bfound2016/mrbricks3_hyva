@@ -33,11 +33,9 @@ $productType    = $product->getTypeId();
 
 $categoriesData = $productViewModel->getCategoriesData($product);
 ?>
-<div class="hidden md:block md:col-start-2 md:row-start-1">
+<div class="hidden md:block md:col-start-2 md:row-start-1 md:flex md:flex-row md:gap-4">
     <?php foreach ($categoriesData as $categoryData): ?>
-        <span><?= $categoryData['name']?></span>
-        <span><img class="block" src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>" /></span>
-        <span><?= $categoryData['category_background']?></span>
+        <span><img class="block" src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>" alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema" /></span>
     <?php endforeach; ?>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
