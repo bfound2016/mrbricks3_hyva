@@ -100,6 +100,13 @@ class ProductPage extends HyvaProductPage
 
     public function getCategoryUrl($categoryId): string
     {
-        return $this->urlInterface->getUrl('catalog/category/view', ['id' => $categoryId]);
+        try{
+            $category = $this->categoryRepository->get($categoryId);
+            $urlKey = $category->getUrlKey();
+            return $this->urlInterface->getUrl($urlKey);
+        } catch (NoSuchEntityException $e) {
+            // Handle the exception if needed
+            return '';
+        }
     }
 }
