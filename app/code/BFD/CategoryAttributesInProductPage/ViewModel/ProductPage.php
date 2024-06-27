@@ -2,6 +2,7 @@
 
 namespace BFD\CategoryAttributesInProductPage\ViewModel;
 
+use Composer\Util\Url;
 use Hyva\Theme\ViewModel\ProductPage as HyvaProductPage;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
@@ -13,6 +14,7 @@ use Magento\Catalog\Helper\Output as ProductOutputHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Block\Product\ImageFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\UrlInterface
 
 class ProductPage extends HyvaProductPage
 {
@@ -27,6 +29,11 @@ class ProductPage extends HyvaProductPage
     private $storeManager;
 
     /**
+     * @var UrlInterface
+     */
+    private $urlInterface;
+
+    /**
      * @param CategoryRepositoryInterface $categoryRepository
      * @param Registry $registry
      * @param PriceCurrencyInterface $priceCurrency
@@ -35,6 +42,7 @@ class ProductPage extends HyvaProductPage
      * @param ScopeConfigInterface $scopeConfigInterface
      * @param ImageFactory $productImageFactory
      * @param StoreManagerInterface $storeManager
+     * @param UrlInterface $urlInterface
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
@@ -44,10 +52,13 @@ class ProductPage extends HyvaProductPage
         ProductOutputHelper $productOutputHelper,
         ScopeConfigInterface $scopeConfigInterface,
         ImageFactory $productImageFactory,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        UrlInterface $urlInterface
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->storeManager = $storeManager;
+        $this->urlInterface = $urlInterface;
+
         parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfigInterface, $productImageFactory);
     }
 
@@ -85,5 +96,10 @@ class ProductPage extends HyvaProductPage
     public function getStoreUrl(): string
     {
         return $this->storeManager->getStore()->getBaseUrl();
+    }
+
+    public function getCategoryUrl($categoryId): string
+    {
+        return $this->urlInterface->getUrl('catalog/category/view', ['id' => $categoryId]);
     }
 }

@@ -35,7 +35,9 @@ $categoriesData = $productViewModel->getCategoriesData($product);
 ?>
 <div class="hidden md:block md:col-start-2 md:row-start-1 md:flex md:flex-row md:gap-4">
     <?php foreach ($categoriesData as $categoryData): ?>
-        <span><img class="block" src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>" alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema" /></span>
+        <a href="<?= $escaper->escapeUrl($productViewModel->getCategoryUrl($categoryData["id"])) ?>" target="_self" aria-label="Logo link for <?= $escaper->escapeHtmlAttr($categoryData['name']) ?> theme">
+            <img class="block" src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>" alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema" /></span>
+        </a>
     <?php endforeach; ?>
 </div>
 <div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
