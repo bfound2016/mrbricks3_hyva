@@ -2,11 +2,18 @@
 
 namespace BFD\CategoryAttributesInProductPage\ViewModel;
 
+use Hyva\Theme\ViewModel\ProductPage as HyvaProductPage;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Registry;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Checkout\Helper\Cart as CartHelper;
+use Magento\Catalog\Helper\Output as ProductOutputHelper;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Catalog\Block\Product\ImageFactory;
 
-class ProductPage extends \Hyva\Theme\ViewModel\ProductPage
+class ProductPage extends HyvaProductPage
 {
     /**
      * @var CategoryRepositoryInterface
@@ -15,11 +22,24 @@ class ProductPage extends \Hyva\Theme\ViewModel\ProductPage
 
     /**
      * @param CategoryRepositoryInterface $categoryRepository
+     * @param Registry $registry
+     * @param PriceCurrencyInterface $priceCurrency
+     * @param CartHelper $cartHelper
+     * @param ProductOutputHelper $productOutputHelper
+     * @param ScopeConfigInterface $scopeConfigInterface
+     * @param ImageFactory $productImageFactory
      */
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
-    {
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        Registry $registry,
+        PriceCurrencyInterface $priceCurrency,
+        CartHelper $cartHelper,
+        ProductOutputHelper $productOutputHelper,
+        ScopeConfigInterface $scopeConfigInterface,
+        ImageFactory $productImageFactory
+    ) {
         $this->categoryRepository = $categoryRepository;
-        parent::__construct();
+        parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfigInterface, $productImageFactory);
     }
 
     /**
