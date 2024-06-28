@@ -33,7 +33,7 @@ $productType    = $product->getTypeId();
 
 $categoriesData = $productViewModel->getCategoriesData($product);
 ?>
-<div class="hidden md:flex md:flex-row md:row-reverse md:gap-4 md:col-start-2 md:row-start-1">
+<div class="hidden md:flex md:flex-row md:justify-end md:gap-4 md:col-start-2 md:row-start-1">
     <?php foreach ($categoriesData as $categoryData): ?>
         <?php if ($categoryData['category_logo'] == null) continue; ?>
         <a href="<?= $escaper->escapeUrl($productViewModel->getCategoryUrl($categoryData["id"])) ?>" target="_self" aria-label="Logo link for <?= $escaper->escapeHtmlAttr($categoryData['name']) ?> theme">
