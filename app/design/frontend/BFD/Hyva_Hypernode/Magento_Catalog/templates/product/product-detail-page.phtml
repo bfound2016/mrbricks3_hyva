@@ -9,12 +9,31 @@
 declare(strict_types=1);
 
 use Magento\Catalog\Block\Product\View;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\ProductPage;
 
 /** @var View $block */
+/** @var ViewModelRegistry $viewModels */
 
 $product = $block->getProduct();
+$productViewModel = $viewModels->require(ProductPage::class);
 ?>
-<section class="text-gray-700 body-font">
+<script>
+    function setPageBackground() {
+        var productCategories   = <?= json_encode($productViewModel->getCategoriesData($product)) ?>;
+        var categoryBackground  = productCategories.find(function(category) {
+            return category.category_background !== null;
+        });
+
+        if (categoryBackground) {
+            document.body.style.backgroundImage = 'url(' + categoryBackground.category_background + ')';
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundRepeat = 'no-repeat';
+        }
+    }
+</script>
+<section x-data={} x-init="setPageBackground()" class="text-gray-700 body-font">
     <div class="flex pb-6 md:py-6 lg:flex-row flex-col items-center">
         <div class="grid grid-rows-auto grid-cols-1 md:gap-x-5 md:grid-cols-[42%_minmax(0,_1fr)] md:grid-rows-[min-content_minmax(0,_1fr)] lg:gap-x-20 lg:grid-cols-[60%_minmax(0,_1fr)] w-full">
             <?= $block->getChildHtml('product.title') ?>
