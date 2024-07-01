@@ -17,7 +17,7 @@ use Hyva\Theme\ViewModel\ProductPage;
 
 $product = $block->getProduct();
 $productViewModel = $viewModels->require(ProductPage::class);
-$mediaUrl = $productViewModel->getMediaUrl();
+$baseUrl = $productViewModel->getBaseUrl();
 ?>
 <script>
     function setPageBackground() {
@@ -27,7 +27,7 @@ $mediaUrl = $productViewModel->getMediaUrl();
         });
 
         if (categoryBackground) {
-            document.body.style.backgroundImage = 'url(' + '<?= $mediaUrl ?>' + categoryBackground.category_background + ')';
+            document.body.style.backgroundImage = 'url(' + '<?= $baseUrl ?>' + categoryBackground.category_background + ')';
             document.body.style.backgroundSize = 'cover';
             document.body.style.backgroundPosition = 'center';
             document.body.style.backgroundRepeat = 'no-repeat';
