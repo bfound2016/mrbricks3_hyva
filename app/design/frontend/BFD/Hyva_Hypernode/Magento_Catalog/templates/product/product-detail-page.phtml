@@ -21,7 +21,7 @@ $baseUrl = $productViewModel->getBaseUrl();
 ?>
 <script>
     function setPageBackground() {
-        if (window.matchMedia("(min-width: 769px)").matches) {
+        if (!window.matchMedia("(max-width: 767px)").matches) {
             var productCategories   = <?= json_encode($productViewModel->getCategoriesData($product)) ?>;
             var categoryBackground  = productCategories.find(function(category) {
                 return category.category_background !== null;
@@ -37,6 +37,7 @@ $baseUrl = $productViewModel->getBaseUrl();
                     document.body.style.backgroundRepeat = 'no-repeat';
                 }
             }
+            console.log("I'm on a non-mobile device");
         }
     }
 </script>
