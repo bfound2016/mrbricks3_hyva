@@ -17,7 +17,7 @@ use Hyva\Theme\ViewModel\ProductPage;
 
 $product = $block->getProduct();
 $productViewModel = $viewModels->require(ProductPage::class);
-$mediaUrl = $productViewModel->getMediaUrl();
+$mediaUrl = $block->getMediaUrl();
 ?>
 <script>
     function setPageBackground() {

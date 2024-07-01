@@ -121,4 +121,14 @@ class ProductPage extends HyvaProductPage
             return '';
         }
     }
+
+    public function getMediaUrl(): string
+    {
+        try {
+            return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+        } catch (NoSuchEntityException $e) {
+            // Handle the exception if needed
+            return '';
+        }
+    }
 }
