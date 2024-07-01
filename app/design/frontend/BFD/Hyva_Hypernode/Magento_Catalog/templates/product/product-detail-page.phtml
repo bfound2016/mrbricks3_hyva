@@ -28,8 +28,8 @@ $baseUrl = $productViewModel->getBaseUrl();
 
         if (categoryBackground) {
             document.body.style.backgroundImage = 'url(' + '<?= $baseUrl ?>' + categoryBackground.category_background + ')';
-            document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundSize = 'contain';
+            document.body.style.backgroundPosition = 'center top';
             document.body.style.backgroundRepeat = 'no-repeat';
         }
     }
