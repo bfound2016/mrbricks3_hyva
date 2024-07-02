@@ -35,20 +35,22 @@ $categoriesData = $productViewModel->getCategoriesData($product);
 ?>
 <div class="hidden md:flex md:flex-row md:justify-end md:gap-4 md:col-start-2 md:row-start-1">
     <?php foreach ($categoriesData as $categoryData): ?>
-        <?php if ($categoryData['category_logo'] == null) continue; ?>
-        <script>
-            function setLogoDimensions(src) {
-                let img = new Image();
-                img.src = src;
-                img.onload = function() {
-                    let logo = document.getElementById('category_logo');
-                    logo.width = img.width / 2;
-                    logo.height = img.height / 2;
-                }
-            }
-        </script>
+        <?php
+            if ($categoryData['category_logo'] == null) continue;
+            /**
+             * Method to get image dimensions
+             * @var $imagepath string
+             */
+            $imagepath = $productViewModel->getStoreUrl() . $categoryData['category_logo'];
+            list ($width, $height) = getimagesize($imagepath);
+        ?>
+
         <a href="<?= $escaper->escapeUrl($productViewModel->getCategoryUrl($categoryData["id"])) ?>" target="_self" aria-label="Logo link for <?= $escaper->escapeHtmlAttr($categoryData['name']) ?> theme">
-            <img id="category_logo" x-data="{}" x-init="setLogoDimensions($el.src)" src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>" alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema" /></span>
+            <img id="category_logo"
+                 src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>"
+                 alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema"
+                 width="<?= $width/2?>"
+                 height="<?= $height/2;?>" />
         </a>
         <?php break; ?>
     <?php endforeach; ?>
