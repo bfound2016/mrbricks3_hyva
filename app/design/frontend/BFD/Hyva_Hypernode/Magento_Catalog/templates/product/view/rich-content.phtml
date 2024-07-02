@@ -17,8 +17,15 @@ $product = $block->getProduct();
 ?>
 <script type="text/javascript">
     function richMediaInit() {
-        document.querySelector('[flixtemplate-key="ugcs"]').remove();
-        document.querySelector('#flix-privacy-policy').parentElement.remove();
+        let ugcsElement = document.querySelector('[flixtemplate-key="ugcs"]');
+        if (ugcsElement) {
+            ugcsElement.remove();
+        }
+
+        let flixPrivacyPolicyElement = document.querySelector('#flix-privacy-policy');
+        if (flixPrivacyPolicyElement && flixPrivacyPolicyElement.parentElement) {
+            flixPrivacyPolicyElement.parentElement.remove();
+        }
     }
 </script>
 <div id="flix-inpage" x-data="{}" x-intersect="richMediaInit()"></div>
