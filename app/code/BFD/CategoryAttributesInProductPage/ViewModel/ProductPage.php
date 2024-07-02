@@ -15,6 +15,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Block\Product\ImageFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\UrlInterface;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
 class ProductPage extends HyvaProductPage
 {
@@ -39,6 +40,11 @@ class ProductPage extends HyvaProductPage
     private $scopeConfig;
 
     /**
+     * @var DirectoryList
+     */
+    private $directoryList;
+
+    /**
      * @param CategoryRepositoryInterface $categoryRepository
      * @param Registry $registry
      * @param PriceCurrencyInterface $priceCurrency
@@ -48,6 +54,7 @@ class ProductPage extends HyvaProductPage
      * @param ImageFactory $productImageFactory
      * @param StoreManagerInterface $storeManager
      * @param UrlInterface $urlInterface
+     * @param DirectoryList $directoryList
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
@@ -58,12 +65,14 @@ class ProductPage extends HyvaProductPage
         ScopeConfigInterface $scopeConfig,
         ImageFactory $productImageFactory,
         StoreManagerInterface $storeManager,
-        UrlInterface $urlInterface
+        UrlInterface $urlInterface,
+        DirectoryList $directoryList
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->storeManager = $storeManager;
         $this->urlInterface = $urlInterface;
         $this->scopeConfig = $scopeConfig;
+        $this->directoryList = $directoryList;
 
         parent::__construct($registry, $priceCurrency, $cartHelper, $productOutputHelper, $scopeConfig, $productImageFactory);
     }
@@ -99,6 +108,8 @@ class ProductPage extends HyvaProductPage
         return $categoriesData;
     }
 
+
+
     public function getStoreUrl(): string
     {
         return $this->storeManager->getStore()->getBaseUrl();
@@ -127,6 +138,16 @@ class ProductPage extends HyvaProductPage
         try {
             return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_LINK);
         } catch (NoSuchEntityException $e) {
+            // Handle the exception if needed
+            return '';
+        }
+    }
+
+    public function getBaseMediaDir(): string
+    {
+        try {
+            return $this->directoryList->getPath(DirectoryList::MEDIA);
+        } catch (\Exception $e) {
             // Handle the exception if needed
             return '';
         }

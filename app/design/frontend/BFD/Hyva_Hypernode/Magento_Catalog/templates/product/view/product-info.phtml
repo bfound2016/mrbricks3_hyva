@@ -37,11 +37,14 @@ $categoriesData = $productViewModel->getCategoriesData($product);
     <?php foreach ($categoriesData as $categoryData): ?>
         <?php
             if ($categoryData['category_logo'] == null) continue;
+
+            $baseMediaDir = $productViewModel->getBaseMediaDir();
+
             /**
              * Method to get image dimensions
              * @var $imagepath string
              */
-            $imagepath = $categoryData['category_logo'];
+            $imagepath = $baseMediaDir . $categoryData['category_logo'];
             list ($width, $height) = getimagesize($imagepath);
         ?>
 
