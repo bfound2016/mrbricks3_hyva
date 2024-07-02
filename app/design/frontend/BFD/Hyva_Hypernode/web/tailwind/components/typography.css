@@ -32,7 +32,6 @@
     src: url("../fonts/MisterbricksRegular.woff2") format("woff2");
 }
 
-/*
 @font-face {
     font-family: "VAG Rounded";
     font-style: normal;
@@ -41,6 +40,7 @@
     src: url("../fonts/vag-rounded-bold.woff2");
 }
 
+/*
 @font-face {
     font-family: "VAG Rounded";
     font-style: normal;
@@ -66,4 +66,9 @@ body {
 
 .price-font{
     font-family: "Misterbricks","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+}
+
+.price-listing-font{
+    font-family: "VAG Rounded","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+    @apply text-base;
 }
