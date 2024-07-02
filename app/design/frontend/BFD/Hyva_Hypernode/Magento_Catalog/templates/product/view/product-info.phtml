@@ -41,7 +41,7 @@ $categoriesData = $productViewModel->getCategoriesData($product);
              * Method to get image dimensions
              * @var $imagepath string
              */
-            $imagepath = $productViewModel->getStoreUrl() . $categoryData['category_logo'];
+            $imagepath = $categoryData['category_logo'];
             list ($width, $height) = getimagesize($imagepath);
         ?>
 
