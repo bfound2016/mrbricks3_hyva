@@ -114,7 +114,7 @@ if($product->getTypeId() === 'configurable'){
         <button type="submit"
                 form="product_addtocart_form"
                 title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl "
+                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl justify-center"
                 id="product-addtocart-button"
         >
             <?php if($isPreOder) : ?>
@@ -133,7 +133,7 @@ if($product->getTypeId() === 'configurable'){
         <button type="submit"
                 form="product_addtocart_form"
                 title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl"
+                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl justify-center"
                 id="product-addtocart-button"
         >
             <?= $heroicons->shoppingCartHtml('text-white lg:mr-4', 24, 24, ["aria-hidden" => "true"]); ?>
