@@ -41,9 +41,9 @@ $categoriesData = $productViewModel->getCategoriesData($product);
                 let img = new Image();
                 img.src = src;
                 img.onload = function() {
-                    let logo = document.querySelector('#category_logo');
-                    logo.style.width = img.width + 'px';
-                    logo.style.height = img.height + 'px';
+                    let logo = document.getElementById('category_logo');
+                    logo.width = img.width;
+                    logo.height = img.height;
                 }
             }
         </script>
