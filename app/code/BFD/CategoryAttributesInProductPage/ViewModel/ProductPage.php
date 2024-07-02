@@ -146,7 +146,7 @@ class ProductPage extends HyvaProductPage
     public function getBaseMediaDir(): string
     {
         try {
-            return $this->directoryList->getPath(DirectoryList::MEDIA);
+            return rtrim($this->directoryList->getPath(DirectoryList::MEDIA),'media/');
         } catch (\Exception $e) {
             // Handle the exception if needed
             return '';
