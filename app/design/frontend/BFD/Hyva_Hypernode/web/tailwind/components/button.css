@@ -22,7 +22,7 @@
          }
 
         &:focus {
-             @apply outline-none border-transparent ring-4 ring-primary ring-opacity-50;
+             @apply outline-none border-transparent;
         }
     }
 
