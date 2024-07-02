@@ -122,6 +122,7 @@ if($product->getTypeId() === 'configurable'){
                         <?= $preOrderHelper->getButton() ?>
                     </span>
             <?php else: ?>
+                <?= $heroicons->shoppingCartHtml('text-white', 24, 24, ["aria-hidden" => "true"]); ?>
                 <span class="hidden sm:block md:hidden lg:block lg:mx-auto"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
@@ -135,6 +136,7 @@ if($product->getTypeId() === 'configurable'){
                 class="btn btn-primary btn-add-to-cart p-4 rounded-4xl"
                 id="product-addtocart-button"
         >
+            <?= $heroicons->shoppingCartHtml('text-white', 24, 24, ["aria-hidden" => "true"]); ?>
             <span class="hidden sm:block md:hidden lg:block lg:mx-auto"><?= $block->getData('is_cart_configure') ?
                     $escaper->escapeHtml(__('Update item')) :
                     $escaper->escapeHtml(__('Add to Cart')) ?>
