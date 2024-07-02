@@ -114,7 +114,7 @@ if($product->getTypeId() === 'configurable'){
         <button type="submit"
                 form="product_addtocart_form"
                 title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl"
+                class="btn btn-primary btn-add-to-cart p-4 rounded-4xl "
                 id="product-addtocart-button"
         >
             <?php if($isPreOder) : ?>
@@ -122,8 +122,8 @@ if($product->getTypeId() === 'configurable'){
                         <?= $preOrderHelper->getButton() ?>
                     </span>
             <?php else: ?>
-                <?= $heroicons->shoppingCartHtml('text-white', 24, 24, ["aria-hidden" => "true"]); ?>
-                <span class="hidden sm:block md:hidden lg:block lg:mx-auto"><?= $block->getData('is_cart_configure') ?
+                <?= $heroicons->shoppingCartHtml('text-white lg:mr-4', 24, 24, ["aria-hidden" => "true"]); ?>
+                <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
@@ -136,8 +136,8 @@ if($product->getTypeId() === 'configurable'){
                 class="btn btn-primary btn-add-to-cart p-4 rounded-4xl"
                 id="product-addtocart-button"
         >
-            <?= $heroicons->shoppingCartHtml('text-white', 24, 24, ["aria-hidden" => "true"]); ?>
-            <span class="hidden sm:block md:hidden lg:block lg:mx-auto"><?= $block->getData('is_cart_configure') ?
+            <?= $heroicons->shoppingCartHtml('text-white lg:mr-4', 24, 24, ["aria-hidden" => "true"]); ?>
+            <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                     $escaper->escapeHtml(__('Update item')) :
                     $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
