@@ -25,7 +25,7 @@
             <block name="selling.points"
                    class="Magento\Catalog\Block\Product\View"
                    template="Magento_Catalog::product/view/selling-points.phtml"
-                   after="product.info.stockstatus" />
+                   before="product.info.stockstatus" />
         </referenceBlock>
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
