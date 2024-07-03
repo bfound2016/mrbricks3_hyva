@@ -9,17 +9,22 @@
 declare(strict_types=1);
 
 use Magento\Catalog\Block\Product\View;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
 
-/** @var View $block */
+/**
+ * @var View $block
+ * @var ViewModelRegistry $viewModelRegistry
+ */
 
 $product = $block->getProduct();
-
+$heroiconsOutline = $viewModelRegistry->require(HeroiconsOutline::class);
 ?>
 <div class="selling-points">
     <ol>
-        <li>Onze klanten waarderen ons met een <strong>9.5</strong>.</li>
-        <li>Bezorgd voor <strong>4,95</strong>. <strong>Gratis verzending</strong> vanaf <strong>99,-</strong></li>
-        <li><strong>Eenvoudig</strong> en <strong>veilig</strong> betalen</li>
-        <li>Bezorging <strong>waar</strong> en <strong>wanneer</strong> u wilt!</li>
+        <li><?= $heroiconsOutline->checkHtml("text-lego-blue-light mr-2",12,12) ?>Onze klanten waarderen ons met een <strong>9.5</strong>.</li>
+        <li><?= $heroiconsOutline->checkHtml("text-lego-blue-light mr-2",12,12) ?>Bezorgd voor <strong>4,95</strong>. <strong>Gratis verzending</strong> vanaf <strong>99,-</strong></li>
+        <li><?= $heroiconsOutline->checkHtml("text-lego-blue-light mr-2",12,12) ?><strong>Eenvoudig</strong> en <strong>veilig</strong> betalen</li>
+        <li><?= $heroiconsOutline->checkHtml("text-lego-blue-light mr-2",12,12) ?>Bezorging <strong>waar</strong> en <strong>wanneer</strong> u wilt!</li>
     </ol>
 </div>
