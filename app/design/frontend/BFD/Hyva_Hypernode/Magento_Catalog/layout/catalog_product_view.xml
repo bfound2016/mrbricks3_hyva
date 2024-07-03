@@ -25,14 +25,14 @@
             <block name="selling.points"
                    class="Magento\Catalog\Block\Product\View"
                    template="Magento_Catalog::product/view/selling-points.phtml"
-                   before="product.info.stockstatus" />
+                   after="-" />
         </referenceBlock>
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
                     template="Magento_Catalog::product/view/rich-content.phtml"
-                    after="-">
+                    before="product.info.details">
             </block>
         </referenceBlock>
         <referenceContainer name="before.body.end">
