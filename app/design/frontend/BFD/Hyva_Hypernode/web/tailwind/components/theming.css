@@ -43,3 +43,10 @@ body {
         @apply bg-container;
     }
 }
+
+.selling-points {
+    @apply flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter border-lego-blue-lighter text-sm;
+    strong {
+        @apply title-font text-lego-blu-light;
+    }
+}
