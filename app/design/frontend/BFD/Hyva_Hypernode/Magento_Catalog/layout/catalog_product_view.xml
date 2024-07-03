@@ -32,7 +32,7 @@
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
                     template="Magento_Catalog::product/view/rich-content.phtml"
-                    before="product.info.details">
+                    after="-">
             </block>
         </referenceBlock>
         <referenceContainer name="before.body.end">
