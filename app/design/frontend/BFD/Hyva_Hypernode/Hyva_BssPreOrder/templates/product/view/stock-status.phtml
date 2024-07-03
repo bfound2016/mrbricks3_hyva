@@ -59,6 +59,9 @@ $isPreOder = $preOrderHelper->isPreOrder($preOrderHelper->getPreOrder($currentPr
                }
             },
             getDayOfTheWeek(delay) {
+                if (delay === 0 || delay === undefined) {
+                    return "morgen";
+                }
                 let days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
                 let date = new Date();
                 date.setDate(date.getDate() + 1 + delay);
