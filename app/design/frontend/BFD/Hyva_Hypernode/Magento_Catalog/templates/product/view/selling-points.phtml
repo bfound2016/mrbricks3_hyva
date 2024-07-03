@@ -14,11 +14,11 @@ use Hyva\Theme\ViewModel\HeroiconsOutline;
 
 /**
  * @var View $block
- * @var ViewModelRegistry $viewModelRegistry
+ * @var ViewModelRegistry $viewModels
  */
 
 $product = $block->getProduct();
-$heroiconsOutline = $viewModelRegistry->require(HeroiconsOutline::class);
+$heroiconsOutline = $viewModels->require(HeroiconsOutline::class);
 ?>
 <div class="selling-points">
     <ol>
