@@ -59,10 +59,13 @@ $isPreOder = $preOrderHelper->isPreOrder($preOrderHelper->getPreOrder($currentPr
                }
             },
             getDayOfTheWeek(delay) {
-                const days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
-                const date = new Date();
+                let days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+                let date = new Date();
                 date.setDate(date.getDate() + 1 + delay);
-                const dayOfWeek = date.getDay();
+                let dayOfWeek = date.getDay();
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    dayOfWeek = 2; // Set to 'dinsdag' if the day of ordering is Sunday or Saturday
+                }
                 return days[dayOfWeek];
             }
         }
