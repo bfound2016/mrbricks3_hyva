@@ -49,4 +49,7 @@ body {
     strong {
         @apply title-font text-lego-blue-light;
     }
+    a {
+        @apply title-font text-lego-blue-light underline;
+    }
 }
