@@ -22,7 +22,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
 
       },
       fontFamily: {
-        sans: ["Poppins", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
+        sans: ["Poppins", "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
       },
       colors: {
         lego: {

@@ -20,7 +20,7 @@
     font-family: "Poppins-Bold";
     font-style: normal;
     font-weight: 700;
-    font-display: optional;
+    font-display: swap;
     src: url("../fonts/Poppins-Bold.woff2") format("woff2");
 }
 
