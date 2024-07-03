@@ -21,12 +21,12 @@
             </arguments>
         </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
-        <referenceBlock name="product.info">
+        <referenceContainer name="product.info">
             <block name="product.info.selling.points"
                    class="Magento\Catalog\Block\Product\View"
                    template="Magento_Catalog::product/view/selling-points.phtml">
             </block>
-        </referenceBlock>
+        </referenceContainer>
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
