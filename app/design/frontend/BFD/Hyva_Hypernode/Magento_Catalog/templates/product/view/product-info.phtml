@@ -93,7 +93,6 @@ $categoriesData = $productViewModel->getCategoriesData($product);
             <?php if ($product->isSaleable()): ?>
                 <?= $block->getChildHtml("product.info.quantity") ?>
                 <?= $block->getChildHtml("product.info.addtocart") ?>
-                <?= $block->getChildHtml("selling.points") ?>
             <?php endif; ?>
         </div>
 

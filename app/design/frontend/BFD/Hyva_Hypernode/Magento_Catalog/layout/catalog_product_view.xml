@@ -24,8 +24,7 @@
         <referenceBlock name="product.info">
             <block name="selling.points"
                    class="Magento\Catalog\Block\Product\View"
-                   template="Magento_Catalog::product/view/selling-points.phtml"
-                   after="-" />
+                   template="Magento_Catalog::product/view/selling-points.phtml"/>
         </referenceBlock>
         <move element="product.info.stockstatus" destination="product.info" before="selling.points" />
         <referenceBlock name="product.detail.page">
