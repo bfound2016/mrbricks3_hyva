@@ -48,7 +48,7 @@ $categoriesData = $productViewModel->getCategoriesData($product);
             list ($width, $height) = getimagesize($imagepath);
         ?>
 
-        <a href="<?= $escaper->escapeUrl($productViewModel->getCategoryUrl($categoryData["id"])) ?>" target="_self" aria-label="Logo link for <?= $escaper->escapeHtmlAttr($categoryData['name']) ?> theme">
+        <a class="flex flex-col justify-center" href="<?= $escaper->escapeUrl($productViewModel->getCategoryUrl($categoryData["id"])) ?>" target="_self" aria-label="Logo link for <?= $escaper->escapeHtmlAttr($categoryData['name']) ?> theme">
             <img id="category_logo"
                  src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>"
                  alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema"
