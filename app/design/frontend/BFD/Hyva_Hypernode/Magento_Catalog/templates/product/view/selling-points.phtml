@@ -1,0 +1,25 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+
+/** @var View $block */
+
+$product = $block->getProduct();
+
+?>
+<div class="flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter">
+    <ol>
+        <li>Kiyoh klantwaardering van <span class="text-lego-blue-dark title-font">9.5 uit 10</span></li>
+        <li>Gratis verzending vanaf 99,-</li>
+        <li>Gratis retourneren</li>
+        <li>30 dagen bedenktijd</li>
+    </ol>
+</div>
