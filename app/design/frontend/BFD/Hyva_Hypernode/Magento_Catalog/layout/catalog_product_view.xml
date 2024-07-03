@@ -24,7 +24,8 @@
         <referenceBlock name="product.info">
             <block name="product.info.selling.points"
                    class="Magento\Catalog\Block\Product\View"
-                   template="Magento_Catalog::product/view/selling-points.phtml"/>
+                   template="Magento_Catalog::product/view/selling-points.phtml"
+                   after="-"/>
         </referenceBlock>
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
