@@ -26,8 +26,8 @@
                    class="Magento\Catalog\Block\Product\View"
                    template="Magento_Catalog::product/view/selling-points.phtml"
                    before="-" />
-            <move element="product.info.stockstatus" destination="product.info" after="selling.points" />
         </referenceBlock>
+        <move element="product.info.stockstatus" destination="product.info" after="selling.points" />
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
