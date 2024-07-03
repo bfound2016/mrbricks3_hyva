@@ -22,11 +22,10 @@
         </referenceBlock>
         <move element="product.info.review" destination="page.main.title" as="product.review.summary" />
         <referenceBlock name="product.info">
-            <block name="selling.points"
+            <block name="product.info.selling.points"
                    class="Magento\Catalog\Block\Product\View"
                    template="Magento_Catalog::product/view/selling-points.phtml"/>
         </referenceBlock>
-        <move element="product.info.stockstatus" destination="product.info" before="selling.points" />
         <referenceBlock name="product.detail.page">
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
