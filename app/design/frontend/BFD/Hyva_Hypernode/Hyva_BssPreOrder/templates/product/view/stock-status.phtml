@@ -67,13 +67,13 @@ $isPreOder = $preOrderHelper->isPreOrder($preOrderHelper->getPreOrder($currentPr
 </script>
 <div x-data="getAvailabilityData()">
     <?php if ($preOrderHelper->getIsInStock($currentProductId) && !$isPreOder): ?>
-        <div class="stock available flex flex-col available stock py-4 border-gray-200 border-y"
+        <div class="stock available flex flex-col available stock p-4 border-lego-blue-lighter border"
              title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>">
             <div class="flex gap-x-2 items-center">
                 <span class="w-3 h-3 text-lego-green bg-lego-green rounded-full flex-shrink-0"></span>
-                <span class="title-font">Nu besteld = morgen in huis</span>
+                <span class="title-font text-sm">Nu besteld = morgen in huis</span>
             </div>
-            <span>Je bestelling wordt <span class="text-lego-blue-light title-font">gratis</span> bezorgd.</span>
+            <span class="text-sm">Je bestelling wordt <span class="text-lego-blue-light title-font">gratis</span> bezorgd.</span>
         </div>
     <?php endif; ?>
     <?php if ($availabilityMess && $isPreOder): ?>
