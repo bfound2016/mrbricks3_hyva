@@ -30,13 +30,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
 
 $reviewCollection = $block->getReviewsCollection();
-$reviewCollection->setPageSize(5);
 
-// Note: Setting the collection on the toolbar block applies pagination, so it has to happen before collection loading.
-
-if ($toolbar = $block->getChildBlock('review_list.toolbar')) {
-    $toolbar->setCollection($reviewCollection);
-}
 $reviewCollection->load()->addRateVotes();
 
 $items = $reviewCollection->getItems();
@@ -53,6 +47,7 @@ $productName = $block->getProduct()->getName();
         aria-label="<?= $escaper->escapeHtmlAttr(__('Customer Reviews')) ?>"
         tabindex="-1"
         role="group"
+        x-data="{ open: false }"
     >
         <div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">
             <?php if (!$block->getHideTitle()): ?>
@@ -64,7 +59,7 @@ $productName = $block->getProduct()->getName();
             <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
             <button class="btn btn-primary rounded-4xl mt-4 self-start"><span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Add Your Review')) ?></span></button>
         </div>
-        <div class="w-full">
+        <div class="w-full" x-show="open" x-collapse.min.20vh x-collapse.duration.1000ms>
             <?php foreach ($items as $review): ?>
                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
                     class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
@@ -127,7 +122,8 @@ $productName = $block->getProduct()->getName();
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="toolbar review-toolbar">
-            <?= $block->getChildHtml('review_list.toolbar') ?>
-        </div>
+        <button
+            class="btn btn-primary rounded-4xl mt-4 self-start"
+            @click="open = !open"
+            x-text="open ? '<?= $escaper->escapeHtml(__('Hide Reviews')) ?>' : '<?= $escaper->escapeHtml(__('Show Reviews')) ?>'"
 <?php endif; ?>
