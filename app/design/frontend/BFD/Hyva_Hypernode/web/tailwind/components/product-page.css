@@ -41,7 +41,11 @@
 **/
 
 #flix-lego-inpage * {
-    @apply !title-font;
+    @apply !font-sans;
+
+    .flix-std-title {
+        @apply !title-font !leading-loose;
+    }
 }
 #flix-lego-inpage,
 #flix-std-inpage {
