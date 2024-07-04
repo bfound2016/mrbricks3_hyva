@@ -46,10 +46,10 @@
 #flix-lego-inpage,
 #flix-std-inpage {
     @apply !max-w-full;
+}
 
-    .flix-std-title {
-        @apply !title-font !leading-loose;
-    }
+#flix-lego-inpage .flix-std-title {
+    @apply !title-font !leading-loose;
 }
 
 .flix-background-image {
