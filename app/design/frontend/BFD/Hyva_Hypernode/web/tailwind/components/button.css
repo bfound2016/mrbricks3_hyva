@@ -28,7 +28,7 @@
 
 
     .btn-primary {
-        @apply bg-lego-blue-dark text-white shadow-md text-lg title-font;
+        @apply bg-lego-blue-dark text-white shadow-md text-lg font-semibold;
 
         &:hover {
             @apply bg-lego-blue-darker text-white shadow-lg;
