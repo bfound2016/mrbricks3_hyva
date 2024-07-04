@@ -49,7 +49,8 @@
 }
 
 #flix-lego-inpage .flix-std-title {
-    @apply !title-font !leading-loose;
+    @apply !title-font;
+    @apply !leading-loose;
 }
 
 .flix-background-image {
