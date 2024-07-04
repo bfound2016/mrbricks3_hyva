@@ -41,7 +41,7 @@
 **/
 
 #flix-lego-inpage * {
-    @apply !font-sans;
+    @apply !title-font;
 }
 #flix-lego-inpage,
 #flix-std-inpage {
