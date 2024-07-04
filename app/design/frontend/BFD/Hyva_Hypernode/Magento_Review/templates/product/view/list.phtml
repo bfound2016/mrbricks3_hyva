@@ -59,7 +59,7 @@ $productName = $block->getProduct()->getName();
             <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
             <button class="btn btn-primary rounded-4xl mt-4 self-start"><span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Add Your Review')) ?></span></button>
         </div>
-        <div class="w-full" x-show="open" x-collapse.min.20vh x-collapse.duration.1000ms>
+        <div class="w-full" x-show="open" x-collapse.min.200px x-collapse.duration.1000ms>
             <?php foreach ($items as $review): ?>
                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
                     class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
@@ -123,7 +123,7 @@ $productName = $block->getProduct()->getName();
             <?php endforeach; ?>
         </div>
         <button
-            class="btn btn-primary rounded-4xl mt-4 self-start"
+            class="btn btn-primary rounded-4xl mt-4 self-center"
             @click="open = !open"
             x-text="open ? '<?= $escaper->escapeHtml(__('Hide Reviews')) ?>' : '<?= $escaper->escapeHtml(__('Show Reviews')) ?>'"
 <?php endif; ?>
