@@ -30,12 +30,13 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
 
 $reviewCollection = $block->getReviewsCollection();
+$reviewCollection->setPageSize(5);
 
 // Note: Setting the collection on the toolbar block applies pagination, so it has to happen before collection loading.
-/**
+
 if ($toolbar = $block->getChildBlock('review_list.toolbar')) {
     $toolbar->setCollection($reviewCollection);
-}*/
+}
 $reviewCollection->load()->addRateVotes();
 
 $items = $reviewCollection->getItems();
