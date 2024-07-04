@@ -126,5 +126,8 @@ $productName = $block->getProduct()->getName();
                     </div>
                 </div>
             <?php endforeach; ?>
+            <div class="toolbar review-toolbar">
+                <?= $block->getChildHtml('toolbar') ?>
+            </div>
         </div>
 <?php endif; ?>
