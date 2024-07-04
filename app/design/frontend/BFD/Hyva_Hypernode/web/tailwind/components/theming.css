@@ -47,9 +47,9 @@ body {
 .selling-points {
     @apply flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter border border-lego-blue-lighter text-sm leading-loose;
     strong {
-        @apply title-font text-lego-blue-light;
+        @apply font-semibold text-lego-blue-light;
     }
     a {
-        @apply title-font text-lego-blue-light underline;
+        @apply font-semibold text-lego-blue-light underline;
     }
 }
