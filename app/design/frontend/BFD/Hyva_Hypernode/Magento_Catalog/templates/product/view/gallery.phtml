@@ -166,6 +166,7 @@ $productName = $block->getProduct()->getName();
                                     :src="image.thumb"
                                     :alt="hyva.str('%1 thumbnail', image.caption) || '<?= $escaper->escapeJs(__("%1 thumbnail", $productName)) ?>'"
                                     :title="hyva.str('%1 thumbnail', image.caption) || '<?= $escaper->escapeJs(__("%1 thumbnail", $productName)) ?>'"
+                                    :loading="index < pageSize ? 'eager' : 'lazy'"
                                     width="<?= /* @noEscape */ $smallWidth ?>"
                                     height="<?= /* @noEscape */ $smallHeight ?>"
                                 />
