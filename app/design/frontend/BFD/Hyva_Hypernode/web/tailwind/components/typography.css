@@ -58,17 +58,18 @@ body {
     @apply text-black leading-normal text-base tracking-normal;
 }
 
+@layer utilities {
+    .title-font {
+        font-family: "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+        @apply font-bold;
+    }
 
-.title-font {
-    font-family: "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
-    @apply font-bold;
-}
+    .price-font{
+        font-family: "Misterbricks","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+    }
 
-.price-font{
-    font-family: "Misterbricks","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
-}
-
-.price-listing-font{
-    font-family: "VAG Rounded","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
-    @apply text-base;
+    .price-listing-font{
+        font-family: "VAG Rounded","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+        @apply text-base;
+    }
 }
