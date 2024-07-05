@@ -33,6 +33,15 @@ $reviewCollection = $block->getReviewsCollection();
 
 $reviewCollection->load()->addRateVotes();
 
+// Get the current page number from the request, or default to 1
+$currentPage = $block->getRequest()->getParam('page', 1);
+
+// Set the page size to 5
+$reviewCollection->setPageSize(5);
+
+// Set the current page
+$reviewCollection->setCurPage($currentPage);
+
 $items = $reviewCollection->getItems();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 $formatLong = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
