@@ -1,5 +1,5 @@
 <?php
-namespace BFD_HyvaOverrides\CurrentProductOverride\Model;
+namespace BFD\CurrentProductOverride\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
