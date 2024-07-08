@@ -3,6 +3,7 @@ namespace BFD\CurrentProductOverride\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Catalog\Api\Data\ProductInterfaceFactory;
 
 class CurrentProduct extends \Hyva\Theme\ViewModel\CurrentProduct
 {
@@ -12,13 +13,21 @@ class CurrentProduct extends \Hyva\Theme\ViewModel\CurrentProduct
     private $scopeConfig;
 
     /**
+     * @var ProductInterfaceFactory
+     */
+    protected $productFactory;
+
+    /**
      * @param ScopeConfigInterface $scopeConfig
+     * @param ProductInterfaceFactory $productFactory
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        ProductInterfaceFactory $productFactory
     ) {
         $this->scopeConfig = $scopeConfig;
-        parent::__construct();
+        $this->productFactory = $productFactory;
+        parent::__construct($productFactory);
     }
 
     /**
