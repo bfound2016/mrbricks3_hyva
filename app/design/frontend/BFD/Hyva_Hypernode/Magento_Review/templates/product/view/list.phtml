@@ -40,16 +40,17 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 $formatLong = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
 $headingTag = $block->getData('heading_tag') ?: 'h3';
 $productName = $block->getProduct()->getName();
+$counter = 1;
 
 ?>
 <?php if (count($items)): ?>
-    <div
-        class="mx-auto py-6 items-center"
-        id="customer-review-list"
-        aria-label="<?= $escaper->escapeHtmlAttr(__('Customer Reviews')) ?>"
-        tabindex="-1"
-        role="group"
-    >
+        <div
+            class="mx-auto py-6 items-center"
+            id="customer-review-list"
+            aria-label="<?= $escaper->escapeHtmlAttr(__('Customer Reviews')) ?>"
+            tabindex="-1"
+            role="group"
+        >
         <div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">
             <?php if (!$block->getHideTitle()): ?>
             <<?= /* @noEscape */ $headingTag ?> class="text-gray-900 text-2xl title-font font-base w-full">
@@ -62,6 +63,7 @@ $productName = $block->getProduct()->getName();
     </div>
     <div class="w-full">
         <?php foreach ($items as $review): ?>
+            <?php if ($counter > 4) break; ?>
             <div itemscope itemprop="review" itemtype="http://schema.org/Review"
                  class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
                 <time
@@ -111,6 +113,7 @@ $productName = $block->getProduct()->getName();
                                 <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled  . " / " . $ratingSteps; ?></span>
                             </div>
                         </div>
+
                     <?php endforeach; ?>
                 </div>
                 <?php // endif; ?>
@@ -121,6 +124,7 @@ $productName = $block->getProduct()->getName();
                     <?= /* @noEscape */ nl2br($escaper->escapeHtml($review->getDetail())) ?>
                 </div>
             </div>
+            <?php $counter++; ?>
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
