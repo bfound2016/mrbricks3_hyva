@@ -44,10 +44,11 @@ $sku = $block->getProduct()->getSku();
 
 ?>
 <div x-data="reviewList()" x-init="fetchReviews()">
-    <template x-for="review in reviews" :key="review.id">
+    <template x-for="(review, index) in reviews" :key="index">
         <!-- Display each review. Customize this part based on your design -->
         <div class="review">
             <h3 x-text="review.nickname"></h3>
+            <p x-text="review.created_at"></p>
             <p x-text="review.summary"></p>
             <p x-text="review.text"></p>
         </div>
