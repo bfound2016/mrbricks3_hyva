@@ -67,26 +67,24 @@ $sku = $block->getProduct()->getSku();
             fetchReviews(page = 1) {
                 this.currentPage = page;
 
-                var query = `
-                {
-                    products(filter: {sku: {eq: "<?= $sku ?>"}}) {
-                        items {
-                            review_count
-                            rating_summary
-                            reviews(pageSize: 5, currentPage: ${this.currentPage}) {
+                var query =
+                    `query{
+                            products(filter: {sku: {eq: "<?= $sku ?>"}}) {
                                 items {
-                                    created_at
-                                    nickname
-                                    summary
-                                    text
-                                    average_rating
+                                    review_count
+                                    rating_summary
+                                    reviews(pageSize: 5, currentPage: ${this.currentPage}) {
+                                        items {
+                                            created_at
+                                            nickname
+                                            summary
+                                            text
+                                            average_rating
+                                        }
+                                        total_count
+                                    }
                                 }
-                                total_count
-                            }
-                        }
-                    }
-                }
-            `;
+                    }`;
 
                 fetch('/graphql', {
                     method: 'POST',
