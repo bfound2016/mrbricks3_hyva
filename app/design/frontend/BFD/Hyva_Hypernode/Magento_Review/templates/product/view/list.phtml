@@ -40,69 +40,87 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
 $formatLong = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
 $headingTag = $block->getData('heading_tag') ?: 'h3';
 $productName = $block->getProduct()->getName();
-$sku = $block->getProduct()->getSku();
 
 ?>
-<div x-data="reviewList()" x-init="fetchReviews()">
-    <template x-for="(review, index) in reviews" :key="index">
-        <!-- Display each review. Customize this part based on your design -->
-        <div class="review">
-            <h3 x-text="review.nickname"></h3>
-            <p x-text="review.created_at"></p>
-            <p x-text="review.summary"></p>
-            <p x-text="review.text"></p>
-        </div>
-    </template>
-
-    <!-- Pagination -->
-    <button @click="fetchReviews(currentPage - 1)" :disabled="currentPage <= 1">Previous</button>
-    <button @click="fetchReviews(currentPage + 1)" :disabled="currentPage >= totalPages">Next</button>
-</div>
-
-<script>
-    function reviewList() {
-        return {
-            reviews: [],
-            currentPage: 1,
-            totalPages: 1,
-            fetchReviews(page = 1) {
-                this.currentPage = page;
-
-                let query =
-                    `{
-                        products(filter: {sku: {eq: "<?= $sku ?>"}}) {
-                        items {
-                            review_count
-                            rating_summary
-                            reviews(pageSize: 5, currentPage: 1) {
-                                items {
-                                    created_at
-                                    nickname
-                                    summary
-                                    text
-                                    average_rating
-                                    }
-                                }
-                            }
-                        }
-                    }`;
-
-
-                fetch('/graphql', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        query: query
-                    }),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        this.reviews = data.data.products.items[0].reviews.items;
-                        this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
-                    });
-            }
-        }
-    }
-</script>
+<?php if (count($items)): ?>
+    <div
+        class="mx-auto py-6 items-center"
+        id="customer-review-list"
+        aria-label="<?= $escaper->escapeHtmlAttr(__('Customer Reviews')) ?>"
+        tabindex="-1"
+        role="group"
+    >
+        <div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">
+            <?php if (!$block->getHideTitle()): ?>
+            <<?= /* @noEscape */ $headingTag ?> class="text-gray-900 text-2xl title-font font-base w-full">
+            <?= $escaper->escapeHtml(__('Customer Reviews')) ?>
+        </<?= /* @noEscape */ $headingTag ?>>
+        <?php endif ?>
+        <div class="block mt-2">Algemene beoordeling</div>
+        <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
+        <button class="btn btn-primary rounded-4xl mt-4 self-start"><span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Add Your Review')) ?></span></button>
+    </div>
+    <div class="w-full">
+        <?php foreach ($items as $review): ?>
+            <div itemscope itemprop="review" itemtype="http://schema.org/Review"
+                 class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
+                <time
+                    class="inline-block p-2 self-start bg-lego-blue-lighter text-xs mb-2"
+                    itemprop="datePublished"
+                    datetime="<?= $escaper->escapeHtmlAttr($block->formatDate($review->getCreatedAt(), $format)); ?>"
+                >
+                                <span>
+                                    <?= $escaper->escapeHtml(
+                                        $block->formatDate(
+                                            $review->getCreatedAt(),
+                                            $formatLong
+                                        )
+                                    ) ?>
+                                </span>
+                </time>
+                <div>
+                    <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <span itemprop="name"><?= $escaper->escapeHtml($review->getNickname()) ?></span>
+                    </strong>
+                </div>
+                <?php //if (count($review->getRating())): ?>
+                <div class="table">
+                    <?php foreach ($review->getRatingVotes() as $vote): ?>
+                        <?php
+                        $rating         = $vote->getPercent();
+                        $ratingSteps    = 5;
+                        $starsFilled    = is_numeric($rating) ? floor($rating / 100 * $ratingSteps) : 0;
+                        $starsEmpty     = floor($ratingSteps - $starsFilled);
+                        ?>
+                        <div class="table-row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            <div
+                                class="flex flex-row items-center"
+                                role="img"
+                                aria-label="<?= $escaper->escapeHtmlAttr(__('%1 rating. %2 out of %3 stars', $productName, $starsFilled, $ratingSteps))?>"
+                            >
+                                <?php $i = 0; ?>
+                                <?php while ($i < $starsFilled): ?>
+                                    <?= $heroiconsSolid->starHtml('text-lego-yellow', 24, 24, ["aria-hidden" => "true"]); ?>
+                                    <?php $i++; ?>
+                                <?php endwhile; ?>
+                                <?php $i = 0; ?>
+                                <?php while ($i < $starsEmpty): ?>
+                                    <?= $heroiconsSolid->starHtml('text-gray-400', 24, 24, ["aria-hidden" => "true"]); ?>
+                                    <?php $i++; ?>
+                                <?php endwhile; ?>
+                                <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue"><?= /** @noEscape */ $starsFilled  . " / " . $ratingSteps; ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <?php // endif; ?>
+                <div class="font-bold" itemprop="name">
+                    <?= $escaper->escapeHtml($review->getTitle()) ?>
+                </div>
+                <div class="mt-1" itemprop="description">
+                    <?= /* @noEscape */ nl2br($escaper->escapeHtml($review->getDetail())) ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
