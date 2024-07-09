@@ -67,9 +67,8 @@ $sku = $block->getProduct()->getSku();
             fetchReviews(page = 1) {
                 this.currentPage = page;
 
-                var query =
-                    `query{
-                            products(filter: {sku: {eq: "<?= $sku ?>"}}) {
+                let query =
+                    `products(filter: {sku: {eq: "<?= $sku ?>"}}) {
                                 items {
                                     review_count
                                     rating_summary
@@ -81,7 +80,7 @@ $sku = $block->getProduct()->getSku();
                                             text
                                             average_rating
                                         }
-                                        total_count
+
                                     }
                                 }
                     }`;
@@ -98,7 +97,7 @@ $sku = $block->getProduct()->getSku();
                     .then(response => response.json())
                     .then(data => {
                         this.reviews = data.data.products.items[0].reviews.items;
-                        this.totalPages = Math.ceil(data.data.products.items[0].reviews.total_count / 10);
+                        this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
                     });
             }
         }
