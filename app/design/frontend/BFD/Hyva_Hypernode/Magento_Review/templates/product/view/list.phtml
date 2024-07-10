@@ -136,15 +136,26 @@ $counter = 1;
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
     </div>
+    <?=
+        $ReviewModal->createModal()
+        ->withDialogRefName("reviewModal")
+        ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
+        ->withAriaLabelledby('review-list')
+        ->addDialogClass('border', 'border-1');
+    ?>
     <script>
-        function initModal() {
+        function fetchReviewModalContent() {
+            let reviewsLoaded = false
             return {
-                open: false,
-                openModal() {
-                    this.open = true;
-                },
-                closeModal() {
-                    this.open = false;
+                loadContent() {
+                    if (reviewsLoaded) return
+                    window.fetch(`${BASE_URL}example/modal/content`)
+                        .then(response => response.text())
+                        .then(content => {
+                            reviewsLoaded = true
+                            hyva.replaceDomElement('#review-list', content)
+                        })
+                        .catch(console.error)
                 }
             }
         }
