@@ -10,6 +10,7 @@
 use Hyva\Theme\Model\ViewModelRegistry;
 use Hyva\Theme\ViewModel\HeroiconsOutline;
 use Hyva\Theme\ViewModel\HeroiconsSolid;
+use Hyva\Theme\ViewModel\Modal;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use Magento\Framework\Escaper;
 use Magento\Review\Block\Product\View as ProductReview;
@@ -28,6 +29,9 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 
 /** @var HeroiconsSolid $heroiconsSolid */
 $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
+
+/** @var $ReviewModal */
+$ReviewModal = $viewModels->require(Modal::class);
 
 $reviewCollection = $block->getReviewsCollection();
 
@@ -128,8 +132,22 @@ $counter = 1;
         <?php endforeach; ?>
     </div>
     <div>
-        <button x-data="{}" @click="openModal()" class="btn btn-primary rounded-4xl mt-4 self-start">
+        <button x-data="initModal()" @click="" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
     </div>
+    <script>
+        function initModal() {
+            return {
+                open: false,
+                openModal() {
+                    this.open = true;
+                },
+                closeModal() {
+                    this.open = false;
+                }
+            }
+        }
+    </script>
+
 <?php endif; ?>
