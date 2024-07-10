@@ -36,7 +36,8 @@ $ReviewModal = $viewModels->require(Modal::class)
     ->withDialogRefName("review-modal")
     ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
     ->withAriaLabelledby('review-list')
-    ->addDialogClass('border', 'border-1');
+    ->addDialogClass('border', 'border-1')
+    ->positionTopRight();
 
 $reviewCollection = $block->getReviewsCollection();
 
@@ -153,12 +154,12 @@ $counter = 1;
             }
         }
     </script>
-    <dialog x-data="hyva.modal(), fetchReviewModalContent()" >
+    <div x-data="hyva.modal(), fetchReviewModalContent()" >
         <button @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
         <?= $ReviewModal;?>
-    </dialog>
+    </div>
 
 
 <?php endif; ?>
