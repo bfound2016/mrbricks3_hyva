@@ -189,13 +189,6 @@ $sku = $block->getProduct()->getSku();
                                 let shortDate = date.toLocaleDateString('nl-NL');
                                 let longDate = date.toLocaleDateString('nl-NL', {  day: 'numeric', month: 'long', year: 'numeric' });
                                 reviewsHtml += `
-                                                <div>
-                                                    <strong>${review.nickname}</strong>
-                                                    <div>${review.summary}</div>
-                                                    <div>${review.text}</div>
-                                                    <div>Rating: ${review.average_rating}</div>
-                                                </div>
-
                                                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
                                                      class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
                                                     <time
