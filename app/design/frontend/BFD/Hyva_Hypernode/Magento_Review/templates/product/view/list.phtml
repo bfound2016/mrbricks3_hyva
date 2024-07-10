@@ -153,11 +153,11 @@ $counter = 1;
             }
         }
     </script>
-    <?= $ReviewModal;?>
-    <div>
-        <button x-data="hyva.modal()" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>" class="btn btn-primary rounded-4xl mt-4 self-start">
+    <div x-data="hyva.modal(), fetchReviewModalContent()" >
+        <button @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
+        <?= $ReviewModal;?>
     </div>
 
 
