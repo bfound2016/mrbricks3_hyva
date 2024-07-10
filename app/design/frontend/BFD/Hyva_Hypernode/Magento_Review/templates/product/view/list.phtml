@@ -183,8 +183,11 @@ $sku = $block->getProduct()->getSku();
                             this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
 
                             // Build the Alpine.js template
-                            let reviewsHtml = '';
+                            let reviewsHtml = '<div class="table">';
                             this.reviews.forEach(review => {
+                                let date = new Date(review.created_at);
+                                let shortDate = date.toLocaleDateString('nl-NL');
+                                let longDate = date.toLocaleDateString('nl-NL', {  day: 'numeric', month: 'long', year: 'numeric' });
                                 reviewsHtml += `
                                                 <div>
                                                     <strong>${review.nickname}</strong>
@@ -192,6 +195,33 @@ $sku = $block->getProduct()->getSku();
                                                     <div>${review.text}</div>
                                                     <div>Rating: ${review.average_rating}</div>
                                                 </div>
+
+                                                <div itemscope itemprop="review" itemtype="http://schema.org/Review"
+                                                     class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
+                                                    <time
+                                                        class="inline-block p-2 self-start bg-lego-blue-lighter text-xs mb-2"
+                                                        itemprop="datePublished"
+                                                        datetime="${shortDate}"
+                                                    >
+                                                    <span>${longDate}</span>
+                                                   </time>
+                                                <div>
+                                                    <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                                        <span itemprop="name">${review.nickname}</span>
+                                                    </strong>
+                                                </div>
+                                                <div class="table">
+                                                    <div class="table-row" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                                        <div class="flex flex-row items-center"
+                                                            role="img"
+                                                            aria-label=""
+                                                        >
+                                                        <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue">${review.average_rating}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="font-bold" itemprop="name">${review.text}</div>
+                                                <div class="mt-1" itemprop="description">${review.summary}</div>
                                             `;
                             });
                             document.getElementById('review-list').innerHTML = reviewsHtml;
