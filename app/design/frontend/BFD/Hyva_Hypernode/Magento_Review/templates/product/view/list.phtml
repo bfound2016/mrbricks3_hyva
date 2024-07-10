@@ -31,7 +31,12 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
 
 /** @var $ReviewModal */
-$ReviewModal = $viewModels->require(Modal::class);
+$ReviewModal = $viewModels->require(Modal::class)
+    ->createModal()
+    ->withDialogRefName("reviewModal")
+    ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
+    ->withAriaLabelledby('review-list')
+    ->addDialogClass('border', 'border-1');
 
 $reviewCollection = $block->getReviewsCollection();
 
@@ -149,11 +154,7 @@ $counter = 1;
         }
     </script>
     <?=
-    $ReviewModal->createModal()
-        ->withDialogRefName("reviewModal")
-        ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
-        ->withAriaLabelledby('review-list')
-        ->addDialogClass('border', 'border-1');
+
     ?>
     <div>
         <button x-data="hyva.modal(),fetchReviewModalContent()" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>" class="btn btn-primary rounded-4xl mt-4 self-start">
