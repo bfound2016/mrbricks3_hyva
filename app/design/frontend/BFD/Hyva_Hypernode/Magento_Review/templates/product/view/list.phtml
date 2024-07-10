@@ -150,12 +150,16 @@ $counter = 1;
                             hyva.replaceDomElement('#review-list', content)
                         })
                         .catch(console.error)
-                }
+                },
+                addEventListener() {
+                    document.getElementById('reviewsLoader').addEventListener('click', this.loadContent)
+                },
+
             }
         }
     </script>
-    <div x-data="hyva.modal(), fetchReviewModalContent()" >
-        <button @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>; loadContent()" class="btn btn-primary rounded-4xl mt-4 self-start">
+    <div x-data="fetchReviewModalContent()" >
+        <button id="reviewsLoader" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()); ?>;" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
         <?= $ReviewModal;?>
