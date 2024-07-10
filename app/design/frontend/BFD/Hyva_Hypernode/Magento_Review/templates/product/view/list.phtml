@@ -51,6 +51,7 @@ $formatLong = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
 $headingTag = $block->getData('heading_tag') ?: 'h3';
 $productName = $block->getProduct()->getName();
 $counter = 1;
+$sku = $block->getProduct()->getSku();
 
 ?>
 <?php if (count($items)): ?>
@@ -141,15 +142,49 @@ $counter = 1;
         function fetchReviewModalContent() {
             let reviewsLoaded = false
             return {
+                reviews: [],
+                currentPage: 1,
+                totalPages: 1,
                 loadContent() {
                     if (reviewsLoaded) return
-                    window.fetch(`${BASE_URL}example/modal/content`)
-                        .then(response => response.text())
-                        .then(content => {
-                            reviewsLoaded = true
-                            hyva.replaceDomElement('#review-list', content)
+
+                    this.currentPage = page;
+
+                    let query =
+                        `{
+                        products(filter: {sku: {eq: "<?= $sku ?>"}}) {
+                        items {
+                            review_count
+                            rating_summary
+                            reviews(pageSize: 5, currentPage: 1) {
+                                items {
+                                    created_at
+                                    nickname
+                                    summary
+                                    text
+                                    average_rating
+                                    }
+                                }
+                            }
+                        }
+                    }`;
+
+                    fetch('/graphql', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            query: query
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            reviewsLoaded = true;
+                            this.reviews = data.data.products.items[0].reviews.items;
+                            this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
                         })
-                        .catch(console.error)
+                        .catch(console.error);
                 },
                 addEventListener() {
                     document.addEventListener('fetchReviews', this.loadContent);
