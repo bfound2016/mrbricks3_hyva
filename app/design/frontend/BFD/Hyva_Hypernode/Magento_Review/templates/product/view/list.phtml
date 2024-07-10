@@ -148,15 +148,13 @@ $sku = $block->getProduct()->getSku();
                 loadContent() {
                     if (reviewsLoaded) return
 
-                    this.currentPage = page;
-
                     let query =
                         `{
                         products(filter: {sku: {eq: "<?= $sku ?>"}}) {
                         items {
                             review_count
                             rating_summary
-                            reviews(pageSize: 5, currentPage: 1) {
+                            reviews(pageSize: 99, currentPage: 1) {
                                 items {
                                     created_at
                                     nickname
