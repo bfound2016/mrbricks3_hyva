@@ -132,7 +132,7 @@ $counter = 1;
         <?php endforeach; ?>
     </div>
     <div>
-        <button x-data="initModal()" @click="openModal" class="btn btn-primary rounded-4xl mt-4 self-start">
+        <button x-data="initModal()" @click="openModal()" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
     </div>
