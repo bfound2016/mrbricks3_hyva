@@ -181,6 +181,20 @@ $sku = $block->getProduct()->getSku();
                             reviewsLoaded = true;
                             this.reviews = data.data.products.items[0].reviews.items;
                             this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
+
+                            // Build the Alpine.js template
+                            let reviewsHtml = '';
+                            this.reviews.forEach(review => {
+                                reviewsHtml += `
+                                                <div>
+                                                    <strong>${review.nickname}</strong>
+                                                    <div>${review.summary}</div>
+                                                    <div>${review.text}</div>
+                                                    <div>Rating: ${review.average_rating}</div>
+                                                </div>
+                                            `;
+                            });
+                            hyva.replaceDomElement('review-list', reviewsHtml);
                         })
                         .catch(console.error);
                 },
