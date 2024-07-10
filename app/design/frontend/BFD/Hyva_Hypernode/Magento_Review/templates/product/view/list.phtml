@@ -194,13 +194,7 @@ $sku = $block->getProduct()->getSku();
                                                 </div>
                                             `;
                             });
-                            // Try to replace the content of the #review-list element with the reviews
-                            try {
-                                hyva.replaceDomElement('#review-list', reviewsHtml);
-                                console.log('Reviews loaded:', this.reviews);
-                            } catch (error) {
-                                console.error('An error occurred while replacing the DOM element:', error);
-                            }
+                            document.getElementById('review-list').innerHTML = reviewsHtml;
                         })
                         .catch(console.error);
                 },
