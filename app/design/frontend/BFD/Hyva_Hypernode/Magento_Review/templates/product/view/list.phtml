@@ -152,13 +152,27 @@ $counter = 1;
                         .catch(console.error)
                 },
                 addEventListener() {
-                    document.getElementById('reviewsLoader').addEventListener('click', this.loadContent)
+                    document.addEventListener('fetchReviews', this.loadContent);
                 },
+            }
+        }
+
+        // Initialize the fetchReviewModalContent object and add the event listener
+        const reviewModalContent = fetchReviewModalContent();
+        reviewModalContent.addEventListener();
+
+        // Get the #reviewsLoader button and add a click event listener
+        const reviewsLoaderButton = document.getElementById('reviewsLoader');
+        reviewsLoaderButton.addEventListener('click', function() {
+            // Dispatch the custom event when the button is clicked
+            const event = new Event('fetchReviews');
+            document.dispatchEvent(event);
+        });
             }
         }
     </script>
     <div x-data="hyva.modal(), fetchReviewModalContent()" >
-        <button id="reviewsLoader" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>; $dispatch('click')" class="btn btn-primary rounded-4xl mt-4 self-start">
+        <button id="reviewsLoader" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>; $dispatch('fetchReviews')" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
         <?= $ReviewModal;?>
