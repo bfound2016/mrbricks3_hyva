@@ -131,18 +131,6 @@ $counter = 1;
             <?php $counter++; ?>
         <?php endforeach; ?>
     </div>
-    <div>
-        <button x-data="{hyva.modal(),fetchReviewModalContent()}" @click="show('reviewModal', $event); loadContent()" class="btn btn-primary rounded-4xl mt-4 self-start">
-            <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
-        </button>
-    </div>
-    <?=
-        $ReviewModal->createModal()
-        ->withDialogRefName("reviewModal")
-        ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
-        ->withAriaLabelledby('review-list')
-        ->addDialogClass('border', 'border-1');
-    ?>
     <script>
         function fetchReviewModalContent() {
             let reviewsLoaded = false
@@ -160,5 +148,17 @@ $counter = 1;
             }
         }
     </script>
+    <div>
+        <button x-data="{hyva.modal(),fetchReviewModalContent()}" @click="show('reviewModal', $event); loadContent()" class="btn btn-primary rounded-4xl mt-4 self-start">
+            <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
+        </button>
+    </div>
+    <?=
+        $ReviewModal->createModal()
+        ->withDialogRefName("reviewModal")
+        ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
+        ->withAriaLabelledby('review-list')
+        ->addDialogClass('border', 'border-1');
+    ?>
 
 <?php endif; ?>
