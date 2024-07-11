@@ -37,9 +37,8 @@ $ReviewModal = $viewModels->require(Modal::class)
     ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Reviews worden geladen ...'))}</div>")
     ->withAriaLabelledby('review-list')
     ->positionTopRight()
-    ->addContainerClass('!pt-0','!pr-0')
-    ->addDialogClass( 'md:max-w-4xl')
-    ->overlayDisabled();
+    ->addContainerClass('!pt-0','!pr-0', '!z-[999]')
+    ->addDialogClass( 'md:max-w-4xl');
 
 $reviewCollection = $block->getReviewsCollection();
 $reviewCollection->load()->addRateVotes();
@@ -235,7 +234,7 @@ $sku = $block->getProduct()->getSku();
                                                     </div>
                                                 </div>
                                                 <div class="mt-1 font-bold" itemprop="description">${review.summary}</div>
-                                                <div class="text-sm" itemprop="name">${review.text}</div>
+                                                <div itemprop="name">${review.text}</div>
 
                                             `;
                             });
