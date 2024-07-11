@@ -220,7 +220,7 @@ $sku = $block->getProduct()->getSku();
                                                             role="img"
                                                             aria-label=""
                                                         >
-                                                        <span class="text-lego-blue-dark text-sm ml-4 flex flex-row items-center" itemprop="ratingValue">`;
+                                                        <span class="text-lego-blue-dark text-sm flex flex-row items-center" itemprop="ratingValue">`;
 
                                                         while (starsFilled > 0) {
                                                             reviewsHtml += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-lego-yellow" width="24" height="24" aria-hidden="true">
@@ -228,7 +228,7 @@ $sku = $block->getProduct()->getSku();
                                                                             </svg>`;
                                                             starsFilled--;
                                                         }
-
+                                reviewsHtml += starsFilled + " / " + ratingSteps;
                                 reviewsHtml += `            </span>
                                                         </div>
                                                     </div>
