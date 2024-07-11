@@ -34,10 +34,12 @@ $heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
 $ReviewModal = $viewModels->require(Modal::class)
     ->createModal()
     ->withDialogRefName("review-modal")
-    ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Loading reviews ...'))}</div>")
+    ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Reviews worden geladen ...'))}</div>")
     ->withAriaLabelledby('review-list')
-    ->addDialogClass('border', 'border-1 max-w-md')
-    ->positionTopRight();
+    ->addDialogClass( 'max-w-md')
+    ->removeDialogClass('pt-1','pr-1')
+    ->positionTopRight()
+    ->overlayDisabled();
 
 $reviewCollection = $block->getReviewsCollection();
 
