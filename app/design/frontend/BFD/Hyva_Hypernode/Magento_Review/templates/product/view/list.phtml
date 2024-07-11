@@ -37,6 +37,7 @@ $ReviewModal = $viewModels->require(Modal::class)
     ->withContent("<div id='review-list' class='mt-2'>{$escaper->escapeHtml(__('Reviews worden geladen ...'))}</div>")
     ->withAriaLabelledby('review-list')
     ->addDialogClass( 'max-w-md')
+    ->positionTopRight()
     ->overlayDisabled();
 
 $reviewCollection = $block->getReviewsCollection();
