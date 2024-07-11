@@ -191,9 +191,15 @@ $sku = $block->getProduct()->getSku();
                                                 '<div class="table">';
 
                             this.reviews.forEach(review => {
+
                                 let date = new Date(review.created_at);
                                 let shortDate = date.toLocaleDateString('nl-NL');
                                 let longDate = date.toLocaleDateString('nl-NL', {  day: 'numeric', month: 'long', year: 'numeric' });
+                                const ratingSteps = 5;
+                                let rating = review.average_rating;
+                                let starsFilled = isNumeric(rating) ? Math.floor(rating / 100 * ratingSteps) : 0;
+                                let starsEmpty = Math.floor(ratingSteps - starsFilled);
+
                                 reviewsHtml += `
                                                 <div itemscope itemprop="review" itemtype="http://schema.org/Review"
                                                      class="pb-4 my-4 last:border-0 last:mb-0 flex flex-col prose border-t py-4">
@@ -215,7 +221,16 @@ $sku = $block->getProduct()->getSku();
                                                             role="img"
                                                             aria-label=""
                                                         >
-                                                        <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue">${review.average_rating}</span>
+                                                        <span class="text-lego-blue-dark text-sm ml-4" itemprop="ratingValue">`;
+
+                                                        while (starsFilled > 0) {
+                                                            reviewsHtml += `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-lego-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                                                            </svg>`;
+                                                            starsFilled--;
+                                                        }
+
+                                reviewsHtml += `            </span>
                                                         </div>
                                                     </div>
                                                 </div>
