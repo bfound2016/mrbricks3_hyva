@@ -246,7 +246,6 @@ $sku = $block->getProduct()->getSku();
          x-transition:leave="duration-500"
          x-transition:leave-start="translate-x-0"
          x-transition:leave-end="translate-x-full"
-         x-init="addEventListener()"
     >
         <button id="reviewsLoader" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>; $dispatch('fetchReviews')" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
