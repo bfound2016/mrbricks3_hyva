@@ -94,7 +94,7 @@ $sku = $block->getProduct()->getSku();
                 </time>
                 <div>
                     <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span itemprop="name"><?= $escaper->escapeHtml($review->getNickname()) ?></span>
+                        <span class="text-lego-blue-light" itemprop="name"><?= $escaper->escapeHtml($review->getNickname()) ?></span>
                     </strong>
                 </div>
                 <?php //if (count($review->getRating())): ?>
@@ -242,7 +242,7 @@ $sku = $block->getProduct()->getSku();
         });
     </script>
     <div x-data="hyva.modal({
-        duration: 200,
+        duration: 500,
         transitionEnter: 'duration-700',
         transitionEnterStart: 'translate-x-full',
         transitionEnterEnd: 'translate-x-0',
