@@ -201,7 +201,7 @@ $sku = $block->getProduct()->getSku();
                                                    </time>
                                                 <div>
                                                     <strong itemprop="author" itemscope itemtype="https://schema.org/Person">
-                                                        <span itemprop="name">${review.nickname}</span>
+                                                        <span class="text-lego-blue-light" itemprop="name">${review.nickname}</span>
                                                     </strong>
                                                 </div>
                                                 <div class="table">
@@ -214,8 +214,9 @@ $sku = $block->getProduct()->getSku();
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="font-bold" itemprop="name">${review.text}</div>
-                                                <div class="mt-1" itemprop="description">${review.summary}</div>
+                                                <div class="mt-1 font-bold" itemprop="description">${review.summary}</div>
+                                                <div class="text-sm" itemprop="name">${review.text}</div>
+
                                             `;
                             });
                             document.getElementById('review-list').innerHTML = reviewsHtml;
