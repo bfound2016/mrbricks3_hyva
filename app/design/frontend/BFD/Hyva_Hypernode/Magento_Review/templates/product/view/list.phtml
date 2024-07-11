@@ -196,7 +196,7 @@ $sku = $block->getProduct()->getSku();
                                 let longDate = date.toLocaleDateString('nl-NL', {  day: 'numeric', month: 'long', year: 'numeric' });
                                 const ratingSteps = 5;
                                 let rating = review.average_rating;
-                                let starsFilled = isNumeric(rating) ? Math.floor(rating / 100 * ratingSteps) : 0;
+                                let starsFilled = !isNaN(rating) ? Math.floor(rating / 100 * ratingSteps) : 0;
                                 let starsEmpty = Math.floor(ratingSteps - starsFilled);
 
                                 reviewsHtml += `
