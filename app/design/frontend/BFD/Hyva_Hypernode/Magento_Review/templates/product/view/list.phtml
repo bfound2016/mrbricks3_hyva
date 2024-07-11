@@ -184,7 +184,13 @@ $sku = $block->getProduct()->getSku();
                             this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
 
                             // Build the Alpine.js template
-                            let reviewsHtml = '<div class="table">';
+                            let reviewsHtml =   '<div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">' +
+                                                '<h2 class="text-gray-900 text-2xl title-font font-base w-full">Klantenreviews</h2>' +
+                                                '<div class="block mt-2">Algemene beoordeling</div>' +
+                                                '<?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>' +
+                                                '</div>' +
+                                                '<div class="table">';
+
                             this.reviews.forEach(review => {
                                 let date = new Date(review.created_at);
                                 let shortDate = date.toLocaleDateString('nl-NL');
