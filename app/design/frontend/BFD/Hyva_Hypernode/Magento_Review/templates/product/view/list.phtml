@@ -41,7 +41,6 @@ $ReviewModal = $viewModels->require(Modal::class)
     ->overlayDisabled();
 
 $reviewCollection = $block->getReviewsCollection();
-
 $reviewCollection->load()->addRateVotes();
 
 $items = $reviewCollection->getItems();
