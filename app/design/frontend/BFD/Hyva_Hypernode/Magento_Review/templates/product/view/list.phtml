@@ -241,15 +241,7 @@ $sku = $block->getProduct()->getSku();
             document.dispatchEvent(event);
         });
     </script>
-    <div x-data="hyva.modal({
-        duration: 500,
-        transitionEnter: 'duration-700',
-        transitionEnterStart: 'translate-x-full',
-        transitionEnterEnd: 'translate-x-0',
-        transitionLeave: 'duration-500',
-        transitionLeaveStart: 'translate-x-0',
-        transitionLeaveEnd: 'translate-x-full'
-        }), fetchReviewModalContent()">
+    <div x-data="hyva.modal(), fetchReviewModalContent()">
         <button id="reviewsLoader" @click="<?= $escaper->escapeHtmlAttr($ReviewModal->getShowJs()) ?>; $dispatch('fetchReviews')" class="btn btn-primary rounded-4xl mt-4 self-start">
             <span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Show All Reviews')) ?></span>
         </button>
