@@ -19,7 +19,7 @@
 declare(strict_types=1);
 
 use Hyva\Theme\Model\ViewModelRegistry;
-use Hyva\Theme\ViewModel\HeroiconsSolid;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 use Hyva\BssPreOrder\ViewModels\Helper as ModuleViewModel;
@@ -39,7 +39,7 @@ use Magento\Catalog\Model\Product;
 $currentProduct = $viewModels->require(CurrentProduct::class);
 /** @var Product $product */
 $product = $currentProduct->get();
-$heroicons = $viewModels->require(HeroiconsSolid::class);
+$heroicons = $viewModels->require(HeroiconsOutline::class);
 $moduleViewModel = $viewModels->require(ModuleViewModel::class);
 $baseViewModel = $viewModels->require(Base::class);
 $preOrderHelper = $moduleViewModel->getHelper();
