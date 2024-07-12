@@ -48,7 +48,7 @@ $product = $currentProductViewModel->exists() ? $currentProductViewModel->get() 
             <template x-for="item in breadcrumbs">
                 <li class="item inline-flex whitespace-nowrap">
                     <template x-if="item.name !== 'home'">
-                        <span aria-hidden="true" class="separator text-primary-lighter px-2">/</span>
+                        <span aria-hidden="true" class="separator text-lego-blue-light px-2">></span>
                     </template>
                     <template x-if="item.name === 'product'">
                         <span class="text-primary-lighter" x-text="item.label"></span>

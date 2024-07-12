@@ -7,7 +7,6 @@ const colors = require('tailwindcss/colors');
 const hyvaModules = require('@hyva-themes/hyva-modules');
 
 module.exports = hyvaModules.mergeTailwindConfig({
-  separator: '>',
   theme: {
     extend: {
       screens: {
