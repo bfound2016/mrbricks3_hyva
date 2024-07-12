@@ -70,7 +70,6 @@ $sku = $block->getProduct()->getSku();
         <?php endif ?>
         <div class="block mt-2">Algemene beoordeling</div>
         <?= $block->getLayout()->createBlock("Magento\Catalog\Block\Product\View")->setTemplate("Magento_Catalog::product/view/review_section.phtml")->toHtml() ?>
-        <button class="btn btn-primary rounded-4xl mt-4 self-start"><span class="block mx-auto my-2"><?= $escaper->escapeHtml(__('Add Your Review')) ?></span></button>
     </div>
     <div class="w-full">
         <?php foreach ($items as $review): ?>
