@@ -128,7 +128,7 @@ $sku = $block->getProduct()->getSku();
                     <?php endforeach; ?>
                 </div>
                 <?php // endif; ?>
-                <div class="font-bold" itemprop="name">
+                <div class="font-semibold" itemprop="name">
                     <?= $escaper->escapeHtml($review->getTitle()) ?>
                 </div>
                 <div class="mt-1" itemprop="description">
@@ -233,7 +233,7 @@ $sku = $block->getProduct()->getSku();
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mt-1 font-bold" itemprop="description">${review.summary}</div>
+                                                <div class="mt-1 font-semibold" itemprop="description">${review.summary}</div>
                                                 <div itemprop="name">${review.text}</div>
 
                                             `;
