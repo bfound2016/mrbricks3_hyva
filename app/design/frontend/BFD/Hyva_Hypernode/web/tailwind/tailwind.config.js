@@ -7,6 +7,7 @@ const colors = require('tailwindcss/colors');
 const hyvaModules = require('@hyva-themes/hyva-modules');
 
 module.exports = hyvaModules.mergeTailwindConfig({
+  separator: '>',
   theme: {
     extend: {
       screens: {
@@ -145,8 +146,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
             maxWidth: '100%'
           }
         }
-      },
-      separator: '>' // separator for Breadcrumbs
+      }
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
