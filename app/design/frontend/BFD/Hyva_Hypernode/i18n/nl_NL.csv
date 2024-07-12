@@ -10343,6 +10343,7 @@ target=""_blank"">DevDocs' Release Information</a>.,module,Magento_ReleaseNotifi
 "Allow Guests to Write Reviews","Reviews door gasten toestaan",module,Magento_Review
 "Active","Actief",module,Magento_Review
 "Inactive","Inactief",module,Magento_Review
+"Show All Reviews","Toon alle reviews",module,Magento_Review
 "ID","ID",module,Magento_ReviewStaging
 "Created","Aangemaakt",module,Magento_ReviewStaging
 "Status","status",module,Magento_ReviewStaging
