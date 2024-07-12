@@ -44,7 +44,7 @@
     @apply !font-sans;
 
     .flix-std-title {
-        @apply !title-font !leading-normal;
+        @apply !font-semibold !leading-normal;
     }
 
     .flix-std-desc {
