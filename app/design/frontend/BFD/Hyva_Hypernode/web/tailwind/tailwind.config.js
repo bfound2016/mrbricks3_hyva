@@ -149,7 +149,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
       separator: {
         DEFAULT: {
           content: '>',
-          color: colors.lego.blue.light,
+          color: '#07adeb',
           padding: '0 0.5rem'
         }
       }
