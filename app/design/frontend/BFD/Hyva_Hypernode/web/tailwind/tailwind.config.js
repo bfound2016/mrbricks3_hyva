@@ -146,13 +146,7 @@ module.exports = hyvaModules.mergeTailwindConfig({
           }
         }
       },
-      separator: {
-        DEFAULT: {
-          content: '>',
-          color: '#07adeb',
-          padding: '0 0.5rem'
-        }
-      }
+      separator: '>' // separator for Breadcrumbs
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
