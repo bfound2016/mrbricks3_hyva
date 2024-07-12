@@ -145,9 +145,15 @@ module.exports = hyvaModules.mergeTailwindConfig({
             maxWidth: '100%'
           }
         }
-
+      },
+      separator: {
+        DEFAULT: {
+          content: '>',
+          color: colors.lego.blue.light,
+          padding: '0 0.5rem'
+        }
       }
-    }
+    },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
   // Examples for excluding patterns from purge
