@@ -55,9 +55,8 @@ body {
     }
 }
 
-/** Custom styling for breadcrumbs **/
-.home,
-.breadcrumbs .item[class^="category"] {
+/** Custom styling for breadcrumbs links **/
+.item a.no-underline {
     @apply hover:text-lego-blue-light;
 }
 
