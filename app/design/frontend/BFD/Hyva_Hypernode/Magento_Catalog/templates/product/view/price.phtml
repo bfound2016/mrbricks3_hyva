@@ -247,11 +247,11 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
      class="price-box price-final_price flex flex-col"
 >
     <div x-show="!activeProductsPriceData && !isPriceHidden()">
-        <div class="price-container flex gap-6">
+        <div class="price-container flex gap-6 justify-center">
             <?php if ($finalPrice < $regularPrice): ?>
                 <div class="old-price flex flex-col justify-end">
                     <span id="product-price-<?= (int)$product->getId() ?>"
-                          class="price-wrapper price-listing-font font-regular line-through text-lego-blue-dark mb-2">
+                          class="price-wrapper price-font font-regular line-through text-lego-blue-dark mb-2 tracking-tightest">
                         <span class="price">
                             <?= $escaper->escapeHtmlAttr($regularPrice) ?>
                         </span>
