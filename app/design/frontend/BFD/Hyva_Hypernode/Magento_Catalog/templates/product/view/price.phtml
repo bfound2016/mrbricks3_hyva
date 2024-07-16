@@ -216,11 +216,12 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             },
             checkPrice(price) {
                 if (Number(price) === price && price % 1 !== 0) {
-                    return `<span>${price}</span><sup>.-</sup>`;
-                } else {
-                    let decimalValue = parseFloat(price).toFixed(2);
+                    let decimalValue = price.split('.')[1];
                     let intValue = parseInt(price);
-                    return `<span>${intValue}</span><sup>${decimalValue}</sup>`;
+                    return `<span>${intValue}</span><sup>${"." + decimalValue}</sup>`;
+
+                } else {
+                    return `<span>${price}</span><sup>.-</sup>`;
                 }
             },
             eventListeners: {
