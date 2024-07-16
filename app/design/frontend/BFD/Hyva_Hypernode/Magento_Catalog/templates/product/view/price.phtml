@@ -261,7 +261,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <?php if ($finalPrice < $regularPrice): ?>
                 <div class="old-price flex flex-col justify-end">
                     <span id="product-price-<?= (int)$product->getId() ?>"
-                          class="price-wrapper price-font text-lego-blue-dark mb-2 tracking-tightest text-3xl relative before:border before:border-b-2 before:border-white before:bottom-[50%] before:absolute before:rotate-[10deg] before:w-20">
+                          class="price-wrapper price-font text-lego-blue-dark mb-2 tracking-tightest text-3xl relative before:border before:border-b-2 before:border-white before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full">
                         <span class="price" x-html="checkPrice(<?= $escaper->escapeHtmlAttr($regularPrice) ?>)"></span>
                     </span>
                 </div>
