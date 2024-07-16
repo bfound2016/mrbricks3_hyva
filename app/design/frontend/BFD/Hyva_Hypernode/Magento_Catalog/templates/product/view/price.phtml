@@ -262,9 +262,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                 <div class="old-price flex flex-col justify-end">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper price-font line-through text-lego-blue-dark mb-2 tracking-tightest text-3xl">
-                        <span class="price">
-                            <?= $escaper->escapeHtmlAttr($regularPrice) ?>
-                        </span>
+                        <span class="price" x-html="checkPrice(<?= $escaper->escapeHtmlAttr($regularPrice) ?>)"></span>
                     </span>
                 </div>
                 <?php if ($productPriceViewModel->displayPriceInclAndExclTax()): ?>
