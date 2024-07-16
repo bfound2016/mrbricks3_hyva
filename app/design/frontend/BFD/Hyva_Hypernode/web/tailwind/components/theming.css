@@ -44,6 +44,7 @@ body {
     }
 }
 
+/** Custom styling for selling points block on product detail page **/
 .selling-points {
     @apply flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter border border-lego-blue-lighter leading-loose;
     strong {
@@ -53,3 +54,10 @@ body {
         @apply font-semibold text-lego-blue-light underline;
     }
 }
+
+/** Custom styling for breadcrumbs **/
+.home,
+.breadcrumbs .item[class^="category"] {
+    @apply hover:text-lego-blue-light;
+}
+
