@@ -214,6 +214,15 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                     this.initialFinalPrice;
                 return <?= $product->isSaleable() ? 'false' : 'true' ?> && finalPrice === 0;
             },
+            checkPrice(price) {
+                if (Number(price) === price && price % 1 !== 0) {
+                    return `<span>${price}</span><sup>.-</sup>`;
+                } else {
+                    let decimalValue = parseFloat(price).toFixed(2);
+                    let intValue = parseInt(price);
+                    return `<span>${intValue}</span><sup>${decimalValue}</sup>`;
+                }
+            },
             eventListeners: {
                 ['@update-prices-<?= (int)$product->getId() ?>.window'](event) {
                     this.activeProductsPriceData = event.detail;
@@ -251,7 +260,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <?php if ($finalPrice < $regularPrice): ?>
                 <div class="old-price flex flex-col justify-end">
                     <span id="product-price-<?= (int)$product->getId() ?>"
-                          class="price-wrapper price-font font-regular line-through text-lego-blue-dark mb-2 tracking-tightest">
+                          class="price-wrapper price-font line-through text-lego-blue-dark mb-2 tracking-tightest text-3xl">
                         <span class="price">
                             <?= $escaper->escapeHtmlAttr($regularPrice) ?>
                         </span>
@@ -272,9 +281,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
             <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper price-font text-8xl tracking-tightest text-lego-blue-dark">
-                        <span class="price">
-                            <?= $escaper->escapeHtmlAttr($finalPrice) ?>
-                        </span>
+                        <span class="price" x-html="checkPrice(<?= $escaper->escapeHtmlAttr($finalPrice) ?>)"></span>
                     </span>
                     <meta itemprop="price" content="<?= $escaper->escapeHtmlAttr($finalPrice) ?>">
                     <meta itemprop="priceCurrency"
