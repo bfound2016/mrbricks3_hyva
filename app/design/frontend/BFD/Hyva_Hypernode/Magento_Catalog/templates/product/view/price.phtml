@@ -218,7 +218,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                 if (Number(price) === price && price % 1 !== 0) {
                     let decimalValue = price.toString().split('.')[1];
                     let intValue = parseInt(price);
-                    return `<span>${intValue}</span><sup>${"." + decimalValue}</sup>`;
+                    return `<span>${intValue}</span><span class="text-2xl -top-1 ml-0.5">${"." + decimalValue}</span>`;
 
                 } else {
                     return `<span>${price + ".-"}</span>`;
