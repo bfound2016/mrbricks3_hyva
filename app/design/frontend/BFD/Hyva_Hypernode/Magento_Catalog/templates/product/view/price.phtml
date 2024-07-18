@@ -259,7 +259,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
     <div x-show="!activeProductsPriceData && !isPriceHidden()">
         <div class="price-container flex gap-6 justify-center">
             <?php if ($finalPrice < $regularPrice): ?>
-                <div class="old-price flex flex-col justify-end">
+                <div class="old-price flex flex-col justify-end w-1/3">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper price-font text-lego-blue-dark mb-2 tracking-tightest text-3xl relative">
                         <span class="price before:border before:border-b-2 before:border-white before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10" x-html="checkPrice(<?= $escaper->escapeHtmlAttr($regularPrice) ?>)"></span>
@@ -277,7 +277,7 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                 <?php endif; ?>
             <?php endif; ?>
 
-            <div class="final-price inline-block" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+            <div class="final-price inline-block w-1/3" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                     <span id="product-price-<?= (int)$product->getId() ?>"
                           class="price-wrapper price-font text-8xl tracking-tightest text-lego-blue-dark">
                         <span class="price" x-html="checkPrice(<?= $escaper->escapeHtmlAttr($finalPrice) ?>)"></span>
@@ -297,6 +297,8 @@ if ($msrpPrice = iterator_to_array($product->getPriceInfo()->getPrices())[MsrpPr
                     </span>
                 </div>
             <?php endif; ?>
+                <?php /** Placeholder div */ ?>
+                <div class="w-1/3"></div>
         </div>
     </div>
     <?php if ($finalPrice < $regularPrice): ?>
