@@ -38,7 +38,8 @@ $ReviewModal = $viewModels->require(Modal::class)
     ->withAriaLabelledby('review-list')
     ->positionTopRight()
     ->addContainerClass('!pt-0','!pr-0', '!z-[999]')
-    ->addDialogClass( 'md:max-w-4xl');
+    ->addDialogClass( 'md:max-w-4xl')
+    ->removeDialogClass('p-10', 'rounded-lg');
 
 $reviewCollection = $block->getReviewsCollection();
 $reviewCollection->load()->addRateVotes();
