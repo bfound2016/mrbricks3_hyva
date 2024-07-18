@@ -88,7 +88,7 @@ $maxSalesQtyLength = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
         x-init="$dispatch('update-qty-<?= (int)$product->getId() ?>', qty)"
     >
         <?php if ($product->isSaleable()): ?>
-            <div class="mr-2 flex gap-4">
+            <div class="mr-2 flex">
                 <label for="qty[<?= (int)$product->getId() ?>]"
                     class="sr-only"
                 >
