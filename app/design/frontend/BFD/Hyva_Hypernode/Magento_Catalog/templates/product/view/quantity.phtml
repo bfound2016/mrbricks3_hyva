@@ -94,7 +94,7 @@ $maxSalesQtyLength = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
                 >
                     <?= $escaper->escapeHtml(__('Quantity')) ?>
                 </label>
-                <button type="button" :disabled="qty <= <?= /** @noEscape */ $minSalesQty ?>" x-on:click="qty-=<?= /** @noEscape */ $minSalesQty; ?>;" class="border w-11" disabled="disabled">
+                <button type="button" :disabled="qty <= <?= /** @noEscape */ $minSalesQty ?>" x-on:click="qty-=<?= /** @noEscape */ $minSalesQty; ?>;" class="border w-11 border-gray-300 border-r-white rounded-tl-md rounded-bl-md" disabled="disabled">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
                     </svg>
@@ -121,7 +121,7 @@ $maxSalesQtyLength = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
                     x-model.number="qty"
                     @input="$dispatch('update-qty-<?= (int)$product->getId() ?>', qty)"
                 />
-                <button type="button" x-on:click="qty+=<?= /** @noEscape */ $minSalesQty; ?>; $nextTick( () => { console.log() } );" class="border w-11">
+                <button type="button" x-on:click="qty+=<?= /** @noEscape */ $minSalesQty; ?>; $nextTick( () => { console.log() } );" class="border w-11 border-gray-300 border-l-white rounded-tr-md rounded-br-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
