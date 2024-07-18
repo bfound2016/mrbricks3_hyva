@@ -183,9 +183,9 @@ $sku = $block->getProduct()->getSku();
                             this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
 
                             // Build the Alpine.js template
-                            let reviewsHtml =   '<div class="flex bg-lego-blue-dark py-4">' +
+                            let reviewsHtml =   '<div class="flex justify-center relative bg-lego-blue-dark py-4">' +
                                                 '<h2 class="text-white text-2xl title-font font-base self-center">Klantenreviews</h2>' +
-                                                '<button class="text-white self-end"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button>' +
+                                                '<button class="text-white absolute right-10 top-5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button>' +
                                                 '</div>' +
                                                 '<div class="table px-10">';
 
