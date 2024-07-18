@@ -123,7 +123,7 @@ if($product->getTypeId() === 'configurable'){
                     </span>
             <?php else: ?>
                 <?= $heroicons->shoppingCartHtml('text-white lg:mr-4', 24, 24, ["aria-hidden" => "true"]); ?>
-                <span class="hidden sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
+                <span class="ml-2 sm:ml-0 sm:block md:hidden lg:block"><?= $block->getData('is_cart_configure') ?
                         $escaper->escapeHtml(__('Update item')) :
                         $escaper->escapeHtml(__('Add to Cart')) ?>
     </span>
