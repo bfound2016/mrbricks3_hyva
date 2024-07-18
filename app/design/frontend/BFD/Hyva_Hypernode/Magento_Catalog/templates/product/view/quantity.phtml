@@ -108,7 +108,7 @@ $maxSalesQtyLength = ($maxSalesQty ? strlen((string) $maxSalesQty) : 4)
                     pattern="[0-9]+(\.[0-9]{1,<?= /** @noEscape */ $maxSalesQtyLength ?>})?"
                     inputmode="decimal"
                     <?php else: ?>
-                    type="number"
+                    type="text"
                     pattern="[0-9]{0,<?= /** @noEscape */ $maxSalesQtyLength ?>}"
                     inputmode="numeric"
                     <?php if ($minSalesQty): ?>min="<?= /** @noEscape */ $minSalesQty ?>"<?php endif; ?>
