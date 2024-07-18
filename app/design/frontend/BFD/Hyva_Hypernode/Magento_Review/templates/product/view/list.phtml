@@ -183,10 +183,10 @@ $sku = $block->getProduct()->getSku();
                             this.totalPages = Math.ceil(data.data.products.items[0].review_count / 10);
 
                             // Build the Alpine.js template
-                            let reviewsHtml =   '<div class="flex flex-col bg-lego-blue-dark">' +
+                            let reviewsHtml =   '<div class="flex flex-col bg-lego-blue-dark px-10 py-4">' +
                                                 '<h2 class="text-white text-2xl title-font font-base w-full">Klantenreviews</h2>' +
                                                 '</div>' +
-                                                '<div class="table">';
+                                                '<div class="table px-10">';
 
                             this.reviews.forEach(review => {
 
