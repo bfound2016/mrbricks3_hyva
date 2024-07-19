@@ -101,8 +101,8 @@
                 <height>600</height>
             </image>
             <image id="product_page_more_views" type="thumbnail">
-                <width>120</width>
-                <height>90</height>
+                <width>140</width>
+                <height>105</height>
             </image>
             <image id="product_stock_alert_email_product_image" type="small_image">
                 <width>76</width>
