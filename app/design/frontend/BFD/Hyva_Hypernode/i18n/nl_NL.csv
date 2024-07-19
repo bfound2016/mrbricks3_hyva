@@ -1618,6 +1618,7 @@ en de productbeschrijving kan oplopen tot 18, 14 of 9 tekens (met een * tussen e
 "WYSIWYG Editor","WYSIWYG editor",module,Magento_Catalog
 "Add Product","Product toevoegen",module,Magento_Catalog
 "label","label",module,Magento_Catalog
+"Specifications","Kenmerken",module,Magento_Catalog
 "Product Attributes","Productkenmerken",module,Magento_Catalog
 "Add New Attribute","Voeg nieuw attribuut toe",module,Magento_Catalog
 "Cancel","Annuleer",module,Magento_Catalog
