@@ -53,7 +53,9 @@ $categoriesData = $productViewModel->getCategoriesData($product);
                  src="<?= $productViewModel->getStoreUrl() . $categoryData['category_logo']?>"
                  alt="Logo <?= $categoryData['name']?> thema" aria-labelledby="Logo <?= $categoryData['name']?> thema"
                  width="<?= $width/2?>"
-                 height="<?= $height/2;?>" />
+                 height="<?= $height/2;?>"
+                 loading="lazy"
+            />
         </a>
         <?php break; ?>
     <?php endforeach; ?>
