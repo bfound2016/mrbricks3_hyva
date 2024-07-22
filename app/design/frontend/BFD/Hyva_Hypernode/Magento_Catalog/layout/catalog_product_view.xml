@@ -42,7 +42,7 @@
                    group="detailed_info">
                 <arguments>
                     <argument name="title_template" xsi:type="string">Magento_Catalog::product/view/sections/specifications-section-title.phtml</argument>
-                    <argument name="sort_order" xsi:type="number">-25</argument>
+                    <argument name="sort_order" xsi:type="number">-15</argument>
                 </arguments>
             </block>
         </referenceBlock>
