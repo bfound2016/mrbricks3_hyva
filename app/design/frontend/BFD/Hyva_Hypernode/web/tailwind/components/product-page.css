@@ -59,8 +59,11 @@
             @apply absolute -bottom-0.5 inline;
         }
      }
+}
 
-
+.read-more,
+.read-less{
+    @apply hidden;
 }
 
 /**
