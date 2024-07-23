@@ -76,7 +76,7 @@ mutation createProductReviewMutation(
             <?= $escaper->escapeHtml(__('Write Your Own Review')) ?>
         </div>
         <?php if ($block->getAllowWriteReviewFlag()): ?>
-            <form class="review-form md:bg-[url('/images/droneboy.webp')]"
+            <form class="review-form md:bg-[url('../images/droneboy.webp')]"
                   id="<?= $escaper->escapeHtmlAttr($formId) ?>"
                   @submit.prevent="submitForm()"
                   action=""
