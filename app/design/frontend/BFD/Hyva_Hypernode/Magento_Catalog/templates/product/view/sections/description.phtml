@@ -30,7 +30,7 @@ if (!$product->getDescription()) {
 $cssClasses = $block->getData('css_classes') ?? 'prose';
 ?>
 <div class="text-container" x-data="{ open: false }" :class="{'open':open}">
-    <div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>">
+    <div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?> text-content">
         <?= $productViewModel->productAttributeHtml($product, $product->getDescription(), 'description') ?>
         <?= $productViewModel->productAttributeHtml($product, $product->getData('specifications'), 'specifications') ?>
     </div>
