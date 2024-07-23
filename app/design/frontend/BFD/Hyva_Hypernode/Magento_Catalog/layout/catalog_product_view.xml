@@ -37,7 +37,7 @@
             </block>
         </referenceBlock>
         <referenceBlock name="product.info.details">
-            <block name="specifications"
+        <!--<block name="specifications"
                    template="Magento_Catalog::product/view/sections/specifications.phtml"
                    group="detailed_info">
                 <arguments>
@@ -45,6 +45,7 @@
                     <argument name="sort_order" xsi:type="number">-15</argument>
                 </arguments>
             </block>
+        -->
         </referenceBlock>
         <referenceContainer name="before.body.end">
             <block  name="product.rich.media.script"

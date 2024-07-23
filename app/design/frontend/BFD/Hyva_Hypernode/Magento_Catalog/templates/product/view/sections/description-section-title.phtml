@@ -22,7 +22,6 @@ $product = $productViewModel->getProduct();
 ?>
 <div class="flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300">
     <h2 class="text-gray-900 text-2xl title-font font-base w-full">
-        <?= $escaper->escapeHtml(__('Description')) ?> /
-        <span class="font-semibold"><?= $escaper->escapeHtml($product->getName()) ?></span>
+        <?= $escaper->escapeHtml(__('Description')) ?>
     </h2>
 </div>
