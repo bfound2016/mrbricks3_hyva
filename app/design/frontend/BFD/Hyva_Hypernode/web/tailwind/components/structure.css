@@ -9,7 +9,7 @@ body {
 }
 
 .page-main {
-    @apply my-8;
+    @apply my-4;
 }
 
 .columns {
