@@ -28,13 +28,12 @@ if (!$product->getDescription()) {
 }
 
 $cssClasses = $block->getData('css_classes') ?? 'prose';
-
 ?>
-<div x-data="{ open: false }" class="text-container" :class="{'open':open}">
-    <div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?> text-content">
-        <?= $productViewModel->productAttributeHtml($product, $product->getDescription(), 'description') ?>
-        <?= $productViewModel->productAttributeHtml($product, $product->getData('specifications'), 'specifications') ?>
-    </div>
+<div class="<?= $escaper->escapeHtmlAttr($cssClasses) ?> text-container" x-data="{ open: false }" :class="{'open':open}">
+    <?= $productViewModel->productAttributeHtml($product, $product->getDescription(), 'description') ?>
+    <?= $productViewModel->productAttributeHtml($product, $product->getData('specifications'), 'specifications') ?>
     <button @click="open = true" class="read-more"><?= $escaper->escapeHtml(__('Read more')) ?></button>
     <button @click="open = false" class="read-less"><?= $escaper->escapeHtml(__('Read less')) ?></button>
+</div>
+
 
