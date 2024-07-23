@@ -40,17 +40,17 @@
     Styling for read more / read less content containers
  */
 .text-container {
-    @apply max-h-20 overflow-hidden;
+    @apply max-h-40 overflow-hidden relative;
     &.open{
         @apply max-h-full;
         .read-less {
-            @apply block;
+            @apply absolute bottom-0.5 inline;
         }
      }
 
      &:not(.open){
         .read-more{
-            @apply block;
+            @apply absolute bottom-0.5 inline;
         }
      }
 
