@@ -40,7 +40,7 @@
     Styling for read more / read less content containers
  */
 .text-container {
-    @apply relative;
+    @apply relative pb-4;
     .text-content {
         @apply max-h-40 overflow-hidden;
     }
