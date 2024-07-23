@@ -37,6 +37,32 @@
 }
 
 /**
+    Styling for read more / read less content containers
+ */
+.text-container {
+    @apply max-h-20 overflow-hidden;
+    &.open{
+        @apply max-h-full;
+        .read-less {
+            @apply block;
+        }
+     }
+
+     &:not(.open){
+        .read-more{
+            @apply block;
+        }
+     }
+
+
+}
+
+.read-more,
+.read-less{
+    @apply hidden;
+}
+
+/**
     Custom styling for Flixmedia Content
 **/
 
