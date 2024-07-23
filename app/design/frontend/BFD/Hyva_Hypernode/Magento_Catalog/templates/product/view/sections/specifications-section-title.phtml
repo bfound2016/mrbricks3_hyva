@@ -20,7 +20,7 @@ $productViewModel = $viewModels->require(ProductPage::class);
 $product = $productViewModel->getProduct();
 
 ?>
-<div class="-mx-6 px-6 flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300 bg-gradient-to-b from-gray-50 to-transparent">
+<div class="flex flex-col pt-6 pb-3 mb-6 border-t border-gray-300">
     <h2 class="text-gray-900 text-2xl title-font font-base w-full">
         <?= $escaper->escapeHtml(__('Specifications')) ?> /
         <span class="font-semibold"><?= $escaper->escapeHtml($product->getName()) ?></span>
