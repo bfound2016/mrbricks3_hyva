@@ -50,14 +50,14 @@
             @apply max-h-full;
         }
         .read-less {
-            @apply absolute -bottom-0.5 inline;
+            @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
         }
     }
 
 
      &:not(.open){
         .read-more{
-            @apply absolute -bottom-0.5 inline;
+            @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
         }
      }
 }

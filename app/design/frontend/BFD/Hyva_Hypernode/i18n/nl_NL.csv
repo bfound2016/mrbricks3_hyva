@@ -2442,6 +2442,8 @@ Time in seconds between the widget updates.,module,Magento_Catalog
 "Recently Compared","Recentelijk vergelijken",module,Magento_Catalog
 "Add To Cart","In winkelwagen",module,Magento_Catalog
 "Add To Compare","Aan productvergelijking toevoegen",module,Magento_Catalog
+"Read more", "Lees meer",module,Magento_Catalog
+"Read less", "Lees minder",module,Magento_Catalog
 "Learn more","Meer informatie",module,Magento_Catalog
 "Recently Viewed","Recent bekeken",module,Magento_Catalog
 "Edit Event","Gebeurtenis bewerken",module,Magento_CatalogEvent
