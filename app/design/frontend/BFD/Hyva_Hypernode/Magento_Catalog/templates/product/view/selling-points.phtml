@@ -36,10 +36,10 @@ $heroiconsOutline = $viewModels->require(HeroiconsOutline::class);
                 let message = "";
 
                 if (productPrice < 99) {
-                        shippingCostMessage = "Bezorgd voor € 5,95. <strong>Gratis verzending vanaf 99,-</strong>";
+                        message = "Bezorgd voor € 5,95. <strong>Gratis verzending vanaf 99,-</strong>";
                     }
                 else {
-                        shippingCostMessage = "<strong>Gratis verzending</strong> in Nederland en België.";
+                        message = "<strong>Gratis verzending</strong> in Nederland en België.";
                 }
                 return message;
             }
