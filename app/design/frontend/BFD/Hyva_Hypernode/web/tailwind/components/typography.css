@@ -3,11 +3,11 @@
     /* The default is applied in tailwind.config.js since Hyvä 1.2.0 */
     
     .text-sans-serif {
-        font-family: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-family: "VAG Rounded", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     }
     
 }
-
+/**
 @font-face {
     font-family: "Poppins";
     font-style: normal;
@@ -23,6 +23,7 @@
     font-display: swap;
     src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
 }
+*/
 
 @font-face {
     font-family: "Poppins-Bold";
@@ -43,13 +44,21 @@
 @font-face {
     font-family: "VAG Rounded";
     font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/vag-rounded-light.woff2");
+}
+
+@font-face {
+    font-family: "VAG Rounded";
+    font-style: normal;
     font-weight: 600;
     font-display: swap;
     src: url("../fonts/vag-rounded-bold.woff2");
 }
 
 html {
-    font-size: 15px;
+    font-size: 16px;
     @apply antialiased;
 }
 
@@ -73,6 +82,7 @@ body {
     }
 
     .font-semibold{
-        font-family: "Poppins-SemiBold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+        font-family: "VAG Rounded", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
+        font-weight: 600;
     }
 }
