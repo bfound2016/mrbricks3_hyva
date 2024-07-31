@@ -199,9 +199,7 @@ $productName = $block->getProduct()->getName();
             </button>
         </div>
         <nav
-                class="z-10 absolute bottom-2 lg:bottom-4 xl:bottom-8 flex justify-between gap-2
-                        <?= $galleryOptionArrows !== "start" ? 'right-2 lg:right-4 xl:right-8' : '' ?>
-                        <?= $galleryOptionArrows !== "end" ? 'left-2 lg:left-4 xl:left-8' : '' ?>"
+                class="z-10 absolute bottom-2 lg:bottom-4 xl:bottom-8 flex justify-between gap-2"
                 aria-label="<?= $escaper->escapeHtml(__('%1 Gallery Navigation', $productName)) ?>"
                 x-show="images.length > 1"
                 x-cloak
