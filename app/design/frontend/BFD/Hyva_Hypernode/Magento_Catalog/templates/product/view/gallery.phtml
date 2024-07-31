@@ -144,7 +144,7 @@ $productName = $block->getProduct()->getName();
                         title="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         :disabled="!loop && isStart"
-                        @click="prevItem"
+                        @click="previousItem"
                 >
                         <span class="block p-2.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary">
                             <?= $heroiconsSolid->arrowLeftHtml('', 16, 16, ['aria-hidden' => 'true']) ?>
