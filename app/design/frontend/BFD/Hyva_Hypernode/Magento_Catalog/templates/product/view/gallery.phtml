@@ -140,26 +140,26 @@ $productName = $block->getProduct()->getName();
                 <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-1.5 md:p-0"
+                        class="shrink-0 p-1.5 md:p-0 h-full bg-white bg-opacity-50"
                         title="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Previous')) ?>"
                         :disabled="!loop && isStart"
                         @click="previousItem"
                 >
-                        <span class="block p-2.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary">
+                        <span class="block p-2.5 transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 text-lego-blue-light">
                             <?= $heroiconsSolid->arrowLeftHtml('', 16, 16, ['aria-hidden' => 'true']) ?>
                         </span>
                 </button>
                 <button
                         type="button"
                         tabindex="-1"
-                        class="shrink-0 p-1.5 md:p-0"
+                        class="shrink-0 p-1.5 md:p-0 h-full bg-white bg-opacity-50"
                         title="<?= $escaper->escapeHtml(__('Next')) ?>"
                         aria-label="<?= $escaper->escapeHtml(__('Next')) ?>"
                         :disabled="!loop && isEnd"
                         @click="nextItem"
                 >
-                        <span class="block p-2.5 rounded-full transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 bg-white text-primary">
+                        <span class="block p-2.5 transition disabled:opacity-30 shadow hover:shadow-primary/30 focus:shadow-primary/30 text-lego-blue-light">
                             <?= $heroiconsSolid->arrowRightHtml('', 16, 16, ['aria-hidden' => 'true']) ?>
                         </span>
                 </button>
