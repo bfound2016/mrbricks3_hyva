@@ -80,10 +80,23 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
 
     curl_close($ch);
     $jsonResponse = json_decode($response, true);
-    $productSKUS  = array_map(function($item) {
-                        return $item['productNumber'];
-                    }, $jsonResponse['responses']['products']);
-    print_r($productSKUS);
+    if (isset($jsonResponse['responses']) && is_array($jsonResponse['responses'])) {
+        // Iterate through the 'responses' array
+        foreach ($jsonResponse['responses'] as $response) {
+            // Check if the 'products' key exists and is an array
+            if (isset($response['products']) && is_array($response['products'])) {
+                // Iterate through the 'products' array
+                foreach ($response['products'] as $product) {
+                    // Check if the 'productNumber' key exists
+                    if (isset($product['productNumber'])) {
+                        // Add the 'productNumber' to the array
+                        $productNumbers[] = $product['productNumber'];
+                    }
+                }
+            }
+        }
+    }
+    print_r(`$productNumbers`);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
