@@ -40,8 +40,7 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
 /**
  * Fetch recommendations via Hello Retail API
  */
-function fetchRecommendations($productPageViewModel)
-{
+
     $endpoint = 'https://core.helloretail.com/serve/recoms';
     $data = [
         "websiteUuid" => "{51d6ade1-05e0-4710-95e8-a906bdcbd7d6}",
@@ -80,10 +79,7 @@ function fetchRecommendations($productPageViewModel)
     }
 
     curl_close($ch);
-    return json_decode($response, true);
-}
-
-$jsonResponse = fetchRecommendations($productPageViewModel);
+    $jsonResponse = json_decode($response, true);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
