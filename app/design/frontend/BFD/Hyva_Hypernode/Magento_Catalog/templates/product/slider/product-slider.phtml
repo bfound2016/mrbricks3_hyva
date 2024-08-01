@@ -188,7 +188,7 @@ if (empty($sliderHtml)) {
     <script>
         'use strict';
         window.addEventListener('DOMContentLoaded', function() {
-            console.log(JSON.stringify(<?= $jsonResponse; ?>));
+            const jsonReponse = <?= json_encode($jsonResponse) ?>;
             if (! window.productSliderEventHandlerInitialized) {
                 window.productSliderEventHandlerInitialized = true;
 
