@@ -19,6 +19,7 @@ use Hyva\Theme\ViewModel\Wishlist;
 use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
+use Psr\Log\LoggerInterface;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -35,29 +36,31 @@ $wishlistViewModel    = $viewModels->require(Wishlist::class);
 $compareViewModel     = $viewModels->require(ProductCompare::class);
 $storeViewModel       = $viewModels->require(Store::class);
 $productPageViewModel = $viewModels->require(ProductPage::class);
+$logger               = $viewModels->require(LoggerInterface::class);
 
 
 /**
  * Fetch recommendations via Hello Retail API
  */
-
+function fetchRecommendations(LoggerInterface $logger, ProductPage $productPageViewModel)
+{
     $endpoint = 'https://core.helloretail.com/serve/recoms';
     $data = [
-                "websiteUuid" => "{51d6ade1-05e0-4710-95e8-a906bdcbd7d6}",
-                "trackingUserId" => "",
-                "requests" => [
-                    [
-                        "key" => "k60f968d95e3c0875aef8c63c",
-                        "format" => "json",
-                        "fields" => ["productNumber"],
-                        "context" => [
-                            "hierarchies" => [["\$hierarchies"]],
-                            "productNumber" => $productPageViewModel->getProduct()->getSku(),
-                            "price" => $productPageViewModel->getProduct()->getPrice(),
-                        ]
-                    ]
+        "websiteUuid" => "{51d6ade1-05e0-4710-95e8-a906bdcbd7d6}",
+        "trackingUserId" => "",
+        "requests" => [
+            [
+                "key" => "k60f968d95e3c0875aef8c63c",
+                "format" => "json",
+                "fields" => ["productNumber"],
+                "context" => [
+                    "hierarchies" => [["\$hierarchies"]],
+                    "productNumber" => $productPageViewModel->getProduct()->getSku(),
+                    "price" => $productPageViewModel->getProduct()->getPrice(),
                 ]
-            ];
+            ]
+        ]
+    ];
 
     $ch = curl_init();
 
@@ -75,11 +78,15 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
     if ($response === false || $httpCode !== 200) {
         $error = curl_error($ch);
         curl_close($ch);
+        $logger->error('Error posting recommendations: ' . $error);
         throw new Exception('Error posting recommendations: ' . $error);
     }
 
     curl_close($ch);
-    $jsonResponse =  json_decode($response, true);
+    return json_decode($response, true);
+}
+
+$jsonResponse = fetchRecommendations($logger, $productPageViewModel);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
@@ -184,7 +191,7 @@ if (empty($sliderHtml)) {
     <script>
         'use strict';
         window.addEventListener('DOMContentLoaded', function() {
-            console.log(JSON.stringify(<? $jsonResponse; ?>));
+            console.log(JSON.stringify(<?= $jsonResponse; ?>));
             if (! window.productSliderEventHandlerInitialized) {
                 window.productSliderEventHandlerInitialized = true;
 
