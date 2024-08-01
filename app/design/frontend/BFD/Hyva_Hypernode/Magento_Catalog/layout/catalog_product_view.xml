@@ -35,7 +35,7 @@
                 <arguments>
                     <argument name="title" xsi:type="string" translate="true">Deze sets vind je ook vast leuk</argument>
                     <argument name="category_ids" xsi:type="string">22</argument><!-- Creator Expert -->
-                    <argument name="page_size" xsi:type="string">4</argument>
+                    <argument name="page_size" xsi:type="string">8</argument>
                 </arguments>
             </block>
             <!-- #6 Rich Content implementation -->
