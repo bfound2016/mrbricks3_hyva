@@ -12,6 +12,7 @@ use Hyva\Theme\Model\ViewModelRegistry;
 use Hyva\Theme\ViewModel\Cart\Items as CartItems;
 use Hyva\Theme\ViewModel\ProductCompare;
 use Hyva\Theme\ViewModel\ProductList;
+use Hyva\Theme\ViewModel\ProductPage;
 use Hyva\Theme\ViewModel\Slider;
 use Hyva\Theme\ViewModel\Store;
 use Hyva\Theme\ViewModel\Wishlist;
@@ -33,6 +34,52 @@ $productListViewModel = $viewModels->require(ProductList::class);
 $wishlistViewModel    = $viewModels->require(Wishlist::class);
 $compareViewModel     = $viewModels->require(ProductCompare::class);
 $storeViewModel       = $viewModels->require(Store::class);
+$productPageViewModel = $viewModels->require(ProductPage::class);
+
+
+/**
+ * Fetch recommendations via Hello Retail API
+ */
+
+    $endpoint = 'https://core.helloretail.com/serve/recoms';
+    $data = [
+                "websiteUuid" => "{51d6ade1-05e0-4710-95e8-a906bdcbd7d6}",
+                "trackingUserId" => "",
+                "requests" => [
+                    [
+                        "key" => "k60f968d95e3c0875aef8c63c",
+                        "format" => "json",
+                        "fields" => ["productNumber"],
+                        "context" => [
+                            "hierarchies" => [["\$hierarchies"]],
+                            "productNumber" => $productPageViewModel->getProduct()->getSku(),
+                            "price" => $productPageViewModel->getProduct()->getPrice(),
+                        ]
+                    ]
+                ]
+            ];
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $endpoint);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json'
+    ]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if ($response === false || $httpCode !== 200) {
+        $error = curl_error($ch);
+        curl_close($ch);
+        throw new Exception('Error posting recommendations: ' . $error);
+    }
+
+    curl_close($ch);
+    $jsonResponse =  json_decode($response, true);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
@@ -137,6 +184,7 @@ if (empty($sliderHtml)) {
     <script>
         'use strict';
         window.addEventListener('DOMContentLoaded', function() {
+            console.log(<?= $jsonResponse; ?>);
             if (! window.productSliderEventHandlerInitialized) {
                 window.productSliderEventHandlerInitialized = true;
 
