@@ -19,7 +19,6 @@ use Hyva\Theme\ViewModel\Wishlist;
 use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
-use Psr\Log\LoggerInterface;
 
 /** @var Template $block */
 /** @var Escaper $escaper */
@@ -36,7 +35,6 @@ $wishlistViewModel    = $viewModels->require(Wishlist::class);
 $compareViewModel     = $viewModels->require(ProductCompare::class);
 $storeViewModel       = $viewModels->require(Store::class);
 $productPageViewModel = $viewModels->require(ProductPage::class);
-$logger               = $viewModels->require(LoggerInterface::class);
 
 
 /**
@@ -78,7 +76,6 @@ function fetchRecommendations(LoggerInterface $logger, ProductPage $productPageV
     if ($response === false || $httpCode !== 200) {
         $error = curl_error($ch);
         curl_close($ch);
-        $logger->error('Error posting recommendations: ' . $error);
         throw new Exception('Error posting recommendations: ' . $error);
     }
 
@@ -86,7 +83,7 @@ function fetchRecommendations(LoggerInterface $logger, ProductPage $productPageV
     return json_decode($response, true);
 }
 
-$jsonResponse = fetchRecommendations($logger, $productPageViewModel);
+$jsonResponse = fetchRecommendations($productPageViewModel);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
