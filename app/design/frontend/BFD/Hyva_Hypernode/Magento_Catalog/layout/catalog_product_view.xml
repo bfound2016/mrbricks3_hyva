@@ -10,6 +10,7 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="hyva_modal"/>
+    <update handle="hyva_product_slider" />
     <head>
         <remove src="Mollie_Payment::css/styles.css"/>
     </head>
@@ -29,6 +30,14 @@
             </block>
         </referenceContainer>
         <referenceBlock name="product.detail.page">
+            <!-- #33 Product Slider from Hello Retail API -->
+            <block name="recommendations-slider" template="Magento_Catalog::product/slider/product-slider.phtml">
+                <arguments>
+                    <argument name="title" xsi:type="string" translate="true">Deze sets vind je ook vast leuk</argument>
+                    <argument name="category_ids" xsi:type="string">22</argument><!-- Creator Expert -->
+                    <argument name="page_size" xsi:type="string">4</argument>
+                </arguments>
+            </block>
             <!-- #6 Rich Content implementation -->
             <block  name="product.rich.media"
                     class="Magento\Catalog\Block\Product\View"
