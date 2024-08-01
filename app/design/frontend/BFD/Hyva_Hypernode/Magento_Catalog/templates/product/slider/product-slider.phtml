@@ -80,7 +80,10 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
 
     curl_close($ch);
     $jsonResponse = json_decode($response, true);
-    print_r($jsonResponse);
+    $productSKUS  = array_map(function($item) {
+                        return $item['productNumber'];
+                    }, $jsonResponse['responses']['products']);
+    print_r($productSKUS);
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
