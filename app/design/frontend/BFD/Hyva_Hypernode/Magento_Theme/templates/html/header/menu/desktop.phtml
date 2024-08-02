@@ -1,0 +1,174 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsSolid;
+use Hyva\Theme\ViewModel\Navigation;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+use Magento\Cms\Block\BlockByIdentifier as CmsBlock;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var Navigation $viewModelNavigation */
+$viewModelNavigation = $viewModels->require(Navigation::class, $block);
+
+/** @var HeroiconsSolid $heroiconsSolid */
+$heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
+
+$uniqueId = '_' . uniqid();
+$canOpenOnHover = $block->getOpenTopLevelMenuOnHover();
+$showTopLevelAllLink = $block->getShowTopLevelAllLink() !== null ? $block->getShowTopLevelAllLink() : true;
+$topMenuCtaItem = $block->getTopMenuCtaItem();
+
+// Order is important here: 1. build the menu data, 2. then set the cache tags from the view model identities
+$menu = $viewModelNavigation->getNavigation(5);
+$block->setData('cache_tags', $viewModelNavigation->getIdentities());
+?>
+
+<nav
+    class="navigation hidden lg:block"
+    aria-label="<?= $escaper->escapeHtmlAttr(__('Main menu')) ?>"
+    x-data="initMenuDesktop<?= $escaper->escapeHtml($uniqueId) ?>()"
+    x-ref="nav-desktop"
+    @load.window="setActiveMenu($root)"
+>
+    <ul class="flex flex-wrap gap-x-8">
+        <?php foreach ($menu as $item): ?>
+            <?php if (!empty($item['childData'])): ?>
+                <li
+                    class="level-0"
+                    x-data="{
+                        open: false,
+                        canHover(func) {
+                            const isHoverableDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+                            if (!isHoverableDevice) return;
+                            func();
+                        }
+                    }"
+                    @click.outside="open = false"
+                    <?php if ($canOpenOnHover): ?>
+                        @mouseenter="canHover(() => { open = true })"
+                        @mouseleave="canHover(() => { open = false })"
+                    <?php endif ?>
+                    @keydown.escape="open = false"
+                >
+                    <?php $menuId = 'desktop-menu-' . str_replace('-node', '', $item['id']) ?>
+                    <button
+                        type="button"
+                        class="level-0 group w-full flex justify-between items-center gap-1 pt-4 pb-[calc(theme(padding.4)_-_3px)]
+                            border-b-[3px] border-transparent hover:border-blue-500 transition
+                            aria-expanded:text-blue-500 aria-expanded:border-blue-500 data-[has-current]:aria-expanded:border-blue-500
+                            data-[has-current]:border-slate-400 data-[has-current]:hover:border-blue-500"
+                        @click="open = !open"
+                        aria-expanded="false"
+                        :aria-expanded="open"
+                        aria-controls="<?= $escaper->escapeHtml($menuId) ?>"
+                    >
+                        <?= $escaper->escapeHtml($item['name']) ?>
+                        <?= $heroiconsSolid->chevronDownHtml(
+                            'transition group-aria-expanded:rotate-180 text-slate-400 group-aria-expanded:text-inherit',
+                            24,
+                            24,
+                            ['aria-hidden' => 'true']
+                        ) ?>
+                    </button>
+                    <div
+                        id="<?= $escaper->escapeHtml($menuId) ?>"
+                        class="z-30 absolute inset-x-0 flex gap-8 container py-6 min-h-64 border-t border-slate-100 rounded-b-md bg-white shadow-md overflow-auto"
+                        x-show="open === true"
+                        x-transition
+                        x-cloak
+                    >
+                        <div id="$menuId" class="grow flex flex-col justify-between">
+                            <ul class="columns-xs gap-8">
+                                <?php foreach ($item['childData'] as $subMenu): ?>
+                                    <li class="break-inside-avoid pb-4">
+                                        <a
+                                            href="<?= $escaper->escapeUrl($subMenu['url']) ?>"
+                                            class="level-1 block py-1 font-medium hover:underline aria-[current=page]:underline"
+                                        ><?= $escaper->escapeHtml($subMenu['name']) ?></a>
+                                        <?php if (!empty($subMenu['childData'])): ?>
+                                            <ul>
+                                                <?php foreach ($subMenu['childData'] as $subMenuItems): ?>
+                                                    <li>
+                                                        <a
+                                                            href="<?= $escaper->escapeUrl($subMenuItems['url']) ?>"
+                                                            class="level-2 block py-1 hover:underline aria-[current=page]:underline"
+                                                        ><?= $escaper->escapeHtml($subMenuItems['name']) ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php if ($showTopLevelAllLink): ?>
+                                <div class="mt-4 border-t border-slate-100">
+                                    <a
+                                        href="<?= $escaper->escapeUrl($item['url']) ?>"
+                                        class="level-0 block pt-3 hover:underline aria-[current=page]:underline"
+                                    ><?= $escaper->escapeHtml(__('See all %1', $item['name'])) ?></a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <?php
+                        $cmsBlockHtml = $this->getLayout()
+                            ->createBlock(CmsBlock::class)
+                            ->setIdentifier($menuId)
+                            ->toHtml();
+                        if (!empty($cmsBlockHtml)):
+                            ?>
+                            <div class="max-w-[50%]">
+                                <?= /** @noEscape */ $cmsBlockHtml ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a
+                        href="<?= $escaper->escapeUrl($item['url']) ?>"
+                        title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"
+                        class="level-0 flex pt-4 pb-[calc(theme(padding.4)_-_3px)] border-b-[3px] border-transparent hover:border-blue-500
+                            aria-[current=page]:border-slate-400 aria-[current=page]:hover:border-blue-500
+                            <?= $item['name'] === $topMenuCtaItem ? 'text-red-700' : '' ?>"
+                    >
+                        <?= $escaper->escapeHtml($item['name']) ?>
+                    </a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</nav>
+<script>
+    const initMenuDesktop<?= $escaper->escapeHtml($uniqueId) ?> = () => {
+        return {
+            setActiveMenu(menuNode) {
+                Array.from(menuNode.querySelectorAll('a')).filter(link => {
+                    return link.href === window.location.href.split('?')[0];
+                }).map(item => {
+                    item.setAttribute('aria-current', 'page');
+
+                    let menuLevelCount = 0;
+                    while (menuLevelCount < 3) {
+                        let selector = `.level-${menuLevelCount}`;
+                        item.closest(selector)
+                        && item.closest(selector).querySelector('button')
+                        && item.closest(selector).querySelector('button').setAttribute('data-has-current', '');
+                        menuLevelCount++;
+                    }
+                });
+            }
+        }
+    }
+</script>

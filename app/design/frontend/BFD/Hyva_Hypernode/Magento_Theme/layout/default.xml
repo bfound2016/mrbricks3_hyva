@@ -9,6 +9,13 @@
 -->
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-            <move element="breadcrumbs" destination="main" before="-"/>
+        <move element="breadcrumbs" destination="main" before="-"/>
+        <referenceBlock name="topmenu_desktop">
+            <arguments>
+                <argument name="open_top_level_menu_on_hover" xsi:type="boolean">true</argument> <!-- Also open on hover (true/false)-->
+                <argument name="show_top_level_all_link" xsi:type="boolean">false</argument> <!-- Show view all link for top level (true/false) -->
+                <!--<argument name="top_menu_cta_item" xsi:type="string" translate="true">Sale</argument>--> <!-- Top Menu Item to Highlight -->
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
