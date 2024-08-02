@@ -9,52 +9,53 @@
 declare(strict_types=1);
 
 use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\Logo\LogoSizeResolver;
+use Hyva\Theme\ViewModel\Logo\LogoPathResolver;
+use Hyva\Theme\ViewModel\StoreConfig;
 use Magento\Framework\Escaper;
 use Magento\Theme\Block\Html\Header\Logo;
-use Hyva\Theme\ViewModel\Logo\LogoSizeResolver;
 
 /** @var Logo $block */
 /** @var Escaper $escaper */
 /** @var ViewModelRegistry $viewModels */
+
+/** @var StoreConfig $storeConfig */
+$storeConfig = $viewModels->require(StoreConfig::class);
+$storeName = $storeConfig->getStoreConfig('general/store_information/name') ?: $block->getThemeName() ?: __('Store logo');
+
 /** @var LogoSizeResolver $logoSizeResolver */
-
-$storeName = $block->getThemeName();
-
 $logoSizeResolver = $viewModels->require(LogoSizeResolver::class);
 $logoWidth = $logoSizeResolver && $logoSizeResolver->getWidth()
     ? $logoSizeResolver->getWidth()
-    : $block->getLogoWidth();
+    : ($block->getLogoWidth() ?: 200);
 $logoHeight = $logoSizeResolver && $logoSizeResolver->getHeight()
     ? $logoSizeResolver->getHeight()
-    : $block->getLogoHeight();
+    : ($block->getLogoHeight() ?: 150);
 
-/** @var \Hyva\Theme\ViewModel\Logo\LogoPathResolver $logoPathResolver */
+/** @var LogoPathResolver $logoPathResolver */
 $logoPathResolver = $block->getData('logoPathResolver');
 $logoSrc = $logoPathResolver && method_exists($logoPathResolver, 'getLogoSrc')
     ? $logoPathResolver->getLogoSrc($block->getData('logo_file'))
     : $block->getLogoSrc();
 ?>
-<div class="order-2 sm:order-2 lg:order-1 pb-2 sm:w-auto sm:pb-0">
-    <a
-        class="flex items-center justify-center text-xl font-medium tracking-wide text-gray-800
-            no-underline hover:no-underline font-title"
-        href="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
-        aria-label="<?= $escaper->escapeHtmlAttr(__('Go to Home page')) ?>"
-    >
+
+<a
+    class="inline-block align-middle"
+    href="<?= $escaper->escapeUrl($block->getUrl()) ?>"
+    title="<?= $escaper->escapeHtmlAttr(__('Go to Home page')) ?>"
+>
+    <?php if ($logoSrc): ?>
         <img
             src="<?= $escaper->escapeUrl($logoSrc) ?>"
-            alt="<?= $escaper->escapeHtmlAttr($block->getLogoAlt() ? $block->getLogoAlt() : __('Store logo')) ?>"
-            <?= $logoWidth
-                ? 'width="' . $escaper->escapeHtmlAttr($logoWidth) . '"'
-                : 'width="200"'
-            ?>
-            <?= $logoHeight
-                ? 'height="' . $escaper->escapeHtmlAttr($logoHeight) . '"'
-                : 'height="150"'
-            ?>
-        />
-        <?php if (!$logoSrc): ?>
+            alt="<?= $escaper->escapeHtmlAttr($block->getLogoAlt() ?: $storeName) ?>"
+            width="<?= $escaper->escapeHtmlAttr($logoWidth) ?>"
+            height="<?= $escaper->escapeHtmlAttr($logoHeight) ?>"
+            loading="eager"
+            fetchpriority="high"
+        >
+    <?php else: ?>
+        <span class="text-xl font-medium font-title">
             <?= $escaper->escapeHtml($storeName) ?>
-        <?php endif; ?>
-    </a>
-</div>
+        </span>
+    <?php endif; ?>
+</a>

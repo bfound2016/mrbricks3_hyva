@@ -10,6 +10,12 @@
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="breadcrumbs" destination="main" before="-"/>
+        <move element="topmenu_mobile" destination="header-content" after="-"/>
+        <move element="topmenu_desktop" destination="header-content" after="-"/>
+        <referenceBlock name="header-content">
+            <block name="header-notification" template="Magento_Theme::html/header/notification.phtml"/>
+            <block name="header-usps" template="Magento_Theme::html/header/usps.phtml"/>
+        </referenceBlock>
         <referenceBlock name="topmenu_desktop">
             <arguments>
                 <argument name="open_top_level_menu_on_hover" xsi:type="boolean">true</argument> <!-- Also open on hover (true/false)-->
