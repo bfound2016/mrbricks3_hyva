@@ -1,3 +1,8 @@
 .level-0{
-    @apply text-white font-bold uppercase;
+    @apply text-white font-bold uppercase px-8;
+}
+
+.level-1,
+.level-2{
+    @apply text-gra
 }
