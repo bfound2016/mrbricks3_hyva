@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 use Hyva\Theme\Model\ViewModelRegistry;
 use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Hyva\Theme\ViewModel\HeroiconsSolid;
 use Hyva\Theme\ViewModel\StoreConfig;
 use Magento\Checkout\Block\Cart\Sidebar as SidebarCart;
 use Magento\Framework\Escaper;
@@ -22,6 +23,9 @@ use Magento\Framework\View\Element\Template;
 /** @var HeroiconsOutline $heroicons */
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 
+/** @var HeroiconsSolid $heroiconsSolid */
+$heroiconsSolid = $viewModels->require(HeroiconsSolid::class);
+
 /** @var StoreConfig $storeConfig */
 $storeConfig = $viewModels->require(StoreConfig::class);
 $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDEBAR_DISPLAY);
@@ -32,11 +36,27 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
             searchOpen: false,
             cart: {},
             isCartOpen: false,
+            isMobile: true,
+            init() {
+                this.checkIsSearchMobile();
+            },
             getData(data) {
                 if (data.cart) { this.cart = data.cart }
             },
             isCartEmpty() {
                 return !this.cart.summary_count
+            },
+            checkIsSearchMobile() {
+                const mobileElement = this.$refs.searchContainerMobile;
+                this.isMobile = mobileElement
+                    ? getComputedStyle(mobileElement).display !== "none"
+                    : window.matchMedia('(max-width: 1023px)').matches; // Fallback to `md` breakpoint
+
+                if (this.isMobile){
+                    this.$refs.searchContainerMobile.appendChild(this.$refs.searchForm);
+                } else {
+                    this.$refs.searchContainerDesktop.appendChild(this.$refs.searchForm);
+                }
             },
             toggleCart(event) {
                 if (event.detail && event.detail.isOpen !== undefined) {
@@ -53,7 +73,18 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                     ?>
                     this.isCartOpen = true
                 }
-            }
+            },
+            eventListeners: {
+                ['@private-content-loaded.window'](event) {
+                    this.getData(event.detail.data);
+                },
+                ['@resize.window.debounce']() {
+                    this.checkIsSearchMobile();
+                },
+                ['@visibilitychange.window.debounce']() {
+                    this.checkIsSearchMobile();
+                },
+            },
         }
     }
     function initCompareHeader() {
@@ -69,47 +100,49 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
         }
     }
 </script>
-<div id="header"
-     class="relative z-30 w-full border-b shadow bg-container-lighter border-container-lighter"
-     x-data="initHeader()"
-     @private-content-loaded.window="getData(event.detail.data)"
+<div
+    id="header"
+    class="bg-white"
+    x-data="initHeader()"
+    x-bind="eventListeners"
 >
-    <div class="container flex flex-wrap lg:flex-nowrap items-center justify-between w-full px-6 py-3 mx-auto mt-0">
-        <!--Logo-->
+    <?= $block->getChildHtml('header-notification') ?>
+
+    <div class="container py-3.5 flex gap-4 items-center">
+        <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
-        <!--Main Navigation-->
-        <?= $block->getChildHtml('topmenu') ?>
+        <div x-ref="searchContainerDesktop" class="hidden lg:block min-h-a11y px-6 flex-1"></div>
 
-        <div class="flex items-center gap-2 md:gap-1 order-3 md:-mr-1">
-                <?php
-                /**
-                 * Git reference https://github.com/bfound2016/mrbricks3_hyva/issues/4
-                 */
-                ?>
-                <!--Search Icon-->
-            <button
-                id="menu-search-icon"
-                class="rounded p-1 hover:bg-primary/10 outline-offset-2"
-                @click.prevent="
-                    searchOpen = !searchOpen;
-                    $dispatch('search-open');
-                "
-                aria-label="<?= $escaper->escapeHtmlAttr(__('Toggle search form')) ?>"
-                aria-haspopup="true"
-                :aria-expanded="searchOpen"
-                x-ref="searchButton"
+        <div class="ml-auto flex gap-0.5 items-center">
+            <a
+                id="compare-link"
+                class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2 invisible"
+                :class="{ 'invisible': !(itemCount > 0) }"
+                href="<?= $escaper->escapeUrl($block->getUrl('catalog/product_compare/index')) ?>"
+                title="<?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>"
+                x-data="initCompareHeader()"
+                @private-content-loaded.window="receiveCompareData($event.detail.data)"
+                :aria-label="`
+                    <?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>,
+                    ${itemCount > 1
+                        ? hyva.str('<?= $escaper->escapeJs(__('%1 items')) ?>', itemCount)
+                        : hyva.str('<?= $escaper->escapeJs(__('%1 item')) ?>', itemCount)
+                    }`"
             >
-                <?= $heroicons->searchHtml("md:h-6 md:w-6", 28, 28, ["aria-hidden" => "true"]) ?>
-            </button>
+                <?= $heroicons->scaleHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
+                <span
+                    x-text="itemCount"
+                    class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-800
+                        text-xs font-semibold leading-none text-center uppercase tabular-nums"
+                    aria-hidden="true"
+                ></span>
+            </a>
 
-            <!-- Additional Header Elements -->
-            <?= $block->getChildHtml('additional') ?>
+            <?= $block->getChildHtml('store-language-switcher'); ?>
 
-            <!--Customer Icon & Dropdown-->
             <?= $block->getChildHtml('customer') ?>
 
-            <!--Cart Icon-->
             <?php if ($showMiniCart): ?>
                 <button
             <?php else: ?>
@@ -139,12 +172,12 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                     title="<?= $escaper->escapeHtmlAttr(__('View cart')) ?>"
                 <?php endif ?>
             >
-                <?= $heroicons->shoppingCartHtml("md:h-6 md:w-6", 28, 28, ["aria-hidden" => "true"]) ?>
+                <?= $heroicons->shoppingCartHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
                 <span
                     x-text="cart.summary_count"
                     x-show="!isCartEmpty()"
                     x-cloak
-                    class="absolute -top-1.5 -right-1.5 h-5 px-2 py-1 rounded-full bg-primary text-white
+                    class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-green-200 text-green-800
                         text-xs font-semibold leading-none text-center uppercase tabular-nums"
                     aria-hidden="true"
                 ></span>
@@ -155,23 +188,20 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
             <?php endif ?>
         </div>
     </div>
-    <!--Search-->
-    <div class="absolute z-10 w-full border-t shadow-sm bg-container-lighter border-container-lighter"
-         id="search-content"
-         x-cloak x-show="searchOpen"
-         @click.outside="searchOpen = false"
-         @keydown.escape="
-            searchOpen = false;
-            $refs.searchButton.focus();
-         "
-    >
-        <?= $block->getChildHtml('header-search'); ?>
+
+    <div class="bg-slate-200">
+        <div class="relative container hidden lg:block">
+            <?= $block->getChildHtml('topmenu.desktop') ?>
+        </div>
+        <div x-ref="searchContainerMobile" class="container lg:hidden py-4">
+            <div x-ref="searchForm">
+                <?= $block->getChildHtml('header-search'); ?>
+            </div>
+        </div>
     </div>
 
-    <!--Cart Drawer-->
-    <?= $block->getChildHtml('cart-drawer'); ?>
+    <?= $block->getChildHtml('header-usps'); ?>
 
-    <!--Authentication Pop-Up-->
+    <?= $block->getChildHtml('cart-drawer'); ?>
     <?= $block->getChildHtml('authentication-popup'); ?>
 </div>
-
