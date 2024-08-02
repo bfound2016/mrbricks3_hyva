@@ -80,6 +80,7 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
 
     curl_close($ch);
     $jsonResponse = json_decode($response, true);
+    $productNumbers = [];
     if (isset($jsonResponse['responses']) && is_array($jsonResponse['responses'])) {
         // Iterate through the 'responses' array
         foreach ($jsonResponse['responses'] as $response) {
@@ -96,7 +97,7 @@ $productPageViewModel = $viewModels->require(ProductPage::class);
             }
         }
     }
-    print_r($productNumbers);
+
 
 $sliderName        = str_replace('.', '_', $block->getNameInLayout());
 $categoryIds       = $block->getData('category_ids') ?: '';
@@ -111,7 +112,8 @@ $headingTag        = $block->getData('heading_tag') ?: 'h3';
 $hideDetails       = $block->getData('hide_details') ?? false;
 $hideRatingSummary = $block->getData('hide_rating_summary') ?? false;
 $type              = $block->getData('type');
-$skusFilter        = $block->getData('product_skus') ? explode(',', $block->getData('product_skus')) : [];
+$skusFilter        = $productNumbers;
+//$skusFilter        = $block->getData('product_skus') ? explode(',', $block->getData('product_skus')) : [];
 $additionalFilters = (array) $block->getData('additional_filters');
 $itemTemplate      = $block->getData('item_template') ?? 'Magento_Catalog::product/list/item.phtml';
 $containerTemplate = $block->getData('container_template')
