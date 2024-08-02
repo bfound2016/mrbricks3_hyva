@@ -4,5 +4,5 @@
 
 .level-1,
 .level-2{
-    @apply text-gray-700;
+    @apply text-gray-700 capitalize;
 }
