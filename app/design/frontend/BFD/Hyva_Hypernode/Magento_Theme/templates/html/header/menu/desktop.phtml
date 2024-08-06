@@ -46,7 +46,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
         <?php foreach ($menu as $item): ?>
             <?php if (!empty($item['childData'])): ?>
                 <li
-                    class="level-0"
+                    class="level-0 border-r-[2px] border-lego-menu-light"
                     x-data="{
                         open: false,
                         canHover(func) {
@@ -65,8 +65,8 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     <?php $menuId = 'desktop-menu-' . str_replace('-node', '', $item['id']) ?>
                     <button
                         type="button"
-                        class="level-0 group w-full flex justify-between items-center gap-1 py-4
-                            border-r-[2px] border-lego-menu-light transition aria-expanded:text-white"
+                        class="group w-full flex justify-between items-center gap-1 py-4
+                               transition aria-expanded:text-white"
                         @click="open = !open"
                         aria-expanded="false"
                         :aria-expanded="open"
@@ -133,11 +133,11 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     </div>
                 </li>
             <?php else: ?>
-                <li class="level-0">
+                <li class="level-0 border-r-[2px] border-lego-menu-light">
                     <a
                         href="<?= $escaper->escapeUrl($item['url']) ?>"
                         title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"
-                        class="flex pt-4 pb-[calc(theme(padding.4)_-_3px)] border-r-[2px] border-lego-menu-light"
+                        class="flex py-4"
                             <?= $item['name'] === $topMenuCtaItem ? 'text-red-700' : '' ?>"
                     >
                         <?= $escaper->escapeHtml($item['name']) ?>
