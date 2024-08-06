@@ -65,7 +65,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     <?php $menuId = 'desktop-menu-' . str_replace('-node', '', $item['id']) ?>
                     <button
                         type="button"
-                        class="group w-full flex justify-between items-center gap-1 py-4
+                        class="group flex justify-between items-center gap-1 py-4
                                transition aria-expanded:text-white"
                         @click="open = !open"
                         aria-expanded="false"
@@ -133,7 +133,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     </div>
                 </li>
             <?php else: ?>
-                <li class="level-0 border-r-[2px] border-lego-menu-light basis-full flex justify-center">
+                <li class="level-0 border-r-[2px] border-lego-menu-light basis-full">
                     <a
                         href="<?= $escaper->escapeUrl($item['url']) ?>"
                         title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"

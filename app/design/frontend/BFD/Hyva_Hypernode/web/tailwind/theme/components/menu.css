@@ -1,5 +1,5 @@
 .level-0{
-    @apply text-white font-bold uppercase px-4;
+    @apply text-white font-bold uppercase px-4 flex justify-center;
     button {
         @apply uppercase;
     }
