@@ -137,7 +137,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     <a
                         href="<?= $escaper->escapeUrl($item['url']) ?>"
                         title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"
-                        class="flex py-4"
+                        class="flex py-4 justify-center"
                             <?= $item['name'] === $topMenuCtaItem ? 'text-red-700' : '' ?>"
                     >
                         <?= $escaper->escapeHtml($item['name']) ?>
