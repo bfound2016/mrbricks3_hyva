@@ -42,11 +42,11 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
     x-ref="nav-desktop"
     @load.window="setActiveMenu($root)"
 >
-    <ul class="flex flex-wrap gap-x-8">
+    <ul class="flex">
         <?php foreach ($menu as $item): ?>
             <?php if (!empty($item['childData'])): ?>
                 <li
-                    class="level-0 border-r-[2px] border-lego-menu-light"
+                    class="level-0 border-r-[2px] border-lego-menu-light basis-full"
                     x-data="{
                         open: false,
                         canHover(func) {
