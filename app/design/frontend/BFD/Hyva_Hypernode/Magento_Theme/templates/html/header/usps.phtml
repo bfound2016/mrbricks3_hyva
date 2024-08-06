@@ -21,22 +21,22 @@ use Magento\Framework\View\Element\Template;
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 ?>
 
-<div class="px-4 py-2 bg-slate-100 text-slate-600 text-sm text-center font-medium">
+<div class="px-4 py-2 bg-lego-blue-lighter text-center">
     <ul class="container flex justify-center gap-11 lg:justify-between">
         <li class="hidden lg:flex items-center gap-3">
-            <?= $heroicons->checkHtml('text-green-500') ?>
+            <?= $heroicons->checkHtml('text-lego-green') ?>
             <span><?= $escaper->escapeHtml(__('Shipped within a day')) ?></span>
         </li>
         <li class="hidden lg:flex items-center gap-3">
-            <?= $heroicons->checkHtml('text-green-500') ?>
+            <?= $heroicons->checkHtml('text-lego-green') ?>
             <span><?= $escaper->escapeHtml(__('Free shipping and returns')) ?></span>
         </li>
         <li class="hidden lg:flex items-center gap-3">
-            <?= $heroicons->checkHtml('text-green-500') ?>
+            <?= $heroicons->checkHtml('text-lego-green') ?>
             <span><?= $escaper->escapeHtml(__('Free returns')) ?></span>
         </li>
         <li class="flex items-center gap-3">
-            <?= $heroicons->checkHtml('text-green-500') ?>
+            <?= $heroicons->checkHtml('text-lego-green') ?>
             <span><?= $escaper->escapeHtml(__('Refer a friend and get a discount')) ?></span>
         </li>
     </ul>
