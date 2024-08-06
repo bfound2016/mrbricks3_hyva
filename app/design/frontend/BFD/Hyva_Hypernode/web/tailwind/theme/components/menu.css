@@ -1,7 +1,7 @@
 .level-0{
-    @apply text-white font-bold uppercase px-4;
-    button {
-        @apply uppercase;
+    @apply text-white font-bold px-4;
+    button,a  {
+        @apply uppercase mx-auto;
     }
 }
 
