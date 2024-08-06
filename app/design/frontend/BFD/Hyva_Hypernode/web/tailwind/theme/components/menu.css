@@ -1,5 +1,8 @@
 .level-0{
     @apply text-white font-bold uppercase px-4;
+    button {
+        @apply uppercase;
+    }
 }
 
 .level-1,
