@@ -133,11 +133,11 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     </div>
                 </li>
             <?php else: ?>
-                <li>
+                <li class="level-0">
                     <a
                         href="<?= $escaper->escapeUrl($item['url']) ?>"
                         title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"
-                        class="level-0 flex pt-4 pb-[calc(theme(padding.4)_-_3px)] border-r-[2px] border-lego-menu-light"
+                        class="flex pt-4 pb-[calc(theme(padding.4)_-_3px)] border-r-[2px] border-lego-menu-light"
                             <?= $item['name'] === $topMenuCtaItem ? 'text-red-700' : '' ?>"
                     >
                         <?= $escaper->escapeHtml($item['name']) ?>
