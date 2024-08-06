@@ -30,7 +30,7 @@ $canOpenOnHover = $block->getOpenTopLevelMenuOnHover();
 $showTopLevelAllLink = $block->getShowTopLevelAllLink() !== null ? $block->getShowTopLevelAllLink() : true;
 $topMenuCtaItem = $block->getTopMenuCtaItem();
 
-// Order is important here: 1. build the menu data, 2. then set the cache tags from the view model identities
+// Order is very important here: 1. build the menu data, 2. then set the cache tags from the view model identities
 $menu = $viewModelNavigation->getNavigation(5);
 $block->setData('cache_tags', $viewModelNavigation->getIdentities());
 ?>
