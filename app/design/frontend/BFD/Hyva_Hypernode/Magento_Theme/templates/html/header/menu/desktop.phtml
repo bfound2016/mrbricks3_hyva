@@ -65,9 +65,8 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     <?php $menuId = 'desktop-menu-' . str_replace('-node', '', $item['id']) ?>
                     <button
                         type="button"
-                        class="level-0 group w-full flex justify-between items-center gap-1 pt-4 pb-[calc(theme(padding.4)_-_3px)]
-                            border-r-[2px] border-lego-menu-light transition
-                            aria-expanded:text-white"
+                        class="level-0 group w-full flex justify-between items-center gap-1 py-4
+                            border-r-[2px] border-lego-menu-light transition aria-expanded:text-white"
                         @click="open = !open"
                         aria-expanded="false"
                         :aria-expanded="open"
@@ -75,7 +74,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     >
                         <?= $escaper->escapeHtml($item['name']) ?>
                         <?= $heroiconsSolid->chevronDownHtml(
-                            'transition group-aria-expanded:rotate-180 text-slate-400 group-aria-expanded:text-inherit',
+                            'transition group-aria-expanded:rotate-180 text-white group-aria-expanded:text-inherit',
                             24,
                             24,
                             ['aria-hidden' => 'true']
