@@ -14,7 +14,7 @@
         <move element="topmenu_desktop" destination="header-content" after="-"/>
         <referenceBlock name="header-content">
             <!--<block name="header-notification" template="Magento_Theme::html/header/notification.phtml"/>-->
-            <block name="header-usps" template="Magento_Theme::html/header/usps.phtml"/>
+            <block name="header-usps" template="Magento_Theme::html/header/usps.phtml" after="-"/>
         </referenceBlock>
         <referenceBlock name="topmenu_desktop">
             <arguments>
