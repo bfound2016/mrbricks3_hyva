@@ -109,6 +109,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
     <?= $block->getChildHtml('header-notification') ?>
 
     <div class="container py-3.5 flex gap-4 items-center">
+        <?= $block->getChildHtml('header-usps'); ?>
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
@@ -199,8 +200,6 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
             </div>
         </div>
     </div>
-
-    <?= $block->getChildHtml('header-usps'); ?>
 
     <?= $block->getChildHtml('cart-drawer'); ?>
     <?= $block->getChildHtml('authentication-popup'); ?>
