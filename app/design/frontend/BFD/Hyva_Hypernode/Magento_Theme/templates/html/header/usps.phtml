@@ -21,8 +21,15 @@ use Magento\Framework\View\Element\Template;
 $heroicons = $viewModels->require(HeroiconsOutline::class);
 ?>
 
-<div class="px-4 py-2 bg-lego-blue-lighter text-center">
-    <ul class="container flex justify-center gap-11 lg:justify-between text-gray-700 animate-infinite-scroll sm:animate-none">
+<div
+    x-data = "{}"
+    x-init = "$nextTick(() => {
+        let ul = $refs.usps;
+        ul.insertAdjacentHTML('afterend', ul.outerHTML);
+        ul.nextSibling.setAttribute('aria-hidden', 'true');
+    })"
+    class="px-4 py-2 bg-lego-blue-lighter text-center">
+    <ul x-ref="usps" class="container flex justify-center gap-11 lg:justify-between text-gray-700 animate-infinite-scroll sm:animate-none">
         <li class="flex flex-nowrap items-center gap-3">
             <?= $heroicons->clockHtml('text-lego-blue-light',24,24) ?>
             <span class="whitespace-nowrap">Vandaag voor 21:30 besteld, <strong>morgen in huis!</strong></span>
