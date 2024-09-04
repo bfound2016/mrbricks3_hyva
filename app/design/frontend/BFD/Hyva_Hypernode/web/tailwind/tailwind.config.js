@@ -149,6 +149,15 @@ module.exports = hyvaModules.mergeTailwindConfig({
             maxWidth: '100%'
           }
         }
+      },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 25s linear infinite',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateSX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        }
       }
     },
   },
