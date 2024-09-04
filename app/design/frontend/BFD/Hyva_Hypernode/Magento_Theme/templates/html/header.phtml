@@ -107,9 +107,8 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
     x-bind="eventListeners"
 >
     <?= $block->getChildHtml('header-notification') ?>
-
+    <?= $block->getChildHtml('header-usps'); ?>
     <div class="container py-3.5 flex gap-4 items-center">
-        <?= $block->getChildHtml('header-usps'); ?>
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
