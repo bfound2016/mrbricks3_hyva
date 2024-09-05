@@ -111,16 +111,9 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
     <div class="container py-3.5 flex gap-4 items-center">
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
-        <?php
-            /**
-             * BFOUND DIGITAL
-             * 09/2024
-             * Wrapper for searchbar and cart icon
-             */
-        ?>
-        <div class="hidden pb-3.5 pt-8 lg:flex-1 lg:flex lg:bg-lego-blue-light lg:rounded-t-lg lg:self-end">
-            <div x-ref="searchContainerDesktop" class="min-h-a11y px-6 flex-1"></div>
-            <div class="ml-auto flex gap-0.5 items-center">
+
+        <div x-ref="searchContainerDesktop" class="hidden lg:block min-h-a11y px-6 flex-1"></div>
+        <div class="flex gap-0.5 items-center">
                 <a
                         id="compare-link"
                         class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2 invisible"
@@ -193,7 +186,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                 </a>
             <?php endif ?>
             </div>
-        </div>
+        <div class="hidden w-16 h-16 lg:block ml-auto lg:bg-[url('../images/lego-logo.webp')]"></div>
     </div>
 
     <div class="bg-gradient-to-b from-lego-menu-light to-lego-menu-dark">
