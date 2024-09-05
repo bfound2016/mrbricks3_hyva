@@ -108,15 +108,15 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
 >
     <?= $block->getChildHtml('header-notification') ?>
     <?= $block->getChildHtml('header-usps'); ?>
-    <div class="container py-3.5 flex gap-4 lg:gap-12 items-center">
+    <div class="container py-3.5 flex gap-12 items-center">
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
         <div x-ref="searchContainerDesktop"
-             class="hidden relative lg:flex justify-center
+             class="hidden relative lg:flex justify-center order-2
                     min-h-a11y px-32 flex-1 bg-lego-blue-light self-end -mb-3.5 h-20 flex-col rounded-t-lg
                     before:bg-[url('../images/misterbricks_guy.webp')] before:bg-no-repeat before:absolute before:h-36 before:w-36 before:block before:-left-8 before:bottom-0 before:bg-contain before:bg-left-bottom"></div>
-        <div class="flex gap-0.5 items-center lg:flex-col">
+        <div class="flex gap-0.5 items-center lg:flex-col order-4">
 
                 <?php if ($showMiniCart): ?>
                     <button
