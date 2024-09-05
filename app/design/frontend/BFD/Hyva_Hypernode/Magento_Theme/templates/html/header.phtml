@@ -117,33 +117,6 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                     min-h-a11y px-32 flex-1 bg-lego-blue-light self-end -mb-3.5 h-20 flex-col rounded-t-lg
                     before:bg-[url('../images/misterbricks_guy.webp')] before:bg-no-repeat before:absolute before:h-36 before:w-36 before:block before:-left-8 before:bottom-0 before:bg-contain before:bg-left-bottom"></div>
         <div class="flex gap-0.5 items-center">
-                <a
-                        id="compare-link"
-                        class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2 invisible"
-                        :class="{ 'invisible': !(itemCount > 0) }"
-                        href="<?= $escaper->escapeUrl($block->getUrl('catalog/product_compare/index')) ?>"
-                        title="<?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>"
-                        x-data="initCompareHeader()"
-                        @private-content-loaded.window="receiveCompareData($event.detail.data)"
-                        :aria-label="`
-                    <?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>,
-                    ${itemCount > 1
-                        ? hyva.str('<?= $escaper->escapeJs(__('%1 items')) ?>', itemCount)
-                        : hyva.str('<?= $escaper->escapeJs(__('%1 item')) ?>', itemCount)
-                    }`"
-                >
-                    <?= $heroicons->scaleHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
-                    <span
-                            x-text="itemCount"
-                            class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-800
-                        text-xs font-semibold leading-none text-center uppercase tabular-nums"
-                            aria-hidden="true"
-                    ></span>
-                </a>
-
-                <?= $block->getChildHtml('store-language-switcher'); ?>
-
-                <?= $block->getChildHtml('customer') ?>
 
                 <?php if ($showMiniCart): ?>
                     <button
