@@ -112,7 +112,8 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
-        <div x-ref="searchContainerDesktop" class="hidden lg:flex justify-center min-h-a11y px-32 flex-1 bg-lego-blue-light self-end -mb-3.5 h-24 flex-col rounded-t-lg before:bg-[url('../images/misterbricks_guy.webp')] before:bg-no-repeat before:absolute"></div>
+        <div x-ref="searchContainerDesktop"
+             class="hidden lg:flex justify-center min-h-a11y px-32 flex-1 bg-lego-blue-light self-end -mb-3.5 h-24 flex-col rounded-t-lg before:bg-[url('../images/misterbricks_guy.webp')] before:bg-no-repeat before:absolute before:h-30 before:w-30 before:block before:left-0 before:bottom-0"></div>
         <div class="flex gap-0.5 items-center">
                 <a
                         id="compare-link"
