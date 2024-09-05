@@ -13588,6 +13588,7 @@ We steunen onze goedkeuringen met 100% terugboekingsbescherming en betalen u het
 "Import/Export Tax Rates","BTW-tarieven in- en exporteren",module,Magento_TaxImportExport
 "CSV","CSV",module,Magento_TaxImportExport
 "Excel XML","Excel XML",module,Magento_TaxImportExport
+"Cart","Winkelwagen",Magento_Theme
 "Back","Terug",module,Magento_Theme
 "Save and Continue","Toepassen",module,Magento_Theme
 "Save Configuration","Configuratie opslaan",module,Magento_Theme
