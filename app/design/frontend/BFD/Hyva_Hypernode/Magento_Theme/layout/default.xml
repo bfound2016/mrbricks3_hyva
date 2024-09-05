@@ -23,5 +23,13 @@
                 <!--<argument name="top_menu_cta_item" xsi:type="string" translate="true">Sale</argument>--> <!-- Top Menu Item to Highlight -->
             </arguments>
         </referenceBlock>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logoPathResolver" xsi:type="object">Hyva\Theme\ViewModel\Logo\LogoPathResolver</argument>
+                <!-- These values are used if no width or height is set in the adminhtml theme configuration -->
+                <argument name="logo_width" xsi:type="number">300</argument>
+                <argument name="logo_height" xsi:type="number">85</argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
