@@ -108,7 +108,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
 >
     <?= $block->getChildHtml('header-notification') ?>
     <?= $block->getChildHtml('header-usps'); ?>
-    <div class="container py-3.5 flex gap-12 items-center">
+    <div class="container py-3.5 flex gap-12 items-center lg:items-end">
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
@@ -163,7 +163,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                 </a>
             <?php endif ?>
             </div>
-        <div class="hidden w-16 h-16 bg-contain lg:block ml-auto lg:bg-[url('../images/lego-logo.webp')]"></div>
+        <div class="hidden w-16 h-16 bg-contain lg:block ml-auto lg:bg-[url('../images/lego-logo.webp')] order-5"></div>
     </div>
 
     <div class="bg-gradient-to-b from-lego-menu-light to-lego-menu-dark">
