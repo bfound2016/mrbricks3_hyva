@@ -111,48 +111,54 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
     <div class="container py-3.5 flex gap-4 items-center">
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
-
-        <div x-ref="searchContainerDesktop" class="hidden lg:block min-h-a11y px-6 flex-1 lg:self-end lg:bg-lego-blue-light"></div>
-
-        <div class="ml-auto flex gap-0.5 items-center">
-            <a
-                id="compare-link"
-                class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2 invisible"
-                :class="{ 'invisible': !(itemCount > 0) }"
-                href="<?= $escaper->escapeUrl($block->getUrl('catalog/product_compare/index')) ?>"
-                title="<?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>"
-                x-data="initCompareHeader()"
-                @private-content-loaded.window="receiveCompareData($event.detail.data)"
-                :aria-label="`
+        <?php
+            /**
+             * BFOUND DIGITAL
+             * 09/2024
+             * Wrapper for searchbar and cart icon
+             */
+        ?>
+        <div class="lg:bg-lego-blue-light lg:rounded-t-lg">
+            <div x-ref="searchContainerDesktop" class="hidden lg:block min-h-a11y px-6 flex-1 lg:self-end"></div>
+            <div class="ml-auto flex gap-0.5 items-center">
+                <a
+                        id="compare-link"
+                        class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2 invisible"
+                        :class="{ 'invisible': !(itemCount > 0) }"
+                        href="<?= $escaper->escapeUrl($block->getUrl('catalog/product_compare/index')) ?>"
+                        title="<?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>"
+                        x-data="initCompareHeader()"
+                        @private-content-loaded.window="receiveCompareData($event.detail.data)"
+                        :aria-label="`
                     <?= $escaper->escapeHtmlAttr(__('Compare Products')) ?>,
                     ${itemCount > 1
                         ? hyva.str('<?= $escaper->escapeJs(__('%1 items')) ?>', itemCount)
                         : hyva.str('<?= $escaper->escapeJs(__('%1 item')) ?>', itemCount)
                     }`"
-            >
-                <?= $heroicons->scaleHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
-                <span
-                    x-text="itemCount"
-                    class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-800
+                >
+                    <?= $heroicons->scaleHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
+                    <span
+                            x-text="itemCount"
+                            class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-800
                         text-xs font-semibold leading-none text-center uppercase tabular-nums"
-                    aria-hidden="true"
-                ></span>
-            </a>
+                            aria-hidden="true"
+                    ></span>
+                </a>
 
-            <?= $block->getChildHtml('store-language-switcher'); ?>
+                <?= $block->getChildHtml('store-language-switcher'); ?>
 
-            <?= $block->getChildHtml('customer') ?>
+                <?= $block->getChildHtml('customer') ?>
 
-            <?php if ($showMiniCart): ?>
-                <button
-            <?php else: ?>
+                <?php if ($showMiniCart): ?>
+                    <button
+                <?php else: ?>
                 <a
-            <?php endif ?>
-                id="menu-cart-icon"
-                class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2"
-                x-ref="cartButton"
-                :aria-disabled="isCartEmpty()"
-                :aria-label="`
+                    <?php endif ?>
+                        id="menu-cart-icon"
+                        class="relative inline-block rounded p-1 hover:bg-primary/10 outline-offset-2"
+                        x-ref="cartButton"
+                        :aria-disabled="isCartEmpty()"
+                        :aria-label="`
                     <?= $escaper->escapeHtmlAttr($showMiniCart ? __('Toggle minicart') : __('View cart')) ?>,
                     ${isCartEmpty()
                         ? '<?= $escaper->escapeHtmlAttr(__('Cart is empty')) ?>'
@@ -160,33 +166,35 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                             ? hyva.str('<?= $escaper->escapeHtmlAttr(__('%1 items')) ?>', cart.summary_count)
                             : hyva.str('<?= $escaper->escapeHtmlAttr(__('%1 item')) ?>', cart.summary_count)
                     }`"
-                <?php if ($showMiniCart): ?>
-                    @click.prevent.stop="() => {
+                    <?php if ($showMiniCart): ?>
+                        @click.prevent.stop="() => {
                         $dispatch('toggle-cart', { isOpen: true })
                     }"
-                    @toggle-cart.window="toggleCart($event)"
-                    :aria-expanded="isCartOpen"
-                    aria-haspopup="dialog"
-                <?php else: ?>
-                    href="<?= $escaper->escapeUrl($block->getUrl('checkout/cart/index')) ?>"
-                    title="<?= $escaper->escapeHtmlAttr(__('View cart')) ?>"
-                <?php endif ?>
-            >
-                <?= $heroicons->shoppingCartHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
-                <span
-                    x-text="cart.summary_count"
-                    x-show="!isCartEmpty()"
-                    x-cloak
-                    class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-green-200 text-green-800
+                        @toggle-cart.window="toggleCart($event)"
+                        :aria-expanded="isCartOpen"
+                        aria-haspopup="dialog"
+                    <?php else: ?>
+                        href="<?= $escaper->escapeUrl($block->getUrl('checkout/cart/index')) ?>"
+                        title="<?= $escaper->escapeHtmlAttr(__('View cart')) ?>"
+                    <?php endif ?>
+                >
+                    <?= $heroicons->shoppingCartHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
+                    <span
+                            x-text="cart.summary_count"
+                            x-show="!isCartEmpty()"
+                            x-cloak
+                            class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-green-200 text-green-800
                         text-xs font-semibold leading-none text-center uppercase tabular-nums"
-                    aria-hidden="true"
-                ></span>
-            <?php if ($showMiniCart): ?>
-                </button>
-            <?php else: ?>
+                            aria-hidden="true"
+                    ></span>
+                    <?php if ($showMiniCart): ?>
+                        </button>
+                    <?php else: ?>
                 </a>
             <?php endif ?>
+            </div>
         </div>
+
     </div>
 
     <div class="bg-gradient-to-b from-lego-menu-light to-lego-menu-dark">
