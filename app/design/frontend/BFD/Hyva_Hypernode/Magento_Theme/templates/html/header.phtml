@@ -108,7 +108,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
 >
     <?= $block->getChildHtml('header-notification') ?>
     <?= $block->getChildHtml('header-usps'); ?>
-    <div class="container py-3.5 flex gap-12 lg:gap-0 items-center lg:items-end">
+    <div class="container bg-lego-blue-light lg:bg-transparent py-3.5 flex gap-12 lg:gap-0 items-center lg:items-end">
         <?= $block->getChildHtml('topmenu.mobile') ?>
         <?= $block->getChildHtml('logo'); ?>
 
@@ -150,7 +150,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                     <?= $heroicons->shoppingCartHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
                     <span
                             x-text="cart.summary_count"
-                            class="absolute -top-2.5 -right-2.5 px-2 py-0.5 text-sm rounded-full bg-lego-green text-white border-2 border-white
+                            class="absolute -top-3.5 -right-2.5 px-2 py-0.5 text-sm rounded-full bg-lego-green text-white border-2 border-white
                             font-semibold text-center uppercase tabular-nums"
                             aria-hidden="true"
                     ></span>
