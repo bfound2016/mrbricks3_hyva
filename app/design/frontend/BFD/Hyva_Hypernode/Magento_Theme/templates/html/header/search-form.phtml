@@ -106,7 +106,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                 type="submit"
                 title="<?= $escaper->escapeHtml(__('Search')) ?>"
                 class="action search btn justify-center rounded-l-none rounded-r-md px-3 text-base shadow-none disabled:shadow-none transition
-                    bg-white text-gray-600 border border-transparent hover:text-lego-blue-light active:text-lego-blue-light disabled:bg-white disabled:opacity-70"
+                    bg-white hover:bg-white active:bg-white text-gray-600 border border-transparent hover:text-lego-blue-light active:text-lego-blue-light disabled:bg-white disabled:opacity-70"
                 aria-label="<?= $escaper->escapeHtml(__('Search')) ?>"
             >
                 <?= $heroicons->searchHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
