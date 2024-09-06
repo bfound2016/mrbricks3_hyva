@@ -150,8 +150,8 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                     <?= $heroicons->shoppingCartHtml('', 24, 24, ["aria-hidden" => "true"]) ?>
                     <span
                             x-text="cart.summary_count"
-                            class="absolute -top-1.5 -right-1.5 px-2 py-0.5 rounded-full bg-green-200 text-green-800
-                        text-xs font-semibold leading-none text-center uppercase tabular-nums"
+                            class="absolute -top-2.5 -right-2 px-2 py-0 rounded-full bg-lego-green text-white
+                            font-semibold text-center uppercase tabular-nums"
                             aria-hidden="true"
                     ></span>
                     <?php if ($showMiniCart): ?>
