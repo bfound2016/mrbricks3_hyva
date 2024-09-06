@@ -31,6 +31,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
 ?>
 <nav
     x-data="initMenuMobile<?= $escaper->escapeHtml($uniqueId) ?>()"
+    id="mobileMenu"
     @load.window="setActiveMenu($root)"
     @keydown.window.escape="closeMenu()"
     class="z-20 order-1 navigation lg:hidden w-12 h-12"
