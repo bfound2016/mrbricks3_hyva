@@ -96,7 +96,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                    value="<?= /** @noEscape */ $helper->getEscapedQueryText() ?>"
                    placeholder="<?= $escaper->escapeHtmlAttr(__('Search entire store here...')) ?>"
                    maxlength="<?= $escaper->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
-                   class="w-full border-slate-300 rounded-l-md"
+                   class="w-full border-white rounded-l-md enabled:border-white enabled:ring-0"
                    @focus.once="suggest"
                    @input.debounce.300="suggest"
                    @keydown.arrow-down.prevent="focusElement($root.querySelector('[tabindex]'))"
