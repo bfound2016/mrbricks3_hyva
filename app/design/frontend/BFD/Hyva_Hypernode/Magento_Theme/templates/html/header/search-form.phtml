@@ -82,7 +82,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
     }
 </script>
 <search x-data="initMiniSearch()">
-     <form class="form minisearch border border-lego-blue-light lg:border-none" id="search_mini_form" x-ref="form" @submit.prevent="search()"
+     <form class="form minisearch" id="search_mini_form" x-ref="form" @submit.prevent="search()"
           action="<?= $escaper->escapeUrl($helper->getResultUrl()) ?>" method="get">
         <div class="flex">
             <label class="sr-only" for="search" data-role="minisearch-label">
