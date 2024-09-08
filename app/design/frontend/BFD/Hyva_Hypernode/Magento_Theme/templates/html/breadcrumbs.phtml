@@ -18,7 +18,7 @@ use Magento\Framework\Escaper;
 ?>
 <?php if ($crumbs && is_array($crumbs)): ?>
 <nav class="breadcrumbs border-b" aria-label="Breadcrumb">
-    <ol class="items list-reset py-4 rounded flex flex-wrap text-grey text-sm">
+    <ol class="items list-reset py-4 rounded flex flex-nowrap truncate text-grey text-sm">
         <?php foreach ($crumbs as $crumbName => $crumbInfo): ?>
             <li class="item flex <?= $escaper->escapeHtmlAttr($crumbName) ?>">
             <?php if (!$crumbInfo['first']): ?>
