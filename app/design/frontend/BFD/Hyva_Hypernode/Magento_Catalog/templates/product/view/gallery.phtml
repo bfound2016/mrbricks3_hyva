@@ -91,7 +91,8 @@ $productName = $block->getProduct()->getName();
                  * Discount bullet
                  */
                 ?>
-                <div class="bg-lego-blue-dark rounded-full w-32 h-32 text-white absolute border-2 border-white flex font-bold flex-col top-4 right-4 z-10 justify-center text-center">
+                <div class="bg-lego-blue-dark rounded-full w-32 h-32 shadow-md shadow-gray-300
+                            text-white absolute border-2 border-white flex font-bold flex-col top-4 right-4 z-10 justify-center text-center">
                     <span class="block text-4xl">15%</span><span class="block text-xl leading-tight">korting</span>
                 </div>
                 <template x-for="(image, index) in images" :key="index">
