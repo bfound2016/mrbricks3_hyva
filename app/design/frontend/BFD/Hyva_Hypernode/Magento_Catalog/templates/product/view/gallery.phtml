@@ -91,7 +91,9 @@ $productName = $block->getProduct()->getName();
                  * Discount bullet
                  */
                 ?>
-                <div class="bg-lego-blue-dark rounded-full w-32 h-32 text-white absolute border-2 border-white flex flex-col"><span class="block text-2xl">15%</span><span class="block text-xl">Korting</span></div>
+                <div class="bg-lego-blue-dark rounded-full w-32 h-32 text-white absolute border-2 border-white flex font-bold flex-col top-4 right-4 z-10">
+                    <span class="block text-4xl">15%</span><span class="block text-2xl">Korting</span>
+                </div>
                 <template x-for="(image, index) in images" :key="index">
                     <img
                         :alt="image.caption || '<?= $escaper->escapeJs($productName) ?>'"
