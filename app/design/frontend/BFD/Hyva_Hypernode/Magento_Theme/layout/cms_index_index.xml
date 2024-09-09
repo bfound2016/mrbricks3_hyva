@@ -13,7 +13,7 @@
         <referenceContainer name="content">
             <block name="hero" template="Magento_Theme::elements/hero.phtml"/>
             <block name="content-1" template="Magento_Theme::elements/content-1.phtml"/>
-            <block name="slider-1" template="Magento_Catalog::product/slider/product-slider.phtml">
+            <block name="slider-1" template="Magento_Catalog::product/slider/product-slider-static.phtml">
                 <arguments>
                     <argument name="title" xsi:type="string" translate="true">Watches</argument>
                     <argument name="category_ids" xsi:type="string">6</argument>
