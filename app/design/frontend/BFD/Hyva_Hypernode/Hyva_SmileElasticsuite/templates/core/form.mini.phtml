@@ -1,0 +1,145 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Search\Helper\Data as SearchHelper;
+
+/**
+ * Template for quick search mini form.
+ * Overridden to manage template injection for the rendering of autocomplete results.
+ *
+ * @var \Smile\ElasticsuiteCore\Block\Search\Form\Autocomplete $block
+ * @var SearchHelper $helper
+ * @var Escaper $escaper
+ * @var \Hyva\Theme\Model\ViewModelRegistry $viewModels
+ * @var \Hyva\Theme\ViewModel\HeroiconsOutline $heroicons
+ */
+
+$helper        = $this->helper(SearchHelper::class);
+$suggestionUrl = $helper->getResultUrl() . '?' . $helper->getQueryParamName() . '=';
+$heroicons     = $viewModels->require(\Hyva\Theme\ViewModel\HeroiconsOutline::class);
+$templates     = json_decode($block->getJsonSuggestRenderers(), true);
+
+?>
+
+<script>
+    function initMiniSearchComponent() {
+        "use strict";
+
+        return {
+            show:false,
+            formSelector: "#search_mini_form",
+            url: "<?= /* @escapeNotVerified */ $block->getUrl('search/ajax/suggest') ?>",
+            destinationSelector: "#search_autocomplete",
+            templates: <?= /* @noEscape */ $block->getJsonSuggestRenderers() ?>,
+            priceFormat: <?= /* @noEscape */ $block->getJsonPriceFormat() ?>,
+            minSearchLength: <?= /* @escapeNotVerified */ $helper->getMinQueryLength() ?>,
+            searchResultsByType: {},
+            currentRequest: null,
+
+            /**
+             * Get search results.
+             */
+            getSearchResults: function () {
+                let value = document.querySelector('#search').value.trim();
+
+                if (value.length < parseInt(this.minSearchLength, 10)) {
+                    this.searchResultsByType = [];
+
+                    return false;
+                }
+
+                let url = this.url + '?' + new URLSearchParams({
+                    q: document.querySelector('#search').value,
+                    _: Date.now()
+                }).toString();
+
+                if (this.currentRequest !== null) {
+                    this.currentRequest.abort();
+                }
+                this.currentRequest = new AbortController();
+
+                fetch(url, {
+                    method: 'GET',
+                    signal: this.currentRequest.signal,
+                }).then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                }).then((data)  => {
+                    this.show = data.length > 0;
+
+                    this.searchResultsByType = data.reduce((acc, result) => {
+                        if (! acc[result.type]) acc[result.type] = [];
+                        acc[result.type].push(result);
+                        return acc;
+                    }, {});
+                }).catch((error) => {
+                    ;
+                });
+            },
+        }
+    }
+</script>
+<div id="elasticsuite-search-container" x-show="true">
+    <div class="container py-2 mx-auto text-black" x-data="initMiniSearchComponent()" @click.away="show = false">
+        <form class="form minisearch" id="search_mini_form" action="<?= $escaper->escapeUrl($helper->getResultUrl()) ?>" method="get" role="search">
+            <div class="relative">
+                <label class="sr-only" for="search">
+                    <?= $escaper->escapeHtmlAttr(__('Search entire store here...')) ?>
+                </label>
+                <input id="search"
+                       x-on:input.debounce="getSearchResults()"
+                       x-ref="searchInput"
+                       type="search"
+                       class="w-full p-2 text-lg leading-normal transition appearance-none text-grey-800
+                        focus:outline-none focus:border-transparent lg:text-xl"
+                       autocapitalize="off" autocomplete="off" autocorrect="off"
+                       name="<?= $escaper->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+                       value="<?= $escaper->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                       maxlength="<?= $escaper->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+                       @search-open.window.debounce.10="
+                            $el.focus();
+                            $el.select();
+                       "
+                />
+            </div>
+            <div id="search_autocomplete" class="search-autocomplete relative w-full" x-show="show" style="display:none;">
+                <div class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+                    <template x-for="searchResultByType in Object.values(searchResultsByType)">
+                        <div class="">
+                            <template x-if="searchResultByType.hasOwnProperty(0) && templates[searchResultByType[0].type].title && templates[searchResultByType[0].type].titleRenderer === undefined">
+                                <div class="font-bold pt-2 pl-2 text-center" x-text="templates[searchResultByType[0].type].title"></div>
+                            </template>
+                            <template x-if="searchResultByType.hasOwnProperty(0) && templates[searchResultByType[0].type].titleRenderer !== undefined">
+                                <div class="font-bold pt-2 pl-2 text-center" x-text="window[templates[searchResultByType[0].type].titleRenderer](searchResultByType)"></div>
+                            </template>
+
+                            <template x-for="searchResult in searchResultByType">
+                                <div class="hover:bg-gray-100">
+                                    <?php foreach(json_decode($block->getJsonSuggestRenderers(), true) as $renderer): ?>
+                                        <?= $block->getLayout()
+                                            ->createBlock('Magento\Framework\View\Element\Template')
+                                            ->setTemplate($renderer['template'])
+                                            ->setData('suggestion_url', $suggestionUrl)
+                                            ->toHtml()
+                                        ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <?= $block->getChildHtml() ?>
+        </form>
+    </div>
+</div>
