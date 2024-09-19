@@ -27,6 +27,12 @@ $suggestionUrl = $helper->getResultUrl() . '?' . $helper->getQueryParamName() . 
 $heroicons     = $viewModels->require(\Hyva\Theme\ViewModel\HeroiconsOutline::class);
 $templates     = json_decode($block->getJsonSuggestRenderers(), true);
 
+/**
+ * Hello Retail PartnerSearch RestAPI implementation
+ * @var String endPoint
+ */
+
+$endPoint = "https://api.helloretail.com/serve/search";
 ?>
 
 <script>
@@ -36,7 +42,7 @@ $templates     = json_decode($block->getJsonSuggestRenderers(), true);
         return {
             show:false,
             formSelector: "#search_mini_form",
-            url: "<?= /* @escapeNotVerified */ $block->getUrl('search/ajax/suggest') ?>",
+            url: "<?= /* @escapeNotVerified */ $endPoint ?>",
             destinationSelector: "#search_autocomplete",
             templates: <?= /* @noEscape */ $block->getJsonSuggestRenderers() ?>,
             priceFormat: <?= /* @noEscape */ $block->getJsonPriceFormat() ?>,
