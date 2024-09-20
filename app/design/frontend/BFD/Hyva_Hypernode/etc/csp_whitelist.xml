@@ -18,6 +18,9 @@
             <values>
                 <value id="flixcar" type="host">media.flixcar.com</value>
             </values>
+            <values>
+                <value id="helloretail" type="host">*.helloretail.com</value>
+            </values>
         </policy>
         <policy id="style-src">
             <values>
