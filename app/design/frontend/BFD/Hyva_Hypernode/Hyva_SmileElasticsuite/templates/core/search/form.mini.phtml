@@ -100,7 +100,7 @@ $version = "18171";
                             "start": 0,
                             "count": 4,
                         },
-
+                    }
                 }).then((response) => {
                     if (response.ok) {
                         return response.json();
@@ -114,9 +114,9 @@ $version = "18171";
                         return acc;
                     }, {});
                 }).catch((error) => {
-                    ;
-                });
-            },
+                    console.log(error);
+                    });
+                },
         }
     }
 </script>
