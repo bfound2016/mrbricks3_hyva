@@ -61,6 +61,7 @@ $format = "html"
             minSearchLength: <?= /* @escapeNotVerified */ $helper->getMinQueryLength() ?>,
             searchResultsByType: {},
             currentRequest: null,
+            htmlOutput: null,
 
             /**
              * Get search results.
@@ -110,6 +111,7 @@ $format = "html"
                     }
                 }).then((data)  => {
                     this.show = data.success;
+                    this.htmlOutput = data.html;
 
                 }).catch((error) => {
                     console.log(error);
@@ -143,7 +145,7 @@ $format = "html"
                 />
             </div>
             <div id="search_autocomplete" class="search-autocomplete relative w-full" x-show="show" style="display:none;">
-                <div x-html="data.html" class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+                <div x-html="htmlOutput" class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
 
                 </div>
             </div>
