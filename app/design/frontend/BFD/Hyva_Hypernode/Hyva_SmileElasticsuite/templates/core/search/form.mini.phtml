@@ -29,10 +29,20 @@ $templates     = json_decode($block->getJsonSuggestRenderers(), true);
 
 /**
  * Hello Retail PartnerSearch RestAPI implementation
- * @var String endPoint
+ * Introducing the API endpoint and search configuration key for instant search model
+ * which can be found in both the docs and the Hello Retail backend.
+ *
+ * @var String $endPoint
+ * @var String $key
+ * @var String $version (optional)
+ *
+ * @see https://developer.helloretail.com/sdk/search/
+ * @TODO Implement variables in Magento Admin Configuration
  */
 
 $endPoint = "https://api.helloretail.com/serve/search";
+$key = "db7b9a58-1ba1-478d-9f67-f59fa1270811";
+$version = "18171";
 ?>
 
 <script>
@@ -62,10 +72,7 @@ $endPoint = "https://api.helloretail.com/serve/search";
                     return false;
                 }
 
-                let url = this.url + '?' + new URLSearchParams({
-                    q: document.querySelector('#search').value,
-                    _: Date.now()
-                }).toString();
+                let url = this.url;
 
                 if (this.currentRequest !== null) {
                     this.currentRequest.abort();
@@ -73,8 +80,27 @@ $endPoint = "https://api.helloretail.com/serve/search";
                 this.currentRequest = new AbortController();
 
                 fetch(url, {
-                    method: 'GET',
+                    method: 'POST',
                     signal: this.currentRequest.signal,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Referer': 'https://www.misterbricks.nl',
+                    },
+                    body: JSON.stringify({
+                        "query": value,
+                        "key": <?= /* @escapeNotVerified */ $key ?>,
+                        "id": <?= /* @escapeNotVerified */ $version  ?>,
+                        "products": {
+                            "returnFilter": true,
+                            "start": 0,
+                            "count": 12,
+                            "fields": ["title", "price", "url", "imageUrl"]
+                        },
+                        "categories": {
+                            "start": 0,
+                            "count": 4,
+                        },
+                    }
                 }).then((response) => {
                     if (response.ok) {
                         return response.json();
