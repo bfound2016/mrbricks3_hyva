@@ -109,13 +109,8 @@ $format = "html"
                         return response.json();
                     }
                 }).then((data)  => {
-                    this.show = data.length > 0;
+                    this.show = data.success;
 
-                    this.searchResultsByType = data.reduce((acc, result) => {
-                        if (! acc[result.type]) acc[result.type] = [];
-                        acc[result.type].push(result);
-                        return acc;
-                    }, {});
                 }).catch((error) => {
                     console.log(error);
                     });
@@ -148,30 +143,8 @@ $format = "html"
                 />
             </div>
             <div id="search_autocomplete" class="search-autocomplete relative w-full" x-show="show" style="display:none;">
-                <div class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-                    <template x-for="searchResultByType in Object.values(searchResultsByType)">
-                        <div class="">
-                            <template x-if="searchResultByType.hasOwnProperty(0) && templates[searchResultByType[0].type].title && templates[searchResultByType[0].type].titleRenderer === undefined">
-                                <div class="font-bold pt-2 pl-2 text-center" x-text="templates[searchResultByType[0].type].title"></div>
-                            </template>
-                            <template x-if="searchResultByType.hasOwnProperty(0) && templates[searchResultByType[0].type].titleRenderer !== undefined">
-                                <div class="font-bold pt-2 pl-2 text-center" x-text="window[templates[searchResultByType[0].type].titleRenderer](searchResultByType)"></div>
-                            </template>
+                <div x-html="data.html" class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
 
-                            <template x-for="searchResult in searchResultByType">
-                                <div class="hover:bg-gray-100">
-                                    <?php foreach(json_decode($block->getJsonSuggestRenderers(), true) as $renderer): ?>
-                                        <?= $block->getLayout()
-                                            ->createBlock('Magento\Framework\View\Element\Template')
-                                            ->setTemplate($renderer['template'])
-                                            ->setData('suggestion_url', $suggestionUrl)
-                                            ->toHtml()
-                                        ?>
-                                    <?php endforeach; ?>
-                                </div>
-                            </template>
-                        </div>
-                    </template>
                 </div>
             </div>
             <?= $block->getChildHtml() ?>
