@@ -35,6 +35,7 @@ $templates     = json_decode($block->getJsonSuggestRenderers(), true);
  * @var String $endPoint
  * @var String $key
  * @var String $version (optional)
+ * @var String $format
  *
  * @see https://developer.helloretail.com/sdk/search/
  * @TODO Implement variables in Magento Admin Configuration
@@ -43,6 +44,7 @@ $templates     = json_decode($block->getJsonSuggestRenderers(), true);
 $endPoint = "https://core.helloretail.com/serve/search";
 $key = "db7b9a58-1ba1-478d-9f67-f59fa1270811";
 $version = "18171";
+$format = "html"
 ?>
 
 <script>
@@ -100,6 +102,7 @@ $version = "18171";
                             "start": 0,
                             "count": 4,
                         },
+                        "format": "<?= /* @escapeNotVerified */ $format; ?>"
                     }),
                 }).then((response) => {
                     if (response.ok) {
