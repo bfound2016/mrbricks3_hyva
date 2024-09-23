@@ -86,6 +86,9 @@ body {
             .aw-grid-search-results__item {
                 @apply p-4 bg-white text-lg hover:scale-110 hover:transition-transform hover:shadow-xl;
 
+                .aw-grid-search-results__link {
+                    @apply absolute w-full h-full;
+                }
                 .aw-grid-search-results__title {
                     @apply font-semibold my-4 leading-tight;
                 }
@@ -94,7 +97,7 @@ body {
                     @apply flex justify-between items-center text-lego-blue-dark w-3/5 mx-auto;
 
                     .aw-grid-search-results__price_old {
-                        @apply line-through;
+                        @apply self-end text-sm before:;
                     }
 
                     .aw-grid-search-results__price_sale {
