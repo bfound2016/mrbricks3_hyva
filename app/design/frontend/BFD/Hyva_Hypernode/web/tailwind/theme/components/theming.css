@@ -94,7 +94,7 @@ body {
                     @apply flex justify-between items-center text-lego-blue-dark w-3/5 mx-auto;
 
                     .aw-grid-search-results__price_old {
-                        @apply line-through text-normal;
+                        @apply line-through;
                     }
 
                     .aw-grid-search-results__price_sale {
