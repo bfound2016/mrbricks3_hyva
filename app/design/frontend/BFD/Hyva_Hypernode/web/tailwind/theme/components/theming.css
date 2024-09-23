@@ -97,7 +97,7 @@ body {
                     @apply flex justify-between items-center text-lego-blue-dark w-3/5 mx-auto;
 
                     .aw-grid-search-results__price_old {
-                        @apply self-end text-sm relative before:border before:border-b-px before:border-lego-blue-dark before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10;
+                        @apply self-end text-sm relative before:border before:border-b before:border-lego-blue-dark before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10;
                     }
 
                     .aw-grid-search-results__price_sale {
