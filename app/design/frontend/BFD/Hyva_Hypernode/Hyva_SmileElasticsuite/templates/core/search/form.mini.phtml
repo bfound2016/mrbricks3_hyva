@@ -144,12 +144,13 @@ $format = "html"
                        "
                 />
             </div>
-
+            <template x-if="show" x-teleport="columns">
                 <div id="search_autocomplete" class="search-autocomplete w-full absolute container" x-show="show">
                     <div x-html="htmlOutput" class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                         <?= $escaper->escapeHtml(__('No results found')) ?>
                     </div>
                 </div>
+            </template>
 
             <?= $block->getChildHtml() ?>
         </form>
