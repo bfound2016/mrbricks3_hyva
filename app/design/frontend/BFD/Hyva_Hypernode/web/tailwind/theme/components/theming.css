@@ -87,7 +87,7 @@ body {
                 @apply relative p-4 bg-white text-lg hover:scale-110 hover:transition-transform hover:shadow-xl hover:z-50;
 
                 .aw-grid-search-results__product-link {
-                    @apply absolute w-full h-full;
+                    @apply absolute w-full h-full top-0 left-0;
                 }
                 .aw-grid-search-results__title {
                     @apply font-semibold my-4 leading-tight;
