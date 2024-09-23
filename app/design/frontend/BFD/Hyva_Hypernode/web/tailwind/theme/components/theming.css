@@ -49,14 +49,14 @@ body {
 **/
 
 .aw-grid-search-results{
-    @apply grid grid-cols-[82%_minmax(0,_1fr)] auto-rows-auto gap-4 p-4;
+    @apply grid grid-cols-[82%_minmax(0,_1fr)] auto-rows-auto gap-4 p-4 text-primary text-center;
 
     /* Theme / category items */
     .aw-grid-search-results_content-column{
-        @apply col-start-2 row-start-1 text-primary text-center;
+        @apply col-start-2 row-start-1;
 
         .aw-grid-search-results_content-group {
-            @apply grid grid-cols-1 auto-rows-auto px-8;
+            @apply grid grid-cols-1 auto-rows-auto px-8 gap-4 uppercase;
 
             .aw-grid-search-results_content-group-title {
                 @apply row-start-1 font-bold text-lg;
@@ -64,6 +64,10 @@ body {
 
             .aw-grid-search-results_content-item {
                 @apply row-auto;
+
+                a {
+                    @apply flex flex-col gap-2
+                }
 
                 .aw-grid-search-hierarchy-wrapper {
                     @apply hidden;
