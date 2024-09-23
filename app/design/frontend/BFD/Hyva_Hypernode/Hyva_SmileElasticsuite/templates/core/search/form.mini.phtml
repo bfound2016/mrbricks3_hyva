@@ -146,7 +146,7 @@ $format = "html"
             </div>
             <template x-teleport=".columns">
                 <div id="search_autocomplete" class="search-autocomplete w-full absolute container" x-show="show">
-                    <div x-html="htmlOutput" class="absolute bg-white border border-solid border-black z-50 w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+                    <div x-html="htmlOutput" class="absolute bg-white border border-solid border-slate-100 z-50 w-full shadow-lg">
                         <?= $escaper->escapeHtml(__('No results found')) ?>
                     </div>
                 </div>
