@@ -100,7 +100,8 @@ body {
                         @apply self-start text-sm relative before:border before:border-b before:border-lego-blue-dark before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10;
                     }
 
-                    .aw-grid-search-results__price_sale {
+                    .aw-grid-search-results__price_sale ,
+                    .aw-grid-search-results__price_normal {
                         @apply font-semibold text-2xl;
                     }
                 }
