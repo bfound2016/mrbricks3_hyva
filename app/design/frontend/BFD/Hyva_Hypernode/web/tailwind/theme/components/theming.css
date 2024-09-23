@@ -112,5 +112,9 @@ body {
     /* Search results link */
     .aw-grid-search-results__submit-wrapper{
         @apply row-start-2 col-span-2;
+
+        .aw-grid-search-results__submit-link {
+            @apply text-lego-blue-light hover:underline;
+        }
     }
 }
