@@ -90,7 +90,7 @@ body {
                     @apply absolute w-full h-full top-0 left-0;
                 }
                 .aw-grid-search-results__title {
-                    @apply font-semibold my-4 leading-tight;
+                    @apply font-semibold my-4 leading-tight h-12;
                 }
 
                 .aw-grid-search-results__price-box {
