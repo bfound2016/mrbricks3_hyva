@@ -97,7 +97,7 @@ body {
                     @apply flex gap-2 text-lego-blue-dark max-w-fit mx-auto;
 
                     .aw-grid-search-results__price_old {
-                        @apply self-startk text-sm relative before:border before:border-b before:border-lego-blue-dark before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10;
+                        @apply self-start text-sm relative before:border before:border-b before:border-lego-blue-dark before:bottom-[50%] before:absolute before:-rotate-[10deg] before:w-full before:z-10;
                     }
 
                     .aw-grid-search-results__price_sale {
