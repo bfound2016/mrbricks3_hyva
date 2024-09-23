@@ -87,7 +87,7 @@ body {
                 @apply p-4 bg-white text-lg scale-105 transition-transform;
 
                 .aw-grid-search-results__title {
-                    @apply font-semibold;
+                    @apply font-semibold my-4 leading-tight;
                 }
 
                 .aw-grid-search-results__price-box {
