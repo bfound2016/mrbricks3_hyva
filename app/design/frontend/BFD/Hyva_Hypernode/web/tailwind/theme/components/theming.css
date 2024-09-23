@@ -84,7 +84,7 @@ body {
             @apply grid grid-cols-4 gap-[1px] bg-gray-100;
 
             .aw-grid-search-results__item {
-                @apply relative p-4 bg-white text-lg hover:scale-110 hover:transition-transform hover:shadow-xl;
+                @apply relative p-4 bg-white text-lg hover:scale-110 hover:transition-transform hover:shadow-xl hover:z-50;
 
                 .aw-grid-search-results__product-link {
                     @apply absolute w-full h-full;
