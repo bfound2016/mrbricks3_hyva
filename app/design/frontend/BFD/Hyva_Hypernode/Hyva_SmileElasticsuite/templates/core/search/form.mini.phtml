@@ -131,8 +131,8 @@ $format = "html"
                        x-on:input.debounce="getSearchResults()"
                        x-ref="searchInput"
                        type="search"
-                       class="w-full p-2 text-lg leading-normal transition appearance-none text-grey-800
-                        focus:outline-none focus:border-transparent lg:text-xl"
+                       class="w-full p-2 rounded-l-md leading-normal transition appearance-none text-grey-900
+                        focus:outline-none focus:border-transparent"
                        autocapitalize="off" autocomplete="off" autocorrect="off"
                        name="<?= $escaper->escapeHtmlAttr($helper->getQueryParamName()) ?>"
                        value="<?= $escaper->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
