@@ -84,9 +84,15 @@ body {
             @apply grid grid-cols-4 gap-[1px] bg-gray-100;
 
             .aw-grid-search-results__item {
-                @apply p-4 bg-white;
+                @apply p-4 bg-white text-lg scale-105 transition-transform;
 
+                .aw-grid-search-results__title {
+                    @apply font-semibold;
+                }
 
+                .aw-grid-search-results__price-box {
+                    @apply text-lego-blue-dark font-semibold;
+                }
             }
         }
     }
