@@ -51,6 +51,7 @@ body {
 .aw-grid-search-results{
     @apply grid grid-cols-[85%_minmax(0,_1fr)] auto-rows-auto gap-4;
 
+    /* Theme / category items */
     .aw-grid-search-results_content-column{
         @apply col-start-2 row-start-1;
 
@@ -62,7 +63,7 @@ body {
             }
 
             .aw-grid-search-results_content-item {
-                @apply row-start-2;
+                @apply row-auto;
 
                 .aw-grid-search-hierarchy-wrapper {
                     @apply hidden;
@@ -71,6 +72,7 @@ body {
         }
     }
 
+    /* Product Items */
     .aw-grid-search-results_product-column{
         @apply col-start-1 row-start-1;
 
@@ -79,11 +81,14 @@ body {
 
             .aw-grid-search-results__item {
                 @apply p-4 bg-white;
+
+
             }
         }
     }
 
-    .aw-grid-search-results_submit-wrapper{
+    /* Search results link */
+    .aw-grid-search-results__submit-wrapper{
         @apply row-start-2 col-span-2;
     }
 }
