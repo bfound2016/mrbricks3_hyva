@@ -123,7 +123,7 @@ $format = "html"
 <div id="elasticsuite-search-container" x-show="true">
     <div class="container py-2 mx-auto text-black" x-data="initMiniSearchComponent()" @click.away="show = false">
         <form class="form minisearch" id="search_mini_form" action="<?= $escaper->escapeUrl($helper->getResultUrl()) ?>" method="get" role="search">
-            <div class="relative">
+            <div class="relative flex nowrap">
                 <label class="sr-only" for="search">
                     <?= $escaper->escapeHtmlAttr(__('Search entire store here...')) ?>
                 </label>
@@ -132,7 +132,7 @@ $format = "html"
                        x-ref="searchInput"
                        type="search"
                        class="w-full p-2 rounded-l-md leading-normal transition appearance-none text-grey-900
-                        focus:outline-none focus:border-transparent"
+                        focus:outline-none focus:border-transparent border-white"
                        autocapitalize="off" autocomplete="off" autocorrect="off"
                        name="<?= $escaper->escapeHtmlAttr($helper->getQueryParamName()) ?>"
                        value="<?= $escaper->escapeHtmlAttr($helper->getEscapedQueryText()) ?>"
