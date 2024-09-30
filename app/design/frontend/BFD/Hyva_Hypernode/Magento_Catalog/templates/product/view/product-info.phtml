@@ -93,7 +93,9 @@ $categoriesData = $productViewModel->getCategoriesData($product);
 
         <div class="flex flex-col gap-4 w-full mt-4 mr-auto md:order-3">
             <?php if ($product->isSaleable()): ?>
+                <?php /*
                 <?= $block->getChildHtml("product.info.quantity") ?>
+                */ ?>
                 <?= $block->getChildHtml("product.info.addtocart") ?>
             <?php endif; ?>
         </div>
