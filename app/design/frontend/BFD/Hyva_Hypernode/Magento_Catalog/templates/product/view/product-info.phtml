@@ -96,6 +96,7 @@ $categoriesData = $productViewModel->getCategoriesData($product);
                 <?php /*
                 <?= $block->getChildHtml("product.info.quantity") ?>
                 */ ?>
+                <?= $block->getChildHtml("product.info.stockstatus") ?>
                 <?= $block->getChildHtml("product.info.addtocart") ?>
             <?php endif; ?>
         </div>
@@ -103,7 +104,6 @@ $categoriesData = $productViewModel->getCategoriesData($product);
     </div>
     <?php /** #8 Moved beneath price */ ?>
     <div class="flex flex-col justify-between my-4 border-lego-blue-lighter">
-        <?= $block->getChildHtml("product.info.stockstatus") ?>
         <?= $block->getChildHtml("product.info.selling.points") ?>
         <?= $block->getChildHtml("alert.urls") ?>
     </div>
