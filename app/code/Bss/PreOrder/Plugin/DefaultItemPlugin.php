@@ -20,8 +20,19 @@
 
 namespace Bss\PreOrder\Plugin;
 
+
+
 class DefaultItemPlugin
 {
+    /**
+     * @var \Bss\PreOrder\Helper\Data
+     */
+    protected $helper;
+
+    /**
+     * OrderNotice constructor.
+     * @param \Bss\PreOrder\Helper\Data $helper
+     */
 
     public function __construct(
         \Bss\PreOrder\Helper\Data $helper
