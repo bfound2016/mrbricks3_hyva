@@ -43,8 +43,9 @@ if (!$currentProductId) {
     return;
 }
 
-$availabilityMess = $preOrderHelper->getMess();
-$isPreOder = $preOrderHelper->isPreOrder($preOrderHelper->getPreOrder($currentProductId),$preOrderHelper->getIsInStock($currentProductId))
+$availabilityMess   = $preOrderHelper->getMess();
+$isPreOder          = $preOrderHelper->isPreOrder;($preOrderHelper->getPreOrder($currentProductId),$preOrderHelper->getIsInStock($currentProductId));
+$inStock            = $product->getIsSalable();
 ?>
 <script>
     function getAvailabilityData() {
