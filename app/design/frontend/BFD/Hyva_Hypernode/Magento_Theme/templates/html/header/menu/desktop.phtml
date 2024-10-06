@@ -49,7 +49,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                 title="<?= $escaper->escapeHtmlAttr(__('Home')) ?>"
                 class="flex py-4 justify-center"
             >
-                <?= $escaper->escapeHtml(__('Home')) ?>
+                <?= $heroiconsSolid->homeHtml('text-white', 24, 24, ['aria-hidden' => 'true']) ?>
             </a>
         </li>
         <?php foreach ($menu as $item): ?>
