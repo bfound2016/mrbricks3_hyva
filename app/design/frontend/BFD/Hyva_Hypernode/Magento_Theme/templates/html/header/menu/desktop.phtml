@@ -55,7 +55,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
         <?php foreach ($menu as $item): ?>
             <?php if (!empty($item['childData'])): ?>
                 <li
-                    class="level-0 border-r-[2px] border-lego-menu-light basis-full menu-text-shadow"
+                    class="level-0 border-r-[2px] border-lego-menu-light basis-full"
                     x-data="{
                         open: false,
                         canHover(func) {
@@ -75,7 +75,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     <button
                         type="button"
                         class="group flex justify-between items-center gap-1 py-4
-                               transition aria-expanded:text-white"
+                               transition aria-expanded:text-white menu-text-shadow"
                         @click="open = !open"
                         aria-expanded="false"
                         :aria-expanded="open"
