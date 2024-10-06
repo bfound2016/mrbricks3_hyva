@@ -93,7 +93,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                                     <li class="break-inside-avoid pb-4">
                                         <a
                                             href="<?= $escaper->escapeUrl($subMenu['url']) ?>"
-                                            class="level-1 block py-1 font-medium hover:underline aria-[current=page]:underline text-lego-blue-dark"
+                                            class="level-1 block py-1 font-medium hover:underline aria-[current=page]:underline"
                                         ><?= $escaper->escapeHtml($subMenu['name']) ?></a>
                                         <?php if (!empty($subMenu['childData'])): ?>
                                             <ul>

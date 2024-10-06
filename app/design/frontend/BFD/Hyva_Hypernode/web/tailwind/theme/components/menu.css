@@ -12,5 +12,5 @@
 
 .level-1,
 .level-2{
-    @apply text-gray-700 capitalize;
+    @apply tex-lego-blue-dark capitalize;
 }
