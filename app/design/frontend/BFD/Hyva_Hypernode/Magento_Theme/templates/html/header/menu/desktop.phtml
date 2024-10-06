@@ -36,7 +36,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
 ?>
 
 <nav
-    class="container navigation hidden lg:block"
+    class="container navigation hidden lg:block menu-font"
     aria-label="<?= $escaper->escapeHtmlAttr(__('Main menu')) ?>"
     x-data="initMenuDesktop<?= $escaper->escapeHtml($uniqueId) ?>()"
     x-ref="nav-desktop"

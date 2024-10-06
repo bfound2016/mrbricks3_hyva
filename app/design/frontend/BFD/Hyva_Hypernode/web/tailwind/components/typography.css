@@ -76,7 +76,8 @@ body {
         font-family: "Misterbricks","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
     }
 
-    .price-listing-font{
+    .price-listing-font,
+    .menu-font {
         font-family: "VAG Rounded","Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
         @apply text-base;
     }
