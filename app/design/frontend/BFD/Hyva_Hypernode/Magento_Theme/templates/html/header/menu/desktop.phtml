@@ -43,6 +43,15 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
     @load.window="setActiveMenu($root)"
 >
     <ul class="flex">
+        <li class="level-0 border-r-[2px] border-lego-menu-light basis-full">
+            <a
+                href="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
+                title="<?= $escaper->escapeHtmlAttr(__('Home')) ?>"
+                class="flex py-4 justify-center"
+            >
+                <?= $escaper->escapeHtml(__('Home')) ?>
+            </a>
+        </li>
         <?php foreach ($menu as $item): ?>
             <?php if (!empty($item['childData'])): ?>
                 <li
