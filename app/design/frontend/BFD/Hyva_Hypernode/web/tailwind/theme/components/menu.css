@@ -15,6 +15,6 @@
     @apply text-lego-blue-dark capitalize;
 }
 
-.level-0{
+.menu-text-shadow {
     text-shadow: 2px 2px 2px #333;
 }

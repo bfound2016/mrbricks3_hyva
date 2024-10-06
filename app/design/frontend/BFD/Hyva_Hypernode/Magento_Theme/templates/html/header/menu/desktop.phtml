@@ -43,7 +43,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
     @load.window="setActiveMenu($root)"
 >
     <ul class="flex">
-        <li class="level-0 border-r-[2px] border-lego-menu-light">
+        <li class="level-0 border-r-[2px] border-lego-menu-light menu-text-shadow">
             <a
                 href="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
                 title="<?= $escaper->escapeHtmlAttr(__('Home')) ?>"
@@ -142,7 +142,7 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
                     </div>
                 </li>
             <?php else: ?>
-                <li class="level-0 border-r-[2px] border-lego-menu-light basis-full">
+                <li class="level-0 border-r-[2px] border-lego-menu-light basis-full menu-text-shadow">
                     <a
                         href="<?= $escaper->escapeUrl($item['url']) ?>"
                         title="<?= $escaper->escapeHtmlAttr($item['name']) ?>"
