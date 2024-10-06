@@ -43,11 +43,11 @@ $block->setData('cache_tags', $viewModelNavigation->getIdentities());
     @load.window="setActiveMenu($root)"
 >
     <ul class="flex">
-        <li class="level-0 border-r-[2px] border-lego-menu-light basis-full uppercase">
+        <li class="level-0 border-r-[2px] border-lego-menu-light">
             <a
                 href="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
                 title="<?= $escaper->escapeHtmlAttr(__('Home')) ?>"
-                class="flex py-4 justify-center"
+                class="flex p-4 justify-center"
             >
                 <?= $heroiconsSolid->homeHtml('text-white', 24, 24, ['aria-hidden' => 'true']) ?>
             </a>
