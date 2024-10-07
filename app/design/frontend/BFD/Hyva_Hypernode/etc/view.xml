@@ -80,8 +80,8 @@
                 <height>800</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>140</width>
-                <height>140</height>
+                <width>105</width>
+                <height>105</height>
             </image>
             <image id="product_swatch_image_large" type="image"/>
             <image id="product_swatch_image_medium" type="image">
