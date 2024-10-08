@@ -158,6 +158,9 @@ module.exports = hyvaModules.mergeTailwindConfig({
           from: { transform: 'translateSX(0)' },
           to: { transform: 'translateX(-100%)' },
         }
+      },
+      dropShadow:{
+        'menu': '2px 2px 2px #333'
       }
     },
   },
