@@ -5,6 +5,7 @@ namespace Bss\PreOrder\Plugin\Checkout\Model;
 
 
 use Magento\Checkout\Model\Session as CheckoutSession;
+use Bss\PreOrder\Helper\Data as PreOrderHelper;
 
 class DefaultConfigProvider
 {
@@ -12,6 +13,11 @@ class DefaultConfigProvider
      * @var CheckoutSession
      */
     protected $checkoutSession;
+
+    /**
+     * @var PreOrderHelper
+     */
+    protected $preOrderHelper;
 
     /**
      * Constructor
@@ -23,7 +29,7 @@ class DefaultConfigProvider
         \Bss\PreOrder\Helper\Data $helper
     ) {
         $this->checkoutSession  = $checkoutSession;
-        $this->helper           = $helper;
+        $this->preOrderHelper   = $helper;
     }
 
     public function afterGetConfig(
@@ -37,8 +43,8 @@ class DefaultConfigProvider
             $_product       =   $quoteItem->getProduct();
             $_productId     =   $_product->getId();
 
-            $result['quoteItemData'][$index]['preorder']    = $this->helper->getPreOrder($_productId);
-            $result['quoteItemData'][$index]['restock']     = $this->helper->formatDate( $_product->getData("restock") );
+            $result['quoteItemData'][$index]['preorder']    = $this->preOrderHelper->getPreOrder($_productId);
+            $result['quoteItemData'][$index]['restock']     = $this->preOrderHelper->formatDate( $_product->getData("restock") );
         }
         return $result;
     }
