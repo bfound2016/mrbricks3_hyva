@@ -12,6 +12,6 @@
     <update handle="hyva_modal"/>
     <update handle="hyva_product_slider" />
     <body>
-        <referenceBlock name="crossell" remove="true" />
+        <referenceBlock name="crosssell" remove="true" />
     </body>
 </page>
