@@ -46,7 +46,7 @@ body {
 
 /** Custom styling for selling points block on product detail page **/
 .selling-points {
-    @apply flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter border border-lego-blue-lighter leading-loose;
+    @apply flex flex-col justify-center my-4 p-4 bg-lego-blue-lighter border border-lego-blue-lighter leading-loose text-lego-text;
     strong {
         @apply font-semibold text-lego-blue-light;
     }
