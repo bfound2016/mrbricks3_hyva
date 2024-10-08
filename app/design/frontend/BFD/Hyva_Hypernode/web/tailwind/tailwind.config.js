@@ -26,6 +26,9 @@ module.exports = hyvaModules.mergeTailwindConfig({
       },
       colors: {
         lego: {
+          text: {
+            "DEFAULT": "#333"
+          },
           green: {
             "lighter": "#57bd1b10",
             "DEFAULT": "#57bd1b",
@@ -146,7 +149,8 @@ module.exports = hyvaModules.mergeTailwindConfig({
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: '100%'
+            maxWidth: '100%',
+            color: '#333',
           }
         }
       },
