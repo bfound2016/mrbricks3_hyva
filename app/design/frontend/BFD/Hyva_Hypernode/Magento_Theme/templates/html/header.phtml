@@ -152,7 +152,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
                             class="absolute w-7 h-7 -top-1 -right-2 text-sm rounded-full bg-lego-green  border-2 border-white
                             font-semibold text-center uppercase tabular-nums flex justify-center items-center"
                             aria-hidden="true"
-                    ><span x-text="cart.summary_count" class="">0</span></span>
+                    ><span x-text="cart.summary_count" class="mt-[1px]">0</span></span>
                     <?php if ($showMiniCart): ?>
                         </button>
                         <div class="hidden lg:block font-bold text-lg leading-7 text-white"><?= __('Cart') ?></div>
