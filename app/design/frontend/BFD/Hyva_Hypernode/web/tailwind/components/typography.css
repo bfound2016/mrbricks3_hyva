@@ -67,8 +67,7 @@ body {
 }
 
 @layer utilities {
-    .title-font,
-    .font-bold {
+    .title-font {
         font-family: "Poppins-Bold", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif";
         font-weight: 700;
     }
