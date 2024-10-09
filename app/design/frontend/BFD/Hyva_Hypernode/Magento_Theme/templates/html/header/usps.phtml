@@ -32,18 +32,18 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 
     })"
     class="px-4 py-2 bg-lego-blue-lighter text-center inline-flex overflow-hidden gap-11 w-full flex-nowrap border-b border-lego-blue-lighter text-sm">
-    <ul x-ref="usps" class="sm:container flex justify-center gap-11 lg:justify-between text-lego-text animate-infinite-scroll sm:animate-none">
+    <ul x-ref="usps" class="sm:container flex justify-center gap-11 lg:justify-between text-lego-text animate-infinite-scroll sm:animate-none font-semibold">
         <li class="flex flex-nowrap items-center gap-3">
             <?= $heroicons->clockHtml('text-lego-blue-light',24,24) ?>
-            <span class="whitespace-nowrap">Vandaag voor 21:30 besteld, <span class="text-lego-blue-light font-bold">morgen in huis!</span></span>
+            <span class="whitespace-nowrap">Vandaag voor 21:30 besteld, <span class="text-lego-blue-light">morgen in huis!</span></span>
         </li>
         <li class="flex flex-nowrap items-center gap-3">
             <?= $heroicons->truckHtml('text-lego-blue-light',24,24) ?>
-            <span class="whitespace-nowrap"><span class="text-lego-blue-light font-bold">Gratis verzending</span> vanaf 99,-</span>
+            <span class="whitespace-nowrap"><span class="text-lego-blue-light">Gratis verzending</span> vanaf 99,-</span>
         </li>
         <li class="flex flex-nowrap items-center gap-3">
             <?= $heroicons->badgeCheckHtml('text-lego-blue-light',24,24) ?>
-            <span class="whitespace-nowrap">Kiyoh klantwaardering: <span class="text-lego-blue-light font-bold">9.5</spab></span>
+            <span class="whitespace-nowrap">Kiyoh klantwaardering: <span class="text-lego-blue-light">9.5</spab></span>
         </li>
     </ul>
 </div>
