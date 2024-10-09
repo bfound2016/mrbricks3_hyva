@@ -1,6 +1,6 @@
 @layer components {
     .btn {
-        @apply flex bg-gray-500 rounded-lg px-4 py-2 text-white text-base font-medium shadow-md items-center;
+        @apply flex bg-gray-500 rounded-lg px-4 py-2 text-white text-base font-medium items-center;
 
         @screen md {
             @apply px-6 text-lg;
@@ -28,7 +28,7 @@
 
 
     .btn-primary {
-        @apply bg-lego-blue-dark text-white shadow-md text-lg font-semibold;
+        @apply bg-lego-blue-dark text-white text-lg font-semibold;
 
         &:hover {
             @apply bg-lego-blue-darker text-white shadow-lg;
@@ -45,7 +45,7 @@
     }
 
     .btn-secondary {
-        @apply bg-white border-2 border-primary-lighter text-black shadow-md;
+        @apply bg-white border-2 border-primary-lighter text-black;
 
     &:hover {
         @apply bg-white border-primary-darker shadow-lg;
