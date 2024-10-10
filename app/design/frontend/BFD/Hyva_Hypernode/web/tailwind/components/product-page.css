@@ -39,27 +39,29 @@
 /**
     Styling for read more / read less content containers
  */
-.text-container {
-    @apply relative pb-4;
-    .text-content {
-        @apply max-h-40 overflow-hidden;
+@media(max-width: 1023px) {
+    .text-container {
+        @apply relative pb-4;
+        .text-content {
+            @apply max-h-40 overflow-hidden;
+        }
+
+        &.open{
+            .text-content{
+                @apply max-h-full;
+            }
+            .read-less {
+                @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
+            }
+        }
+
+
+        &:not(.open){
+            .read-more{
+                @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
+            }
+        }
     }
-
-    &.open{
-        .text-content{
-            @apply max-h-full;
-        }
-        .read-less {
-            @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
-        }
-    }
-
-
-     &:not(.open){
-        .read-more{
-            @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
-        }
-     }
 }
 
 .read-more,
