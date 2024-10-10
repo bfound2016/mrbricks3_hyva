@@ -43,26 +43,24 @@
     .text-container {
         @apply relative pb-4;
         .text-content {
-            @apply max-h-40 overflow-hidden;
-        }
-
-        &.open{
-            .text-content{
-                @apply max-h-full;
+            &.open {
+                .text-content{
+                    @apply max-h-full;
+                }
+                .read-less {
+                    @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
+                }
             }
-            .read-less {
-                @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
-            }
-        }
 
+            &:not(.open){
+                @apply max-h-40 overflow-hidden;
 
-        &:not(.open){
-            .read-more{
-                @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
+                .read-more{
+                    @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
+                }
             }
         }
     }
-}
 
 .read-more,
 .read-less{
