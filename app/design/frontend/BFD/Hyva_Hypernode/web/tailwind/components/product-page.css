@@ -52,7 +52,7 @@
         }
 
         &:not(.open){
-            @apply max-h-80 overflow-hidden;
+            @apply max-h-[30rem] overflow-hidden;
 
             .read-more{
                 @apply absolute -bottom-4 block text-lego-blue-light bg-lego-blue-lighter p-2;
