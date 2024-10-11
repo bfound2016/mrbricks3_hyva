@@ -41,7 +41,7 @@
  */
 @media(max-width: 1023px) {
     .text-container {
-        @apply relative pb-4 after:block after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-gradient-to-t from-white;
+        @apply relative pb-4 after:block after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-32 after:bg-gradient-to-t after:from-white after:from-20%;
 
         &.open {
             @apply max-h-full;
