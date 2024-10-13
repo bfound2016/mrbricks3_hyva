@@ -47,7 +47,7 @@
             @apply max-h-full;
 
             .read-less {
-                @apply absolute -bottom-4 block text-white bg-lego-blue-light p-2 z-10;
+                @apply absolute -bottom-4 block text-white bg-lego-blue-light p-2 z-10 w-32 left-[calc(50%-5rem)];
             }
         }
 
@@ -55,7 +55,7 @@
             @apply max-h-[30rem] overflow-hidden;
 
             .read-more{
-                @apply absolute -bottom-4 block text-white bg-lego-blue-light p-2 z-10;
+                @apply absolute -bottom-4 block text-white bg-lego-blue-light p-2 z-10 w-32 left-[calc(50%-5rem)];
             }
         }
     }
