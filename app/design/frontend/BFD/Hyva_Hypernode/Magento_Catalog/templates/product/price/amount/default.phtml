@@ -14,8 +14,8 @@ use Magento\Framework\Escaper;
 ?>
 <?php
     $priceId    = $escaper->escapeJs($block->getPriceId());
-    $array      = explode ("-", $priceId, -1);
-    $priceId    = end ($array);
+    //$array      = explode ("-", $priceId, -1);
+    //$priceId    = end ($array);
 ?>
 <script>
     function initPriceBox<?= $priceId ?>() {
