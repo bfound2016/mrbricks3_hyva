@@ -8,8 +8,9 @@
         }
 
         [data-price-type='finalPrice'] {
-            @apply text-2xl;
-
+            .price {
+                @apply text-2xl;
+            }
         }
         .price-label {
             @apply text-sm;
