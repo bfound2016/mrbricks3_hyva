@@ -47,6 +47,7 @@ use Magento\Framework\Escaper;
         data-price-amount="<?= $escaper->escapeHtmlAttr($block->getDisplayValue()) ?>"
         data-price-type="<?= $escaper->escapeHtmlAttr($block->getPriceType()) ?>"
         class="price-wrapper <?= $escaper->escapeHtmlAttr($block->getPriceWrapperCss()) ?>"
+        x-html="checkPrice(<?= $escaper->escapeHtmlAttr($block->getDisplayValue()) ?>)"
     ></span>
     <?php if ($block->hasAdjustmentsHtml()): ?>
         <?= $block->getAdjustmentsHtml() ?>
