@@ -12,8 +12,22 @@ use Magento\Framework\Escaper;
 /** @var Amount $block */
 /** @var Escaper $escaper */
 ?>
+<script>
+    function initPriceBox<?=$escaper->escapeJs($block->getPriceId())?>() {
+        checkPrice(price) {
+            if (Number(price) === price && price % 1 !== 0) {
+                let decimalValue = price.toString().split('.')[1];
+                let intValue = parseInt(price);
+                return `<span class=\"price\">${price}</span>`;
+
+            } else {
+                return `<span class=\"price\">${price + ".-"}</span>`;
+            }
+        }
+    }
+</script>
 <span
-    <?php if ($block->getPriceId()): ?>x-data x-id="['<?= $escaper->escapeJs($block->getPriceId()) ?>']"<?php endif; ?>
+    <?php if ($block->getPriceId()): ?>x-data="initPriceBox<?=$escaper->escapeJs($block->getPriceId())?>()" x-id="['<?= $escaper->escapeJs($block->getPriceId()) ?>']"<?php endif; ?>
     class="price-container <?= $escaper->escapeHtmlAttr($block->getAdjustmentCssClasses()) ?>"
         <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>
 >
@@ -25,7 +39,7 @@ use Magento\Framework\Escaper;
         data-price-amount="<?= $escaper->escapeHtmlAttr($block->getDisplayValue()) ?>"
         data-price-type="<?= $escaper->escapeHtmlAttr($block->getPriceType()) ?>"
         class="price-wrapper <?= $escaper->escapeHtmlAttr($block->getPriceWrapperCss()) ?>"
-    ><?= $escaper->escapeHtml($block->formatCurrency($block->getDisplayValue(), (bool)$block->getIncludeContainer()), ['span']) ?></span>
+    ></span>
     <?php if ($block->hasAdjustmentsHtml()): ?>
         <?= $block->getAdjustmentsHtml() ?>
     <?php endif; ?>
