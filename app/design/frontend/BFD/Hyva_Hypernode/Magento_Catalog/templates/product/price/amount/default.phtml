@@ -19,14 +19,16 @@ use Magento\Framework\Escaper;
 ?>
 <script>
     function initPriceBox<?= $priceId ?>() {
-        checkPrice(price) {
-            if (Number(price) === price && price % 1 !== 0) {
-                let decimalValue = price.toString().split('.')[1];
-                let intValue = parseInt(price);
-                return `<span class=\"price\">${price}</span>`;
+        return {
+            checkPrice(price) {
+                if (Number(price) === price && price % 1 !== 0) {
+                    let decimalValue = price.toString().split('.')[1];
+                    let intValue = parseInt(price);
+                    return `<span class=\"price\">${price}</span>`;
 
-            } else {
-                return `<span class=\"price\">${price + ".-"}</span>`;
+                } else {
+                    return `<span class=\"price\">${price + ".-"}</span>`;
+                }
             }
         }
     }
