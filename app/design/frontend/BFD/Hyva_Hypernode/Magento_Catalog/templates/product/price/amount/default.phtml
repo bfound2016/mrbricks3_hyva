@@ -13,11 +13,12 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <?php
-    $priceId    = str_replace('-','_', $block->getPriceId());
-    print_r($priceId);
+    $priceName    = str_replace('-','_', $block->getPriceId());
+    $array      = explode("_", $priceName);
+    print_r($array);
 ?>
 <script>
-    function initPriceBox<?= $priceId ?>() {
+    function initPriceBox_<?= $priceId ?>() {
         return {
             checkPrice(price) {
                 if (Number(price) === price && price % 1 !== 0) {
@@ -33,7 +34,7 @@ use Magento\Framework\Escaper;
     }
 </script>
 <span
-    <?php if ($block->getPriceId()): ?>x-data="initPriceBox<?= $priceId ?>()" x-id="['<?= $escaper->escapeJs($block->getPriceId()) ?>']"<?php endif; ?>
+    <?php if ($block->getPriceId()): ?>x-data="initPriceBox_<?= $priceId ?>()" x-id="['<?= $escaper->escapeJs($block->getPriceId()) ?>']"<?php endif; ?>
     class="price-container <?= $escaper->escapeHtmlAttr($block->getAdjustmentCssClasses()) ?>"
         <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>
 >
