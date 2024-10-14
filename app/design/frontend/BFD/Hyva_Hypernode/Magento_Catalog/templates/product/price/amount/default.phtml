@@ -13,8 +13,7 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 ?>
 <?php
-    $priceId    = str_replace('-', $block->getPriceId(),'_');
-    print_r($priceId);
+    $priceId    = str_replace('-','_', $block->getPriceId());
 ?>
 <script>
     function initPriceBox<?= $priceId ?>() {
