@@ -16,6 +16,7 @@ use Magento\Framework\Escaper;
     $priceName    = str_replace('-','_', $block->getPriceId());
     $array      = explode("_", $priceName);
     print_r($array);
+    $priceId = $block->getData("sku");
 ?>
 <script>
     function initPriceBox_<?= $priceId ?>() {
