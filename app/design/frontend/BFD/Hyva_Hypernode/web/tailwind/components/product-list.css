@@ -4,9 +4,13 @@
         @apply block;
 
         .price {
-            @apply font-semibold text-2xl text-lego-blue-dark;
+            @apply font-semibold text-base text-lego-blue-dark;
         }
 
+        [data-price-type='finalPrice'] {
+            @apply text-2xl;
+
+        }
         .price-label {
             @apply text-sm;
         }
