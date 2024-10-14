@@ -4,7 +4,7 @@
         @apply block;
 
         .price {
-            @apply font-semibold text-lg;
+            @apply font-semibold text-2xl text-lego-blue-dark;
         }
 
         .price-label {
