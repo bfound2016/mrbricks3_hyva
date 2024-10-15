@@ -11,9 +11,7 @@
             <argument name="default" xsi:type="array">
                 <item name="prices" xsi:type="array">
                     <item name="final_price" xsi:type="array">
-                        <arguments>
-                            <argument name="css_classes" xsi:type="string">flex flex-row-reverse</argument>
-                        </arguments>
+                        <item name="css_classes" xsi:type="string">flex flex-row-reverse</item>
                     </item>
                 </item>
             </argument>
