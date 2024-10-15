@@ -1,5 +1,8 @@
 
 .product-item {
+    .price-final_price{
+        @apply flex flex-row-reverse;
+    }
     .price-container {
         @apply block;
 
@@ -23,6 +26,10 @@
 
     .old-price .price-container {
         @apply text-gray-500;
+
+        .price-label {
+            @apply sr-only;
+        }
 
         .price {
             @apply font-normal text-base;
