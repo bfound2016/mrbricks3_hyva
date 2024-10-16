@@ -143,12 +143,17 @@ $viewModels->require(BlockJsDependencies::class)->setBlockTemplateDependency($bl
             </span>
         <?php endif; ?>
         <div class="flex justify-between mt-4">
-            <div class="text-gray-900 self-center"
-                 x-data="initPriceBox()"
-                 x-defer="intersect"
-                 @update-prices-<?= (int)$productId ?>.window="updatePrice($event.detail);"
-            >
-                <?= /* @noEscape */ $productListItemViewModel->getProductPriceHtml($product) ?>
+            <div class="">
+                <div class="text-gray-900 self-center"
+                     x-data="initPriceBox()"
+                     x-defer="intersect"
+                     @update-prices-<?= (int)$productId ?>.window="updatePrice($event.detail);"
+                >
+                    <?= /* @noEscape */ $productListItemViewModel->getProductPriceHtml($product) ?>
+                </div>
+                <div class="w-auto justify-center <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>">
+                    <?= $block->getChildBlock('stockstatus')->setData('product', $product)->toHtml() ?>
+                </div>
             </div>
             <div class="flex flex-wrap items-center
             <?= $viewIsGrid ? '' : 'md:justify-center' ?>">
