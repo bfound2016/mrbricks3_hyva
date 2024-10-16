@@ -143,8 +143,8 @@ $viewModels->require(BlockJsDependencies::class)->setBlockTemplateDependency($bl
             </span>
         <?php endif; ?>
         <div class="flex justify-between mt-4">
-            <div class="">
-                <div class="text-gray-900 self-center"
+            <div class="w-2/3">
+                <div class="border-b"
                      x-data="initPriceBox()"
                      x-defer="intersect"
                      @update-prices-<?= (int)$productId ?>.window="updatePrice($event.detail);"
