@@ -143,7 +143,7 @@ $viewModels->require(BlockJsDependencies::class)->setBlockTemplateDependency($bl
             </span>
         <?php endif; ?>
         <div class="flex justify-between mt-4">
-            <div class="w-2/3">
+            <div class="w-2/3 flex flex-col items-center">
                 <div class="border-b"
                      x-data="initPriceBox()"
                      x-defer="intersect"
@@ -151,7 +151,7 @@ $viewModels->require(BlockJsDependencies::class)->setBlockTemplateDependency($bl
                 >
                     <?= /* @noEscape */ $productListItemViewModel->getProductPriceHtml($product) ?>
                 </div>
-                <div class="w-auto justify-center <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>">
+                <div class="flex mt-1">
                     <?= $block->getChildBlock('stockstatus')->setData('product', $product)->toHtml() ?>
                 </div>
             </div>
