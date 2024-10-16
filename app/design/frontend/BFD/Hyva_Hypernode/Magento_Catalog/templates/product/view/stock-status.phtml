@@ -37,7 +37,7 @@ $inStock = $product->getIsSalable();
 <?php if ($block->getParentBlock()->displayProductStockStatus()): ?>
     <div>
         <p
-            class="flex items-center align-middle gap-x-2 stock
+            class="flex items-center align-middle gap-x-2 stock font-semibold
                 before:w-3 before:h-3 before:rounded-full before:shrink-0
                 <?= $inStock ? 'available before:bg-lego-green' : 'unavailable before:bg-red-500' ?>"
             title="<?= $escaper->escapeHtmlAttr(__('Availability')) ?>"
