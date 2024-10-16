@@ -1,7 +1,7 @@
 
 .product-item {
     .price-final_price{
-        @apply flex flex-row-reverse;
+        @apply flex flex-row-reverse gap-x-4;
     }
     .price-container {
         @apply block;
@@ -31,7 +31,7 @@
         }
 
         .price {
-            @apply font-normal text-base relative before:absolute before:border-b before:border-lego-blue-dark before:w-full before:bottom-5 before:-rotate-[17deg];
+            @apply font-normal text-base relative before:absolute before:border-b before:border-lego-blue-dark before:w-full before:bottom-2 before:-rotate-[17deg];
         }
     }
 }
