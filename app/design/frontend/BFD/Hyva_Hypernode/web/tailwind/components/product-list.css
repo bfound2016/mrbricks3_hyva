@@ -25,14 +25,13 @@
     }
 
     .old-price .price-container {
-        @apply text-gray-500;
 
         .price-label {
             @apply sr-only;
         }
 
         .price {
-            @apply font-normal text-base;
+            @apply font-normal text-base relative before:absolute before:border-b before:border-lego-blue-dark before:w-full before:bottom-5 before:-rotate-[17deg];
         }
     }
 }
