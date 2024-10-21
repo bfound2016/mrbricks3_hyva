@@ -5,7 +5,9 @@
         @apply transition-all;
 
         &:hover {
-            @apply transform scale-105;
+            img {
+                @apply transform scale-105;
+            }
         }
     }
 
