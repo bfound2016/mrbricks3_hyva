@@ -189,11 +189,11 @@ $productName = $block->getProduct()->getName();
                     type="button"
                     aria-label="<?= $escaper->escapeHtmlAttr(__('Previous')) ?>"
                     tabindex="-1"
-                    class="mr-4 text-black rounded-full outline-none focus:outline-none flex-none"
+                    class="mr-4 text-lego-blue-light rounded-full outline-none focus:outline-none flex-none"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide === 0, 'hidden' : !isSlider }"
                     aria-hidden="true"
                     @click="scrollPrevious"
-                ><?= $heroicons->chevronLeftHtml() ?></button>
+                ><?= $heroicons->chevronLeftHtml('w-8 h-8',32,32,['aria-hidden'=>'true']) ?></button>
                 <div class="js_thumbs_slides thumbs-wrapper relative flex flex-nowrap w-full overflow-auto js_slides snap md:px-1 xl:px-2"
                      x-ref="jsThumbSlides"
                      @scroll.debounce="calcPageSize(); calcActive()"
@@ -227,11 +227,11 @@ $productName = $block->getProduct()->getName();
                     x-cloak
                     aria-label="<?= $escaper->escapeHtmlAttr(__('Next')) ?>"
                     tabindex="-1"
-                    class="ml-4 text-black rounded-full outline-none focus:outline-none flex-none"
+                    class="ml-4 text-lego-blue-light rounded-full outline-none focus:outline-none flex-none"
                     :class="{ 'opacity-25 pointer-events-none' : activeSlide >= itemCount-pageSize, 'hidden' : !isSlider }"
                     aria-hidden="true"
                     @click="scrollNext"
-                ><?= $heroicons->chevronRightHtml() ?></button>
+                ><?= $heroicons->chevronRightHtml('w-8 h-8',32,32,['aria-hidden'=>'true']) ?></button>
             </div>
         </div>
         <div class="absolute top-0 right-0 pt-4 pr-4">
