@@ -219,7 +219,7 @@ $slideItemClasses = $block->getData('maybe_purged_tailwind_slide_item_classes') 
                         type="button"
                         aria-label="<?= $escaper->escapeHtmlAttr(__('Previous slide')) ?>"
                         :disabled="active === 0"
-                        class="text-lego-blue-dark flex-none p-3"
+                        class="text-lego-blue-light flex-none p-3"
                         :class="{ 'opacity-25 pointer-events-none' : active === 0 }"
                         @click="scrollPrevious"
                     >
@@ -237,7 +237,7 @@ $slideItemClasses = $block->getData('maybe_purged_tailwind_slide_item_classes') 
                             @click="scrollTo(<?= (int) $i ?>)"
                         >
                             <span
-                                class="shrink-0 block w-3 h-3 m-4 bg-black bg-opacity-25 rounded-full shadow cursor-pointer"
+                                class="shrink-0 block w-3 h-3 m-4 bg-lego-blue-dark bg-opacity-25 rounded-full shadow cursor-pointer"
                                 :class="{
                                     'bg-opacity-100': active === <?= (int) $i ?>,
                                     'bg-opacity-25': active !== <?= (int) $i ?>,
@@ -251,7 +251,7 @@ $slideItemClasses = $block->getData('maybe_purged_tailwind_slide_item_classes') 
                     <button
                         aria-label="<?= $escaper->escapeHtmlAttr(__('Next slide')) ?>"
                         :disabled="active >= itemCount-pageSize"
-                        class="text-lego-blue-dark flex-none p-3"
+                        class="text-lego-blue-light flex-none p-3"
                         :class="{ 'opacity-25 pointer-events-none' : active >= itemCount-pageSize }"
                         @click="scrollNext"
                      >
