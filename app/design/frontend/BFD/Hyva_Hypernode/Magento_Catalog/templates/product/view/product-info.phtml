@@ -33,7 +33,7 @@ $productType    = $product->getTypeId();
 
 $categoriesData = $productViewModel->getCategoriesData($product);
 ?>
-<div class="hidden md:flex md:flex-row md:justify-end md:gap-4 md:col-start-2 md:row-start-1">
+<div class="hidden md:flex md:flex-row md:justify-end md:gap-4 md:col-start-2 md:row-start-2 self-start">
     <?php foreach ($categoriesData as $categoryData): ?>
         <?php
             if ($categoryData['category_logo'] == null) continue;
@@ -60,7 +60,7 @@ $categoriesData = $productViewModel->getCategoriesData($product);
         <?php break; ?>
     <?php endforeach; ?>
 </div>
-<div class="w-full mb-6 order-3 md:col-start-2 md:row-start-2">
+<div class="w-full my-6 order-3 md:col-start-2 md:row-start-2">
     <?php
     /**
      * Removed #5 https://github.com/bfound2016/mrbricks3_hyva/issues/5
