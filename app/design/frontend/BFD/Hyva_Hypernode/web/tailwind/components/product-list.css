@@ -1,5 +1,14 @@
 
 .product-item {
+
+    img {
+        @apply transition-all;
+
+        &:hover {
+            @apply transform scale-105;
+        }
+    }
+
     .price-final_price{
         @apply flex flex-row-reverse gap-x-4;
     }

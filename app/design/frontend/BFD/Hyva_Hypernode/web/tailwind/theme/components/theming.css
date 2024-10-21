@@ -39,9 +39,11 @@ body {
 }
 
 .card-interactive {
+    /*
     &:hover {
         @apply bg-container;
     }
+    */
 }
 
 /**
