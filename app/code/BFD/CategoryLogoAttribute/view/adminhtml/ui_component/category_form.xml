@@ -19,6 +19,11 @@
                     </item>
                 </item>
             </argument>
+            <settings>
+                <label translate="true">Instructions</label>
+                <notice translate="true">Upload size should be retina (2x). Ex. 800x400 is shown in 400x200 dimension.</notice>
+                <dataScope>category_logo</dataScope>
+            </settings>
         </field>
     </fieldset>
 </form>
