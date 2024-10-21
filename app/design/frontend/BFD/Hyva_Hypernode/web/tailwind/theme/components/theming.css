@@ -39,11 +39,11 @@ body {
 }
 
 .card-interactive {
-    /*
+
     &:hover {
-        @apply bg-container;
+        @apply bg-container-lighter;
     }
-    */
+
 }
 
 /**
