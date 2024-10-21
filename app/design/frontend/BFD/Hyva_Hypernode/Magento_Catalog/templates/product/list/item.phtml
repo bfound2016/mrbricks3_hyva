@@ -180,11 +180,6 @@ $viewModels->require(BlockJsDependencies::class)->setBlockTemplateDependency($bl
                             <span class="ml-2 hidden"><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
                         </button>
                     <?php endif; ?>
-
-                <?php else: ?>
-                    <div class="w-auto justify-center <?= $viewIsGrid ? 'mr-auto' : 'mr-auto md:mr-0' ?>">
-                        <?= $block->getChildBlock('stockstatus')->setData('product', $product)->toHtml() ?>
-                    </div>
                 <?php endif; ?>
                 <div class="flex flex-wrap gap-2">
                     <?php if ($showAddToWishlist): ?>
